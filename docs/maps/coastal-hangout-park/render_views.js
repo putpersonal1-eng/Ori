@@ -23,7 +23,7 @@ fs.writeFileSync(path.join(tmp, 'index.html'), `<!doctype html><meta charset="ut
 import { mountPark } from './park3d.js';
 const D = JSON.parse(document.getElementById('scene').textContent);
 const v = new URLSearchParams(location.search).get('view');
-const P = mountPark(document.getElementById('c'), D, { still: true, pixelRatio: 1, view: v });
+const P = mountPark(document.getElementById('c'), D, { still: true, pixelRatio: 1, view: v, fontUrl: 'file://${three}/examples/fonts/helvetiker_bold.typeface.json' });
 P.ready.then(() => { P.setView(v, false); P.render(); window.DONE = true; });
 </script>`);
 
@@ -37,7 +37,7 @@ P.ready.then(() => { P.setView(v, false); P.render(); window.DONE = true; });
     const p = await b.newPage({ viewport: { width: W, height: H } });
     p.on('pageerror', e => console.error(v, e.message));
     await p.goto('file://' + path.join(tmp, 'index.html') + '?view=' + v);
-    await p.waitForFunction(() => window.DONE, null, { timeout: 120000 });
+    await p.waitForFunction(() => window.DONE, null, { timeout: 300000 });
     await p.screenshot({ path: path.join(HERE, 'img', `view_${v}.jpg`), type: 'jpeg', quality: 84 });
     console.log('rendered', v);
     await p.close();

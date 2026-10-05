@@ -1,8 +1,17 @@
-// Japan Coastal Hangout Park: three.js viewer for the massing model made by model3d.py.
+// Umi Seaside Park: three.js viewer for the massing model made by model3d.py.
 // Plan metres map to x = east, z = south, y = level above sea (±0.00).
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { GTAOPass } from 'three/addons/postprocessing/GTAOPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+import { SMAAPass } from 'three/addons/postprocessing/SMAAPass.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { FontLoader } from 'three/addons/loaders/FontLoader.js';
+import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 
 const MASCOT = ['...O......O...', '..OYO....OYO..', '..OYYOOOOYYO..', '.OYYYYYYYYYYO.', '.OYYKYYYYKYYO.',
   'OYYYKYYYYKYYYO', 'OYPYYYYYYYYPYO', 'OYYYYYKKYYYYYO', '.OYYYYYYYYYYO.', '..OOYYYYYYOO..', '....OOOOOO....'];
@@ -134,13 +143,42 @@ function drawExtra(L, g, W, H) {
     g.strokeStyle = '#fff'; g.lineWidth = 4;
     for (let i = 0; i < 4; i++) { g.beginPath(); g.moveTo(cx - H * .2 + i * H * .12, cy - H * .11); g.lineTo(cx - H * .17 + i * H * .12, cy + H * .06); g.stroke(); }
   } else if (k === 'banner') {
-    g.fillStyle = '#E0359B'; g.fillRect(0, 0, W, H);
-    g.fillStyle = '#3FD6E0';
-    for (const [x, y, r] of [[.25, .1, .1], [.7, .2, .07], [.4, .3, .06], [.8, .05, .05]]) { g.beginPath(); g.arc(x * W, y * H, r * W * 1.2, 0, 7); g.fill(); }
-    const cs = W / 4;
-    for (let i = 0; i < 4; i++) for (let j = 0; j < 3; j++) { g.fillStyle = (i + j) % 2 ? '#fff' : '#1B1F26'; g.fillRect(i * cs, H * .62 + j * cs, cs, cs); }
-    g.fillStyle = '#fff'; g.textAlign = 'center'; g.font = `800 ${Math.round(W * .3)}px "Noto Sans JP", sans-serif`;
-    ['海', '辺'].forEach((c, i) => g.fillText(c, W / 2, H * (.38 + i * .12)));
+    const D_ = {
+      umi: ['#2C3E57', '#24ABCC', 'UMI', '#FFFFFF', 'wave'], cafe: ['#FFFFFF', '#7E5234', 'CAFE', '#7E5234', 'cup'],
+      games: ['#D8343F', '#F6C833', 'GAMES', '#FFFFFF', 'pad'], omiyage: ['#F6C833', '#E8414E', 'おみやげ', '#2E333B', 'heart'],
+      beach: ['#24ABCC', '#FFFFFF', 'BEACH', '#FFFFFF', 'sun'], sakura: ['#F59BC3', '#FFFFFF', 'さくら', '#FFFFFF', 'petal'],
+      fes: ['#EE8A6B', '#FFE07A', '夏まつり', '#FFFFFF', 'sun'], shell: ['#A9DCC6', '#FFFFFF', 'SEA', '#2C3E57', 'wave'],
+    }[L.d || 'umi'];
+    const [bg, acc, txt, fg, icon] = D_;
+    g.fillStyle = bg; g.fillRect(0, 0, W, H);
+    g.fillStyle = acc; g.strokeStyle = acc; g.lineWidth = W * .06;
+    const cx = W / 2, cy = W * .62, r = W * .3;
+    if (icon === 'wave') {
+      g.beginPath(); for (let x = 0; x <= W; x += 2) g.lineTo(x, cy + Math.sin(x / W * 12) * r * .35); g.stroke();
+      g.beginPath(); for (let x = 0; x <= W; x += 2) g.lineTo(x, cy + r * .6 + Math.sin(x / W * 12 + 1) * r * .35); g.stroke();
+    } else if (icon === 'cup') {
+      g.beginPath(); g.arc(cx, cy, r, 0, 7); g.fill(); g.fillStyle = bg; rrectPath(g, cx - r * .45, cy - r * .2, r * .7, r * .55, r * .1); g.fill();
+    } else if (icon === 'pad') {
+      g.fillRect(cx - r * .9, cy - r * .3, r * 1.8, r * .6); g.fillRect(cx - r * .3, cy - r * .9, r * .6, r * 1.8);
+    } else if (icon === 'heart') {
+      heartPath(g, cx, cy, r); g.fill();
+    } else if (icon === 'sun') {
+      g.beginPath(); g.arc(cx, cy, r * .7, 0, 7); g.fill();
+      for (let i = 0; i < 8; i++) { const a = i * Math.PI / 4; g.beginPath(); g.moveTo(cx + Math.cos(a) * r * .85, cy + Math.sin(a) * r * .85); g.lineTo(cx + Math.cos(a) * r * 1.2, cy + Math.sin(a) * r * 1.2); g.stroke(); }
+    } else {
+      for (let i = 0; i < 5; i++) { const a = i * 1.2566; g.beginPath(); g.ellipse(cx + Math.cos(a) * r * .5, cy + Math.sin(a) * r * .5, r * .32, r * .2, a, 0, 7); g.fill(); }
+    }
+    g.fillStyle = fg; g.textAlign = 'center'; g.textBaseline = 'middle';
+    const chars = [...txt];
+    if (txt.length <= 4 || !/^[A-Z]+$/.test(txt)) {
+      const cs = Math.min(W * .62, (H - W * 1.2) / chars.length * .95);
+      g.font = `800 ${Math.round(cs)}px "Noto Sans JP", ${FONT_C}`;
+      chars.forEach((c, i) => g.fillText(c, W / 2, W * 1.15 + cs * (i + .55)));
+    } else {
+      g.save(); g.translate(W / 2, H * .62); g.rotate(-Math.PI / 2);
+      g.font = `800 ${Math.round(W * .5)}px ${FONT_C}`; g.fillText(txt, 0, 0); g.restore();
+    }
+    g.strokeStyle = 'rgba(0,0,0,.25)'; g.lineWidth = 3; g.strokeRect(1.5, 1.5, W - 3, H - 3);
   } else if (k === 'plaque') {
     g.fillStyle = '#1B1F26'; g.fillRect(0, 0, W, H);
     g.strokeStyle = '#C9A24A'; g.lineWidth = H * .05; g.strokeRect(H * .08, H * .08, W - H * .16, H - H * .16);
@@ -331,56 +369,254 @@ function surfaceGeom(o, holes, heightOf, base) {
   return [top.toNonIndexed(), skirt];
 }
 
+
+// ------------------------------------------------------------------ procedural PBR textures
+// Each material kind gets a tileable height field (canvas) that becomes the albedo modulation,
+// a normal map and a roughness map. UVs are world-space metres; repeat = 1 / tile size.
+const TEX_N = 512;
+function noiseField(n, seed, oct = 4) {
+  const R = rng(seed), f = new Float32Array(n * n);
+  for (let o = 0; o < oct; o++) {
+    const g = 4 << o, amp = 1 / (1 << o), grid = new Float32Array((g + 1) * (g + 1));
+    for (let i = 0; i < grid.length; i++) grid[i] = R();
+    for (let j = 0; j <= g; j++) grid[j * (g + 1) + g] = grid[j * (g + 1)];
+    for (let i = 0; i <= g; i++) grid[g * (g + 1) + i] = grid[i];
+    for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) {
+      const gx = x / n * g, gy = y / n * g, ix = Math.floor(gx), iy = Math.floor(gy), fx = gx - ix, fy = gy - iy;
+      const sx = fx * fx * (3 - 2 * fx), sy = fy * fy * (3 - 2 * fy);
+      const a = grid[iy * (g + 1) + ix], b = grid[iy * (g + 1) + ix + 1], c = grid[(iy + 1) * (g + 1) + ix], d = grid[(iy + 1) * (g + 1) + ix + 1];
+      f[y * n + x] += amp * (a + (b - a) * sx + (c - a) * sy + (a - b - c + d) * sx * sy);
+    }
+  }
+  let mn = 1e9, mx = -1e9;
+  for (const v of f) { mn = Math.min(mn, v); mx = Math.max(mx, v); }
+  for (let i = 0; i < f.length; i++) f[i] = (f[i] - mn) / (mx - mn);
+  return f;
+}
+
+const TEX_KINDS = {
+  // size: metres per tile; h(x, y, nz): height 0..1 at texel; tone: albedo modulation range; rough: [base, var]
+  std: { size: 2.0, rough: [.72, .1], tone: .06 },
+  paint: { size: 2.0, rough: [.45, .08], tone: .04 },
+  plaster: { size: 2.5, rough: [.92, .06], tone: .07 },
+  clad: { size: 1.4, rough: [.55, .06], tone: .05, lines: 'h', pitch: .7, w: .012 },
+  panel: { size: 3.6, rough: [.6, .08], tone: .06, grid: [.9, 1.8], w: .006 },
+  conc: { size: 2.4, rough: [.88, .08], tone: .1, grid: [2.4, 1.2], w: .004, pits: true },
+  stone: { size: 2.4, rough: [.85, .1], tone: .14, bond: [.6, .3], w: .02 },
+  timber: { size: 1.2, rough: [.62, .12], tone: .2, lines: 'h', pitch: .15, w: .01, grain: 'h' },
+  timberv: { size: 1.2, rough: [.62, .12], tone: .2, lines: 'v', pitch: .12, w: .01, grain: 'v' },
+  deck: { size: 1.8, rough: [.7, .12], tone: .22, lines: 'v', pitch: .14, w: .012, grain: 'v', ends: true },
+  metal: { size: .8, rough: [.32, .08], tone: .05, metal: .7, brushed: true },
+  groove: { size: .4, rough: [.35, .05], tone: .25, metal: .7, lines: 'v', pitch: .01, w: .004 },
+  kawara: { size: 1.0, rough: [.32, .06], tone: .1, tiles: 'v' },
+  kawarar: { size: 1.0, rough: [.32, .06], tone: .1, tiles: 'h' },
+  thatch: { size: 1.0, rough: [.95, .03], tone: .3, straw: true },
+  facade: { size: 3.2, rough: [.6, .1], tone: .05, facade: true },
+  gloss: { size: 2.0, rough: [.25, .05], tone: .02 },
+  rubber: { size: 1.0, rough: [.75, .05], tone: .04 },
+};
+
+function makeTex(kind) {
+  const K = TEX_KINDS[kind] || TEX_KINDS.std, n = TEX_N;
+  const h = new Float32Array(n * n), alb = new Float32Array(n * n);
+  const nz = noiseField(n, kind.length * 31 + 7, 5), nz2 = noiseField(n, kind.length * 17 + 3, 3);
+  const px = K.size / n;  // metres per texel
+  for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) {
+    const i = y * n + x, mx = x * px, my = y * px;
+    let hv = .5 + (nz[i] - .5) * .25, av = 1 - K.tone * (1 - nz[i]);
+    if (K.lines) {
+      const c = K.lines === 'h' ? my : mx, d = Math.abs(((c + K.pitch / 2) % K.pitch) - K.pitch / 2);
+      if (d < K.w) { hv -= .55 * (1 - d / K.w); av *= .72; }
+      if (K.grain) {
+        const along = K.grain === 'h' ? mx : my, across = K.grain === 'h' ? my : mx;
+        const board = Math.floor(across / K.pitch);
+        const g = Math.sin((along * 9 + nz2[i] * 6 + board * 3.1) * 2.2) * .5 + .5;
+        av *= 1 - K.tone * .55 * g - K.tone * .25 * ((board * 7919) % 5) / 5;
+        hv += (g - .5) * .06;
+        if (K.ends) {
+          const e = (along + ((board * 1.37) % 1) * K.size) % (K.size / 2);
+          if (e < .006) { hv -= .4; av *= .75; }
+        }
+      }
+    }
+    if (K.grid) {
+      const dx = Math.abs(((mx + K.grid[0] / 2) % K.grid[0]) - K.grid[0] / 2), dy = Math.abs(((my + K.grid[1] / 2) % K.grid[1]) - K.grid[1] / 2);
+      if (dx < K.w || dy < K.w) { hv -= .4; av *= .82; }
+      if (K.pits && nz2[i] > .93) { hv -= .3; av *= .9; }
+    }
+    if (K.bond) {
+      const row = Math.floor(my / K.bond[1]), off = (row % 2) * K.bond[0] / 2;
+      const dx = Math.abs(((mx + off + K.bond[0] / 2) % K.bond[0]) - K.bond[0] / 2), dy = Math.abs(((my + K.bond[1] / 2) % K.bond[1]) - K.bond[1] / 2);
+      const blk = ((Math.floor((mx + off) / K.bond[0]) * 31 + row * 17) % 7) / 7;
+      av *= 1 - K.tone * blk * .6;
+      if (dx < K.w || dy < K.w) { hv -= .5; av *= .78; } else hv += .1 * Math.min(1, Math.min(dx, dy) / .05);
+    }
+    if (K.brushed) { av *= 1 - .05 * Math.sin(my * 900 + nz2[i] * 20); }
+    if (K.tiles) {
+      // pantiles: channels with rounded caps; courses every 0.28 m
+      const across = K.tiles === 'v' ? mx : my, along = K.tiles === 'v' ? my : mx;
+      const w = .3, t = ((across % w) + w) % w / w, crs = ((along % .28) + .28) % .28 / .28;
+      hv = .5 + .45 * Math.sin(t * Math.PI) - .25 * (crs > .9 ? (crs - .9) * 10 : 0);
+      av = (.8 + .2 * Math.sin(t * Math.PI)) * (crs > .92 ? .7 : 1) * (1 - .06 * nz[i]);
+    }
+    if (K.straw) {
+      const s2 = Math.sin(mx * 160 + nz[i] * 12) * .5 + .5, crs = ((my % .2) + .2) % .2 / .2;
+      hv = .4 + .4 * s2 * (1 - crs * .5); av = (.75 + .25 * s2) * (crs > .85 ? .75 : 1);
+    }
+    if (K.facade) {
+      // background town facade: 3.2 m floors, 1.6 m window bays with frames and a sill
+      const bx = ((mx % 1.6) + 1.6) % 1.6, fy = ((my % 3.2) + 3.2) % 3.2;
+      const win = bx > .25 && bx < 1.35 && fy > .9 && fy < 2.6;
+      if (win) { av = .32 + .25 * (1 - fy / 3.2) + .1 * nz2[i]; hv = .2; }
+      else if (bx > .2 && bx < 1.4 && fy > .82 && fy < .9) { av *= .85; hv = .8; }
+    }
+    h[i] = Math.max(0, Math.min(1, hv)); alb[i] = Math.max(0, Math.min(1.1, av));
+  }
+  const mk = (fill) => {
+    const c = document.createElement('canvas'); c.width = c.height = n;
+    const g = c.getContext('2d'), im = g.createImageData(n, n);
+    for (let i = 0; i < n * n; i++) { const [r, gg, b] = fill(i); im.data[i * 4] = r; im.data[i * 4 + 1] = gg; im.data[i * 4 + 2] = b; im.data[i * 4 + 3] = 255; }
+    g.putImageData(im, 0, 0);
+    const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = 8;
+    t.repeat.set(1 / K.size, 1 / K.size);
+    return t;
+  };
+  const map = mk(i => { const v = Math.min(255, alb[i] * 255); return [v, v, v]; });
+  map.colorSpace = THREE.SRGBColorSpace;
+  const str = kind === 'kawara' || kind === 'kawarar' ? 5 : kind === 'stone' || kind === 'deck' || kind === 'thatch' ? 3 : 1.8;
+  const normal = mk(i => {
+    const x = i % n, y = (i / n) | 0;
+    const hx = h[y * n + (x + 1) % n] - h[y * n + (x + n - 1) % n], hy = h[((y + 1) % n) * n + x] - h[((y + n - 1) % n) * n + x];
+    const v = new THREE.Vector3(-hx * str, hy * str, 1).normalize();
+    return [(v.x * .5 + .5) * 255, (v.y * .5 + .5) * 255, (v.z * .5 + .5) * 255];
+  });
+  const rough = mk(i => { const v = Math.min(255, (K.rough[0] + K.rough[1] * (1 - h[i])) * 255); return [v, v, v]; });
+  return { map, normal, rough, K };
+}
+const texCache = new Map();
+function texFor(kind) { if (!texCache.has(kind)) texCache.set(kind, makeTex(kind)); return texCache.get(kind); }
+
+// world-space UVs in metres, projected per triangle on its dominant axis
+function worldUV(g) {
+  const p = g.attributes.position, n = p.count, uv = new Float32Array(n * 2);
+  const a = new THREE.Vector3(), b = new THREE.Vector3(), c = new THREE.Vector3(), e1 = new THREE.Vector3(), e2 = new THREE.Vector3();
+  for (let i = 0; i < n; i += 3) {
+    a.fromBufferAttribute(p, i); b.fromBufferAttribute(p, i + 1); c.fromBufferAttribute(p, i + 2);
+    e1.subVectors(b, a); e2.subVectors(c, a); e1.cross(e2);
+    const ax = Math.abs(e1.x), ay = Math.abs(e1.y), az = Math.abs(e1.z);
+    for (let k = 0; k < 3; k++) {
+      const v = k === 0 ? a : k === 1 ? b : c;
+      let u, w;
+      if (ay >= ax && ay >= az) { u = v.x; w = v.z; } else if (ax >= az) { u = v.z; w = v.y; } else { u = v.x; w = v.y; }
+      uv[(i + k) * 2] = u; uv[(i + k) * 2 + 1] = w;
+    }
+  }
+  g.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
+}
+
+function flipWinding(g) {
+  const p = g.attributes.position.array;
+  for (let i = 0; i < p.length; i += 9) for (let k = 0; k < 3; k++) { const t = p[i + 3 + k]; p[i + 3 + k] = p[i + 6 + k]; p[i + 6 + k] = t; }
+  g.attributes.position.needsUpdate = true;
+}
+
+const BEVEL_KINDS = new Set(['std', 'paint', 'plaster', 'clad', 'panel', 'conc', 'stone', 'timber', 'timberv', 'deck', 'metal', 'gloss', 'rubber', 'facade']);
+
+// plate: polygon in plan with a top height per vertex; bottom parallel (t) or flat (bot)
+function plateGeom(pts, tops, t, bot) {
+  const key = (x, z) => x.toFixed(2) + ',' + z.toFixed(2);
+  const m = new Map();
+  pts.forEach(([x, z], i) => m.set(key(x, z), tops[i]));
+  const Y = (x, z) => {
+    const v = m.get(key(x, z));
+    if (v !== undefined) return v;
+    let bi = 0, bd = 1e9;
+    pts.forEach(([px, pz], i) => { const d = (px - x) ** 2 + (pz - z) ** 2; if (d < bd) { bd = d; bi = i; } });
+    return tops[bi];
+  };
+  const B = (x, z) => (t != null ? Y(x, z) - t : bot);
+  const sg = new THREE.ShapeGeometry(new THREE.Shape(pts.map(([x, z]) => new THREE.Vector2(x, z))));
+  const p = sg.attributes.position, idx = sg.index.array, out = [];
+  for (let i = 0; i < idx.length; i += 3) {
+    for (const k of [idx[i], idx[i + 2], idx[i + 1]]) { const x = p.getX(k), z = p.getY(k); out.push(x, Y(x, z), z); }
+    for (const k of [idx[i], idx[i + 1], idx[i + 2]]) { const x = p.getX(k), z = p.getY(k); out.push(x, B(x, z), z); }
+  }
+  for (let i = 0; i < pts.length; i++) {
+    const [x0, z0] = pts[i], [x1, z1] = pts[(i + 1) % pts.length];
+    const h0 = tops[i], h1 = tops[(i + 1) % pts.length], b0 = t != null ? h0 - t : bot, b1 = t != null ? h1 - t : bot;
+    out.push(x0, h0, z0, x1, h1, z1, x1, b1, z1, x0, h0, z0, x1, b1, z1, x0, b0, z0);
+  }
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.Float32BufferAttribute(out, 3));
+  g.computeVertexNormals();
+  return g;
+}
+
 export function mountPark(canvas, D, opt = {}) {
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: !!opt.still });
-  renderer.setPixelRatio(opt.pixelRatio || Math.min(window.devicePixelRatio || 1, 2));
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, preserveDrawingBuffer: !!opt.still, powerPreference: 'high-performance' });
+  const PR = opt.pixelRatio || Math.min(window.devicePixelRatio || 1, 2);
+  renderer.setPixelRatio(PR);
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.0;
+  renderer.toneMappingExposure = .82;
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   const scene = new THREE.Scene();
   scene.background = skyTexture();
-  scene.fog = new THREE.Fog(0xE4F2FA, 280, 900);
+  scene.fog = new THREE.Fog(0xDCEEF8, 320, 950);
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  const envTex = pmrem.fromScene(new RoomEnvironment(renderer), .04).texture;
+  scene.environment = envTex;
   const cam = new THREE.PerspectiveCamera(50, 16 / 9, .3, 2000);
   const C = new THREE.Vector3(...D.center);
-  scene.add(new THREE.HemisphereLight(0xEAF5FF, 0xC9B48F, 1.35));
-  const sun = new THREE.DirectionalLight(0xFFF1DC, 2.4);
+  scene.add(new THREE.HemisphereLight(0xDDEEFF, 0xB09A7C, .6));
+  const sun = new THREE.DirectionalLight(0xFFEBD0, 3.1);
   sun.position.copy(C).add(new THREE.Vector3(...D.sun));
   sun.target.position.copy(C);
   sun.castShadow = true;
   const sm = opt.shadow || 4096;
   sun.shadow.mapSize.set(sm, sm);
-  Object.assign(sun.shadow.camera, { left: -140, right: 140, top: 140, bottom: -140, near: 20, far: 520 });
-  sun.shadow.bias = -0.0006;
-  sun.shadow.normalBias = 0.3;
+  Object.assign(sun.shadow.camera, { left: -135, right: 135, top: 135, bottom: -135, near: 20, far: 520 });
+  sun.shadow.bias = -0.0004;
+  sun.shadow.normalBias = 0.25;
   scene.add(sun, sun.target);
 
   const matCache = new Map();
+  const ENV = .42;
   function mat(ci, kind) {
     const key = ci + ':' + kind;
-    if (!matCache.has(key)) {
-      const color = new THREE.Color(D.pal[ci]);
-      let m;
-      if (kind === 'glass') m = new THREE.MeshStandardMaterial({ color, roughness: .05, metalness: .2, transparent: true, opacity: .42, depthWrite: false });
-      else m = new THREE.MeshStandardMaterial({ color, roughness: .86, metalness: 0, side: THREE.DoubleSide, flatShading: kind === 'flat' });
-      if (kind === 'soft') {
-        // soft ground (beds, sand, banks) sits just behind any hard surface it touches, so shared walls never flicker
-        m.polygonOffset = true; m.polygonOffsetFactor = 2; m.polygonOffsetUnits = 6;
-      }
-      matCache.set(key, m);
+    if (matCache.has(key)) return matCache.get(key);
+    const color = new THREE.Color(D.pal[ci]);
+    let m;
+    if (kind === 'glass') {
+      m = new THREE.MeshStandardMaterial({ color, roughness: .04, metalness: .35, transparent: true, opacity: .38, depthWrite: false, envMapIntensity: 1.4 });
+    } else if (kind === 'led') {
+      m = new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: 1.6, roughness: .4 });
+    } else if (kind === 'flat' || kind === 'soft') {
+      m = new THREE.MeshStandardMaterial({ color, roughness: .88, metalness: 0, side: THREE.DoubleSide, flatShading: kind === 'flat', envMapIntensity: .35 });
+      if (kind === 'soft') { m.polygonOffset = true; m.polygonOffsetFactor = 1; m.polygonOffsetUnits = 3; }
+    } else if (kind === 'ground') {
+      m = new THREE.MeshStandardMaterial({ color, roughness: .9, metalness: 0, side: THREE.DoubleSide, envMapIntensity: .35 });
+    } else {
+      const T = texFor(kind);
+      m = new THREE.MeshStandardMaterial({ color, map: T.map, normalMap: T.normal, roughnessMap: T.rough, roughness: 1,
+        metalness: T.K.metal || 0, envMapIntensity: ENV, side: THREE.DoubleSide });
+      m.normalScale.set(1, 1);
     }
-    return matCache.get(key);
+    matCache.set(key, m);
+    return m;
   }
   const buckets = new Map();
   function put(ci, kind, geom, cast = true) {
     const key = ci + ':' + kind + ':' + (cast ? 1 : 0);
     if (!buckets.has(key)) buckets.set(key, { ci, kind, cast, list: [] });
-    const g = geom.index ? geom.toNonIndexed() : geom;
-    if (g.attributes.uv) g.deleteAttribute('uv');
+    let g = geom.index ? geom.toNonIndexed() : geom;
+    for (const k of Object.keys(g.attributes)) if (k !== 'position' && k !== 'normal') g.deleteAttribute(k);
     if (!g.attributes.normal) g.computeVertexNormals();
+    worldUV(g);
     buckets.get(key).list.push(g);
   }
+  const groundKind = k => (k === 'std' ? 'ground' : k);
 
   // ground slabs and prisms
   for (const s of D.slabs) {
@@ -392,8 +628,8 @@ export function mountPark(canvas, D, opt = {}) {
       hf = (x, z) => m.get(x.toFixed(2) + ',' + z.toFixed(2)) ?? 0;
     } else hf = (x, z) => hEval(s.t, x, z);
     const [top, skirt] = surfaceGeom(s.o, s.h, hf, s.b);
-    put(s.c, s.m, top, false);
-    put(s.c, s.m, skirt, false);
+    put(s.c, groundKind(s.m), top, false);
+    put(s.c, groundKind(s.m), skirt, false);
   }
   for (const s of D.prisms) {
     const [top, skirt] = surfaceGeom(s.o, s.h, () => s.y1, s.y0);
@@ -404,7 +640,8 @@ export function mountPark(canvas, D, opt = {}) {
   const D2R = Math.PI / 180;
   for (const b of D.boxes) {
     const [cx, cy, cz, sx, sy, sz, ry, rx, ci, kind] = b;
-    const g = new THREE.BoxGeometry(sx, sy, sz);
+    const mn = Math.min(sx, sy, sz);
+    const g = (BEVEL_KINDS.has(kind) && mn >= .1) ? new RoundedBoxGeometry(sx, sy, sz, 1, Math.min(.035, mn * .22)) : new THREE.BoxGeometry(sx, sy, sz);
     e.set(rx * D2R, ry * D2R, 0, 'YXZ'); q.setFromEuler(e);
     g.applyMatrix4(m4.compose(v.set(cx, cy, cz), q, one));
     put(ci, kind, g, kind !== 'glass');
@@ -413,6 +650,7 @@ export function mountPark(canvas, D, opt = {}) {
     const [x, y, z, r0, r1, h, ci, axis, seg, kind] = c;
     if (axis === 's') {
       const sg = new THREE.SphereGeometry(r0, 18, 12);
+      if (h) sg.scale(1, h / (2 * r0), 1);
       sg.translate(x, y, z);
       put(ci, kind, sg);
       continue;
@@ -423,6 +661,39 @@ export function mountPark(canvas, D, opt = {}) {
     else if (axis === 'x') { g.rotateZ(-Math.PI / 2); g.translate(x, y, z); }
     else { g.rotateX(Math.PI / 2); g.translate(x, y, z); }
     put(ci, kind, g, kind !== 'glass');
+  }
+  // tubes between two points (rails, posts, wheels, handrails)
+  const up = new THREE.Vector3(0, 1, 0), dir = new THREE.Vector3();
+  for (const s of D.segs || []) {
+    const [x0, y0, z0, x1, y1, z1, r, ci, seg, kind] = s;
+    dir.set(x1 - x0, y1 - y0, z1 - z0);
+    const L = dir.length();
+    if (L < 1e-4) continue;
+    const g = new THREE.CylinderGeometry(r, r, L, seg, 1, false);
+    q.setFromUnitVectors(up, dir.normalize());
+    g.applyMatrix4(m4.compose(v.set((x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2), q, one));
+    put(ci, kind, g, kind !== 'glass');
+  }
+  // extrusions of a 2D profile: plane 'xy' extrudes along +z from off, 'zy' along +x from off
+  for (const x of D.exts || []) {
+    const [plane, pts, off, depth, ci, kind, bev] = x;
+    const shape = new THREE.Shape(pts.map(([a, b]) => new THREE.Vector2(a, b)));
+    const g = new THREE.ExtrudeGeometry(shape, { depth: Math.max(.001, depth - 2 * bev), bevelEnabled: bev > 0, bevelSize: bev, bevelThickness: bev, bevelSegments: 2, curveSegments: 6 });
+    g.translate(0, 0, bev);
+    if (plane === 'xy') g.translate(0, 0, off);
+    else { g.applyMatrix4(new THREE.Matrix4().set(0, 0, 1, off, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1)); flipWinding(g); g.computeVertexNormals(); }
+    put(ci, kind, g);
+  }
+  for (const pl of D.plates || []) {
+    const [pts, tops, t, bot, ci, kind] = pl;
+    put(ci, kind, plateGeom(pts, tops, t, bot));
+  }
+  // tori (ring logo, portholes): centre, R, r, arc, in-plane rotation, facing ry
+  for (const t of D.tori || []) {
+    const [x, y, z, R, r, arc, rz, ry, ci, kind] = t;
+    const g = new THREE.TorusGeometry(R, r, 14, 48, arc * D2R);
+    g.rotateZ(rz * D2R); g.rotateY(ry * D2R); g.translate(x, y, z);
+    put(ci, kind, g);
   }
   // terrain: hills that wall the map, coloured by height and slope
   if (D.terrain) {
@@ -452,13 +723,11 @@ export function mountPark(canvas, D, opt = {}) {
     tg.setAttribute('color', new THREE.BufferAttribute(col, 3));
     tg.setIndex(idx);
     tg.computeVertexNormals();
-    const tm = new THREE.Mesh(tg, new THREE.MeshStandardMaterial({ vertexColors: true, roughness: .95, flatShading: true }));
+    const tm = new THREE.Mesh(tg, new THREE.MeshStandardMaterial({ vertexColors: true, roughness: .95, flatShading: true, envMapIntensity: .3 }));
     tm.receiveShadow = true; tm.castShadow = true;
     scene.add(tm);
   }
-
-  // trees, sakura, palms
-  const pal = name => { const i = D.pal.indexOf(name); return i >= 0 ? i : 0; };
+  // trees, sakura, palms (placeholders: the engine supplies the real ones)
   const TREE = ['#6DAA55', '#5B9A49', '#78B35E'], SAK = ['#F4B8D1', '#F7C8DC'], PALM = '#5E9A4A', TRUNK = '#8A6A4A';
   const extraPal = c => { let i = D.pal.indexOf(c); if (i < 0) { D.pal.push(c); i = D.pal.length - 1; } return i; };
   for (const t of D.trees) {
@@ -468,7 +737,7 @@ export function mountPark(canvas, D, opt = {}) {
       const lean = (R() - .5) * .8;
       const tg = new THREE.CylinderGeometry(.16, .24, h, 7);
       tg.translate(0, h / 2, 0); tg.rotateZ(lean * .12); tg.translate(x, y, z);
-      put(extraPal(TRUNK), 'std', tg);
+      put(extraPal(TRUNK), 'flat', tg);
       const tx = x - Math.sin(lean * .12) * h, ty = y + h;
       for (let k = 0; k < 9; k++) {
         const a = k / 9 * Math.PI * 2 + R() * .3, L = r * (.95 + R() * .25);
@@ -481,7 +750,7 @@ export function mountPark(canvas, D, opt = {}) {
     const trunkH = h * .45;
     const tg = new THREE.CylinderGeometry(.18 + r * .02, .26 + r * .03, trunkH + .5, 7);
     tg.translate(x, y + (trunkH + .5) / 2, z);
-    put(extraPal(TRUNK), 'std', tg);
+    put(extraPal(TRUNK), 'flat', tg);
     const cols = kind === 's' ? SAK : TREE;
     const n = 4 + Math.floor(r / 3);
     for (let k = 0; k < n; k++) {
@@ -493,13 +762,12 @@ export function mountPark(canvas, D, opt = {}) {
       put(extraPal(cols[k % cols.length]), 'flat', g);
     }
   }
-  // shrubs and rocks (instanced)
   const ig = new THREE.IcosahedronGeometry(1, 0);
-  const shrubMesh = new THREE.InstancedMesh(ig, new THREE.MeshStandardMaterial({ color: '#4F8F45', roughness: .9, flatShading: true }), D.shrubs.length);
+  const shrubMesh = new THREE.InstancedMesh(ig, new THREE.MeshStandardMaterial({ color: '#4F8F45', roughness: .9, flatShading: true, envMapIntensity: .3 }), D.shrubs.length);
   D.shrubs.forEach(([x, y, z, r], i) => { shrubMesh.setMatrixAt(i, m4.compose(v.set(x, y + r * .4, z), q.identity(), new THREE.Vector3(r, r * .8, r))); });
   shrubMesh.castShadow = true; shrubMesh.receiveShadow = true; scene.add(shrubMesh);
   const dg = new THREE.DodecahedronGeometry(1, 0);
-  const rockMesh = new THREE.InstancedMesh(dg, new THREE.MeshStandardMaterial({ color: '#A9A39A', roughness: .95, flatShading: true }), D.rocks.length);
+  const rockMesh = new THREE.InstancedMesh(dg, new THREE.MeshStandardMaterial({ color: '#A9A39A', roughness: .95, flatShading: true, envMapIntensity: .3 }), D.rocks.length);
   D.rocks.forEach(([x, y, z, r, s], i) => {
     const R = rng(s + 3);
     e.set(R() * 3, R() * 3, R() * 3); q.setFromEuler(e);
@@ -519,7 +787,7 @@ export function mountPark(canvas, D, opt = {}) {
   function addLabels() {
     for (const L of D.labels) {
       if (L.k === 'water') {
-        const wm = new THREE.MeshStandardMaterial({ color: '#43A9C6', roughness: .12, metalness: .1, transparent: true, opacity: .8 });
+        const wm = new THREE.MeshStandardMaterial({ color: '#3FA6C4', roughness: .08, metalness: .15, transparent: true, opacity: .82, envMapIntensity: 1.1 });
         const w = new THREE.Mesh(new THREE.PlaneGeometry(L.w, L.h), wm);
         w.rotation.x = -Math.PI / 2; w.position.set(...L.p); w.receiveShadow = true; w.renderOrder = 1;
         scene.add(w);
@@ -530,7 +798,7 @@ export function mountPark(canvas, D, opt = {}) {
       const transparent = ['text', 'mascot', 'ring', 'bubble', 'vkana', 'cloud', 'heart'].includes(L.k);
       const m = transparent ? new THREE.MeshBasicMaterial({ map: tex, transparent: true, side: THREE.DoubleSide })
         : new THREE.MeshStandardMaterial({ map: tex, roughness: L.k === 'glass' ? .15 : .7, metalness: L.k === 'glass' ? .2 : 0,
-          emissive: lit ? 0xffffff : 0x000000, emissiveMap: lit ? tex : null, emissiveIntensity: lit ? .55 : 0, side: THREE.DoubleSide });
+          emissive: lit ? 0xffffff : 0x000000, emissiveMap: lit ? tex : null, emissiveIntensity: lit ? .55 : 0, side: THREE.DoubleSide, envMapIntensity: .5 });
       m.polygonOffset = true; m.polygonOffsetFactor = -2; m.polygonOffsetUnits = -2;
       const mesh = new THREE.Mesh(new THREE.PlaneGeometry(L.w, L.h), m);
       mesh.position.set(...L.p);
@@ -539,26 +807,55 @@ export function mountPark(canvas, D, opt = {}) {
       scene.add(mesh);
     }
   }
+  // extruded 3D lettering (Latin signs); Japanese stays on painted panels
+  function addText(font) {
+    for (const t of D.texts || []) {
+      const [txt, x, y, z, size, depth, ry, ci, kind, align] = t;
+      const g = new TextGeometry(txt, { font, size, height: depth, curveSegments: 4, bevelEnabled: true, bevelThickness: depth * .15, bevelSize: size * .02, bevelSegments: 1 });
+      g.computeBoundingBox();
+      const bb = g.boundingBox, w = bb.max.x - bb.min.x;
+      g.translate(align === 'l' ? -bb.min.x : -bb.min.x - w / 2, -bb.min.y, 0);
+      g.rotateY(ry * D2R); g.translate(x, y, z);
+      const mesh = new THREE.Mesh(g, mat(ci, kind));
+      mesh.castShadow = true; mesh.receiveShadow = true;
+      scene.add(mesh);
+    }
+  }
   const fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
-  const ready = fontsReady.then(() => { addLabels(); render(); });
+  const fontP = (D.texts && D.texts.length) ? new Promise(res => new FontLoader().load(opt.fontUrl ||
+    'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/fonts/helvetiker_bold.typeface.json', f => { addText(f); res(); }, undefined, () => res())) : Promise.resolve();
+  const ready = Promise.all([fontsReady.then(addLabels), fontP]).then(() => render());
+
+  // post: ambient occlusion, tone mapping, anti-aliasing
+  const composer = new EffectComposer(renderer);
+  composer.addPass(new RenderPass(scene, cam));
+  const ao = new GTAOPass(scene, cam, 16, 16);
+  ao.blendIntensity = 1.0;
+  ao.updateGtaoMaterial({ radius: .9, distanceExponent: 1.6, thickness: 1.2, scale: 1, samples: 16 });
+  ao.updatePdMaterial({ lumaPhi: 10, depthPhi: 2, normalPhi: 3, radius: 6, rings: 2, samples: 16 });
+  composer.addPass(ao);
+  composer.addPass(new OutputPass());
+  const smaa = new SMAAPass(16, 16);
+  composer.addPass(smaa);
 
   const controls = opt.still ? null : new OrbitControls(cam, canvas);
   if (controls) {
     controls.enableDamping = true;
     controls.dampingFactor = .08;
     controls.maxPolarAngle = Math.PI * .495;
-    controls.minDistance = 4;
+    controls.minDistance = 3;
     controls.maxDistance = 520;
-    controls.addEventListener('change', () => requestRender());
+    controls.addEventListener('change', () => requestRender(true));
   }
-  let anim = null, pending = false;
-  function render() { renderer.render(scene, cam); }
-  function requestRender() {
-    if (pending) return;
-    pending = true;
-    requestAnimationFrame(() => { pending = false; tick(); });
+  let anim = null, pending = false, idle = null;
+  // full quality when still; a plain pass while the camera moves keeps orbiting smooth
+  function render(fast = false) { if (fast) { renderer.render(scene, cam); } else composer.render(); }
+  function requestRender(fast = false) {
+    clearTimeout(idle);
+    if (!pending) { pending = true; requestAnimationFrame(() => { pending = false; tick(fast); }); }
+    idle = setTimeout(() => render(false), 180);
   }
-  function tick() {
+  function tick(fast) {
     if (anim) {
       const t = Math.min(1, (performance.now() - anim.t0) / anim.ms), k = t * t * (3 - 2 * t);
       cam.position.lerpVectors(anim.p0, anim.p1, k);
@@ -567,9 +864,8 @@ export function mountPark(canvas, D, opt = {}) {
       if (t >= 1) anim = null;
     }
     const moving = controls ? controls.update() : false;
-    if (!controls) cam.lookAt(anim ? anim.q1 : cam.userData.tgt);
-    render();
-    if (anim || moving) requestRender();
+    render(true);
+    if (anim || moving) requestRender(true);
   }
   function setView(name, animate = true) {
     const V = D.views[name];
@@ -577,17 +873,17 @@ export function mountPark(canvas, D, opt = {}) {
     const p1 = new THREE.Vector3(...V.pos), q1 = new THREE.Vector3(...V.tgt);
     if (!animate || !controls) {
       cam.position.copy(p1); cam.fov = V.fov; cam.updateProjectionMatrix();
-      cam.userData.tgt = q1;
       if (controls) { controls.target.copy(q1); controls.update(); } else cam.lookAt(q1);
       render();
       return;
     }
     anim = { t0: performance.now(), ms: 900, p0: cam.position.clone(), p1, q0: controls.target.clone(), q1, f0: cam.fov, f1: V.fov };
-    requestRender();
+    requestRender(true);
   }
   function resize() {
     const w = canvas.clientWidth || canvas.width, h = canvas.clientHeight || canvas.height;
     renderer.setSize(w, h, false);
+    composer.setSize(w, h);
     cam.aspect = w / h; cam.updateProjectionMatrix();
     render();
   }

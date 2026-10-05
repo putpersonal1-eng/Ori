@@ -1,4 +1,4 @@
-# Japan Coastal Hangout Park: traced layout at true scale
+# Umi Seaside Park: traced layout at true scale
 
 The reference top view (`reference.webp`, made with an image model) traced
 area by area and redrawn at its true scale.
@@ -47,7 +47,10 @@ All are in `index.html`, with standalone copies in `svg/`.
 - A-504: food truck, street kiosk, beach hut and stage (front, side, back)
 - A-505: main stair with escalators, the shotengai gate and the mural walls
 - P-601: perspective, with a live three.js model (orbit, preset views) and rendered stills;
-  hills wall the map on three sides with a tunnel at each end of the road
+  hills wall the map on three sides with a tunnel at each end of the road. Structures and
+  buildings are modelled in detail (framed openings, copings, tile eaves, 3D lettering,
+  railings, escalators, the gate) with procedural PBR materials and ambient occlusion;
+  trees, plants and rocks stay simple placeholders for the engine
 - S-2 / S-3 / S-4: key locations, gameplay metrics, connections
 
 `build.py` stops with an error if any walkable area can't be reached from Spawn A.
@@ -70,7 +73,12 @@ Files:
 
 - `build.py`: plan, sections, details, schedules and the page
 - `elev.py`: elevation sheets A-501 to A-504
-- `model3d.py`: builds the 3D massing from the plan data (`model/scene.json`)
+- `model3d.py`: builds the 3D model from the plan data (`model/scene.json`)
+- `kit3d.py`: detailed parts for the 3D model (faces, windows, doors, eaves, stairs, rails, props)
 - `park3d.js`: the three.js viewer used on the page and by `render_views.js`
+
+Every tree and palm is checked against the planting (beds, lawn, planter soil; palms may also
+stand on sand). Any that lands on paving, decks or road is moved to the nearest planting within
+6 m; street trees get tree pits on the town-side pavement.
 
 Shared drawing helpers live in `../drawkit.py`.

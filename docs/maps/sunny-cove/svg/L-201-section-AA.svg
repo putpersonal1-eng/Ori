@@ -81,6 +81,8 @@
 .tree-s{fill:#E5539A;fill-opacity:.45;stroke:#E5539A;stroke-width:.8}
 .trim-y{fill:none;stroke:#F0BE2C;stroke-width:2.4}
 .arc-y{fill:#F0BE2C;fill-opacity:.32}
+.arc-r{fill:#D93A55;fill-opacity:.22}
+.tile-b{fill:#2F6DB5}
 .key{fill:#16283A}
 .statue{fill:#FBFCFC;stroke:#16283A;stroke-width:1.2}
 .tree-o{fill:#9BCA84;stroke:#58894C;stroke-width:1.5}

@@ -17,7 +17,7 @@ LIGHT = {
     "bldg": "#D5DFE9", "tree": "#9BCA84", "tree-edge": "#58894C",
     "chalk-y": "#F0BE2C", "chalk-p": "#E5539A", "chalk-c": "#24ABCC",
     "sak": "#F5C3D8", "shrub": "#86BB6D", "tree-2": "#7DB268", "foam": "#FFFFFF",
-    "sea-mid": "#A5D6E2", "sand-wet": "#F0EAD8", "roof": "#BAC7D4", "roof-2": "#9DAFC1",
+    "sea-mid": "#A5D6E2", "sand-wet": "#F0EAD8", "roof": "#BAC7D4", "roof-2": "#9DAFC1", "tile-b": "#2F6DB5",
 }
 DARK = {
     "paper": "#0A1522", "sheet": "#0F1F31", "rule": "#233A52",
@@ -29,7 +29,7 @@ DARK = {
     "bldg": "#1E3550", "tree": "#3D6942", "tree-edge": "#7DAE73",
     "chalk-y": "#D9AA2A", "chalk-p": "#D45591", "chalk-c": "#2E9EBB",
     "sak": "#6A3A50", "shrub": "#33603E", "tree-2": "#2E5535", "foam": "#CFE3EE",
-    "sea-mid": "#173D4F", "sand-wet": "#4C4B45", "roof": "#2A4361", "roof-2": "#36537A",
+    "sea-mid": "#173D4F", "sand-wet": "#4C4B45", "roof": "#2A4361", "roof-2": "#36537A", "tile-b": "#3A78C4",
 }
 FONT_URL = ("https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Condensed:wght@500;600;700"
             "&amp;family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;display=swap")
@@ -121,6 +121,8 @@ SVG_CSS = """
 .tree-s{fill:var(--chalk-p);fill-opacity:.45;stroke:var(--chalk-p);stroke-width:.8}
 .trim-y{fill:none;stroke:var(--chalk-y);stroke-width:2.4}
 .arc-y{fill:var(--chalk-y);fill-opacity:.32}
+.arc-r{fill:var(--accent);fill-opacity:.22}
+.tile-b{fill:var(--tile-b)}
 .key{fill:var(--ink)}
 .statue{fill:var(--sheet);stroke:var(--ink);stroke-width:1.2}
 .tree-o{fill:var(--tree);stroke:var(--tree-edge);stroke-width:1.5}

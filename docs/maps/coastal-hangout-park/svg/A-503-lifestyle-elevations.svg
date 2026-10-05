@@ -81,6 +81,8 @@
 .tree-s{fill:#E5539A;fill-opacity:.45;stroke:#E5539A;stroke-width:.8}
 .trim-y{fill:none;stroke:#F0BE2C;stroke-width:2.4}
 .arc-y{fill:#F0BE2C;fill-opacity:.32}
+.arc-r{fill:#D93A55;fill-opacity:.22}
+.tile-b{fill:#2F6DB5}
 .key{fill:#16283A}
 .statue{fill:#FBFCFC;stroke:#16283A;stroke-width:1.2}
 .tree-o{fill:#9BCA84;stroke:#58894C;stroke-width:1.5}
@@ -161,12 +163,14 @@
 .e-indigo{fill:#2E3FB0;stroke:#16283A;stroke-width:.8}
 .e-verm{fill:#D9432F;stroke:#16283A;stroke-width:.8}
 .e-kawara{fill:#3B4352;stroke:#16283A;stroke-width:.7;stroke-linejoin:round}
-.e-kawara-y{fill:#F7CB3B;stroke:#16283A;stroke-width:.7;stroke-linejoin:round}
+.e-kawara-y{fill:#2F6DB5;stroke:#16283A;stroke-width:.7;stroke-linejoin:round}
 .e-tile{fill:none;stroke:#59627A;stroke-width:.8}
 .e-plaster{fill:#FAF8F3;stroke:#16283A;stroke-width:.9;stroke-linejoin:round}
 .e-gold{fill:#C9A24A}
 .e-white-o{fill:#FFFFFF;stroke:#16283A;stroke-width:1.4;stroke-linejoin:round}
 .e-portal{fill:#AEB6BF;stroke:#16283A;stroke-width:.8}
+.e-arc{fill:#D8343F;stroke:#16283A;stroke-width:.9;stroke-linejoin:round}
+.e-arc2{fill:#B72632}
 .e-wood-d{fill:#8A5C3A;stroke:#16283A;stroke-width:.8}
 .e-fd{font-family:"Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif}
 .e-fb{font-family:"Barlow", ui-sans-serif, system-ui, sans-serif}
@@ -545,7 +549,7 @@
 <text class="t-dim halo" x="140" y="185" text-anchor="end">+8.70 EAVE</text>
 <line x1="550" y1="179" x2="570" y2="152" class="ln-m"/>
 <circle class="ink-f" cx="550" cy="179" r="1.8"/>
-<text class="e-key halo" x="573" y="155" text-anchor="start">Yellow-glazed kawara eave (the traced yellow trim)</text>
+<text class="e-key halo" x="573" y="155" text-anchor="start">Blue-glazed kawara eave on the traced trim line</text>
 <circle class="bubble" cx="161" cy="342" r="11"/><text class="t-lbl" x="161" y="345.5" text-anchor="middle">10</text><text class="t-head" x="178" y="346">LIFESTYLE &amp; SOUVENIR · SOUTH · FRONT</text><text class="t-sm" x="178" y="358">looking north · red おみやげ panel, cloud badge, portal with noren, lanterns, stall and photo statue</text>
 <rect x="150" y="431" width="680" height="144" class="e-sky"/>
 <rect x="220" y="503" width="90" height="72" class="beyond"/>
@@ -1043,7 +1047,7 @@
 <circle class="bubble" cx="161" cy="901" r="11"/><text class="t-lbl" x="161" y="904.5" text-anchor="middle">12</text><text class="t-head" x="178" y="905">LIFESTYLE &amp; SOUVENIR · EAST · BACK</text><text class="t-sm" x="178" y="917">looking west · service door, annex; the terrace planter along the curved path in front</text>
 <text class="t-head" x="862" y="455">MATERIALS</text>
 <rect class="e-plaster" x="862" y="469" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="892" y="479">White plaster</text>
-<rect class="e-kawara-y" x="862" y="488" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="892" y="498">Yellow-glazed kawara eave</text>
+<rect class="e-kawara-y" x="862" y="488" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="892" y="498">Blue-glazed kawara eave</text>
 <rect class="e-verm" x="862" y="507" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="892" y="517">Vermilion: noren, lanterns, disc panel</text>
 <rect class="e-red" x="862" y="526" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="892" y="536">Red おみやげ panel</text>
 <rect class="e-pink-o" x="862" y="545" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="892" y="555">Pink shop sign</text>

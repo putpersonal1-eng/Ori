@@ -81,6 +81,8 @@
 .tree-s{fill:#E5539A;fill-opacity:.45;stroke:#E5539A;stroke-width:.8}
 .trim-y{fill:none;stroke:#F0BE2C;stroke-width:2.4}
 .arc-y{fill:#F0BE2C;fill-opacity:.32}
+.arc-r{fill:#D93A55;fill-opacity:.22}
+.tile-b{fill:#2F6DB5}
 .key{fill:#16283A}
 .statue{fill:#FBFCFC;stroke:#16283A;stroke-width:1.2}
 .tree-o{fill:#9BCA84;stroke:#58894C;stroke-width:1.5}
@@ -161,12 +163,14 @@
 .e-indigo{fill:#2E3FB0;stroke:#16283A;stroke-width:.8}
 .e-verm{fill:#D9432F;stroke:#16283A;stroke-width:.8}
 .e-kawara{fill:#3B4352;stroke:#16283A;stroke-width:.7;stroke-linejoin:round}
-.e-kawara-y{fill:#F7CB3B;stroke:#16283A;stroke-width:.7;stroke-linejoin:round}
+.e-kawara-y{fill:#2F6DB5;stroke:#16283A;stroke-width:.7;stroke-linejoin:round}
 .e-tile{fill:none;stroke:#59627A;stroke-width:.8}
 .e-plaster{fill:#FAF8F3;stroke:#16283A;stroke-width:.9;stroke-linejoin:round}
 .e-gold{fill:#C9A24A}
 .e-white-o{fill:#FFFFFF;stroke:#16283A;stroke-width:1.4;stroke-linejoin:round}
 .e-portal{fill:#AEB6BF;stroke:#16283A;stroke-width:.8}
+.e-arc{fill:#D8343F;stroke:#16283A;stroke-width:.9;stroke-linejoin:round}
+.e-arc2{fill:#B72632}
 .e-wood-d{fill:#8A5C3A;stroke:#16283A;stroke-width:.8}
 .e-fd{font-family:"Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif}
 .e-fb{font-family:"Barlow", ui-sans-serif, system-ui, sans-serif}
@@ -237,27 +241,56 @@
 <line x1="737.6" y1="195.6" x2="747.2" y2="180" class="e-hl"/>
 <line x1="809.6" y1="195.6" x2="819.2" y2="180" class="e-hl"/>
 <line x1="881.6" y1="195.6" x2="891.2" y2="180" class="e-hl"/>
-<rect x="948.32" y="129.6" width="74.88" height="230.4" class="e-wall"/>
-<rect x="948.32" y="244.8" width="74.88" height="7.2" class="e-coral"/>
-<rect x="960.8" y="268.8" width="62.4" height="91.2" class="e-glass"/>
-<line x1="992" y1="360" x2="992" y2="268.8" class="e-mull-t"/>
-<rect x="960.8" y="268.8" width="62.4" height="91.2" style="fill:none;stroke:#2E333B;stroke-width:1.8"/>
-<line x1="967.04" y1="337.2" x2="977.96" y2="291.6" class="e-hl"/>
-<line x1="998.24" y1="337.2" x2="1009.16" y2="291.6" class="e-hl"/>
-<rect x="960.8" y="158.4" width="62.4" height="72" class="e-glass"/>
-<line x1="992" y1="230.4" x2="992" y2="158.4" class="e-mull-t"/>
-<rect x="960.8" y="158.4" width="62.4" height="72" style="fill:none;stroke:#2E333B;stroke-width:1.8"/>
-<line x1="967.04" y1="212.4" x2="977.96" y2="176.4" class="e-hl"/>
-<line x1="998.24" y1="212.4" x2="1009.16" y2="176.4" class="e-hl"/>
-<rect x="948.32" y="129.6" width="74.88" height="14.4" class="e-coral"/>
+<rect x="948.32" y="144" width="74.88" height="216" class="e-plaster"/>
+<rect x="948.32" y="242.4" width="74.88" height="2.4" class="e-gold"/>
+<rect x="960.8" y="260.4" width="62.4" height="99.6" class="e-glass"/>
+<line x1="992" y1="360" x2="992" y2="260.4" class="e-mull-t"/>
+<rect x="960.8" y="260.4" width="62.4" height="99.6" style="fill:none;stroke:#2E333B;stroke-width:1.8"/>
+<line x1="967.04" y1="335.1" x2="977.96" y2="285.3" class="e-hl"/>
+<line x1="998.24" y1="335.1" x2="1009.16" y2="285.3" class="e-hl"/>
+<rect x="960.8" y="181.2" width="62.4" height="56.4" class="e-glass"/>
+<line x1="992" y1="237.6" x2="992" y2="181.2" class="e-mull-t"/>
+<rect x="960.8" y="181.2" width="62.4" height="56.4" style="fill:none;stroke:#2E333B;stroke-width:1.8"/>
+<line x1="967.04" y1="223.5" x2="977.96" y2="195.3" class="e-hl"/>
+<line x1="998.24" y1="223.5" x2="1009.16" y2="195.3" class="e-hl"/>
+<rect x="948.32" y="144" width="84.48" height="10.8" class="e-shadow"/>
+<polygon points="939.92,144 1041.2,144 1036.4,129.12 944.72,129.12" class="e-kawara"/>
+<line x1="947.12" y1="140.64" x2="948.08" y2="129.6" class="e-tile"/>
+<line x1="954.8" y1="140.64" x2="955.76" y2="129.6" class="e-tile"/>
+<line x1="962.48" y1="140.64" x2="963.44" y2="129.6" class="e-tile"/>
+<line x1="970.16" y1="140.64" x2="971.12" y2="129.6" class="e-tile"/>
+<line x1="977.84" y1="140.64" x2="978.8" y2="129.6" class="e-tile"/>
+<line x1="985.52" y1="140.64" x2="986.48" y2="129.6" class="e-tile"/>
+<line x1="993.2" y1="140.64" x2="994.16" y2="129.6" class="e-tile"/>
+<line x1="1000.88" y1="140.64" x2="1001.84" y2="129.6" class="e-tile"/>
+<line x1="1008.56" y1="140.64" x2="1009.52" y2="129.6" class="e-tile"/>
+<line x1="1016.24" y1="140.64" x2="1017.2" y2="129.6" class="e-tile"/>
+<line x1="1023.92" y1="140.64" x2="1024.88" y2="129.6" class="e-tile"/>
+<line x1="1031.6" y1="140.64" x2="1032.56" y2="129.6" class="e-tile"/>
+<circle cx="942.32" cy="142.32" r="2.64" class="e-kawara"/>
+<circle cx="950" cy="142.32" r="2.64" class="e-kawara"/>
+<circle cx="957.68" cy="142.32" r="2.64" class="e-kawara"/>
+<circle cx="965.36" cy="142.32" r="2.64" class="e-kawara"/>
+<circle cx="973.04" cy="142.32" r="2.64" class="e-kawara"/>
+<circle cx="980.72" cy="142.32" r="2.64" class="e-kawara"/>
+<circle cx="988.4" cy="142.32" r="2.64" class="e-kawara"/>
+<circle cx="996.08" cy="142.32" r="2.64" class="e-kawara"/>
+<circle cx="1003.76" cy="142.32" r="2.64" class="e-kawara"/>
+<circle cx="1011.44" cy="142.32" r="2.64" class="e-kawara"/>
+<circle cx="1019.12" cy="142.32" r="2.64" class="e-kawara"/>
+<circle cx="1026.8" cy="142.32" r="2.64" class="e-kawara"/>
+<circle cx="1034.48" cy="142.32" r="2.64" class="e-kawara"/>
+<rect x="944.72" y="125.52" width="91.68" height="3.6" class="e-kawara"/>
+<polygon points="932.96,144 944.48,144 943.52,121.44 938.72,117.12 933.92,121.44" class="e-kawara"/>
+<polygon points="1036.64,144 1048.16,144 1047.2,121.44 1042.4,117.12 1037.6,121.44" class="e-kawara"/>
 <polyline points="1023.2,360 1023.2,253.2 1017.2,247.68 1029.2,241.92 1023.2,236.4 1023.2,129.6" class="e-break"/>
-<text x="987.2" y="121.2" text-anchor="middle" class="t-sm halo">FASHION &amp; GOODS (A-502)</text>
-<rect x="298.4" y="201.6" width="649.92" height="158.4" class="e-yel"/>
+<text x="987.2" y="114" text-anchor="middle" class="t-sm halo">FASHION &amp; GOODS (A-502)</text>
+<rect x="298.4" y="201.6" width="649.92" height="158.4" class="e-arc"/>
 <rect x="298.4" y="201.6" width="649.92" height="158.4" fill="url(#ce-clad)"/>
-<rect x="298.4" y="208.32" width="649.92" height="4.8" class="e-pink"/>
+<rect x="298.4" y="208.32" width="649.92" height="4.8" class="e-yel"/>
 <rect x="298.4" y="201.6" width="649.92" height="2.88" class="e-dark"/>
-<rect x="298.4" y="201.6" width="13.2" height="158.4" class="e-yel2"/>
-<rect x="935.12" y="201.6" width="13.2" height="158.4" class="e-yel2"/>
+<rect x="298.4" y="201.6" width="13.2" height="158.4" class="e-arc2"/>
+<rect x="935.12" y="201.6" width="13.2" height="158.4" class="e-arc2"/>
 <rect x="298.4" y="349.2" width="649.92" height="10.8" class="e-conc"/>
 <circle cx="348.8" cy="241.2" r="14.88" class="e-cream"/>
 <circle cx="348.8" cy="241.2" r="11.01" class="e-glass"/>
@@ -271,13 +304,13 @@
 <circle cx="888.8" cy="241.2" r="14.88" class="e-cream"/>
 <circle cx="888.8" cy="241.2" r="11.01" class="e-glass"/>
 <path class="e-hl" d="M882.1 238.22A7.44 7.44 0 0 1 890.29 233.76"/>
-<rect x="332" y="288" width="33.6" height="38.4" class="e-yel2"/>
+<rect x="332" y="288" width="33.6" height="38.4" class="e-arc2"/>
 <rect x="335.6" y="291.6" width="26.4" height="31.2" class="e-glass"/>
 <line x1="341.6" y1="316.8" x2="351.2" y2="297.6" class="e-hl"/>
-<rect x="387.2" y="288" width="33.6" height="38.4" class="e-yel2"/>
+<rect x="387.2" y="288" width="33.6" height="38.4" class="e-arc2"/>
 <rect x="390.8" y="291.6" width="26.4" height="31.2" class="e-glass"/>
 <line x1="396.8" y1="316.8" x2="406.4" y2="297.6" class="e-hl"/>
-<rect x="812" y="288" width="33.6" height="38.4" class="e-yel2"/>
+<rect x="812" y="288" width="33.6" height="38.4" class="e-arc2"/>
 <rect x="815.6" y="291.6" width="26.4" height="31.2" class="e-glass"/>
 <line x1="821.6" y1="316.8" x2="831.2" y2="297.6" class="e-hl"/>
 <line x1="466.4" y1="190.8" x2="466.4" y2="177.6" class="e-mull"/>
@@ -616,7 +649,7 @@
 <rect x="371.12" y="349.2" width="494.4" height="10.8" class="e-conc"/>
 <line x1="374" y1="356.4" x2="862.64" y2="356.4" class="e-mull"/>
 <line x1="376.88" y1="352.8" x2="859.76" y2="352.8" class="e-mull"/>
-<rect x="218.48" y="273.6" width="79.92" height="86.4" class="e-yel"/>
+<rect x="218.48" y="273.6" width="79.92" height="86.4" class="e-arc"/>
 <rect x="218.48" y="273.6" width="79.92" height="7.2" class="e-dark"/>
 <rect x="226.4" y="300" width="64.8" height="60" class="e-glow"/>
 <line x1="258.8" y1="360" x2="258.8" y2="300" class="e-mull-t"/>
@@ -647,26 +680,33 @@
 <line x1="862.4" y1="345.12" x2="900.8" y2="345.12" class="e-joint"/>
 <polyline points="869.31,351.36 870.34,350.64 871.36,350.11 872.38,349.92 873.41,350.11 874.43,350.64 875.46,351.36 876.48,352.08 877.5,352.61 878.53,352.8 879.55,352.61 880.58,352.08 881.6,351.36 882.62,350.64 883.65,350.11 884.67,349.92 885.7,350.11 886.72,350.64 887.74,351.36 888.77,352.08 889.79,352.61 890.82,352.8 891.84,352.61 892.86,352.08 893.89,351.36" class="e-wave-y"/>
 <polyline points="869.31,354.82 870.34,354.1 871.36,353.57 872.38,353.38 873.41,353.57 874.43,354.1 875.46,354.82 876.48,355.54 877.5,356.06 878.53,356.26 879.55,356.06 880.58,355.54 881.6,354.82 882.62,354.1 883.65,353.57 884.67,353.38 885.7,353.57 886.72,354.1 887.74,354.82 888.77,355.54 889.79,356.06 890.82,356.26 891.84,356.06 892.86,355.54 893.89,354.82" class="e-wave-y"/>
-<rect x="929.84" y="208.8" width="4.32" height="151.2" class="e-dark"/>
-<rect x="928.16" y="348" width="7.68" height="12" class="e-dark"/>
-<line x1="932" y1="208.8" x2="915.2" y2="206.4" class="e-mull-t"/>
-<polygon points="909.2,210 921.2,210 919.52,205.2 910.88,205.2" class="e-dark"/>
-<rect x="934.4" y="220.8" width="27.6" height="50.4" class="e-poster"/>
-<line x1="934.4" y1="220.8" x2="964.4" y2="220.8" class="e-mull-t"/>
-<line x1="934.4" y1="271.2" x2="964.4" y2="271.2" class="e-mull-t"/>
-<text class="e-fc" x="948.32" y="231.6" text-anchor="middle" style="font-weight:700;font-size:5px;fill:#FFFFFF;letter-spacing:0px">GOOD</text>
-<text class="e-fc" x="948.32" y="238.8" text-anchor="middle" style="font-weight:700;font-size:5px;fill:#FFFFFF;letter-spacing:0px">GAMES</text>
-<text class="e-fc" x="948.32" y="246" text-anchor="middle" style="font-weight:700;font-size:5px;fill:#FFFFFF;letter-spacing:0px">BRIGHT</text>
-<text class="e-fc" x="948.32" y="253.2" text-anchor="middle" style="font-weight:700;font-size:5px;fill:#FFFFFF;letter-spacing:0px">DAYS</text>
-<polyline points="939.2,265.2 939.95,264.6 940.7,264.16 941.45,264 942.2,264.16 942.95,264.6 943.7,265.2 944.45,265.8 945.2,266.24 945.95,266.4 946.7,266.24 947.45,265.8 948.2,265.2 948.95,264.6 949.7,264.16 950.45,264 951.2,264.16 951.95,264.6 952.7,265.2 953.45,265.8 954.2,266.24 954.95,266.4 955.7,266.24 956.45,265.8 957.2,265.2" class="e-led"/>
-<polygon points="929.6,280.08 893.6,280.08 887.6,276 893.6,271.92 929.6,271.92" class="e-navy"/>
-<text class="e-fc" x="911.6" y="277.92" text-anchor="middle" style="font-weight:700;font-size:5.67px;fill:#FFFFFF;letter-spacing:0px">BEACH</text>
-<polygon points="929.6,292.08 893.6,292.08 887.6,288 893.6,283.92 929.6,283.92" class="e-navy"/>
-<text class="e-fc" x="911.6" y="289.92" text-anchor="middle" style="font-weight:700;font-size:5.67px;fill:#FFFFFF;letter-spacing:0px">SHOPS</text>
-<polygon points="929.6,304.08 893.6,304.08 887.6,300 893.6,295.92 929.6,295.92" class="e-navy"/>
-<text class="e-fc" x="911.6" y="301.92" text-anchor="middle" style="font-weight:700;font-size:5.67px;fill:#FFFFFF;letter-spacing:0px">FOOD</text>
-<polygon points="929.6,316.08 893.6,316.08 887.6,312 893.6,307.92 929.6,307.92" class="e-navy"/>
-<text class="e-fc" x="911.6" y="313.92" text-anchor="middle" style="font-weight:700;font-size:5.67px;fill:#FFFFFF;letter-spacing:0px">PHOTO SPOT</text>
+<rect x="929.6" y="328.8" width="4.8" height="31.2" class="e-yel"/>
+<rect x="930.32" y="208.8" width="3.36" height="120" class="e-dark"/>
+<rect x="928.16" y="352.8" width="7.68" height="7.2" class="e-dark"/>
+<rect x="929.12" y="205.44" width="5.76" height="3.36" class="e-dark"/>
+<polygon points="928.16,205.44 935.84,205.44 937.76,189.12 926.24,189.12" class="e-glow"/>
+<polygon points="928.16,205.44 935.84,205.44 937.76,189.12 926.24,189.12" class="e-out"/>
+<polygon points="924.32,189.12 939.68,189.12 934.4,184.8 929.6,184.8" class="e-dark"/>
+<rect x="902" y="222" width="60" height="1.2" class="e-yel"/>
+<rect x="902" y="288" width="60" height="1.2" class="e-yel"/>
+<rect x="904.4" y="223.2" width="22.8" height="64.8" style="fill:#D8343F;stroke:#16283A;stroke-width:.7"/>
+<circle cx="915.8" cy="238.02" r="6.84" style="fill:#F7CB3B"/>
+<polyline points="907.82,280.8 908.48,280.32 909.15,279.97 909.81,279.84 910.48,279.97 911.14,280.32 911.81,280.8 912.48,281.28 913.14,281.63 913.8,281.76 914.47,281.63 915.13,281.28 915.8,280.8 916.47,280.32 917.13,279.97 917.79,279.84 918.46,279.97 919.12,280.32 919.79,280.8 920.45,281.28 921.12,281.63 921.78,281.76 922.45,281.63 923.12,281.28 923.78,280.8" class="e-led"/>
+<text class="e-fc" x="915.8" y="258.84" text-anchor="middle" style="font-weight:800;font-size:9.5px;fill:#FFFFFF;letter-spacing:0px" transform="rotate(-90 915.8 258.84)">GAMES</text>
+<rect x="936.8" y="223.2" width="22.8" height="64.8" style="fill:#2C3E57;stroke:#16283A;stroke-width:.7"/>
+<circle cx="948.2" cy="238.02" r="6.84" style="fill:#24ABCC"/>
+<polyline points="940.22,280.8 940.88,280.32 941.55,279.97 942.21,279.84 942.88,279.97 943.54,280.32 944.21,280.8 944.87,281.28 945.54,281.63 946.2,281.76 946.87,281.63 947.53,281.28 948.2,280.8 948.86,280.32 949.53,279.97 950.19,279.84 950.86,279.97 951.52,280.32 952.19,280.8 952.85,281.28 953.52,281.63 954.18,281.76 954.85,281.63 955.51,281.28 956.18,280.8" class="e-led"/>
+<text class="e-fc" x="948.2" y="257.4" text-anchor="middle" style="font-weight:800;font-size:12.03px;fill:#FFFFFF;letter-spacing:0px">U</text>
+<text class="e-fc" x="948.2" y="271.54" text-anchor="middle" style="font-weight:800;font-size:12.03px;fill:#FFFFFF;letter-spacing:0px">M</text>
+<text class="e-fc" x="948.2" y="285.67" text-anchor="middle" style="font-weight:800;font-size:12.03px;fill:#FFFFFF;letter-spacing:0px">I</text>
+<polygon points="929.6,301.68 893.6,301.68 887.6,297.6 893.6,293.52 929.6,293.52" class="e-navy"/>
+<text class="e-fc" x="911.6" y="299.52" text-anchor="middle" style="font-weight:700;font-size:5.67px;fill:#FFFFFF;letter-spacing:0px">BEACH</text>
+<polygon points="929.6,312.48 893.6,312.48 887.6,308.4 893.6,304.32 929.6,304.32" class="e-navy"/>
+<text class="e-fc" x="911.6" y="310.32" text-anchor="middle" style="font-weight:700;font-size:5.67px;fill:#FFFFFF;letter-spacing:0px">SHOPS</text>
+<polygon points="929.6,323.28 893.6,323.28 887.6,319.2 893.6,315.12 929.6,315.12" class="e-navy"/>
+<text class="e-fc" x="911.6" y="321.12" text-anchor="middle" style="font-weight:700;font-size:5.67px;fill:#FFFFFF;letter-spacing:0px">FOOD</text>
+<polygon points="929.6,334.08 893.6,334.08 887.6,330 893.6,325.92 929.6,325.92" class="e-navy"/>
+<text class="e-fc" x="911.6" y="331.92" text-anchor="middle" style="font-weight:700;font-size:5.67px;fill:#FFFFFF;letter-spacing:0px">PHOTO SPOT</text>
 <polygon points="177.2,360 180.8,334.8 195.2,334.8 198.8,360" class="e-wood"/>
 <polygon points="179.36,356.4 182,337.2 194,337.2 196.64,356.4" class="e-dark"/>
 <text class="e-fc" x="188" y="342" text-anchor="middle" style="font-weight:600;font-size:4px;fill:#FFFFFF;letter-spacing:0px">PLAY</text>
@@ -775,9 +815,9 @@
 <line x1="744.3" y1="544.1" x2="749.9" y2="535" class="e-hl"/>
 <rect x="278.1" y="505.6" width="478.38" height="42" class="beyond"/>
 <text x="379.6" y="514.7" text-anchor="middle" class="t-sm halo">FASHION &amp; GOODS beyond · +13.20</text>
-<rect x="278.1" y="547.6" width="478.38" height="92.4" class="e-yel"/>
+<rect x="278.1" y="547.6" width="478.38" height="92.4" class="e-arc"/>
 <rect x="278.1" y="547.6" width="478.38" height="92.4" fill="url(#ce-clad)"/>
-<rect x="278.1" y="551.52" width="478.38" height="2.8" class="e-pink"/>
+<rect x="278.1" y="551.52" width="478.38" height="2.8" class="e-yel"/>
 <rect x="278.1" y="547.6" width="478.38" height="1.68" class="e-dark"/>
 <circle cx="318" cy="570.7" r="9.24" class="e-cream"/>
 <circle cx="318" cy="570.7" r="6.84" class="e-glass"/>
@@ -818,7 +858,7 @@
 <rect x="756.48" y="633.7" width="16.8" height="6.3" class="e-conc"/>
 <rect x="762.08" y="635.8" width="11.2" height="4.2" class="e-conc"/>
 <rect x="767.68" y="637.9" width="5.6" height="2.1" class="e-conc"/>
-<rect x="278.1" y="589.6" width="478.38" height="50.4" class="e-yel"/>
+<rect x="278.1" y="589.6" width="478.38" height="50.4" class="e-arc"/>
 <rect x="278.1" y="589.6" width="478.38" height="4.2" class="e-dark"/>
 <rect x="612" y="603.6" width="50.4" height="30.8" class="e-glow"/>
 <line x1="637.2" y1="634.4" x2="637.2" y2="603.6" class="e-mull-t"/>
@@ -933,9 +973,9 @@
 <line x1="182.2" y1="843.9" x2="189.55" y2="822.9" class="e-hl"/>
 <rect x="150" y="795.6" width="56" height="8.4" class="e-coral"/>
 <polyline points="150,896.4 150,850.9 146.5,847.68 153.5,844.32 150,841.1 150,795.6" class="e-break"/>
-<rect x="206" y="837.6" width="379.12" height="81.2" class="e-yel"/>
+<rect x="206" y="837.6" width="379.12" height="81.2" class="e-arc"/>
 <rect x="206" y="837.6" width="379.12" height="81.2" fill="url(#ce-clad)"/>
-<rect x="206" y="841.52" width="379.12" height="2.8" class="e-pink"/>
+<rect x="206" y="841.52" width="379.12" height="2.8" class="e-yel"/>
 <rect x="206" y="837.6" width="379.12" height="1.68" class="e-dark"/>
 <rect x="210.62" y="839" width="1.96" height="79.8" class="e-steel"/>
 <rect x="333.82" y="839" width="1.96" height="79.8" class="e-steel"/>
@@ -970,7 +1010,7 @@
 <circle cx="423" cy="832.7" r="3.5" class="e-joint"/>
 <rect x="305.82" y="879.34" width="12.6" height="15.4" class="e-mint"/>
 <rect x="321.22" y="879.34" width="12.6" height="15.4" class="e-mint"/>
-<rect x="585.12" y="879.6" width="46.62" height="33.33" class="e-yel"/>
+<rect x="585.12" y="879.6" width="46.62" height="33.33" class="e-arc"/>
 <rect x="585.12" y="879.6" width="46.62" height="4.2" class="e-dark"/>
 <rect x="631.74" y="865.6" width="78.26" height="52.21" class="e-cream"/>
 <rect x="631.74" y="865.6" width="78.26" height="5.6" class="e-yel"/>
@@ -999,13 +1039,13 @@
 <text class="e-key halo" x="447" y="896.6" text-anchor="start">Fire exit at lane level, 6R down inside</text>
 <circle class="bubble" cx="161" cy="956.1" r="11"/><text class="t-lbl" x="161" y="959.6" text-anchor="middle">3</text><text class="t-head" x="178" y="960.1">WEST ELEVATION · BACK TO THE LANE</text><text class="t-sm" x="178" y="972.1">looking east · lane steps down +6.63 → +4.91 along the wall</text>
 <text class="t-head" x="850" y="760">MATERIALS</text>
-<rect class="e-yel" x="850" y="774" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="880" y="784">Arcade yellow · fibre-cement panels</text>
-<rect class="e-cream" x="850" y="793" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="880" y="803">Cream GRC · controller grips</text>
-<rect class="e-dark" x="850" y="812" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="880" y="822">Graphite · D-pad, frames, coping</text>
-<rect class="e-blue" x="850" y="831" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="880" y="841">Button blue</text>
-<rect class="e-red" x="850" y="850" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="880" y="860">Button red</text>
-<rect class="e-green" x="850" y="869" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="880" y="879">Button green</text>
-<rect class="e-pink" x="850" y="888" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="880" y="898">Pink trim band</text>
+<rect class="e-arc" x="850" y="774" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="880" y="784">Arcade red · fibre-cement panels</text>
+<rect class="e-yel" x="850" y="793" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="880" y="803">Controller sign, trim band</text>
+<rect class="e-cream" x="850" y="812" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="880" y="822">Cream GRC · controller grips</text>
+<rect class="e-dark" x="850" y="831" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="880" y="841">Graphite · D-pad, frames, coping</text>
+<rect class="e-blue" x="850" y="850" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="880" y="860">Button blue</text>
+<rect class="e-red" x="850" y="869" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="880" y="879">Button red</text>
+<rect class="e-green" x="850" y="888" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="880" y="898">Button green</text>
 <rect class="e-glass" x="850" y="907" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="880" y="917">Clear glazing</text>
 <rect class="e-glow" x="850" y="926" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="880" y="936">Lit interior</text>
 <rect class="e-conc" x="850" y="945" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="880" y="955">Precast steps, planters</text></svg>

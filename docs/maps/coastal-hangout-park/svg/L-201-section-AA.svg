@@ -81,6 +81,8 @@
 .tree-s{fill:#E5539A;fill-opacity:.45;stroke:#E5539A;stroke-width:.8}
 .trim-y{fill:none;stroke:#F0BE2C;stroke-width:2.4}
 .arc-y{fill:#F0BE2C;fill-opacity:.32}
+.arc-r{fill:#D93A55;fill-opacity:.22}
+.tile-b{fill:#2F6DB5}
 .key{fill:#16283A}
 .statue{fill:#FBFCFC;stroke:#16283A;stroke-width:1.2}
 .tree-o{fill:#9BCA84;stroke:#58894C;stroke-width:1.5}
@@ -161,12 +163,14 @@
 .e-indigo{fill:#2E3FB0;stroke:#16283A;stroke-width:.8}
 .e-verm{fill:#D9432F;stroke:#16283A;stroke-width:.8}
 .e-kawara{fill:#3B4352;stroke:#16283A;stroke-width:.7;stroke-linejoin:round}
-.e-kawara-y{fill:#F7CB3B;stroke:#16283A;stroke-width:.7;stroke-linejoin:round}
+.e-kawara-y{fill:#2F6DB5;stroke:#16283A;stroke-width:.7;stroke-linejoin:round}
 .e-tile{fill:none;stroke:#59627A;stroke-width:.8}
 .e-plaster{fill:#FAF8F3;stroke:#16283A;stroke-width:.9;stroke-linejoin:round}
 .e-gold{fill:#C9A24A}
 .e-white-o{fill:#FFFFFF;stroke:#16283A;stroke-width:1.4;stroke-linejoin:round}
 .e-portal{fill:#AEB6BF;stroke:#16283A;stroke-width:.8}
+.e-arc{fill:#D8343F;stroke:#16283A;stroke-width:.9;stroke-linejoin:round}
+.e-arc2{fill:#B72632}
 .e-wood-d{fill:#8A5C3A;stroke:#16283A;stroke-width:.8}
 .e-fd{font-family:"Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif}
 .e-fb{font-family:"Barlow", ui-sans-serif, system-ui, sans-serif}
@@ -224,11 +228,11 @@
 <path d="M577.8 214 Q578.42 173.2 580.92 146" class="trunk"/>
 <path class="palm" d="M580.92 146Q574.23 140.1 567.55 148.2Q574.23 145.1 580.92 146Z M580.92 146Q575.6 138.22 570.29 143.49Q575.6 143.22 580.92 146Z M580.92 146Q577.49 136.45 574.05 138.94Q577.49 141.45 580.92 146Z M580.92 146Q580.88 136.04 580.85 135.66Q580.88 141.04 580.92 146Z M580.92 146Q584.12 136.95 587.31 139.5Q584.12 141.95 580.92 146Z M580.92 146Q585.44 138.25 589.97 142.75Q585.44 143.25 580.92 146Z M580.92 146Q586.94 140.06 592.95 147.38Q586.94 145.06 580.92 146Z"/>
 <polyline points="209.47,166 209.47,166 209.47,167.5 211.81,167.5 211.81,169 214.15,169 214.15,170.5 216.49,170.5 216.49,172 218.83,172 218.83,173.5 221.17,173.5 221.17,175 223.51,175 223.51,176.5 225.85,176.5 225.85,178 228.19,178 228.19,179.5 230.53,179.5 230.53,181 232.87,181 232.87,182.5 235.21,182.5 235.21,184 237.55,184 237.55,185.5 239.89,185.5 239.89,187 242.23,187 242.23,188.5 244.57,188.5 244.57,190 260.69,190 260.69,191.5 263.03,191.5 263.03,193 265.37,193 265.37,194.5 267.71,194.5 267.71,196 270.05,196 270.05,197.5 272.39,197.5 272.39,199 274.73,199 274.73,200.5 277.07,200.5 277.07,202 279.41,202 279.41,203.5 281.75,203.5 281.75,205 284.09,205 284.09,206.5 286.43,206.5 286.43,208 288.77,208 288.77,209.5 291.11,209.5 291.11,211 293.45,211 293.45,212.5 295.79,212.5 295.79,214 296.13,214" class="ln-b"/>
-<polygon points="820.81,250 934,250 934,265 898.81,259" class="water"/>
-<line x1="820.81" y1="250" x2="934" y2="250" class="ln-water"/>
-<polygon points="50,166 222.12,166 265.35,214 562.2,214 562.2,214 562.2,215.5 564.54,215.5 564.54,217 566.88,217 566.88,218.5 630.67,218.5 630.67,241 820.81,250 898.81,259 934,265 934,290 50,290" class="poche"/>
-<polygon points="50,166 222.12,166 265.35,214 562.2,214 562.2,214 562.2,215.5 564.54,215.5 564.54,217 566.88,217 566.88,218.5 630.67,218.5 630.67,241 820.81,250 898.81,259 934,265 934,290 50,290" fill="url(#ca-earth)"/>
-<polyline points="50,166 222.12,166 265.35,214 562.2,214 562.2,214 562.2,215.5 564.54,215.5 564.54,217 566.88,217 566.88,218.5 630.67,218.5 630.67,241 820.81,250 898.81,259 934,265" class="ln-h"/>
+<polygon points="854.27,250 934,250 934,265 932.27,259" class="water"/>
+<line x1="854.27" y1="250" x2="934" y2="250" class="ln-water"/>
+<polygon points="50,166 222.12,166 265.35,214 562.2,214 562.2,214 562.2,215.5 564.54,215.5 564.54,217 566.88,217 566.88,218.5 630.67,218.5 630.67,241 854.27,250 932.27,259 934,265 934,290 50,290" class="poche"/>
+<polygon points="50,166 222.12,166 265.35,214 562.2,214 562.2,214 562.2,215.5 564.54,215.5 564.54,217 566.88,217 566.88,218.5 630.67,218.5 630.67,241 854.27,250 932.27,259 934,265 934,290 50,290" fill="url(#ca-earth)"/>
+<polyline points="50,166 222.12,166 265.35,214 562.2,214 562.2,214 562.2,215.5 564.54,215.5 564.54,217 566.88,217 566.88,218.5 630.67,218.5 630.67,241 854.27,250 932.27,259 934,265" class="ln-h"/>
 <polygon points="219.52,167 223.68,167 266.91,215 273.67,215 273.67,227 264.31,227 219.52,179" class="conc"/>
 <line x1="222.12" y1="166" x2="224.2" y2="166" class="ln-m"/>
 <line x1="224.2" y1="168.31" x2="226.28" y2="168.31" class="ln-m"/>
@@ -299,8 +303,8 @@
 <text class="t-dim halo" x="640.27" y="252" text-anchor="start">+0.90 BEACH</text>
 <polygon class="ink-f" points="919.6,243 927.6,243 923.6,250"/>
 <text class="t-dim halo" x="916.6" y="247" text-anchor="end">±0.00 SWL</text>
-<polygon class="ink-f" points="894.81,252 902.81,252 898.81,259"/>
-<text class="t-dim halo" x="905.81" y="270" text-anchor="start">−0.90 WADE LIMIT</text>
+<polygon class="ink-f" points="928.27,252 936.27,252 932.27,259"/>
+<text class="t-dim halo" x="939.27" y="270" text-anchor="start">−0.90 WADE LIMIT</text>
 <line x1="264.07" y1="186" x2="268.4" y2="126" class="ln-m"/>
 <circle cx="264.07" cy="186" r="0"/>
 <circle class="ink-f" cx="264.07" cy="186" r="1.8"/>
@@ -328,9 +332,9 @@
 <text x="429.17" y="320" text-anchor="middle" class="t-sm">CENTRAL PLAZA</text>
 <line class="dim" x1="562.2" y1="292" x2="562.2" y2="305"/><line class="dim" x1="630.67" y1="292" x2="630.67" y2="305"/><line class="dim" x1="559.2" y1="302" x2="633.67" y2="302"/><line class="dim-t" x1="559.2" y1="305" x2="565.2" y2="299"/><line class="dim-t" x1="627.67" y1="305" x2="633.67" y2="299"/><text class="t-dim halo" x="596.43" y="299" text-anchor="middle">13.2</text>
 <text x="596.43" y="320" text-anchor="middle" class="t-sm">PROMENADE</text>
-<line class="dim" x1="630.67" y1="292" x2="630.67" y2="305"/><line class="dim" x1="820.81" y1="292" x2="820.81" y2="305"/><line class="dim" x1="627.67" y1="302" x2="823.81" y2="302"/><line class="dim-t" x1="627.67" y1="305" x2="633.67" y2="299"/><line class="dim-t" x1="817.81" y1="305" x2="823.81" y2="299"/><text class="t-dim halo" x="725.74" y="299" text-anchor="middle">36.6</text>
-<text x="725.74" y="320" text-anchor="middle" class="t-sm">BEACH</text>
-<line class="dim" x1="820.81" y1="292" x2="820.81" y2="305"/><line class="dim" x1="898.81" y1="292" x2="898.81" y2="305"/><line class="dim" x1="817.81" y1="302" x2="901.81" y2="302"/><line class="dim-t" x1="817.81" y1="305" x2="823.81" y2="299"/><line class="dim-t" x1="895.81" y1="305" x2="901.81" y2="299"/><text class="t-dim halo" x="859.81" y="299" text-anchor="middle">15.0</text>
-<text x="859.81" y="320" text-anchor="middle" class="t-sm">WADE</text>
-<line class="dim" x1="129.73" y1="328" x2="129.73" y2="339"/><line class="dim" x1="820.81" y1="328" x2="820.81" y2="339"/><line class="dim" x1="126.73" y1="336" x2="823.81" y2="336"/><line class="dim-t" x1="126.73" y1="339" x2="132.73" y2="333"/><line class="dim-t" x1="817.81" y1="339" x2="823.81" y2="333"/><text class="t-dim halo" x="475.27" y="333" text-anchor="middle">132.9 · ROAD TO SHORELINE</text>
+<line class="dim" x1="630.67" y1="292" x2="630.67" y2="305"/><line class="dim" x1="854.27" y1="292" x2="854.27" y2="305"/><line class="dim" x1="627.67" y1="302" x2="857.27" y2="302"/><line class="dim-t" x1="627.67" y1="305" x2="633.67" y2="299"/><line class="dim-t" x1="851.27" y1="305" x2="857.27" y2="299"/><text class="t-dim halo" x="742.47" y="299" text-anchor="middle">43.0</text>
+<text x="742.47" y="320" text-anchor="middle" class="t-sm">BEACH</text>
+<line class="dim" x1="854.27" y1="292" x2="854.27" y2="305"/><line class="dim" x1="932.27" y1="292" x2="932.27" y2="305"/><line class="dim" x1="851.27" y1="302" x2="935.27" y2="302"/><line class="dim-t" x1="851.27" y1="305" x2="857.27" y2="299"/><line class="dim-t" x1="929.27" y1="305" x2="935.27" y2="299"/><text class="t-dim halo" x="893.27" y="299" text-anchor="middle">15.0</text>
+<text x="893.27" y="320" text-anchor="middle" class="t-sm">WADE</text>
+<line class="dim" x1="129.73" y1="328" x2="129.73" y2="339"/><line class="dim" x1="854.27" y1="328" x2="854.27" y2="339"/><line class="dim" x1="126.73" y1="336" x2="857.27" y2="336"/><line class="dim-t" x1="126.73" y1="339" x2="132.73" y2="333"/><line class="dim-t" x1="851.27" y1="339" x2="857.27" y2="333"/><text class="t-dim halo" x="492" y="333" text-anchor="middle">139.3 · ROAD TO SHORELINE</text>
 <rect x="50" y="66" width="884" height="284" class="frame"/></svg>

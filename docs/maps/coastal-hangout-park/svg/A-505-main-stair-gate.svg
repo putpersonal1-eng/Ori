@@ -81,6 +81,8 @@
 .tree-s{fill:#E5539A;fill-opacity:.45;stroke:#E5539A;stroke-width:.8}
 .trim-y{fill:none;stroke:#F0BE2C;stroke-width:2.4}
 .arc-y{fill:#F0BE2C;fill-opacity:.32}
+.arc-r{fill:#D93A55;fill-opacity:.22}
+.tile-b{fill:#2F6DB5}
 .key{fill:#16283A}
 .statue{fill:#FBFCFC;stroke:#16283A;stroke-width:1.2}
 .tree-o{fill:#9BCA84;stroke:#58894C;stroke-width:1.5}
@@ -161,12 +163,14 @@
 .e-indigo{fill:#2E3FB0;stroke:#16283A;stroke-width:.8}
 .e-verm{fill:#D9432F;stroke:#16283A;stroke-width:.8}
 .e-kawara{fill:#3B4352;stroke:#16283A;stroke-width:.7;stroke-linejoin:round}
-.e-kawara-y{fill:#F7CB3B;stroke:#16283A;stroke-width:.7;stroke-linejoin:round}
+.e-kawara-y{fill:#2F6DB5;stroke:#16283A;stroke-width:.7;stroke-linejoin:round}
 .e-tile{fill:none;stroke:#59627A;stroke-width:.8}
 .e-plaster{fill:#FAF8F3;stroke:#16283A;stroke-width:.9;stroke-linejoin:round}
 .e-gold{fill:#C9A24A}
 .e-white-o{fill:#FFFFFF;stroke:#16283A;stroke-width:1.4;stroke-linejoin:round}
 .e-portal{fill:#AEB6BF;stroke:#16283A;stroke-width:.8}
+.e-arc{fill:#D8343F;stroke:#16283A;stroke-width:.9;stroke-linejoin:round}
+.e-arc2{fill:#B72632}
 .e-wood-d{fill:#8A5C3A;stroke:#16283A;stroke-width:.8}
 .e-fd{font-family:"Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif}
 .e-fb{font-family:"Barlow", ui-sans-serif, system-ui, sans-serif}
@@ -217,8 +221,8 @@
 <line x1="719.6" y1="237.8" x2="745" y2="237.8" class="e-mull"/>
 <rect x="573.6" y="234" width="76" height="18" class="e-dark"/>
 <rect x="575.6" y="235.6" width="72" height="14.8" style="fill:none;stroke:#C9A24A;stroke-width:1"/>
-<text class="e-fb" x="611.6" y="244.6" text-anchor="middle" style="font-weight:800;font-size:9.44px;fill:#C9A24A;letter-spacing:0px">海辺ひろば</text>
-<text class="e-fc" x="611.6" y="249.6" text-anchor="middle" style="font-weight:700;font-size:3.61px;fill:#C9A24A;letter-spacing:1px">SEASIDE PARK</text>
+<text class="e-fb" x="611.6" y="244.6" text-anchor="middle" style="font-weight:800;font-size:7.22px;fill:#C9A24A;letter-spacing:0px">うみ シーサイドパーク</text>
+<text class="e-fc" x="611.6" y="249.6" text-anchor="middle" style="font-weight:700;font-size:3.61px;fill:#C9A24A;letter-spacing:1px">UMI SEASIDE PARK</text>
 <rect x="443.6" y="229" width="336" height="5" class="e-verm"/>
 <polygon points="431.6,221 441.6,229 781.6,229 791.6,221 792.6,215 761.6,217 461.6,217 430.6,215" class="e-dark"/>
 <line x1="503.6" y1="268.4" x2="503.6" y2="262.8" class="e-mull"/>
@@ -264,12 +268,10 @@
 <text class="e-fb" x="471.6" y="318.4" text-anchor="middle" style="font-weight:700;font-size:10.56px;fill:#2E333B;letter-spacing:0px">こ</text>
 <text class="e-fb" x="471.6" y="329.6" text-anchor="middle" style="font-weight:700;font-size:10.56px;fill:#2E333B;letter-spacing:0px">そ</text>
 <line x1="739.1" y1="279.6" x2="746.1" y2="279.6" class="e-mull-t"/>
-<rect x="746.1" y="282" width="11" height="50.8" class="e-white-o"/>
-<rect x="747.5" y="283.4" width="8.2" height="48" style="fill:none;stroke:#2E333B;stroke-width:.7"/>
-<text class="e-fb" x="751.6" y="296" text-anchor="middle" style="font-weight:700;font-size:10.56px;fill:#2E333B;letter-spacing:0px">海</text>
-<text class="e-fb" x="751.6" y="307.2" text-anchor="middle" style="font-weight:700;font-size:10.56px;fill:#2E333B;letter-spacing:0px">辺</text>
-<text class="e-fb" x="751.6" y="318.4" text-anchor="middle" style="font-weight:700;font-size:10.56px;fill:#2E333B;letter-spacing:0px">広</text>
-<text class="e-fb" x="751.6" y="329.6" text-anchor="middle" style="font-weight:700;font-size:10.56px;fill:#2E333B;letter-spacing:0px">場</text>
+<rect x="746.1" y="282" width="11" height="28.4" class="e-white-o"/>
+<rect x="747.5" y="283.4" width="8.2" height="25.6" style="fill:none;stroke:#2E333B;stroke-width:.7"/>
+<text class="e-fb" x="751.6" y="296" text-anchor="middle" style="font-weight:700;font-size:10.56px;fill:#2E333B;letter-spacing:0px">う</text>
+<text class="e-fb" x="751.6" y="307.2" text-anchor="middle" style="font-weight:700;font-size:10.56px;fill:#2E333B;letter-spacing:0px">み</text>
 <rect x="166.67" y="374" width="316.67" height="96" class="e-plaster"/>
 <rect x="172.67" y="391" width="304.67" height="66" class="e-plaster"/>
 <circle cx="419.44" cy="410.38" r="9.17" class="e-pink" style="opacity:.55"/>
@@ -324,7 +326,7 @@
 <circle cx="299.34" cy="395.69" r="0.84" class="e-dark"/>
 <rect x="166.67" y="376" width="316.67" height="13" class="e-dark"/>
 <rect x="168.07" y="377.4" width="313.87" height="10.2" style="fill:none;stroke:#8C99A6;stroke-width:.6"/>
-<text class="e-fc" x="172.67" y="385.1" text-anchor="start" style="font-weight:700;font-size:7.58px;fill:#FFB547;letter-spacing:0.8px">ようこそ 海辺ひろばへ · WELCOME TO SEASIDE PARK · ゲーム · カフェ · ショップ · おみやげ</text>
+<text class="e-fc" x="172.67" y="385.1" text-anchor="start" style="font-weight:700;font-size:7.58px;fill:#FFB547;letter-spacing:0.8px">ようこそ うみ シーサイドパークへ · WELCOME TO UMI SEASIDE PARK · ゲーム · カフェ · ショップ</text>
 <line x1="166.67" y1="352" x2="483.33" y2="352" class="e-out"/>
 <line x1="170.67" y1="374" x2="170.67" y2="352" class="e-mull"/>
 <line x1="210.67" y1="374" x2="210.67" y2="352" class="e-mull"/>
@@ -334,106 +336,69 @@
 <line x1="370.67" y1="374" x2="370.67" y2="352" class="e-mull"/>
 <line x1="410.67" y1="374" x2="410.67" y2="352" class="e-mull"/>
 <line x1="450.67" y1="374" x2="450.67" y2="352" class="e-mull"/>
-<rect x="740" y="374" width="116.67" height="96" class="e-plaster"/>
-<rect x="746" y="391" width="104.67" height="66" class="e-plaster"/>
-<circle cx="763.89" cy="405.66" r="12.34" class="e-pink" style="opacity:.55"/>
-<circle cx="775.26" cy="424.24" r="9.43" class="e-yel3" style="opacity:.55"/>
-<circle cx="812.61" cy="408.76" r="6.15" class="chalk-c" style="opacity:.55"/>
-<circle cx="753.9" cy="406.27" r="9.28" class="e-lilac" style="opacity:.55"/>
-<circle cx="823.04" cy="450.29" r="9.4" class="e-mint" style="opacity:.55"/>
-<circle cx="819.2" cy="438.32" r="14.01" class="e-pink" style="opacity:.55"/>
-<circle cx="836.15" cy="448.78" r="5.52" class="e-yel3" style="opacity:.55"/>
-<circle cx="802.23" cy="400.81" r="8.8" class="chalk-c" style="opacity:.55"/>
-<circle cx="771.64" cy="428.11" r="5.55" class="e-lilac" style="opacity:.55"/>
-<circle cx="772.12" cy="427.28" r="9.86" class="e-mint" style="opacity:.55"/>
-<circle cx="773.19" cy="438.21" r="7.3" class="e-pink" style="opacity:.55"/>
-<circle cx="794.53" cy="435.1" r="5.48" class="e-yel3" style="opacity:.55"/>
-<circle cx="830.13" cy="421.02" r="11.21" class="chalk-c" style="opacity:.55"/>
-<circle cx="768.75" cy="397.99" r="13.23" class="e-lilac" style="opacity:.55"/>
-<ellipse cx="788.66" cy="416.48" rx="15.84" ry="8.45" class="e-white-o"/>
-<line x1="796.05" y1="418.59" x2="790.77" y2="411.2" class="e-joint"/>
-<line x1="790.77" y1="418.59" x2="785.49" y2="411.2" class="e-joint"/>
-<line x1="785.49" y1="418.59" x2="780.21" y2="411.2" class="e-joint"/>
-<ellipse cx="845.69" cy="416.48" rx="15.84" ry="8.45" class="e-white-o"/>
-<line x1="838.29" y1="418.59" x2="843.57" y2="411.2" class="e-joint"/>
-<line x1="843.57" y1="418.59" x2="848.85" y2="411.2" class="e-joint"/>
-<line x1="848.85" y1="418.59" x2="854.13" y2="411.2" class="e-joint"/>
-<path d="M801.33 437.6 L833.01 437.6 Q838.29 437.6 838.29 432.32 L838.29 409.08 Q838.29 403.8 833.01 403.8 L801.33 403.8 Q796.05 403.8 796.05 409.08 L796.05 432.32 Q796.05 437.6 801.33 437.6 Z" class="e-mint"/>
-<path d="M805.13 431.68 L829.21 431.68 Q832.38 431.68 832.38 428.51 L832.38 412.25 Q832.38 409.08 829.21 409.08 L805.13 409.08 Q801.97 409.08 801.97 412.25 L801.97 428.51 Q801.97 431.68 805.13 431.68 Z" class="e-dark"/>
-<rect x="808.73" y="414.79" width="3.38" height="4.86" style="fill:#CBE8EE"/>
-<rect x="822.24" y="414.79" width="3.38" height="4.86" style="fill:#CBE8EE"/>
-<path d="M811.89 425.35 Q817.17 429.57 822.45 425.35" style="fill:none;stroke:#CBE8EE;stroke-width:2"/>
-<line x1="810.84" y1="403.8" x2="805.56" y2="396.41" class="e-mull"/>
-<line x1="823.51" y1="403.8" x2="828.79" y2="396.41" class="e-mull"/>
-<ellipse cx="772.17" cy="440.5" rx="22.44" ry="9.24" style="fill:#F59A3A;stroke:#16283A;stroke-width:1"/>
-<line x1="758.97" y1="447.1" x2="761.61" y2="433.9"/>
-<line x1="758.97" y1="433.24" x2="760.95" y2="444.46" style="stroke:#FFFFFF;stroke-width:2.5"/>
-<line x1="766.89" y1="447.1" x2="769.53" y2="433.9"/>
-<line x1="766.89" y1="433.24" x2="768.87" y2="444.46" style="stroke:#FFFFFF;stroke-width:2.5"/>
-<line x1="774.81" y1="447.1" x2="777.45" y2="433.9"/>
-<line x1="774.81" y1="433.24" x2="776.79" y2="444.46" style="stroke:#FFFFFF;stroke-width:2.5"/>
-<line x1="782.73" y1="447.1" x2="785.37" y2="433.9"/>
-<line x1="782.73" y1="433.24" x2="784.71" y2="444.46" style="stroke:#FFFFFF;stroke-width:2.5"/>
-<circle cx="791.97" cy="435.22" r="7.92" style="fill:#F59A3A;stroke:#16283A;stroke-width:1"/>
-<polygon points="785.37,431.26 786.69,423.34 790.65,428.62" style="fill:#F59A3A;stroke:#16283A;stroke-width:.8"/>
-<polygon points="798.57,431.26 797.25,423.34 793.29,428.62" style="fill:#F59A3A;stroke:#16283A;stroke-width:.8"/>
-<path d="M788.01 435.22 Q789.66 436.54 791.31 435.22" class="e-mull"/>
-<path d="M792.63 435.22 Q794.28 436.54 795.93 435.22" class="e-mull"/>
-<text class="e-fc" x="765.57" y="427.3" text-anchor="middle" style="font-weight:700;font-size:7.33px;fill:#2E333B;letter-spacing:0px">zzz</text>
-<polygon points="842.52,399.64 841.25,409.04 846.32,399.64" class="e-white-o"/>
-<path d="M843.24 400.64 L854.46 400.64 Q859.41 400.64 859.41 395.69 L859.41 395.69 Q859.41 390.74 854.46 390.74 L843.24 390.74 Q838.29 390.74 838.29 395.69 L838.29 395.69 Q838.29 400.64 843.24 400.64 Z" class="e-white-o"/>
-<rect x="842.31" y="398.64" width="3.8" height="2.4" class="e-white"/>
-<circle cx="845.26" cy="395.69" r="0.84" class="e-dark"/>
-<circle cx="848.85" cy="395.69" r="0.84" class="e-dark"/>
-<circle cx="852.44" cy="395.69" r="0.84" class="e-dark"/>
-<rect x="740" y="376" width="116.67" height="13" class="e-dark"/>
-<rect x="741.4" y="377.4" width="113.87" height="10.2" style="fill:none;stroke:#8C99A6;stroke-width:.6"/>
-<text class="e-fc" x="746" y="385.1" text-anchor="start" style="font-weight:700;font-size:7.58px;fill:#FFB547;letter-spacing:0.8px">ようこそ 海辺ひろばへ · WELCOME TO</text>
-<line x1="740" y1="352" x2="856.67" y2="352" class="e-out"/>
+<rect x="740" y="374" width="283.33" height="96" class="e-plaster"/>
+<rect x="746" y="391" width="271.33" height="66" class="e-plaster"/>
+<circle cx="792.38" cy="405.66" r="12.34" class="e-pink" style="opacity:.55"/>
+<circle cx="821.85" cy="424.24" r="9.43" class="e-yel3" style="opacity:.55"/>
+<circle cx="918.69" cy="408.76" r="6.15" class="chalk-c" style="opacity:.55"/>
+<circle cx="766.49" cy="406.27" r="9.28" class="e-lilac" style="opacity:.55"/>
+<circle cx="945.72" cy="450.29" r="9.4" class="e-mint" style="opacity:.55"/>
+<circle cx="935.77" cy="438.32" r="14.01" class="e-pink" style="opacity:.55"/>
+<circle cx="979.7" cy="448.78" r="5.52" class="e-yel3" style="opacity:.55"/>
+<circle cx="891.78" cy="400.81" r="8.8" class="chalk-c" style="opacity:.55"/>
+<circle cx="812.46" cy="428.11" r="5.55" class="e-lilac" style="opacity:.55"/>
+<circle cx="813.7" cy="427.28" r="9.86" class="e-mint" style="opacity:.55"/>
+<circle cx="816.49" cy="438.21" r="7.3" class="e-pink" style="opacity:.55"/>
+<circle cx="871.8" cy="435.1" r="5.48" class="e-yel3" style="opacity:.55"/>
+<circle cx="964.1" cy="421.02" r="11.21" class="chalk-c" style="opacity:.55"/>
+<circle cx="804.96" cy="397.99" r="13.23" class="e-lilac" style="opacity:.55"/>
+<ellipse cx="901.99" cy="416.48" rx="15.84" ry="8.45" class="e-white-o"/>
+<line x1="909.39" y1="418.59" x2="904.11" y2="411.2" class="e-joint"/>
+<line x1="904.11" y1="418.59" x2="898.83" y2="411.2" class="e-joint"/>
+<line x1="898.83" y1="418.59" x2="893.55" y2="411.2" class="e-joint"/>
+<ellipse cx="959.02" cy="416.48" rx="15.84" ry="8.45" class="e-white-o"/>
+<line x1="951.63" y1="418.59" x2="956.91" y2="411.2" class="e-joint"/>
+<line x1="956.91" y1="418.59" x2="962.19" y2="411.2" class="e-joint"/>
+<line x1="962.19" y1="418.59" x2="967.47" y2="411.2" class="e-joint"/>
+<path d="M914.67 437.6 L946.35 437.6 Q951.63 437.6 951.63 432.32 L951.63 409.08 Q951.63 403.8 946.35 403.8 L914.67 403.8 Q909.39 403.8 909.39 409.08 L909.39 432.32 Q909.39 437.6 914.67 437.6 Z" class="e-mint"/>
+<path d="M918.47 431.68 L942.55 431.68 Q945.71 431.68 945.71 428.51 L945.71 412.25 Q945.71 409.08 942.55 409.08 L918.47 409.08 Q915.3 409.08 915.3 412.25 L915.3 428.51 Q915.3 431.68 918.47 431.68 Z" class="e-dark"/>
+<rect x="922.06" y="414.79" width="3.38" height="4.86" style="fill:#CBE8EE"/>
+<rect x="935.58" y="414.79" width="3.38" height="4.86" style="fill:#CBE8EE"/>
+<path d="M925.23 425.35 Q930.51 429.57 935.79 425.35" style="fill:none;stroke:#CBE8EE;stroke-width:2"/>
+<line x1="924.17" y1="403.8" x2="918.89" y2="396.41" class="e-mull"/>
+<line x1="936.84" y1="403.8" x2="942.12" y2="396.41" class="e-mull"/>
+<ellipse cx="813.83" cy="440.5" rx="22.44" ry="9.24" style="fill:#F59A3A;stroke:#16283A;stroke-width:1"/>
+<line x1="800.63" y1="447.1" x2="803.27" y2="433.9"/>
+<line x1="800.63" y1="433.24" x2="802.61" y2="444.46" style="stroke:#FFFFFF;stroke-width:2.5"/>
+<line x1="808.55" y1="447.1" x2="811.19" y2="433.9"/>
+<line x1="808.55" y1="433.24" x2="810.53" y2="444.46" style="stroke:#FFFFFF;stroke-width:2.5"/>
+<line x1="816.47" y1="447.1" x2="819.11" y2="433.9"/>
+<line x1="816.47" y1="433.24" x2="818.45" y2="444.46" style="stroke:#FFFFFF;stroke-width:2.5"/>
+<line x1="824.39" y1="447.1" x2="827.03" y2="433.9"/>
+<line x1="824.39" y1="433.24" x2="826.37" y2="444.46" style="stroke:#FFFFFF;stroke-width:2.5"/>
+<circle cx="833.63" cy="435.22" r="7.92" style="fill:#F59A3A;stroke:#16283A;stroke-width:1"/>
+<polygon points="827.03,431.26 828.35,423.34 832.31,428.62" style="fill:#F59A3A;stroke:#16283A;stroke-width:.8"/>
+<polygon points="840.23,431.26 838.91,423.34 834.95,428.62" style="fill:#F59A3A;stroke:#16283A;stroke-width:.8"/>
+<path d="M829.67 435.22 Q831.32 436.54 832.97 435.22" class="e-mull"/>
+<path d="M834.29 435.22 Q835.94 436.54 837.59 435.22" class="e-mull"/>
+<text class="e-fc" x="807.23" y="427.3" text-anchor="middle" style="font-weight:700;font-size:7.33px;fill:#2E333B;letter-spacing:0px">zzz</text>
+<polygon points="955.85,399.64 954.58,409.04 959.65,399.64" class="e-white-o"/>
+<path d="M956.58 400.64 L967.8 400.64 Q972.75 400.64 972.75 395.69 L972.75 395.69 Q972.75 390.74 967.8 390.74 L956.58 390.74 Q951.63 390.74 951.63 395.69 L951.63 395.69 Q951.63 400.64 956.58 400.64 Z" class="e-white-o"/>
+<rect x="955.64" y="398.64" width="3.8" height="2.4" class="e-white"/>
+<circle cx="958.6" cy="395.69" r="0.84" class="e-dark"/>
+<circle cx="962.19" cy="395.69" r="0.84" class="e-dark"/>
+<circle cx="965.78" cy="395.69" r="0.84" class="e-dark"/>
+<rect x="740" y="376" width="283.33" height="13" class="e-dark"/>
+<rect x="741.4" y="377.4" width="280.53" height="10.2" style="fill:none;stroke:#8C99A6;stroke-width:.6"/>
+<text class="e-fc" x="746" y="385.1" text-anchor="start" style="font-weight:700;font-size:7.58px;fill:#FFB547;letter-spacing:0.8px">ようこそ うみ シーサイドパークへ · WELCOME TO UMI SEASIDE PARK · ゲーム · カフェ</text>
+<line x1="740" y1="352" x2="1023.33" y2="352" class="e-out"/>
 <line x1="744" y1="374" x2="744" y2="352" class="e-mull"/>
 <line x1="784" y1="374" x2="784" y2="352" class="e-mull"/>
 <line x1="824" y1="374" x2="824" y2="352" class="e-mull"/>
-<rect x="943.33" y="374" width="80" height="96" class="e-plaster"/>
-<rect x="943.33" y="376" width="80" height="13" class="e-dark"/>
-<rect x="944.73" y="377.4" width="77.2" height="10.2" style="fill:none;stroke:#8C99A6;stroke-width:.6"/>
-<text class="e-fc" x="949.33" y="385.1" text-anchor="start" style="font-weight:700;font-size:7.58px;fill:#FFB547;letter-spacing:0.8px">ようこそ 海辺ひろばへ · WE</text>
-<line x1="943.33" y1="352" x2="1023.33" y2="352" class="e-out"/>
-<line x1="947.33" y1="374" x2="947.33" y2="352" class="e-mull"/>
-<line x1="987.33" y1="374" x2="987.33" y2="352" class="e-mull"/>
-<rect x="856.67" y="374" width="86.67" height="96" class="e-conc"/>
-<line x1="862.67" y1="467" x2="937.33" y2="467" class="e-joint"/>
-<line x1="862.67" y1="464" x2="937.33" y2="464" class="e-joint"/>
-<line x1="862.67" y1="461" x2="937.33" y2="461" class="e-joint"/>
-<line x1="862.67" y1="458" x2="937.33" y2="458" class="e-joint"/>
-<line x1="862.67" y1="455" x2="937.33" y2="455" class="e-joint"/>
-<line x1="862.67" y1="452" x2="937.33" y2="452" class="e-joint"/>
-<line x1="862.67" y1="449" x2="937.33" y2="449" class="e-joint"/>
-<line x1="862.67" y1="446" x2="937.33" y2="446" class="e-joint"/>
-<line x1="862.67" y1="443" x2="937.33" y2="443" class="e-joint"/>
-<line x1="862.67" y1="440" x2="937.33" y2="440" class="e-joint"/>
-<line x1="862.67" y1="437" x2="937.33" y2="437" class="e-joint"/>
-<line x1="862.67" y1="434" x2="937.33" y2="434" class="e-joint"/>
-<line x1="862.67" y1="431" x2="937.33" y2="431" class="e-joint"/>
-<line x1="862.67" y1="428" x2="937.33" y2="428" class="e-joint"/>
-<line x1="862.67" y1="425" x2="937.33" y2="425" class="e-joint"/>
-<line x1="862.67" y1="422" x2="937.33" y2="422" class="e-mull"/>
-<line x1="862.67" y1="419" x2="937.33" y2="419" class="e-joint"/>
-<line x1="862.67" y1="416" x2="937.33" y2="416" class="e-joint"/>
-<line x1="862.67" y1="413" x2="937.33" y2="413" class="e-joint"/>
-<line x1="862.67" y1="410" x2="937.33" y2="410" class="e-joint"/>
-<line x1="862.67" y1="407" x2="937.33" y2="407" class="e-joint"/>
-<line x1="862.67" y1="404" x2="937.33" y2="404" class="e-joint"/>
-<line x1="862.67" y1="401" x2="937.33" y2="401" class="e-joint"/>
-<line x1="862.67" y1="398" x2="937.33" y2="398" class="e-joint"/>
-<line x1="862.67" y1="395" x2="937.33" y2="395" class="e-joint"/>
-<line x1="862.67" y1="392" x2="937.33" y2="392" class="e-joint"/>
-<line x1="862.67" y1="389" x2="937.33" y2="389" class="e-joint"/>
-<line x1="862.67" y1="386" x2="937.33" y2="386" class="e-joint"/>
-<line x1="862.67" y1="383" x2="937.33" y2="383" class="e-joint"/>
-<line x1="862.67" y1="380" x2="937.33" y2="380" class="e-joint"/>
-<line x1="862.67" y1="377" x2="937.33" y2="377" class="e-joint"/>
-<rect x="856.67" y="365" width="6" height="105" class="e-conc"/>
-<rect x="937.33" y="365" width="6" height="105" class="e-conc"/>
+<line x1="864" y1="374" x2="864" y2="352" class="e-mull"/>
+<line x1="904" y1="374" x2="904" y2="352" class="e-mull"/>
+<line x1="944" y1="374" x2="944" y2="352" class="e-mull"/>
+<line x1="984" y1="374" x2="984" y2="352" class="e-mull"/>
 <rect x="483.33" y="374" width="86.67" height="96" class="e-conc"/>
 <line x1="489.33" y1="467" x2="564" y2="467" class="e-joint"/>
 <line x1="489.33" y1="464" x2="564" y2="464" class="e-joint"/>
@@ -599,15 +564,24 @@
 <ellipse class="shrub-o" cx="835.71" cy="450.36" rx="9.55" ry="8.6"/>
 <ellipse class="shrub-o" cx="847.84" cy="450.59" rx="9.26" ry="8.33"/>
 <ellipse class="shrub-o" cx="858.09" cy="452.02" rx="7.47" ry="6.73"/>
-<rect x="740" y="458" width="116.67" height="12" class="e-conc"/>
-<ellipse class="shrub-o" cx="952.32" cy="452.41" rx="6.99" ry="6.29"/>
-<ellipse class="shrub-o" cx="962.74" cy="451.34" rx="8.33" ry="7.49"/>
-<ellipse class="shrub-o" cx="975.13" cy="450.09" rx="9.89" ry="8.9"/>
-<ellipse class="shrub-o" cx="986.72" cy="451.1" rx="8.63" ry="7.77"/>
-<ellipse class="shrub-o" cx="997.24" cy="451.66" rx="7.93" ry="7.14"/>
-<ellipse class="shrub-o" cx="1006.86" cy="452.21" rx="7.24" ry="6.51"/>
-<ellipse class="shrub-o" cx="1015.58" cy="452.76" rx="6.55" ry="5.9"/>
-<rect x="943.33" y="458" width="80" height="12" class="e-conc"/>
+<ellipse class="shrub-o" cx="866.62" cy="452.97" rx="6.28" ry="5.66"/>
+<ellipse class="shrub-o" cx="876.25" cy="451.8" rx="7.75" ry="6.98"/>
+<ellipse class="shrub-o" cx="887.27" cy="451.05" rx="8.69" ry="7.82"/>
+<ellipse class="shrub-o" cx="899.16" cy="450.57" rx="9.29" ry="8.36"/>
+<ellipse class="shrub-o" cx="908.92" cy="452.42" rx="6.97" ry="6.27"/>
+<ellipse class="shrub-o" cx="918.23" cy="452.22" rx="7.22" ry="6.5"/>
+<ellipse class="shrub-o" cx="927.41" cy="452.39" rx="7.01" ry="6.31"/>
+<ellipse class="shrub-o" cx="937.16" cy="451.88" rx="7.65" ry="6.88"/>
+<ellipse class="shrub-o" cx="946.2" cy="452.6" rx="6.75" ry="6.08"/>
+<ellipse class="shrub-o" cx="957.68" cy="450.44" rx="9.45" ry="8.51"/>
+<ellipse class="shrub-o" cx="967.45" cy="452.45" rx="6.94" ry="6.24"/>
+<ellipse class="shrub-o" cx="977.72" cy="451.46" rx="8.18" ry="7.36"/>
+<ellipse class="shrub-o" cx="986.43" cy="452.99" rx="6.26" ry="5.64"/>
+<ellipse class="shrub-o" cx="997.3" cy="450.81" rx="8.99" ry="8.09"/>
+<ellipse class="shrub-o" cx="1006.44" cy="452.85" rx="6.44" ry="5.79"/>
+<ellipse class="shrub-o" cx="1014.63" cy="452.99" rx="6.26" ry="5.63"/>
+<ellipse class="shrub-o" cx="1024.63" cy="451.5" rx="8.13" ry="7.31"/>
+<rect x="740" y="458" width="283.33" height="12" class="e-conc"/>
 <path d="M426.67 458 Q429.07 380 438.67 328" class="trunk"/>
 <path class="palm" d="M438.67 328Q415.69 314.39 392.71 334.39Q415.69 319.39 438.67 328Z M438.67 328Q417.47 304.88 396.27 316.26Q417.47 309.88 438.67 328Z M438.67 328Q425.4 299.92 412.14 301.08Q425.4 304.92 438.67 328Z M438.67 328Q437.49 301.15 436.31 293.32Q437.49 306.15 438.67 328Z M438.67 328Q448.15 302.11 457.64 301.2Q448.15 307.11 438.67 328Z M438.67 328Q458.58 304.61 478.49 314.56Q458.58 309.61 438.67 328Z M438.67 328Q463.28 311.12 487.89 330.35Q463.28 316.12 438.67 328Z"/>
 <path d="M793.33 458 Q795.73 376.4 805.33 322" class="trunk"/>

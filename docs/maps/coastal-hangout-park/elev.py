@@ -1,4 +1,4 @@
-"""Building elevations for the Japan Coastal Hangout Park (sheets A-501 to A-504).
+"""Building elevations for the Umi Seaside Park (sheets A-501 to A-504).
 
 Every elevation is drawn in metres on a Cv whose vertical axis is the real
 level (datum ±0.00 = sea level), so plinths, steps and parapets line up with
@@ -20,6 +20,7 @@ F_LIGHT = {
     "f-steel": "#8C99A6", "f-sky": "#E4F2F7", "f-thatch": "#D9B477", "f-orange": "#F59A3A",
     "f-indigo": "#2E3FB0", "f-verm": "#D9432F", "f-kawara": "#3B4352", "f-kawara-2": "#59627A", "f-plaster": "#FAF8F3",
     "f-gold": "#C9A24A", "f-led": "#FFB547", "f-portal": "#AEB6BF", "f-wood-d": "#8A5C3A",
+    "f-arc": "#D8343F", "f-arc-2": "#B72632", "f-tile-b": "#2F6DB5",
 }
 F_DARK = {
     "f-yel": "#D7AE2F", "f-yel-2": "#B68B17", "f-yel-3": "#E6C55C", "f-cream": "#CFC9BB", "f-cream-2": "#A9A28F",
@@ -29,6 +30,7 @@ F_DARK = {
     "f-steel": "#6C7884", "f-sky": "#16293A", "f-thatch": "#A88A55", "f-orange": "#C97E31",
     "f-indigo": "#3447B8", "f-verm": "#B83A2A", "f-kawara": "#232A35", "f-kawara-2": "#3C4558", "f-plaster": "#CFCCC4",
     "f-gold": "#A88A3E", "f-led": "#E89E3A", "f-portal": "#7E8791", "f-wood-d": "#6B4630",
+    "f-arc": "#B22F38", "f-arc-2": "#931F29", "f-tile-b": "#2A5C99",
 }
 
 ELEV_CSS = """
@@ -79,12 +81,14 @@ ELEV_CSS = """
 .e-indigo{fill:var(--f-indigo);stroke:var(--ink);stroke-width:.8}
 .e-verm{fill:var(--f-verm);stroke:var(--ink);stroke-width:.8}
 .e-kawara{fill:var(--f-kawara);stroke:var(--ink);stroke-width:.7;stroke-linejoin:round}
-.e-kawara-y{fill:var(--f-yel);stroke:var(--ink);stroke-width:.7;stroke-linejoin:round}
+.e-kawara-y{fill:var(--f-tile-b);stroke:var(--ink);stroke-width:.7;stroke-linejoin:round}
 .e-tile{fill:none;stroke:var(--f-kawara-2);stroke-width:.8}
 .e-plaster{fill:var(--f-plaster);stroke:var(--ink);stroke-width:.9;stroke-linejoin:round}
 .e-gold{fill:var(--f-gold)}
 .e-white-o{fill:var(--f-white);stroke:var(--ink);stroke-width:1.4;stroke-linejoin:round}
 .e-portal{fill:var(--f-portal);stroke:var(--ink);stroke-width:.8}
+.e-arc{fill:var(--f-arc);stroke:var(--ink);stroke-width:.9;stroke-linejoin:round}
+.e-arc2{fill:var(--f-arc-2)}
 .e-wood-d{fill:var(--f-wood-d);stroke:var(--ink);stroke-width:.8}
 .e-fd{font-family:var(--f-display)}
 .e-fb{font-family:var(--f-body)}
@@ -247,23 +251,51 @@ def sparkle(cv, u, z, s):
                f'stroke-width:{n(s * .28 * abs(cv.sx))}px;stroke-linecap:round"/>')
 
 
+BANNERS = {   # design: (background, accent, text, text colour)
+    "umi": ("var(--f-navy)", "var(--chalk-c)", "UMI", "var(--f-white)"),
+    "cafe": ("var(--f-white)", "var(--f-wood-d)", "CAFE", "var(--f-wood-d)"),
+    "games": ("var(--f-arc)", "var(--f-yel)", "GAMES", "var(--f-white)"),
+    "omiyage": ("var(--f-yel)", "var(--f-red)", "おみやげ", "var(--f-dark)"),
+    "beach": ("var(--chalk-c)", "var(--f-white)", "BEACH", "var(--f-white)"),
+    "sakura": ("var(--f-pink)", "var(--f-white)", "さくら", "var(--f-white)"),
+    "fes": ("var(--f-coral)", "var(--f-yel-3)", "夏まつり", "var(--f-white)"),
+    "shell": ("var(--f-mint)", "var(--f-white)", "SEA", "var(--f-navy)"),
+}
+
+
+def banner_e(cv, u0, u1, z0, z1, design):
+    bg, acc, txt, fg = BANNERS[design]
+    cv.rect(u0, z0, u1, z1, "", f' style="fill:{bg};stroke:var(--ink);stroke-width:.7"')
+    w = u1 - u0
+    cv.circle((u0 + u1) / 2, z1 - w * .65, w * .3, "", f' style="fill:{acc}"')
+    wave(cv, u0 + w * .15, u1 - w * .15, z0 + .3, .04, 2, "e-led")
+    for i, ch in enumerate(txt if len(txt) <= 4 else [txt]):
+        if len(txt) <= 4:
+            stext(cv, (u0 + u1) / 2, z1 - w * 1.5 - i * w * .62, ch, w * .38, fill=fg, weight=800,
+                  family="var(--f-body)" if not txt.isascii() else "var(--f-cond)")
+        else:
+            stext(cv, (u0 + u1) / 2, z0 + (z1 - z0) * .45, ch, w * .3, fill=fg, weight=800, family="var(--f-cond)", rot=-90)
+
+
 def lamp_post(cv, u, z, h=6.2, banner=None, signs=None):
-    """Street lamp with an optional pixel banner and finger signs (BEACH / SHOPS / ...)."""
-    cv.rect(u - .09, z, u + .09, z + h, "e-dark")
-    cv.rect(u - .16, z, u + .16, z + .5, "e-dark")
-    cv.line(u, z + h, u - .7, z + h + .1, "e-mull-t")
-    cv.poly([(u - .95, z + h - .05), (u - .45, z + h - .05), (u - .52, z + h + .15), (u - .88, z + h + .15)], "e-dark")
+    """Post-top lantern lamp centred on the pole, with a bracket carrying two banners (and finger signs)."""
+    cv.rect(u - .1, z, u + .1, z + 1.3, "e-yel")
+    cv.rect(u - .07, z + 1.3, u + .07, z + h, "e-dark")
+    cv.rect(u - .16, z, u + .16, z + .3, "e-dark")
+    # lantern head: collar, glass lamp, cap
+    cv.rect(u - .12, z + h, u + .12, z + h + .14, "e-dark")
+    cv.poly([(u - .16, z + h + .14), (u + .16, z + h + .14), (u + .24, z + h + .82), (u - .24, z + h + .82)], "e-glow")
+    cv.poly([(u - .16, z + h + .14), (u + .16, z + h + .14), (u + .24, z + h + .82), (u - .24, z + h + .82)], "e-out")
+    cv.poly([(u - .32, z + h + .82), (u + .32, z + h + .82), (u + .1, z + h + 1.0), (u - .1, z + h + 1.0)], "e-dark")
     if banner:
-        b0, b1, txt = banner
-        cv.rect(u + .1, b0, u + 1.25, b1, "e-poster")
-        cv.line(u + .1, b1, u + 1.35, b1, "e-mull-t")
-        cv.line(u + .1, b0, u + 1.35, b0, "e-mull-t")
-        for i, line in enumerate(txt):
-            stext(cv, u + .68, b1 - .45 - i * .3, line, .15, weight=700, family="var(--f-cond)")
-        wave(cv, u + .3, u + 1.05, b0 + .25, .05, 2, "e-led")
+        b0, b1, designs = banner
+        cv.rect(u - 1.25, b1, u + 1.25, b1 + .05, "e-yel")
+        cv.rect(u - 1.25, b0 - .05, u + 1.25, b0, "e-yel")
+        banner_e(cv, u - 1.15, u - .2, b0, b1, designs[0])
+        banner_e(cv, u + .2, u + 1.15, b0, b1, designs[1])
     if signs:
         for i, (lab, d) in enumerate(signs):
-            zc = z + 3.5 - i * .5
+            zc = z + 2.6 - i * .45
             a0, a1 = (u + .1, u + 1.6) if d > 0 else (u - 1.6, u - .1)
             tip = a1 + .25 if d > 0 else a0 - .25
             pts = [(a0, zc - .17), (a1, zc - .17), (tip, zc), (a1, zc + .17), (a0, zc + .17)] if d > 0 else \
@@ -506,26 +538,26 @@ def arcade_east():
         parasol_e(cv, u, Z_ROOF, 1.45, 2.35, cls)
     glass_rail(cv, 0, 27.08, Z_PAR, Z_RAIL - Z_PAR)
     # fashion shop (north, same face line) - stub
-    cv.rect(27.08, Z_PL, 30.2, 13.2, "e-wall")
-    cv.rect(27.08, 8.1, 30.2, 8.4, "e-coral")
-    glazing(cv, 27.6, Z_PL, 30.2, 7.4, 2)
-    glazing(cv, 27.6, 9.0, 30.2, 12.0, 2)
-    cv.rect(27.08, 12.6, 30.2, 13.2, "e-coral")
+    cv.rect(27.08, Z_PL, 30.2, 12.6, "e-plaster")
+    gold_line(cv, 27.08, 30.2, 8.45)
+    glazing(cv, 27.6, Z_PL, 30.2, 7.75, 2)
+    glazing(cv, 27.6, 8.7, 30.2, 11.05, 2)
+    kawara(cv, 27.08, 30.6, 12.6)
     break_line(cv, 30.2, Z_PL, 13.2)
-    cv.text(28.7, 13.55, "FASHION & GOODS (A-502)", "t-sm halo")
-    # main yellow body
-    cv.rect(0, Z_PL, 27.08, Z_PAR, "e-yel")
+    cv.text(28.7, 13.85, "FASHION & GOODS (A-502)", "t-sm halo")
+    # main red body
+    cv.rect(0, Z_PL, 27.08, Z_PAR, "e-arc")
     cv.rect(0, Z_PL, 27.08, Z_PAR, "", ' fill="url(#ce-clad)"')
-    cv.rect(0, 9.72, 27.08, 9.92, "e-pink")
+    cv.rect(0, 9.72, 27.08, 9.92, "e-yel")
     cv.rect(0, Z_PAR - .12, 27.08, Z_PAR, "e-dark")
     for (a, b) in ((0, .55), (26.53, 27.08)):
-        cv.rect(a, Z_PL, b, Z_PAR, "e-yel2")
+        cv.rect(a, Z_PL, b, Z_PAR, "e-arc2")
     cv.rect(0, Z_PL, 27.08, Z_FFL, "e-conc")
     # outer bays: portholes and wave planters
     for u in (2.1, 4.4, 22.3, 24.6):
         porthole(cv, u, 8.55, .62)
     for u in (2.1, 4.4, 22.1):
-        cv.rect(u - .7, 5.0, u + .7, 6.6, "e-yel2")
+        cv.rect(u - .7, 5.0, u + .7, 6.6, "e-arc2")
         cv.rect(u - .55, 5.15, u + .55, 6.45, "e-glass")
         cv.line(u - .3, 5.4, u + .1, 6.2, "e-hl")
     # spotlights on the parapet, aimed down at the sign
@@ -534,7 +566,7 @@ def arcade_east():
     arcade_controller(cv)
     arcade_front_lower(cv)
     # strip annex end (prize corner), south, same face line
-    cv.rect(-3.33, Z_PL, 0, 7.2, "e-yel")
+    cv.rect(-3.33, Z_PL, 0, 7.2, "e-arc")
     cv.rect(-3.33, 6.9, 0, 7.2, "e-dark")
     glazing(cv, -3.0, Z_PL, -.3, 6.1, 2, inner="e-glow")
     for (a, cls) in ((-2.85, "e-pink-o"), (-1.55, "e-mint")):
@@ -545,7 +577,7 @@ def arcade_east():
     # foreground: planters, lamp + signposts, A-frame, bench
     for (u, sd) in ((5.5, 1), (21.2, 2), (24.3, 3)):
         wave_planter(cv, u, Z_FFL if 3.1 < u < 23.5 else Z_PL, 1.6, .72, sd)
-    lamp_post(cv, 26.4, Z_PL, 6.3, banner=(7.3, 9.4, ("GOOD", "GAMES", "BRIGHT", "DAYS")),
+    lamp_post(cv, 26.4, Z_PL, 6.3, banner=(6.6, 9.3, ("games", "umi")),
               signs=(("BEACH", -1), ("SHOPS", -1), ("FOOD", -1), ("PHOTO SPOT", -1)))
     aframe(cv, -4.6, Z_PL, ("PLAY", "EAT", "CHILL"))
     bench_e(cv, 1.1, Z_PL, 1.8)
@@ -580,9 +612,9 @@ def arcade_south():
     # fashion shop beyond (north, taller)
     cv.rect(13.75, Z_PAR, 47.92, 13.2, "beyond")
     cv.text(21.0, 12.55, "FASHION & GOODS beyond · +13.20", "t-sm halo")
-    cv.rect(13.75, Z_PL, 47.92, Z_PAR, "e-yel")
+    cv.rect(13.75, Z_PL, 47.92, Z_PAR, "e-arc")
     cv.rect(13.75, Z_PL, 47.92, Z_PAR, "", ' fill="url(#ce-clad)"')
-    cv.rect(13.75, 9.72, 47.92, 9.92, "e-pink")
+    cv.rect(13.75, 9.72, 47.92, 9.92, "e-yel")
     cv.rect(13.75, Z_PAR - .12, 47.92, Z_PAR, "e-dark")
     for u in frange(16.6, 45.5, 3.0):
         porthole(cv, u, 8.55, .66)
@@ -594,7 +626,7 @@ def arcade_south():
     for k in range(3):
         cv.rect(47.92 + k * .4, Z_PL, 49.12, Z_PL + (3 - k) * .15, "e-conc")
     # strip annex in front (south face), café ghosted in front of its west part
-    cv.rect(13.75, Z_PL, 47.92, 7.2, "e-yel")
+    cv.rect(13.75, Z_PL, 47.92, 7.2, "e-arc")
     cv.rect(13.75, 6.9, 47.92, 7.2, "e-dark")
     for (a, b, cls, lab) in ((37.6, 41.2, "e-glow", "PRIZE CORNER"), (41.7, 45.3, "e-glow", "VENDING"), (45.6, 47.6, "e-glass", "")):
         glazing(cv, a, Z_PL + .4, b, 6.2, 2, inner=cls)
@@ -639,9 +671,9 @@ def arcade_west():
     break_line(cv, -4.0, 6.0, 13.2)
     # back wall (service face)
     zl = lane_z(37.92)
-    cv.rect(0, 4.4, 27.08, Z_PAR, "e-yel")
+    cv.rect(0, 4.4, 27.08, Z_PAR, "e-arc")
     cv.rect(0, 4.4, 27.08, Z_PAR, "", ' fill="url(#ce-clad)"')
-    cv.rect(0, 9.72, 27.08, 9.92, "e-pink")
+    cv.rect(0, 9.72, 27.08, 9.92, "e-yel")
     cv.rect(0, Z_PAR - .12, 27.08, Z_PAR, "e-dark")
     for u in (.4, 9.2, 18.2, 26.7):
         cv.rect(u - .07, 4.4, u + .07, Z_PAR - .1, "e-steel")
@@ -665,7 +697,7 @@ def arcade_west():
     for u in (U(45.5), U(46.6)):
         cv.rect(u - .45, lane_z(46) , u + .45, lane_z(46) + 1.1, "e-mint")
     # strip annex + café (south) stub
-    cv.rect(27.08, lane_z(66.5), 30.41, 7.2, "e-yel")
+    cv.rect(27.08, lane_z(66.5), 30.41, 7.2, "e-arc")
     cv.rect(27.08, 6.9, 30.41, 7.2, "e-dark")
     cv.rect(30.41, lane_z(72.0), 36.0, 8.2, "e-cream")
     cv.rect(30.41, 7.8, 36.0, 8.2, "e-yel")
@@ -695,9 +727,9 @@ def sheet_a501():
     e, _ = arcade_east()
     s = arcade_south()
     w = arcade_west()
-    key = colour_key(root, 850, 760, [("e-yel", "Arcade yellow · fibre-cement panels"), ("e-cream", "Cream GRC · controller grips"),
+    key = colour_key(root, 850, 760, [("e-arc", "Arcade red · fibre-cement panels"), ("e-yel", "Controller sign, trim band"), ("e-cream", "Cream GRC · controller grips"),
                                       ("e-dark", "Graphite · D-pad, frames, coping"), ("e-blue", "Button blue"),
-                                      ("e-red", "Button red"), ("e-green", "Button green"), ("e-pink", "Pink trim band"),
+                                      ("e-red", "Button red"), ("e-green", "Button green"),
                                       ("e-glass", "Clear glazing"), ("e-glow", "Lit interior"), ("e-conc", "Precast steps, planters")])
     root.add(f'<rect class="frame" x="12" y="50" width="{W - 24}" height="{H - 62}"/>')
     return "\n".join([root.svg(), e.svg(), s.svg(), w.svg(), key]), W, H
@@ -907,8 +939,8 @@ def dogleg(cv, u0, u1, z0, z1):
 
 
 def arcade_stub(cv, u0, u1, z0=Z_PL, portholes=False):
-    cv.rect(u0, z0, u1, Z_PAR, "e-yel")
-    cv.rect(u0, 9.72, u1, 9.92, "e-pink")
+    cv.rect(u0, z0, u1, Z_PAR, "e-arc")
+    cv.rect(u0, 9.72, u1, 9.92, "e-yel")
     cv.rect(u0, Z_PAR - .12, u1, Z_PAR, "e-dark")
     glass_rail(cv, u0, u1, Z_PAR, Z_RAIL - Z_PAR)
     if portholes:
@@ -1135,8 +1167,8 @@ def cafe_south():
     # u = x - 13.75 (left = west / lane)
     cv.rect(-3.0, Z_PL, 27.0, 12.0, "e-sky")
     # arcade beyond, above the café roof terrace
-    cv.rect(0, 8.0, 27.0, Z_PAR, "e-yel")
-    cv.rect(0, 9.72, 27.0, 9.92, "e-pink")
+    cv.rect(0, 8.0, 27.0, Z_PAR, "e-arc")
+    cv.rect(0, 9.72, 27.0, 9.92, "e-yel")
     cv.rect(0, Z_PAR - .12, 27.0, Z_PAR, "e-dark")
     glass_rail(cv, 0, 27.0, Z_PAR, Z_RAIL - Z_PAR)
     for u in frange(2.85, 26.5, 3.0):
@@ -1180,8 +1212,8 @@ def cafe_east():
     cv = Cv(sx, -sx, 660 + 9.0 * sx, 700, 0, Z_PL)
     # u = 77.5 - y (left = south / terrace, right = north / strip and arcade)
     cv.rect(-9.0, Z_PL, 15.0, 12.0, "e-sky")
-    cv.rect(12.5, Z_PL, 15.0, Z_PAR, "e-yel")
-    cv.rect(12.5, 9.72, 15.0, 9.92, "e-pink")
+    cv.rect(12.5, Z_PL, 15.0, Z_PAR, "e-arc")
+    cv.rect(12.5, 9.72, 15.0, 9.92, "e-yel")
     glass_rail(cv, 12.5, 15.0, Z_PAR, Z_RAIL - Z_PAR)
     break_line(cv, 15.0, Z_PL, Z_RAIL)
     cv.text(13.75, 11.75, "ARCADE", "t-sm halo")
@@ -1194,7 +1226,7 @@ def cafe_east():
     cafe_glass(cv, 2.9, 8.8, Z_PL, 6.0, 3)
     timber_fascia(cv, 2.53, 9.17, 6.15, 7.55, logo=True, text="")
     # prize & vending strip, nearer (east end on the plaza line)
-    cv.rect(9.17, Z_PL, 12.5, 7.2, "e-yel")
+    cv.rect(9.17, Z_PL, 12.5, 7.2, "e-arc")
     cv.rect(9.17, 6.9, 12.5, 7.2, "e-dark")
     glazing(cv, 9.5, Z_PL, 12.2, 6.1, 2, inner="e-glow")
     rrect(cv, 9.4, 6.25, 12.27, 6.8, .2, "e-pink-o")
@@ -1216,7 +1248,7 @@ def cafe_west():
     U = lambda y: y - 68.33  # noqa: E731  (left = north)
     cv.rect(-4.0, 3.9, 13.0, 12.0, "e-sky")
     arcade_stub(cv, -4.0, 0, 3.9)
-    cv.rect(-3.33, 4.0, 0, 7.2, "e-yel")
+    cv.rect(-3.33, 4.0, 0, 7.2, "e-arc")
     cv.rect(-3.33, 6.9, 0, 7.2, "e-dark")
     roof_terrace_back(cv, 0, 9.17, Z_CROOF + .2, (5.0,))
     cv.rect(0, 3.9, 9.17, Z_CROOF + .2, "e-plaster")
@@ -1253,7 +1285,7 @@ def sheet_a502():
     parts = [fashion_east(), fashion_west(), fashion_north(), cafe_south(), cafe_east(), cafe_west()]
     key = colour_key(root, 640, 790, [("e-plaster", "White plaster (shikkui finish)"), ("e-kawara", "Kawara tile eave"),
                                       ("e-indigo", "Indigo: ring logo, noren, disc panel"), ("e-gold", "Gold line"),
-                                      ("e-dark", "LED ticker band"), ("e-wood-d", "Café timber fascia and canopy"), ("e-yel", "Arcade yellow"),
+                                      ("e-dark", "LED ticker band"), ("e-wood-d", "Café timber fascia and canopy"), ("e-arc", "Arcade red"),
                                       ("e-glass", "Clear glazing")])
     root.add(f'<rect class="frame" x="12" y="50" width="{W - 24}" height="{H - 62}"/>')
     return "\n".join([root.svg()] + [p.svg() for p in parts] + [key]), W, H
@@ -1354,7 +1386,7 @@ def life_south():
     hdim(cv, 11.67, 19.17, 2.35, "7.50 AWNING")
     vdim(cv, 23.9, Z_PL, Z_LROOF + .75, "5.85", side=1)
     level_tags(cv, -8.15, [(Z_PL, "+3.60"), (Z_BAND, "+6.60 CANOPY"), (Z_LROOF, "+8.70 EAVE")])
-    note(cv, 13.0, 10.5, 12.0, Z_LROOF + .45, "Yellow-glazed kawara eave (the traced yellow trim)", "start")
+    note(cv, 13.0, 10.5, 12.0, Z_LROOF + .45, "Blue-glazed kawara eave on the traced trim line", "start")
     panel_title(cv, -8.0, .8, "10", "LIFESTYLE & SOUVENIR · SOUTH · FRONT", "looking north · red おみやげ panel, cloud badge, portal with noren, lanterns, stall and photo statue")
     return cv
 
@@ -1438,7 +1470,7 @@ def sheet_a503():
     title_strip(root, 24, 30, "A-503", "LIFESTYLE & SOUVENIR · ELEVATIONS",
                 "Japanese shopping-street front after the shop reference · footprint, canopy band, awning and sign as traced on L-101 · 20 px = 1 m")
     parts = [life_south(), life_west(), life_east()]
-    key = colour_key(root, 862, 455, [("e-plaster", "White plaster"), ("e-kawara-y", "Yellow-glazed kawara eave"),
+    key = colour_key(root, 862, 455, [("e-plaster", "White plaster"), ("e-kawara-y", "Blue-glazed kawara eave"),
                                       ("e-verm", "Vermilion: noren, lanterns, disc panel"), ("e-red", "Red おみやげ panel"),
                                       ("e-pink-o", "Pink shop sign"), ("e-gold", "Gold line"), ("e-glass", "Clear glazing")])
     root.add(f'<rect class="frame" x="12" y="50" width="{W - 24}" height="{H - 62}"/>')
@@ -1732,15 +1764,15 @@ def gate_elev(cv, x0, x1, z, view="front"):
     xm = (x0 + x1) / 2
     cv.rect(xm - 1.9, z + 6.1, xm + 1.9, z + 7.0, "e-dark")
     cv.rect(xm - 1.8, z + 6.18, xm + 1.8, z + 6.92, "", ' style="fill:none;stroke:var(--f-gold);stroke-width:1"')
-    stext(cv, xm, z + 6.47, "海辺ひろば", .34, fill="var(--f-gold)", weight=800, family="var(--f-body)")
-    stext(cv, xm, z + 6.22, "SEASIDE PARK", .13, fill="var(--f-gold)", weight=700, family="var(--f-cond)", ls=.05)
+    stext(cv, xm, z + 6.47, "うみ シーサイドパーク", .26, fill="var(--f-gold)", weight=800, family="var(--f-body)")
+    stext(cv, xm, z + 6.22, "UMI SEASIDE PARK", .13, fill="var(--f-gold)", weight=700, family="var(--f-cond)", ls=.05)
     cv.rect(x0 - 1.4, z + 7.0, x1 + 1.4, z + 7.25, "e-verm")
     cv.poly([(x0 - 2.0, z + 7.65), (x0 - 1.5, z + 7.25), (x1 + 1.5, z + 7.25), (x1 + 2.0, z + 7.65), (x1 + 2.05, z + 7.95),
              (x1 + .5, z + 7.85), (x0 - .5, z + 7.85), (x0 - 2.05, z + 7.95)], "e-dark")
     for i in range(5):
         chochin(cv, x0 + 1.6 + i * (x1 - x0 - 3.2) / 4, z + 4.92, .3, .72)
     hang_sign(cv, x0, z + 4.6, "ようこそ", w=.55, side=1)
-    hang_sign(cv, x1, z + 4.6, "海辺広場", w=.55, side=-1)
+    hang_sign(cv, x1, z + 4.6, "うみ", w=.55, side=-1)
 
 
 def escalator_front(cv, e0, e1, z0, z1, d):
@@ -1772,23 +1804,21 @@ def stair_south():
         tree_elev(cv, X(x), Z_ST, 6.5, r / 6 * 1.4, 90 + x)
     gate_elev(cv, GATE_X[0], GATE_X[1], Z_ST)
     # retaining walls with murals and the LED ticker, railing on top
-    for (a, b, sd) in ((X(470), X(565), 0), (X(642), X(677), 1), (X(703), X(727), 2)):
+    for (a, b, sd) in ((X(470), X(565), 0), (X(642), X(727), 1)):
         cv.rect(a, Z_PL, b, Z_ST, "e-plaster")
         if b - a > 4:
             mural(cv, a + .3, 4.25, b - .3, 7.55, sd)
-        led_band(cv, a, b, 7.65, 8.3, "ようこそ 海辺ひろばへ · WELCOME TO SEASIDE PARK · ゲーム · カフェ · ショップ · おみやげ"[: int((b - a) * 4.2)])
+        led_band(cv, a, b, 7.65, 8.3, "ようこそ うみ シーサイドパークへ · WELCOME TO UMI SEASIDE PARK · ゲーム · カフェ · ショップ · おみやげ"[: int((b - a) * 4.2)])
         cv.line(a, Z_ST + 1.1, b, Z_ST + 1.1, "e-out")
         for u in frange(a + .2, b, 2.0):
             cv.line(u, Z_ST, u, Z_ST + 1.1, "e-mull")
-    # E stair (32R) comes toward the viewer between the east walls
-    stair_front(cv, X(677), X(703), Z_PL, Z_ST)
     # main stair: outer flights and the two escalators
     stair_front(cv, X(565), X(591), Z_PL, Z_ST)
     stair_front(cv, X(616), X(642), Z_PL, Z_ST)
     for (e0, e1, d) in ESC_X:
         escalator_front(cv, e0, e1, Z_PL, Z_ST, d)
     # planters in front, palms and the sakura
-    for (a, b) in ((X(478), X(565)), (X(642), X(677)), (X(703), X(727))):
+    for (a, b) in ((X(478), X(565)), (X(642), X(727))):
         shrubs_e(cv, a + .1, b - .3, Z_PL + .6, .7, int(a))
         cv.rect(a, Z_PL, b, Z_PL + .6, "e-conc")
     for (x, h) in ((548, 6.5), (658, 6.8), (715, 6.6)):
