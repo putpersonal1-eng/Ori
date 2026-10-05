@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="380" viewBox="0 0 1000 380" role="img" aria-label="L-201 Section A-A"><style>@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Condensed:wght@500;600;700&amp;family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;display=swap');
+.sheet-bg{fill:#FBFCFC}
+.frame{fill:none;stroke:#16283A;stroke-width:1.4}
+.frame-in{fill:none;stroke:#16283A;stroke-width:.7}
+.ln{fill:none;stroke:#16283A;stroke-width:1}
+.ln-h{fill:none;stroke:#16283A;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.ln-m{fill:none;stroke:#4A5C6F;stroke-width:.8}
+.ln-f{fill:none;stroke:#93A3B2;stroke-width:.6}
+.ln-b{fill:none;stroke:#4A5C6F;stroke-width:.8;stroke-dasharray:4 3}
+.ln-water{fill:none;stroke:#0D7F8A;stroke-width:1.2}
+.gap{stroke:#FBFCFC;stroke-width:5}
+.z-paver,.z-town{fill:#E1E6EA}
+.z-brick{fill:#EDD0BD}
+.z-lawn{fill:#CDE4B3}
+.z-conc{fill:#D3D9DC}
+.z-timber{fill:#E6CFA6}
+.z-sand{fill:#F2E1BA}
+.z-sea{fill:#BCE4EB}
+.z-deep{fill:#8CC7D8}
+.z-cliff{fill:#CBC5BC}
+.z-rockp{fill:#CBC5BC;opacity:.75}
+.bldg{fill:#D5DFE9;stroke:#16283A;stroke-width:1.6}
+.bldg-l{fill:#D5DFE9;stroke:#16283A;stroke-width:.9}
+.beyond{fill:#D5DFE9;fill-opacity:.55;stroke:#4A5C6F;stroke-width:.8}
+.under{fill:#D5DFE9;fill-opacity:.5;stroke:#4A5C6F;stroke-width:.8;stroke-dasharray:3 2}
+.wall{fill:#FBFCFC;stroke:#16283A;stroke-width:4}
+.glass{fill:none;stroke:#0D7F8A;stroke-width:1.6}
+.solid{fill:#16283A}
+.led{fill:#16283A;opacity:.85}
+.conc{fill:#D3D9DC;stroke:#16283A;stroke-width:1}
+.poche{fill:#CBC5BC}
+.water{fill:#BCE4EB;opacity:.85}
+.tree{fill:#9BCA84;stroke:#58894C;stroke-width:.7}
+.trunk{fill:none;stroke:#58894C;stroke-width:1.4}
+.prop{fill:#FBFCFC;stroke:#16283A;stroke-width:.7}
+.prop-d{fill:#4A5C6F}
+.umb-y{fill:#F0BE2C;stroke:#16283A;stroke-width:.5}
+.umb-p{fill:#E5539A;stroke:#16283A;stroke-width:.5}
+.umb-c{fill:#24ABCC;stroke:#16283A;stroke-width:.5}
+.chalk-y{fill:#F0BE2C}
+.chalk-p{fill:#E5539A}
+.chalk-c{fill:#24ABCC}
+.ring-acc{fill:none;stroke:#D93A55;stroke-width:1.6}
+.bunting{fill:none;stroke:#E5539A;stroke-width:1;stroke-dasharray:2.5 2}
+.pat-s{fill:none;stroke:#93A3B2;stroke-width:.5}
+.pat-d{fill:#93A3B2}
+.pat-w{fill:none;stroke:#FBFCFC;stroke-width:.7;opacity:.7}
+.pat-g{fill:none;stroke:#58894C;stroke-width:.6;opacity:.55}
+.path-edge{fill:none;stroke:#93A3B2;stroke-width:17}
+.path-fill{fill:none;stroke:#E1E6EA;stroke-width:15}
+.grid{fill:none;stroke:#93A3B2;stroke-width:.5;stroke-dasharray:2 4}
+.bubble{fill:#FBFCFC;stroke:#16283A;stroke-width:.8}
+.circ1{fill:none;stroke:#D93A55;stroke-width:2.2;stroke-dasharray:8 4;stroke-linecap:round}
+.circ2{fill:none;stroke:#D93A55;stroke-width:1.2;stroke-dasharray:3 3;stroke-linecap:round}
+.sight{fill:none;stroke:#0D7F8A;stroke-width:1.4;stroke-dasharray:1.5 3.5;stroke-linecap:round}
+.cut{fill:none;stroke:#D93A55;stroke-width:.9;stroke-dasharray:14 3 2 3}
+.cut-h{fill:none;stroke:#D93A55;stroke-width:3}
+.acc-f{fill:#D93A55}
+.teal-f{fill:#0D7F8A}
+.ink-f{fill:#16283A}
+.sheet-f{fill:#FBFCFC}
+.dim{fill:none;stroke:#16283A;stroke-width:.6}
+.dim-t{fill:none;stroke:#16283A;stroke-width:1.1}
+.avatar{fill:#24ABCC;stroke:#16283A;stroke-width:.6}
+.cam{fill:#0D7F8A}
+.t-zone{font:700 12px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.08em;fill:#16283A}
+.t-big{font:700 16px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.14em;fill:#16283A}
+.t-lbl{font:600 9.5px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.03em;fill:#16283A}
+.t-sm{font:500 8px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.02em;fill:#4A5C6F}
+.t-dim{font:600 8.5px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;fill:#16283A}
+.t-head{font:700 15px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.12em;fill:#16283A}
+.t-title{font:800 21px "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;fill:#16283A}
+.t-acc{fill:#D93A55}
+.t-teal{fill:#0D7F8A}
+.t-inv{fill:#FBFCFC}
+.halo{paint-order:stroke;stroke:#FBFCFC;stroke-width:3px;stroke-linejoin:round}
+.z-road{fill:#93A3B2;opacity:.6}
+.lane{fill:none;stroke:#FBFCFC;stroke-width:1;stroke-dasharray:6 5}
+.zebra{fill:#FBFCFC}
+.tree-s{fill:#E5539A;fill-opacity:.45;stroke:#E5539A;stroke-width:.8}
+.trim-y{fill:none;stroke:#F0BE2C;stroke-width:2.4}
+.arc-y{fill:#F0BE2C;fill-opacity:.32}
+.key{fill:#16283A}
+.statue{fill:#FBFCFC;stroke:#16283A;stroke-width:1.2}
+</style><defs>
+<pattern id="ca-brick" width="8" height="8" patternUnits="userSpaceOnUse"><path class="pat-s" d="M0 4 2 2 4 4 6 2 8 4M0 8 2 6 4 8 6 6 8 8"/></pattern>
+<pattern id="ca-sand" width="9" height="9" patternUnits="userSpaceOnUse"><circle class="pat-d" cx="1.5" cy="1.5" r=".55"/><circle class="pat-d" cx="6" cy="4.5" r=".5"/><circle class="pat-d" cx="3" cy="7.5" r=".45"/></pattern>
+<pattern id="ca-board" width="3" height="10" patternUnits="userSpaceOnUse"><path class="pat-s" d="M0 0V10"/></pattern>
+<pattern id="ca-rock" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="pat-s" d="M0 0V6"/></pattern>
+<pattern id="ca-water" width="18" height="10" patternUnits="userSpaceOnUse"><path class="pat-w" d="M1 6q2-2.4 4 0t4 0"/></pattern>
+<pattern id="ca-lawn" width="14" height="12" patternUnits="userSpaceOnUse"><path class="pat-g" d="M3 3l1.2 2 1.2-2M9 8l1.2 2 1.2-2"/></pattern>
+<pattern id="ca-hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><path class="pat-s" d="M0 0V5"/></pattern>
+<pattern id="ca-earth" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="pat-s" d="M0 0V6"/><circle class="pat-d" cx="3" cy="3" r=".5"/></pattern>
+<marker id="ca-arr" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="acc-f" d="M0 0 10 5 0 10z"/></marker>
+<marker id="ca-arrt" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="teal-f" d="M0 0 10 5 0 10z"/></marker>
+<marker id="ca-arrk" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto-start-reverse"><path class="ink-f" d="M0 0 10 5 0 10z"/></marker>
+</defs>
+<rect class="sheet-bg" width="1000" height="380"/>
+<rect class="ink-f" x="24" y="17" width="55.0" height="18"/>
+<text class="t-head t-inv" x="30" y="31">L-201</text>
+<text class="t-head" x="89.0" y="31">SECTION A–A · X = 91 · STREET → PLAZA → BEACH · LOOKING EAST</text>
+<text class="t-sm" x="24" y="48">Horizontal 5 px = 1 m · vertical 10 px = 1 m (vertical exaggeration 2×) · light line = beyond</text>
+<rect x="50" y="116" width="60" height="50" class="beyond"/>
+<rect x="240" y="186" width="12.5" height="28" class="beyond"/>
+<text x="246" y="148" text-anchor="middle" class="t-sm halo">FOOD TRUCKS beyond</text>
+<rect x="375" y="160" width="80" height="54" class="beyond"/>
+<rect x="375" y="156" width="80" height="4" class="chalk-y"/>
+<text x="415" y="203" text-anchor="middle" class="t-sm halo">LIFESTYLE SHOP beyond</text>
+<rect x="342" y="184" width="6" height="30" class="beyond"/>
+<circle cx="345" cy="178" r="3.5" class="statue"/>
+<rect x="600.5" y="226" width="229.5" height="3" class="beyond"/>
+<line x1="630" y1="229" x2="630" y2="270" class="ln-m"/>
+<line x1="660" y1="229" x2="660" y2="270" class="ln-m"/>
+<line x1="690" y1="229" x2="690" y2="270" class="ln-m"/>
+<line x1="720" y1="229" x2="720" y2="270" class="ln-m"/>
+<line x1="750" y1="229" x2="750" y2="270" class="ln-m"/>
+<line x1="780" y1="229" x2="780" y2="270" class="ln-m"/>
+<line x1="810" y1="229" x2="810" y2="270" class="ln-m"/>
+<text x="720" y="221" text-anchor="middle" class="t-sm halo">PIER DECK +2.40 beyond</text>
+<rect x="670" y="206" width="20" height="35" class="beyond"/>
+<polygon points="667,206 693,206 680,198" class="beyond"/>
+<text x="680" y="192" text-anchor="middle" class="t-sm">HUT</text>
+<line x1="675" y1="240.5" x2="675" y2="218" class="ln-m"/>
+<ellipse cx="675" cy="217" rx="6.5" ry="2.5" class="umb-y"/>
+<line x1="584" y1="214" x2="584" y2="164" class="ln-m"/>
+<circle cx="584" cy="163" r="3.5" class="prop"/>
+<line x1="520" y1="214" x2="520" y2="164" class="ln-m"/>
+<circle cx="520" cy="163" r="3.5" class="prop"/>
+<line x1="612.5" y1="239" x2="612.5" y2="180" class="trunk"/>
+<line x1="612.5" y1="180" x2="600.28" y2="174.58" class="trunk"/>
+<line x1="612.5" y1="180" x2="605.04" y2="169.81" class="trunk"/>
+<line x1="612.5" y1="180" x2="612.5" y2="168" class="trunk"/>
+<line x1="612.5" y1="180" x2="619.96" y2="169.81" class="trunk"/>
+<line x1="612.5" y1="180" x2="624.72" y2="174.58" class="trunk"/>
+<polygon points="783,250 920,250 920,275 858,259" class="water"/>
+<line x1="783" y1="250" x2="920" y2="250" class="ln-water"/>
+<polygon points="50,166 215,166 215,214 590,214 590,238 783,250 858,259 920,275 920,290 50,290" class="poche"/>
+<polygon points="50,166 215,166 215,214 590,214 590,238 783,250 858,259 920,275 920,290 50,290" fill="url(#ca-earth)"/>
+<polyline points="50,166 215,166 215,214 590,214 590,238 783,250 858,259 920,275" class="ln-h"/>
+<rect x="130" y="165.5" width="40" height="0.5" class="solid"/>
+<text x="150" y="159" text-anchor="middle" class="t-sm halo">ROAD</text>
+<polygon points="205,166 205,166 205,167.5 206.5,167.5 206.5,167.5 206.5,169 208,169 208,169 208,170.5 209.5,170.5 209.5,170.5 209.5,172 211,172 211,172 211,173.5 212.5,173.5 212.5,173.5 212.5,175 214,175 214,175 214,176.5 215.5,176.5 215.5,176.5 215.5,178 217,178 217,178 217,179.5 218.5,179.5 218.5,179.5 218.5,181 220,181 220,181 220,182.5 221.5,182.5 221.5,182.5 221.5,184 223,184 223,184 223,185.5 224.5,185.5 224.5,185.5 224.5,187 226,187 226,187 226,188.5 227.5,188.5 227.5,188.5 227.5,190 242.5,190 242.5,190 242.5,191.5 244,191.5 244,191.5 244,193 245.5,193 245.5,193 245.5,194.5 247,194.5 247,194.5 247,196 248.5,196 248.5,196 248.5,197.5 250,197.5 250,197.5 250,199 251.5,199 251.5,199 251.5,200.5 253,200.5 253,200.5 253,202 254.5,202 254.5,202 254.5,203.5 256,203.5 256,203.5 256,205 257.5,205 257.5,205 257.5,206.5 259,206.5 259,206.5 259,208 260.5,208 260.5,208 260.5,209.5 262,209.5 262,209.5 262,211 263.5,211 263.5,211 263.5,212.5 265,212.5 265,212.5 265,214 265,217 242.5,193 227.5,193 205,169" class="conc"/>
+<line x1="205" y1="157" x2="227.5" y2="181" class="ln"/>
+<line x1="242.5" y1="181" x2="265" y2="205" class="ln"/>
+<rect x="380" y="209.5" width="7.5" height="4.5" class="conc"/>
+<rect x="442.5" y="209.5" width="7.5" height="4.5" class="conc"/>
+<rect x="395" y="208" width="1.5" height="6" class="solid"/>
+<rect x="433.5" y="208" width="1.5" height="6" class="solid"/>
+<rect x="396.5" y="208.5" width="37" height="1.5" class="z-lawn"/>
+<line x1="415" y1="208.5" x2="415" y2="180" class="trunk"/>
+<ellipse cx="415" cy="160" rx="23" ry="24" class="tree"/>
+<line x1="589.5" y1="214" x2="589.5" y2="203" class="ln"/>
+<rect x="550" y="213.2" width="40" height="0.8" class="z-timber"/>
+<rect class="avatar" x="175.16" y="157.22" width="4.68" height="7.28" rx="1.87"/>
+<circle class="avatar" cx="177.5" cy="154.79" r="2.86"/>
+<rect class="avatar" x="317.66" y="206.72" width="4.68" height="7.28" rx="1.87"/>
+<circle class="avatar" cx="320" cy="204.29" r="2.86"/>
+<rect class="avatar" x="337.66" y="206.72" width="4.68" height="7.28" rx="1.87"/>
+<circle class="avatar" cx="340" cy="204.29" r="2.86"/>
+<rect class="avatar" x="477.66" y="206.72" width="4.68" height="7.28" rx="1.87"/>
+<circle class="avatar" cx="480" cy="204.29" r="2.86"/>
+<rect class="avatar" x="567.66" y="206.72" width="4.68" height="7.28" rx="1.87"/>
+<circle class="avatar" cx="570" cy="204.29" r="2.86"/>
+<rect class="avatar" x="647.66" y="233.02" width="4.68" height="7.28" rx="1.87"/>
+<circle class="avatar" cx="650" cy="230.59" r="2.86"/>
+<rect class="avatar" x="727.66" y="238.72" width="4.68" height="7.28" rx="1.87"/>
+<circle class="avatar" cx="730" cy="236.29" r="2.86"/>
+<rect class="avatar" x="382.66" y="205.08" width="4.68" height="4.42" rx="1.87"/>
+<rect class="avatar" x="385" y="207.94" width="4.42" height="1.56" rx="0.65"/>
+<rect class="avatar" x="388.38" y="207.94" width="1.3" height="5.2" rx="0.52"/>
+<circle class="avatar" cx="385" cy="202.65" r="2.86"/>
+<circle class="avatar" cx="820" cy="247" r="3.4"/>
+<polygon class="ink-f" points="56,159 64,159 60,166"/>
+<text class="t-dim halo" x="67" y="163" text-anchor="start">+8.40 STREET</text>
+<polygon class="ink-f" points="271,207 279,207 275,214"/>
+<text class="t-dim halo" x="282" y="225" text-anchor="start">+3.60 PLAZA</text>
+<polygon class="ink-f" points="496,207 504,207 500,214"/>
+<text class="t-dim halo" x="507" y="225" text-anchor="start">+3.60 PROMENADE</text>
+<polygon class="ink-f" points="593.5,231 601.5,231 597.5,238"/>
+<text class="t-dim halo" x="604.5" y="249" text-anchor="start">+1.20 BEACH</text>
+<polygon class="ink-f" points="901,243 909,243 905,250"/>
+<text class="t-dim halo" x="898" y="247" text-anchor="end">±0.00 SWL</text>
+<polygon class="ink-f" points="854,252 862,252 858,259"/>
+<text class="t-dim halo" x="865" y="270" text-anchor="start">−0.90 WADE LIMIT</text>
+<line x1="235" y1="188" x2="260" y2="124" class="ln-m"/>
+<circle cx="235" cy="188" r="0"/>
+<circle class="ink-f" cx="235" cy="188" r="1.8"/>
+<text class="t-lbl halo" x="263" y="122" text-anchor="start">MAIN STAIR · 2 × 16R · LANDING 3.00</text>
+<line x1="415" y1="209" x2="450" y2="134" class="ln-m"/>
+<circle cx="415" cy="209" r="0"/>
+<circle class="ink-f" cx="415" cy="209" r="1.8"/>
+<text class="t-lbl halo" x="453" y="132" text-anchor="start">PLANTER Ø8 · BENCH RING Ø14</text>
+<line x1="589.5" y1="207" x2="610" y2="152" class="ln-m"/>
+<circle cx="589.5" cy="207" r="0"/>
+<circle class="ink-f" cx="589.5" cy="207" r="1.8"/>
+<text class="t-lbl halo" x="613" y="150" text-anchor="start">RAIL 1.10 · SEA WALL 2.40</text>
+<line class="dim" x1="213" y1="214" x2="197" y2="214"/><line class="dim" x1="213" y1="166" x2="197" y2="166"/><line class="dim" x1="200" y1="163" x2="200" y2="217"/><line class="dim-t" x1="197" y1="217" x2="203" y2="211"/><line class="dim-t" x1="197" y1="169" x2="203" y2="163"/><text class="t-dim halo" x="196" y="190" text-anchor="middle" transform="rotate(-90 196 190)">4.80</text>
+<line class="dim" x1="603" y1="211" x2="603" y2="241"/><line class="dim-t" x1="600" y1="241" x2="606" y2="235"/><line class="dim-t" x1="600" y1="217" x2="606" y2="211"/><text class="t-dim halo" x="613" y="226" text-anchor="middle" transform="rotate(-90 613 226)">2.40</text>
+<line class="dim" x1="130" y1="292" x2="130" y2="305"/><line class="dim" x1="185" y1="292" x2="185" y2="305"/><line class="dim" x1="127" y1="302" x2="188" y2="302"/><line class="dim-t" x1="127" y1="305" x2="133" y2="299"/><line class="dim-t" x1="182" y1="305" x2="188" y2="299"/><text class="t-dim halo" x="157.5" y="299" text-anchor="middle">11.0</text>
+<text x="157.5" y="320" text-anchor="middle" class="t-sm">STREET</text>
+<line class="dim" x1="185" y1="292" x2="185" y2="305"/><line class="dim" x1="265" y1="292" x2="265" y2="305"/><line class="dim" x1="182" y1="302" x2="268" y2="302"/><line class="dim-t" x1="182" y1="305" x2="188" y2="299"/><line class="dim-t" x1="262" y1="305" x2="268" y2="299"/><text class="t-dim halo" x="225" y="299" text-anchor="middle">16.0</text>
+<text x="225" y="320" text-anchor="middle" class="t-sm">ENTRY</text>
+<line class="dim" x1="265" y1="292" x2="265" y2="305"/><line class="dim" x1="550" y1="292" x2="550" y2="305"/><line class="dim" x1="262" y1="302" x2="553" y2="302"/><line class="dim-t" x1="262" y1="305" x2="268" y2="299"/><line class="dim-t" x1="547" y1="305" x2="553" y2="299"/><text class="t-dim halo" x="407.5" y="299" text-anchor="middle">57.0</text>
+<text x="407.5" y="320" text-anchor="middle" class="t-sm">CENTRAL PLAZA</text>
+<line class="dim" x1="550" y1="292" x2="550" y2="305"/><line class="dim" x1="590" y1="292" x2="590" y2="305"/><line class="dim" x1="547" y1="302" x2="593" y2="302"/><line class="dim-t" x1="547" y1="305" x2="553" y2="299"/><line class="dim-t" x1="587" y1="305" x2="593" y2="299"/><text class="t-dim halo" x="570" y="299" text-anchor="middle">8.0</text>
+<text x="570" y="320" text-anchor="middle" class="t-sm">PROM.</text>
+<line class="dim" x1="590" y1="292" x2="590" y2="305"/><line class="dim" x1="783" y1="292" x2="783" y2="305"/><line class="dim" x1="587" y1="302" x2="786" y2="302"/><line class="dim-t" x1="587" y1="305" x2="593" y2="299"/><line class="dim-t" x1="780" y1="305" x2="786" y2="299"/><text class="t-dim halo" x="686.5" y="299" text-anchor="middle">38.6</text>
+<text x="686.5" y="320" text-anchor="middle" class="t-sm">BEACH</text>
+<line class="dim" x1="783" y1="292" x2="783" y2="305"/><line class="dim" x1="858" y1="292" x2="858" y2="305"/><line class="dim" x1="780" y1="302" x2="861" y2="302"/><line class="dim-t" x1="780" y1="305" x2="786" y2="299"/><line class="dim-t" x1="855" y1="305" x2="861" y2="299"/><text class="t-dim halo" x="820.5" y="299" text-anchor="middle">15.0</text>
+<text x="820.5" y="320" text-anchor="middle" class="t-sm">WADE</text>
+<line class="dim" x1="858" y1="292" x2="858" y2="305"/><line class="dim" x1="920" y1="292" x2="920" y2="305"/><line class="dim" x1="855" y1="302" x2="923" y2="302"/><line class="dim-t" x1="855" y1="305" x2="861" y2="299"/><line class="dim-t" x1="917" y1="305" x2="923" y2="299"/><text class="t-dim halo" x="889" y="299" text-anchor="middle">12.4</text>
+<text x="889" y="320" text-anchor="middle" class="t-sm">SWIM</text>
+<line class="dim" x1="130" y1="328" x2="130" y2="339"/><line class="dim" x1="920" y1="328" x2="920" y2="339"/><line class="dim" x1="127" y1="336" x2="923" y2="336"/><line class="dim-t" x1="127" y1="339" x2="133" y2="333"/><line class="dim-t" x1="917" y1="339" x2="923" y2="333"/><text class="t-dim halo" x="525" y="333" text-anchor="middle">158.0 · STREET TO SOFT BOUNDARY</text>
+<rect x="50" y="90" width="870" height="260" class="frame"/></svg>

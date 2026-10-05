@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="720" viewBox="0 0 1100 720" role="img" aria-label="D-401 Details"><style>@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Condensed:wght@500;600;700&amp;family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;display=swap');
+.sheet-bg{fill:#FBFCFC}
+.frame{fill:none;stroke:#16283A;stroke-width:1.4}
+.frame-in{fill:none;stroke:#16283A;stroke-width:.7}
+.ln{fill:none;stroke:#16283A;stroke-width:1}
+.ln-h{fill:none;stroke:#16283A;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.ln-m{fill:none;stroke:#4A5C6F;stroke-width:.8}
+.ln-f{fill:none;stroke:#93A3B2;stroke-width:.6}
+.ln-b{fill:none;stroke:#4A5C6F;stroke-width:.8;stroke-dasharray:4 3}
+.ln-water{fill:none;stroke:#0D7F8A;stroke-width:1.2}
+.gap{stroke:#FBFCFC;stroke-width:5}
+.z-paver,.z-town{fill:#E1E6EA}
+.z-brick{fill:#EDD0BD}
+.z-lawn{fill:#CDE4B3}
+.z-conc{fill:#D3D9DC}
+.z-timber{fill:#E6CFA6}
+.z-sand{fill:#F2E1BA}
+.z-sea{fill:#BCE4EB}
+.z-deep{fill:#8CC7D8}
+.z-cliff{fill:#CBC5BC}
+.z-rockp{fill:#CBC5BC;opacity:.75}
+.bldg{fill:#D5DFE9;stroke:#16283A;stroke-width:1.6}
+.bldg-l{fill:#D5DFE9;stroke:#16283A;stroke-width:.9}
+.beyond{fill:#D5DFE9;fill-opacity:.55;stroke:#4A5C6F;stroke-width:.8}
+.under{fill:#D5DFE9;fill-opacity:.5;stroke:#4A5C6F;stroke-width:.8;stroke-dasharray:3 2}
+.wall{fill:#FBFCFC;stroke:#16283A;stroke-width:4}
+.glass{fill:none;stroke:#0D7F8A;stroke-width:1.6}
+.solid{fill:#16283A}
+.led{fill:#16283A;opacity:.85}
+.conc{fill:#D3D9DC;stroke:#16283A;stroke-width:1}
+.poche{fill:#CBC5BC}
+.water{fill:#BCE4EB;opacity:.85}
+.tree{fill:#9BCA84;stroke:#58894C;stroke-width:.7}
+.trunk{fill:none;stroke:#58894C;stroke-width:1.4}
+.prop{fill:#FBFCFC;stroke:#16283A;stroke-width:.7}
+.prop-d{fill:#4A5C6F}
+.umb-y{fill:#F0BE2C;stroke:#16283A;stroke-width:.5}
+.umb-p{fill:#E5539A;stroke:#16283A;stroke-width:.5}
+.umb-c{fill:#24ABCC;stroke:#16283A;stroke-width:.5}
+.chalk-y{fill:#F0BE2C}
+.chalk-p{fill:#E5539A}
+.chalk-c{fill:#24ABCC}
+.ring-acc{fill:none;stroke:#D93A55;stroke-width:1.6}
+.bunting{fill:none;stroke:#E5539A;stroke-width:1;stroke-dasharray:2.5 2}
+.pat-s{fill:none;stroke:#93A3B2;stroke-width:.5}
+.pat-d{fill:#93A3B2}
+.pat-w{fill:none;stroke:#FBFCFC;stroke-width:.7;opacity:.7}
+.pat-g{fill:none;stroke:#58894C;stroke-width:.6;opacity:.55}
+.path-edge{fill:none;stroke:#93A3B2;stroke-width:17}
+.path-fill{fill:none;stroke:#E1E6EA;stroke-width:15}
+.grid{fill:none;stroke:#93A3B2;stroke-width:.5;stroke-dasharray:2 4}
+.bubble{fill:#FBFCFC;stroke:#16283A;stroke-width:.8}
+.circ1{fill:none;stroke:#D93A55;stroke-width:2.2;stroke-dasharray:8 4;stroke-linecap:round}
+.circ2{fill:none;stroke:#D93A55;stroke-width:1.2;stroke-dasharray:3 3;stroke-linecap:round}
+.sight{fill:none;stroke:#0D7F8A;stroke-width:1.4;stroke-dasharray:1.5 3.5;stroke-linecap:round}
+.cut{fill:none;stroke:#D93A55;stroke-width:.9;stroke-dasharray:14 3 2 3}
+.cut-h{fill:none;stroke:#D93A55;stroke-width:3}
+.acc-f{fill:#D93A55}
+.teal-f{fill:#0D7F8A}
+.ink-f{fill:#16283A}
+.sheet-f{fill:#FBFCFC}
+.dim{fill:none;stroke:#16283A;stroke-width:.6}
+.dim-t{fill:none;stroke:#16283A;stroke-width:1.1}
+.avatar{fill:#24ABCC;stroke:#16283A;stroke-width:.6}
+.cam{fill:#0D7F8A}
+.t-zone{font:700 12px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.08em;fill:#16283A}
+.t-big{font:700 16px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.14em;fill:#16283A}
+.t-lbl{font:600 9.5px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.03em;fill:#16283A}
+.t-sm{font:500 8px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.02em;fill:#4A5C6F}
+.t-dim{font:600 8.5px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;fill:#16283A}
+.t-head{font:700 15px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.12em;fill:#16283A}
+.t-title{font:800 21px "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;fill:#16283A}
+.t-acc{fill:#D93A55}
+.t-teal{fill:#0D7F8A}
+.t-inv{fill:#FBFCFC}
+.halo{paint-order:stroke;stroke:#FBFCFC;stroke-width:3px;stroke-linejoin:round}
+.z-road{fill:#93A3B2;opacity:.6}
+.lane{fill:none;stroke:#FBFCFC;stroke-width:1;stroke-dasharray:6 5}
+.zebra{fill:#FBFCFC}
+.tree-s{fill:#E5539A;fill-opacity:.45;stroke:#E5539A;stroke-width:.8}
+.trim-y{fill:none;stroke:#F0BE2C;stroke-width:2.4}
+.arc-y{fill:#F0BE2C;fill-opacity:.32}
+.key{fill:#16283A}
+.statue{fill:#FBFCFC;stroke:#16283A;stroke-width:1.2}
+</style><defs>
+<pattern id="cd-brick" width="8" height="8" patternUnits="userSpaceOnUse"><path class="pat-s" d="M0 4 2 2 4 4 6 2 8 4M0 8 2 6 4 8 6 6 8 8"/></pattern>
+<pattern id="cd-sand" width="9" height="9" patternUnits="userSpaceOnUse"><circle class="pat-d" cx="1.5" cy="1.5" r=".55"/><circle class="pat-d" cx="6" cy="4.5" r=".5"/><circle class="pat-d" cx="3" cy="7.5" r=".45"/></pattern>
+<pattern id="cd-board" width="3" height="10" patternUnits="userSpaceOnUse"><path class="pat-s" d="M0 0V10"/></pattern>
+<pattern id="cd-rock" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="pat-s" d="M0 0V6"/></pattern>
+<pattern id="cd-water" width="18" height="10" patternUnits="userSpaceOnUse"><path class="pat-w" d="M1 6q2-2.4 4 0t4 0"/></pattern>
+<pattern id="cd-lawn" width="14" height="12" patternUnits="userSpaceOnUse"><path class="pat-g" d="M3 3l1.2 2 1.2-2M9 8l1.2 2 1.2-2"/></pattern>
+<pattern id="cd-hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><path class="pat-s" d="M0 0V5"/></pattern>
+<pattern id="cd-earth" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="pat-s" d="M0 0V6"/><circle class="pat-d" cx="3" cy="3" r=".5"/></pattern>
+<marker id="cd-arr" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="acc-f" d="M0 0 10 5 0 10z"/></marker>
+<marker id="cd-arrt" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="teal-f" d="M0 0 10 5 0 10z"/></marker>
+<marker id="cd-arrk" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto-start-reverse"><path class="ink-f" d="M0 0 10 5 0 10z"/></marker>
+</defs>
+<rect class="sheet-bg" width="1100" height="720"/>
+<rect class="ink-f" x="24" y="13" width="55.0" height="18"/>
+<text class="t-head t-inv" x="30" y="27">D-401</text>
+<text class="t-head" x="89.0" y="27">STAIR, SEA WALL, PIER AND PLANTER DETAILS</text>
+<text class="t-sm" x="24" y="44">D1 20 px = 1 m · D2 32 px = 1 m · D3 24 px = 1 m · D4 12 px = 1 m · avatars 1.30 m</text>
+<rect class="frame-in" x="20" y="60" width="520" height="310"/>
+<rect class="frame-in" x="560" y="60" width="520" height="310"/>
+<rect class="frame-in" x="20" y="390" width="520" height="310"/>
+<rect class="frame-in" x="560" y="390" width="520" height="310"/>
+<circle class="bubble" cx="42" cy="84" r="12"/><text class="t-lbl" x="42" y="87.5" text-anchor="middle">D1</text><text class="t-head" x="62" y="84">MAIN ENTRANCE STAIR · SECTION</text><text class="t-sm" x="62" y="97">street +8.40 to plaza +3.60 · 12.00 wide · handrails every 4 m</text>
+<polygon points="50,214 230,214 230,310 470,310 470,322 50,322" class="poche"/>
+<polygon points="50,214 230,214 230,310 470,310 470,322 50,322" fill="url(#cd-earth)"/>
+<polygon points="190,214 190,214 190,217 196,217 196,217 196,220 202,220 202,220 202,223 208,223 208,223 208,226 214,226 214,226 214,229 220,229 220,229 220,232 226,232 226,232 226,235 232,235 232,235 232,238 238,238 238,238 238,241 244,241 244,241 244,244 250,244 250,244 250,247 256,247 256,247 256,250 262,250 262,250 262,253 268,253 268,253 268,256 274,256 274,256 274,259 280,259 280,259 280,262 340,262 340,262 340,265 346,265 346,265 346,268 352,268 352,268 352,271 358,271 358,271 358,274 364,274 364,274 364,277 370,277 370,277 370,280 376,280 376,280 376,283 382,283 382,283 382,286 388,286 388,286 388,289 394,289 394,289 394,292 400,292 400,292 400,295 406,295 406,295 406,298 412,298 412,298 412,301 418,301 418,301 418,304 424,304 424,304 424,307 430,307 430,307 430,310 430,316 340,268 280,268 190,220" class="conc"/>
+<polyline points="50,214 190,214" class="ln-h"/>
+<polyline points="430,310 470,310" class="ln-h"/>
+<line x1="190" y1="196" x2="280" y2="244" class="ln"/>
+<line x1="280" y1="244" x2="340" y2="244" class="ln"/>
+<line x1="340" y1="244" x2="430" y2="292" class="ln"/>
+<rect class="avatar" x="125.32" y="199.44" width="9.36" height="14.56" rx="3.74"/>
+<circle class="avatar" cx="130" cy="194.58" r="5.72"/>
+<rect class="avatar" x="305.32" y="247.44" width="9.36" height="14.56" rx="3.74"/>
+<circle class="avatar" cx="310" cy="242.58" r="5.72"/>
+<rect class="avatar" x="445.32" y="295.44" width="9.36" height="14.56" rx="3.74"/>
+<circle class="avatar" cx="450" cy="290.58" r="5.72"/>
+<line class="dim" x1="174" y1="211" x2="174" y2="265"/><line class="dim-t" x1="171" y1="265" x2="177" y2="259"/><line class="dim-t" x1="171" y1="217" x2="177" y2="211"/><text class="t-dim halo" x="170" y="238" text-anchor="middle" transform="rotate(-90 170 238)">16R × 0.150 = 2.40</text>
+<line class="dim" x1="462" y1="259" x2="462" y2="313"/><line class="dim-t" x1="459" y1="313" x2="465" y2="307"/><line class="dim-t" x1="459" y1="265" x2="465" y2="259"/><text class="t-dim halo" x="472" y="286" text-anchor="middle" transform="rotate(-90 472 286)">2.40</text>
+<line class="dim" x1="187" y1="292" x2="283" y2="292"/><line class="dim-t" x1="187" y1="295" x2="193" y2="289"/><line class="dim-t" x1="277" y1="295" x2="283" y2="289"/><text class="t-dim halo" x="235" y="289" text-anchor="middle">15T × 0.300 = 4.50</text>
+<line class="dim" x1="277" y1="284" x2="343" y2="284"/><line class="dim-t" x1="277" y1="287" x2="283" y2="281"/><line class="dim-t" x1="337" y1="287" x2="343" y2="281"/><text class="t-dim halo" x="310" y="281" text-anchor="middle">3.00</text>
+<line class="dim" x1="187" y1="314" x2="433" y2="314"/><line class="dim-t" x1="187" y1="317" x2="193" y2="311"/><line class="dim-t" x1="427" y1="317" x2="433" y2="311"/><text class="t-dim halo" x="310" y="311" text-anchor="middle">12.00 RUN</text>
+<polygon class="ink-f" points="54,207 62,207 58,214"/>
+<text class="t-dim halo" x="65" y="211" text-anchor="start">+8.40 STREET</text>
+<polygon class="ink-f" points="356,255 364,255 360,262"/>
+<text class="t-dim halo" x="367" y="259" text-anchor="start">+6.00 LANDING</text>
+<line x1="236" y1="230" x2="270" y2="190" class="ln-m"/>
+<circle cx="236" cy="230" r="0"/>
+<circle class="ink-f" cx="236" cy="230" r="1.8"/>
+<text class="t-sm halo" x="273" y="188" text-anchor="start">HANDRAIL 0.90</text>
+<text x="54" y="334" text-anchor="start" class="t-sm">Image drew one 16 m flight. Two flights with a landing keep 4.80 m of rise readable and restful.</text>
+<circle class="bubble" cx="582" cy="84" r="12"/><text class="t-lbl" x="582" y="87.5" text-anchor="middle">D2</text><text class="t-head" x="602" y="84">SEA WALL + BEACH STAIR · SECTION</text><text class="t-sm" x="602" y="97">promenade +3.60 to sand +1.20 · 6.00 wide · 2 stairs + pier stair</text>
+<polygon points="892.4,312 1026.8,314.56 1026.8,328 694,328" class="z-sand"/>
+<polygon points="892.4,312 1026.8,314.56 1026.8,328 694,328" fill="url(#cd-sand)"/>
+<line x1="892.4" y1="312" x2="1026.8" y2="314.56" class="ln"/>
+<polygon points="598,240 681.2,240 681.2,328 598,328" class="poche"/>
+<polygon points="598,240 681.2,240 681.2,328 598,328" fill="url(#cd-earth)"/>
+<rect x="681.2" y="240" width="12.8" height="88" class="conc"/>
+<rect x="598" y="235.2" width="96" height="4.8" class="z-timber"/>
+<rect x="598" y="235.2" width="96" height="4.8" class="ln"/>
+<polygon points="694,235.2 694,235.2 694,240 703.6,240 703.6,240 703.6,244.8 713.2,244.8 713.2,244.8 713.2,249.6 722.8,249.6 722.8,249.6 722.8,254.4 732.4,254.4 732.4,254.4 732.4,259.2 742,259.2 742,259.2 742,264 751.6,264 751.6,264 751.6,268.8 761.2,268.8 761.2,268.8 761.2,273.6 825.2,273.6 825.2,273.6 825.2,278.4 834.8,278.4 834.8,278.4 834.8,283.2 844.4,283.2 844.4,283.2 844.4,288 854,288 854,288 854,292.8 863.6,292.8 863.6,292.8 863.6,297.6 873.2,297.6 873.2,297.6 873.2,302.4 882.8,302.4 882.8,302.4 882.8,307.2 892.4,307.2 892.4,307.2 892.4,312 892.4,328 694,328" class="conc"/>
+<line x1="691.44" y1="235.2" x2="691.44" y2="200" class="ln-b"/>
+<line x1="694" y1="206.4" x2="761.2" y2="244.8" class="ln"/>
+<line x1="761.2" y1="244.8" x2="825.2" y2="244.8" class="ln"/>
+<line x1="825.2" y1="244.8" x2="892.4" y2="283.2" class="ln"/>
+<rect class="avatar" x="625.71" y="211.9" width="14.98" height="23.3" rx="5.99"/>
+<circle class="avatar" cx="633.2" cy="204.12" r="9.15"/>
+<rect class="avatar" x="806.51" y="250.3" width="14.98" height="23.3" rx="5.99"/>
+<circle class="avatar" cx="814" cy="242.52" r="9.15"/>
+<rect class="avatar" x="955.31" y="289.98" width="14.98" height="23.3" rx="5.99"/>
+<circle class="avatar" cx="962.8" cy="282.2" r="9.15"/>
+<line class="dim" x1="908.4" y1="270.6" x2="908.4" y2="315"/><line class="dim-t" x1="905.4" y1="315" x2="911.4" y2="309"/><line class="dim-t" x1="905.4" y1="276.6" x2="911.4" y2="270.6"/><text class="t-dim halo" x="918.4" y="292.8" text-anchor="middle" transform="rotate(-90 918.4 292.8)">8R = 1.20</text>
+<line class="dim" x1="777.2" y1="232.2" x2="777.2" y2="276.6"/><line class="dim-t" x1="774.2" y1="276.6" x2="780.2" y2="270.6"/><line class="dim-t" x1="774.2" y1="238.2" x2="780.2" y2="232.2"/><text class="t-dim halo" x="787.2" y="254.4" text-anchor="middle" transform="rotate(-90 787.2 254.4)">8R = 1.20</text>
+<line class="dim" x1="691" y1="342.4" x2="895.4" y2="342.4"/><line class="dim-t" x1="691" y1="345.4" x2="697" y2="339.4"/><line class="dim-t" x1="889.4" y1="345.4" x2="895.4" y2="339.4"/><text class="t-dim halo" x="793.2" y="339.4" text-anchor="middle">6.20 = 2.10 + 2.00 + 2.10</text>
+<line class="dim" x1="674.8" y1="197" x2="674.8" y2="238.2"/><line class="dim-t" x1="671.8" y1="238.2" x2="677.8" y2="232.2"/><line class="dim-t" x1="671.8" y1="203" x2="677.8" y2="197"/><text class="t-dim halo" x="670.8" y="217.6" text-anchor="middle" transform="rotate(-90 670.8 217.6)">1.10 RAIL</text>
+<polygon class="ink-f" points="597.2,228.2 605.2,228.2 601.2,235.2"/>
+<text class="t-dim halo" x="608.2" y="246.2" text-anchor="start">+3.60</text>
+<polygon class="ink-f" points="984.4,305 992.4,305 988.4,312"/>
+<text class="t-dim halo" x="995.4" y="309" text-anchor="start">+1.20 SAND</text>
+<text x="665.2" y="286.4" text-anchor="middle" class="t-sm halo" transform="rotate(-90 665.2 286.4)">SEA WALL 2.40</text>
+<circle class="bubble" cx="42" cy="414" r="12"/><text class="t-lbl" x="42" y="417.5" text-anchor="middle">D3</text><text class="t-head" x="62" y="414">PIER · CROSS-SECTION</text><text class="t-sm" x="62" y="427">deck 5.00 wide at +2.40 · head platform 24 × 10 · dive spot at the head</text>
+<rect x="112" y="625" width="336" height="62.4" class="water"/>
+<line x1="112" y1="625" x2="448" y2="625" class="ln-water"/>
+<rect x="112" y="687.4" width="336" height="9.6" class="poche"/>
+<rect x="112" y="687.4" width="336" height="9.6" fill="url(#cd-earth)"/>
+<line x1="112" y1="687.4" x2="448" y2="687.4" class="ln-h"/>
+<rect x="220" y="567.4" width="120" height="2.4" class="z-timber"/>
+<rect x="220" y="567.4" width="120" height="2.4" class="ln"/>
+<rect x="224.8" y="569.8" width="110.4" height="9.6" class="conc"/>
+<rect x="227.2" y="579.4" width="9.6" height="108" class="conc"/>
+<line x1="221.44" y1="567.4" x2="221.44" y2="541" class="ln"/>
+<line x1="219.52" y1="541" x2="223.36" y2="541" class="ln-h"/>
+<rect x="323.2" y="579.4" width="9.6" height="108" class="conc"/>
+<line x1="338.56" y1="567.4" x2="338.56" y2="541" class="ln"/>
+<line x1="336.64" y1="541" x2="340.48" y2="541" class="ln-h"/>
+<line x1="224.8" y1="567.4" x2="224.8" y2="481" class="ln"/>
+<circle cx="224.8" cy="478.6" r="4.32" class="chalk-y"/>
+<rect class="avatar" x="288.78" y="549.93" width="11.23" height="17.47" rx="4.49"/>
+<circle class="avatar" cx="294.4" cy="544.09" r="6.86"/>
+<circle class="avatar" cx="395.2" cy="621" r="5"/>
+<line class="dim" x1="217" y1="519.4" x2="343" y2="519.4"/><line class="dim-t" x1="217" y1="522.4" x2="223" y2="516.4"/><line class="dim-t" x1="337" y1="522.4" x2="343" y2="516.4"/><text class="t-dim halo" x="280" y="516.4" text-anchor="middle">5.00 DECK</text>
+<line class="dim" x1="361.6" y1="564.4" x2="361.6" y2="628"/><line class="dim-t" x1="358.6" y1="628" x2="364.6" y2="622"/><line class="dim-t" x1="358.6" y1="570.4" x2="364.6" y2="564.4"/><text class="t-dim halo" x="371.6" y="596.2" text-anchor="middle" transform="rotate(-90 371.6 596.2)">2.40</text>
+<line class="dim" x1="361.6" y1="538" x2="361.6" y2="570.4"/><line class="dim-t" x1="358.6" y1="570.4" x2="364.6" y2="564.4"/><line class="dim-t" x1="358.6" y1="544" x2="364.6" y2="538"/><text class="t-dim halo" x="371.6" y="554.2" text-anchor="middle" transform="rotate(-90 371.6 554.2)">1.10</text>
+<line class="dim" x1="179.2" y1="622" x2="179.2" y2="676"/><line class="dim-t" x1="176.2" y1="676" x2="182.2" y2="670"/><line class="dim-t" x1="176.2" y1="628" x2="182.2" y2="622"/><text class="t-dim halo" x="175.2" y="649" text-anchor="middle" transform="rotate(-90 175.2 649)">≥ 2.00 AT HEAD</text>
+<polygon class="ink-f" points="117.6,618 125.6,618 121.6,625"/>
+<text class="t-dim halo" x="128.6" y="622" text-anchor="start">±0.00 SWL</text>
+<line x1="224.8" y1="483.4" x2="131.2" y2="500.2" class="ln-m"/>
+<circle cx="224.8" cy="483.4" r="0"/>
+<circle class="ink-f" cx="224.8" cy="483.4" r="1.8"/>
+<text class="t-sm halo" x="134.2" y="498.2" text-anchor="start">LAMP 3.60</text>
+<text class="t-sm" x="62" y="440">Image drew the pier 7.5 m wide; 5.00 m reads as a pier and fits three abreast.</text>
+<circle class="bubble" cx="582" cy="414" r="12"/><text class="t-lbl" x="582" y="417.5" text-anchor="middle">D4</text><text class="t-head" x="602" y="414">CENTRAL PLANTER + BENCH RING</text><text class="t-sm" x="602" y="427">plan and section · image drew it Ø27 m, corrected to Ø14 m</text>
+<circle cx="690" cy="565" r="102" class="z-paver"/>
+<polygon points="772.97,578.14 772.29,581.85 771.45,585.52 770.45,589.16 769.29,592.74 767.96,596.27 766.48,599.74 764.84,603.14 763.06,606.45 761.12,609.69 759.05,612.84 756.83,615.89 754.48,618.83 752,621.67 749.4,624.4 746.67,627 743.83,629.48 740.89,631.83 737.84,634.05 734.69,636.12 731.45,638.06 728.14,639.84 724.74,641.48 721.27,642.96 717.74,644.29 714.16,645.45 710.52,646.45 706.85,647.29 703.14,647.97 700.32,630.19 703.24,629.66 706.13,629 708.98,628.21 711.8,627.3 714.57,626.26 717.29,625.09 719.96,623.81 722.57,622.4 725.11,620.88 727.59,619.25 729.98,617.51 732.3,615.66 734.53,613.72 736.67,611.67 738.72,609.53 740.66,607.3 742.51,604.98 744.25,602.59 745.88,600.11 747.4,597.57 748.81,594.96 750.09,592.29 751.26,589.57 752.3,586.8 753.21,583.98 754,581.13 754.66,578.24 755.19,575.32" class="prop"/>
+<polygon points="676.86,647.97 673.15,647.29 669.48,646.45 665.84,645.45 662.26,644.29 658.73,642.96 655.26,641.48 651.86,639.84 648.55,638.06 645.31,636.12 642.16,634.05 639.11,631.83 636.17,629.48 633.33,627 630.6,624.4 628,621.67 625.52,618.83 623.17,615.89 620.95,612.84 618.88,609.69 616.94,606.45 615.16,603.14 613.52,599.74 612.04,596.27 610.71,592.74 609.55,589.16 608.55,585.52 607.71,581.85 607.03,578.14 624.81,575.32 625.34,578.24 626,581.13 626.79,583.98 627.7,586.8 628.74,589.57 629.91,592.29 631.19,594.96 632.6,597.57 634.12,600.11 635.75,602.59 637.49,604.98 639.34,607.3 641.28,609.53 643.33,611.67 645.47,613.72 647.7,615.66 650.02,617.51 652.41,619.25 654.89,620.88 657.43,622.4 660.04,623.81 662.71,625.09 665.43,626.26 668.2,627.3 671.02,628.21 673.87,629 676.76,629.66 679.68,630.19" class="prop"/>
+<polygon points="607.03,551.86 607.71,548.15 608.55,544.48 609.55,540.84 610.71,537.26 612.04,533.73 613.52,530.26 615.16,526.86 616.94,523.55 618.88,520.31 620.95,517.16 623.17,514.11 625.52,511.17 628,508.33 630.6,505.6 633.33,503 636.17,500.52 639.11,498.17 642.16,495.95 645.31,493.88 648.55,491.94 651.86,490.16 655.26,488.52 658.73,487.04 662.26,485.71 665.84,484.55 669.48,483.55 673.15,482.71 676.86,482.03 679.68,499.81 676.76,500.34 673.87,501 671.02,501.79 668.2,502.7 665.43,503.74 662.71,504.91 660.04,506.19 657.43,507.6 654.89,509.12 652.41,510.75 650.02,512.49 647.7,514.34 645.47,516.28 643.33,518.33 641.28,520.47 639.34,522.7 637.49,525.02 635.75,527.41 634.12,529.89 632.6,532.43 631.19,535.04 629.91,537.71 628.74,540.43 627.7,543.2 626.79,546.02 626,548.87 625.34,551.76 624.81,554.68" class="prop"/>
+<polygon points="703.14,482.03 706.85,482.71 710.52,483.55 714.16,484.55 717.74,485.71 721.27,487.04 724.74,488.52 728.14,490.16 731.45,491.94 734.69,493.88 737.84,495.95 740.89,498.17 743.83,500.52 746.67,503 749.4,505.6 752,508.33 754.48,511.17 756.83,514.11 759.05,517.16 761.12,520.31 763.06,523.55 764.84,526.86 766.48,530.26 767.96,533.73 769.29,537.26 770.45,540.84 771.45,544.48 772.29,548.15 772.97,551.86 755.19,554.68 754.66,551.76 754,548.87 753.21,546.02 752.3,543.2 751.26,540.43 750.09,537.71 748.81,535.04 747.4,532.43 745.88,529.89 744.25,527.41 742.51,525.02 740.66,522.7 738.72,520.47 736.67,518.33 734.53,516.28 732.3,514.34 729.98,512.49 727.59,510.75 725.11,509.12 722.57,507.6 719.96,506.19 717.29,504.91 714.57,503.74 711.8,502.7 708.98,501.79 706.13,501 703.24,500.34 700.32,499.81" class="prop"/>
+<circle cx="690" cy="565" r="48" class="z-lawn"/>
+<circle cx="690" cy="565" r="48" class="ln"/>
+<circle cx="690" cy="565" r="55.2" class="tree" fill-opacity=".55" stroke-dasharray="3 2"/>
+<circle cx="690" cy="565" r="4.8" class="ink-f"/>
+<line class="dim" x1="603" y1="454.6" x2="777" y2="454.6"/><line class="dim-t" x1="603" y1="457.6" x2="609" y2="451.6"/><line class="dim-t" x1="771" y1="457.6" x2="777" y2="451.6"/><text class="t-dim halo" x="690" y="451.6" text-anchor="middle">Ø14.00</text>
+<line class="dim" x1="639" y1="668.2" x2="741" y2="668.2"/><line class="dim-t" x1="639" y1="671.2" x2="645" y2="665.2"/><line class="dim-t" x1="735" y1="671.2" x2="741" y2="665.2"/><text class="t-dim halo" x="690" y="665.2" text-anchor="middle">Ø8.00 PLANTER</text>
+<text x="574.8" y="681.4" text-anchor="start" class="t-sm">4 gaps × 2.00</text>
+<text x="574.8" y="698.2" text-anchor="start" class="t-sm">for access</text>
+<text x="574.8" y="485.8" text-anchor="start" class="t-lbl">PLAN</text>
+<rect x="828" y="640" width="204" height="7.2" class="poche"/>
+<rect x="828" y="640" width="204" height="7.2" fill="url(#cd-earth)"/>
+<line x1="828" y1="640" x2="1032" y2="640" class="ln-h"/>
+<rect x="846" y="634.6" width="18" height="5.4" class="conc"/>
+<rect x="882" y="632.8" width="3.6" height="7.2" class="solid"/>
+<rect x="996" y="634.6" width="18" height="5.4" class="conc"/>
+<rect x="974.4" y="632.8" width="3.6" height="7.2" class="solid"/>
+<rect x="885.6" y="633.4" width="88.8" height="1.8" class="z-lawn"/>
+<line x1="930" y1="633.4" x2="930" y2="587.2" class="trunk"/>
+<ellipse cx="930" cy="563.2" rx="55.2" ry="28.8" class="tree"/>
+<rect class="avatar" x="1006.39" y="629.3" width="5.62" height="5.3" rx="2.25"/>
+<rect class="avatar" x="1009.2" y="632.73" width="5.3" height="1.87" rx="0.78"/>
+<rect class="avatar" x="1013.26" y="632.73" width="1.56" height="6.24" rx="0.62"/>
+<circle class="avatar" cx="1009.2" cy="626.38" r="3.43"/>
+<rect class="avatar" x="831.19" y="631.26" width="5.62" height="8.74" rx="2.25"/>
+<circle class="avatar" cx="834" cy="628.35" r="3.43"/>
+<line class="dim" x1="1021.2" y1="631.6" x2="1021.2" y2="643"/><line class="dim-t" x1="1018.2" y1="643" x2="1024.2" y2="637"/><line class="dim-t" x1="1018.2" y1="637.6" x2="1024.2" y2="631.6"/><text class="t-dim halo" x="1031.2" y="637.3" text-anchor="middle" transform="rotate(-90 1031.2 637.3)">0.45</text>
+<line class="dim" x1="892.8" y1="629.8" x2="892.8" y2="643"/><line class="dim-t" x1="889.8" y1="643" x2="895.8" y2="637"/><line class="dim-t" x1="889.8" y1="635.8" x2="895.8" y2="629.8"/><text class="t-dim halo" x="902.8" y="636.4" text-anchor="middle" transform="rotate(-90 902.8 636.4)">0.60</text>
+<text x="829.2" y="524.8" text-anchor="start" class="t-lbl">SECTION</text></svg>

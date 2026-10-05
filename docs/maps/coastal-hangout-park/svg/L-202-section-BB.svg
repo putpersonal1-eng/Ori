@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="360" viewBox="0 0 1080 360" role="img" aria-label="L-202 Section B-B"><style>@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Condensed:wght@500;600;700&amp;family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;display=swap');
+.sheet-bg{fill:#FBFCFC}
+.frame{fill:none;stroke:#16283A;stroke-width:1.4}
+.frame-in{fill:none;stroke:#16283A;stroke-width:.7}
+.ln{fill:none;stroke:#16283A;stroke-width:1}
+.ln-h{fill:none;stroke:#16283A;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.ln-m{fill:none;stroke:#4A5C6F;stroke-width:.8}
+.ln-f{fill:none;stroke:#93A3B2;stroke-width:.6}
+.ln-b{fill:none;stroke:#4A5C6F;stroke-width:.8;stroke-dasharray:4 3}
+.ln-water{fill:none;stroke:#0D7F8A;stroke-width:1.2}
+.gap{stroke:#FBFCFC;stroke-width:5}
+.z-paver,.z-town{fill:#E1E6EA}
+.z-brick{fill:#EDD0BD}
+.z-lawn{fill:#CDE4B3}
+.z-conc{fill:#D3D9DC}
+.z-timber{fill:#E6CFA6}
+.z-sand{fill:#F2E1BA}
+.z-sea{fill:#BCE4EB}
+.z-deep{fill:#8CC7D8}
+.z-cliff{fill:#CBC5BC}
+.z-rockp{fill:#CBC5BC;opacity:.75}
+.bldg{fill:#D5DFE9;stroke:#16283A;stroke-width:1.6}
+.bldg-l{fill:#D5DFE9;stroke:#16283A;stroke-width:.9}
+.beyond{fill:#D5DFE9;fill-opacity:.55;stroke:#4A5C6F;stroke-width:.8}
+.under{fill:#D5DFE9;fill-opacity:.5;stroke:#4A5C6F;stroke-width:.8;stroke-dasharray:3 2}
+.wall{fill:#FBFCFC;stroke:#16283A;stroke-width:4}
+.glass{fill:none;stroke:#0D7F8A;stroke-width:1.6}
+.solid{fill:#16283A}
+.led{fill:#16283A;opacity:.85}
+.conc{fill:#D3D9DC;stroke:#16283A;stroke-width:1}
+.poche{fill:#CBC5BC}
+.water{fill:#BCE4EB;opacity:.85}
+.tree{fill:#9BCA84;stroke:#58894C;stroke-width:.7}
+.trunk{fill:none;stroke:#58894C;stroke-width:1.4}
+.prop{fill:#FBFCFC;stroke:#16283A;stroke-width:.7}
+.prop-d{fill:#4A5C6F}
+.umb-y{fill:#F0BE2C;stroke:#16283A;stroke-width:.5}
+.umb-p{fill:#E5539A;stroke:#16283A;stroke-width:.5}
+.umb-c{fill:#24ABCC;stroke:#16283A;stroke-width:.5}
+.chalk-y{fill:#F0BE2C}
+.chalk-p{fill:#E5539A}
+.chalk-c{fill:#24ABCC}
+.ring-acc{fill:none;stroke:#D93A55;stroke-width:1.6}
+.bunting{fill:none;stroke:#E5539A;stroke-width:1;stroke-dasharray:2.5 2}
+.pat-s{fill:none;stroke:#93A3B2;stroke-width:.5}
+.pat-d{fill:#93A3B2}
+.pat-w{fill:none;stroke:#FBFCFC;stroke-width:.7;opacity:.7}
+.pat-g{fill:none;stroke:#58894C;stroke-width:.6;opacity:.55}
+.path-edge{fill:none;stroke:#93A3B2;stroke-width:17}
+.path-fill{fill:none;stroke:#E1E6EA;stroke-width:15}
+.grid{fill:none;stroke:#93A3B2;stroke-width:.5;stroke-dasharray:2 4}
+.bubble{fill:#FBFCFC;stroke:#16283A;stroke-width:.8}
+.circ1{fill:none;stroke:#D93A55;stroke-width:2.2;stroke-dasharray:8 4;stroke-linecap:round}
+.circ2{fill:none;stroke:#D93A55;stroke-width:1.2;stroke-dasharray:3 3;stroke-linecap:round}
+.sight{fill:none;stroke:#0D7F8A;stroke-width:1.4;stroke-dasharray:1.5 3.5;stroke-linecap:round}
+.cut{fill:none;stroke:#D93A55;stroke-width:.9;stroke-dasharray:14 3 2 3}
+.cut-h{fill:none;stroke:#D93A55;stroke-width:3}
+.acc-f{fill:#D93A55}
+.teal-f{fill:#0D7F8A}
+.ink-f{fill:#16283A}
+.sheet-f{fill:#FBFCFC}
+.dim{fill:none;stroke:#16283A;stroke-width:.6}
+.dim-t{fill:none;stroke:#16283A;stroke-width:1.1}
+.avatar{fill:#24ABCC;stroke:#16283A;stroke-width:.6}
+.cam{fill:#0D7F8A}
+.t-zone{font:700 12px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.08em;fill:#16283A}
+.t-big{font:700 16px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.14em;fill:#16283A}
+.t-lbl{font:600 9.5px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.03em;fill:#16283A}
+.t-sm{font:500 8px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.02em;fill:#4A5C6F}
+.t-dim{font:600 8.5px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;fill:#16283A}
+.t-head{font:700 15px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.12em;fill:#16283A}
+.t-title{font:800 21px "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;fill:#16283A}
+.t-acc{fill:#D93A55}
+.t-teal{fill:#0D7F8A}
+.t-inv{fill:#FBFCFC}
+.halo{paint-order:stroke;stroke:#FBFCFC;stroke-width:3px;stroke-linejoin:round}
+.z-road{fill:#93A3B2;opacity:.6}
+.lane{fill:none;stroke:#FBFCFC;stroke-width:1;stroke-dasharray:6 5}
+.zebra{fill:#FBFCFC}
+.tree-s{fill:#E5539A;fill-opacity:.45;stroke:#E5539A;stroke-width:.8}
+.trim-y{fill:none;stroke:#F0BE2C;stroke-width:2.4}
+.arc-y{fill:#F0BE2C;fill-opacity:.32}
+.key{fill:#16283A}
+.statue{fill:#FBFCFC;stroke:#16283A;stroke-width:1.2}
+</style><defs>
+<pattern id="cb-brick" width="8" height="8" patternUnits="userSpaceOnUse"><path class="pat-s" d="M0 4 2 2 4 4 6 2 8 4M0 8 2 6 4 8 6 6 8 8"/></pattern>
+<pattern id="cb-sand" width="9" height="9" patternUnits="userSpaceOnUse"><circle class="pat-d" cx="1.5" cy="1.5" r=".55"/><circle class="pat-d" cx="6" cy="4.5" r=".5"/><circle class="pat-d" cx="3" cy="7.5" r=".45"/></pattern>
+<pattern id="cb-board" width="3" height="10" patternUnits="userSpaceOnUse"><path class="pat-s" d="M0 0V10"/></pattern>
+<pattern id="cb-rock" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="pat-s" d="M0 0V6"/></pattern>
+<pattern id="cb-water" width="18" height="10" patternUnits="userSpaceOnUse"><path class="pat-w" d="M1 6q2-2.4 4 0t4 0"/></pattern>
+<pattern id="cb-lawn" width="14" height="12" patternUnits="userSpaceOnUse"><path class="pat-g" d="M3 3l1.2 2 1.2-2M9 8l1.2 2 1.2-2"/></pattern>
+<pattern id="cb-hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><path class="pat-s" d="M0 0V5"/></pattern>
+<pattern id="cb-earth" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="pat-s" d="M0 0V6"/><circle class="pat-d" cx="3" cy="3" r=".5"/></pattern>
+<marker id="cb-arr" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="acc-f" d="M0 0 10 5 0 10z"/></marker>
+<marker id="cb-arrt" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="teal-f" d="M0 0 10 5 0 10z"/></marker>
+<marker id="cb-arrk" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto-start-reverse"><path class="ink-f" d="M0 0 10 5 0 10z"/></marker>
+</defs>
+<rect class="sheet-bg" width="1080" height="360"/>
+<rect class="ink-f" x="24" y="17" width="55.0" height="18"/>
+<text class="t-head t-inv" x="30" y="31">L-202</text>
+<text class="t-head" x="89.0" y="31">SECTION B–B · Y = 59 · ARCADE → PLAZA → COAST · LOOKING NORTH</text>
+<text class="t-sm" x="24" y="48">Horizontal 4.6 px = 1 m · vertical 10 px = 1 m · light line = beyond (street wall, stairs, food trucks, stage)</text>
+<rect x="285.2" y="172" width="676.2" height="48" class="beyond"/>
+<rect x="322" y="172" width="23" height="48" class="prop"/>
+<line x1="322" y1="214" x2="345" y2="214" class="ln-f"/>
+<line x1="322" y1="208" x2="345" y2="208" class="ln-f"/>
+<line x1="322" y1="202" x2="345" y2="202" class="ln-f"/>
+<line x1="322" y1="196" x2="345" y2="196" class="ln-f"/>
+<line x1="322" y1="190" x2="345" y2="190" class="ln-f"/>
+<line x1="322" y1="184" x2="345" y2="184" class="ln-f"/>
+<line x1="322" y1="178" x2="345" y2="178" class="ln-f"/>
+<rect x="464.6" y="172" width="55.2" height="48" class="prop"/>
+<line x1="464.6" y1="214" x2="519.8" y2="214" class="ln-f"/>
+<line x1="464.6" y1="208" x2="519.8" y2="208" class="ln-f"/>
+<line x1="464.6" y1="202" x2="519.8" y2="202" class="ln-f"/>
+<line x1="464.6" y1="196" x2="519.8" y2="196" class="ln-f"/>
+<line x1="464.6" y1="190" x2="519.8" y2="190" class="ln-f"/>
+<line x1="464.6" y1="184" x2="519.8" y2="184" class="ln-f"/>
+<line x1="464.6" y1="178" x2="519.8" y2="178" class="ln-f"/>
+<rect x="552" y="172" width="18.4" height="48" class="prop"/>
+<line x1="552" y1="214" x2="570.4" y2="214" class="ln-f"/>
+<line x1="552" y1="208" x2="570.4" y2="208" class="ln-f"/>
+<line x1="552" y1="202" x2="570.4" y2="202" class="ln-f"/>
+<line x1="552" y1="196" x2="570.4" y2="196" class="ln-f"/>
+<line x1="552" y1="190" x2="570.4" y2="190" class="ln-f"/>
+<line x1="552" y1="184" x2="570.4" y2="184" class="ln-f"/>
+<line x1="552" y1="178" x2="570.4" y2="178" class="ln-f"/>
+<text x="492.2" y="194" text-anchor="middle" class="t-sm halo">MAIN STAIR</text>
+<line x1="349.6" y1="172" x2="349.6" y2="156" class="trunk"/>
+<ellipse cx="349.6" cy="144" rx="11.96" ry="15" class="tree"/>
+<line x1="395.6" y1="172" x2="395.6" y2="156" class="trunk"/>
+<ellipse cx="395.6" cy="144" rx="11.96" ry="15" class="tree"/>
+<line x1="588.8" y1="172" x2="588.8" y2="156" class="trunk"/>
+<ellipse cx="588.8" cy="144" rx="11.96" ry="15" class="tree"/>
+<line x1="644" y1="172" x2="644" y2="156" class="trunk"/>
+<ellipse cx="644" cy="144" rx="11.96" ry="15" class="tree"/>
+<line x1="699.2" y1="172" x2="699.2" y2="156" class="trunk"/>
+<ellipse cx="699.2" cy="144" rx="11.96" ry="15" class="tree"/>
+<line x1="763.6" y1="172" x2="763.6" y2="156" class="trunk"/>
+<ellipse cx="763.6" cy="144" rx="11.96" ry="15" class="tree"/>
+<line x1="828" y1="172" x2="828" y2="156" class="trunk"/>
+<ellipse cx="828" cy="144" rx="11.96" ry="15" class="tree"/>
+<line x1="883.2" y1="172" x2="883.2" y2="156" class="trunk"/>
+<ellipse cx="883.2" cy="144" rx="11.96" ry="15" class="tree"/>
+<rect x="607.2" y="192" width="29.9" height="28" class="beyond"/>
+<rect x="648.6" y="192" width="29.9" height="28" class="beyond"/>
+<rect x="690" y="192" width="29.9" height="28" class="beyond"/>
+<text x="630.2" y="185" text-anchor="middle" class="t-sm halo">FOOD TRUCKS</text>
+<polygon points="864.8,214 952.2,214 952.2,220 864.8,220" class="z-timber"/>
+<text x="908.5" y="210" text-anchor="middle" class="t-sm halo">STAGE</text>
+<rect x="961.4" y="172" width="27.6" height="24" class="beyond"/>
+<line x1="961.4" y1="161" x2="989" y2="161" class="ln-m"/>
+<text x="975.2" y="182" text-anchor="middle" class="t-sm halo">RAMP</text>
+<rect x="563.04" y="190" width="5.52" height="30" class="beyond"/>
+<circle cx="565.8" cy="184" r="3.22" class="statue"/>
+<polygon points="1006.02,256 1039.6,256 1039.6,276 1006.02,266" class="water"/>
+<line x1="1006.02" y1="256" x2="1039.6" y2="256" class="ln-water"/>
+<polygon points="46,202 138,202 138,220 1006.02,220 1006.02,266 1039.6,276 1039.6,290 46,290" class="poche"/>
+<polygon points="46,202 138,202 138,220 1006.02,220 1006.02,266 1039.6,276 1039.6,290 46,290" fill="url(#cb-earth)"/>
+<polyline points="46,202 138,202 138,220 1006.02,220 1006.02,266 1039.6,276" class="ln-h"/>
+<rect x="46" y="136" width="36.8" height="66" class="z-town"/>
+<rect x="46" y="136" width="36.8" height="66" fill="url(#cb-hatch)"/>
+<text x="64.4" y="126" text-anchor="middle" class="t-sm">TOWN</text>
+<rect x="138" y="160" width="147.2" height="60" class="sheet-f"/>
+<rect x="138" y="154" width="1.84" height="66" class="solid"/>
+<rect x="283.36" y="154" width="1.84" height="66" class="solid"/>
+<rect x="138" y="160" width="147.2" height="3" class="solid"/>
+<rect x="139.84" y="163" width="143.52" height="3" class="arc-y"/>
+<rect x="156.4" y="203" width="10.12" height="17" class="prop"/>
+<rect x="180.32" y="203" width="10.12" height="17" class="prop"/>
+<rect x="204.24" y="203" width="10.12" height="17" class="prop"/>
+<rect x="228.16" y="203" width="10.12" height="17" class="prop"/>
+<rect x="239.2" y="210" width="36.8" height="10" class="prop"/>
+<text x="216.2" y="180" text-anchor="middle" class="t-sm halo">ARCADE +3.60 · 5.70 clear</text>
+<rect x="287.96" y="214" width="22.08" height="6" class="z-lawn"/>
+<rect x="460" y="215.5" width="6.9" height="4.5" class="conc"/>
+<rect x="517.5" y="215.5" width="6.9" height="4.5" class="conc"/>
+<rect x="473.8" y="214" width="1.38" height="6" class="solid"/>
+<rect x="509.22" y="214" width="1.38" height="6" class="solid"/>
+<rect x="475.18" y="214.5" width="34.04" height="1.5" class="z-lawn"/>
+<line x1="492.2" y1="214.5" x2="492.2" y2="184" class="trunk"/>
+<ellipse cx="492.2" cy="164" rx="21.16" ry="24" class="tree"/>
+<rect x="676.2" y="166" width="92" height="54" class="sheet-f"/>
+<rect x="676.2" y="162" width="1.84" height="58" class="solid"/>
+<rect x="766.36" y="162" width="1.84" height="58" class="solid"/>
+<rect x="676.2" y="166" width="92" height="3" class="solid"/>
+<rect x="676.2" y="162" width="92" height="4" class="chalk-y"/>
+<rect x="694.6" y="210" width="55.2" height="10" class="prop"/>
+<text x="722.2" y="192" text-anchor="middle" class="t-sm halo">LIFESTYLE &amp; SOUVENIR</text>
+<rect x="648.6" y="192" width="18.4" height="28" class="bldg-l"/>
+<rect x="646.76" y="189" width="22.08" height="3" class="umb-y"/>
+<line x1="368" y1="220" x2="368" y2="170" class="ln"/>
+<circle cx="368" cy="169" r="2.76" class="prop"/>
+<line x1="616.4" y1="220" x2="616.4" y2="170" class="ln"/>
+<circle cx="616.4" cy="169" r="2.76" class="prop"/>
+<line x1="837.2" y1="220" x2="837.2" y2="198" class="trunk"/>
+<ellipse cx="837.2" cy="184" rx="12.88" ry="16" class="tree"/>
+<line x1="910.8" y1="220" x2="910.8" y2="198" class="trunk"/>
+<ellipse cx="910.8" cy="184" rx="12.88" ry="16" class="tree"/>
+<line x1="1005.1" y1="220" x2="1005.1" y2="209" class="ln"/>
+<rect class="avatar" x="181.66" y="212.72" width="4.68" height="7.28" rx="1.87"/>
+<circle class="avatar" cx="184" cy="210.29" r="2.86"/>
+<rect class="avatar" x="347.26" y="212.72" width="4.68" height="7.28" rx="1.87"/>
+<circle class="avatar" cx="349.6" cy="210.29" r="2.86"/>
+<rect class="avatar" x="402.46" y="212.72" width="4.68" height="7.28" rx="1.87"/>
+<circle class="avatar" cx="404.8" cy="210.29" r="2.86"/>
+<rect class="avatar" x="480.66" y="212.72" width="4.68" height="7.28" rx="1.87"/>
+<circle class="avatar" cx="483" cy="210.29" r="2.86"/>
+<rect class="avatar" x="499.06" y="212.72" width="4.68" height="7.28" rx="1.87"/>
+<circle class="avatar" cx="501.4" cy="210.29" r="2.86"/>
+<rect class="avatar" x="577.26" y="212.72" width="4.68" height="7.28" rx="1.87"/>
+<circle class="avatar" cx="579.6" cy="210.29" r="2.86"/>
+<rect class="avatar" x="802.66" y="212.72" width="4.68" height="7.28" rx="1.87"/>
+<circle class="avatar" cx="805" cy="210.29" r="2.86"/>
+<rect class="avatar" x="949.86" y="212.72" width="4.68" height="7.28" rx="1.87"/>
+<circle class="avatar" cx="952.2" cy="210.29" r="2.86"/>
+<polygon class="ink-f" points="88,195 96,195 92,202"/>
+<text class="t-dim halo" x="99" y="199" text-anchor="start">+5.40 WEST LANE here</text>
+<polygon class="ink-f" points="318,213 326,213 322,220"/>
+<text class="t-dim halo" x="329" y="231" text-anchor="start">+3.60 PLAZA</text>
+<polygon class="ink-f" points="805.6,165 813.6,165 809.6,172"/>
+<text class="t-dim halo" x="816.6" y="169" text-anchor="start">+8.40 STREET beyond</text>
+<polygon class="ink-f" points="950.04,207 958.04,207 954.04,214"/>
+<text class="t-dim halo" x="961.04" y="211" text-anchor="start">+4.20</text>
+<polygon class="ink-f" points="1026.4,249 1034.4,249 1030.4,256"/>
+<text class="t-dim halo" x="1023.4" y="253" text-anchor="end">±0.00</text>
+<line class="dim" x1="79.8" y1="124" x2="131.8" y2="124"/><line class="dim-t" x1="79.8" y1="127" x2="85.8" y2="121"/><line class="dim-t" x1="125.8" y1="127" x2="131.8" y2="121"/><text class="t-dim halo" x="105.8" y="121" text-anchor="middle">10.0 LANE</text>
+<line class="dim" x1="138" y1="152" x2="138" y2="121"/><line class="dim" x1="285.2" y1="152" x2="285.2" y2="121"/><line class="dim" x1="135" y1="124" x2="288.2" y2="124"/><line class="dim-t" x1="135" y1="127" x2="141" y2="121"/><line class="dim-t" x1="282.2" y1="127" x2="288.2" y2="121"/><text class="t-dim halo" x="211.6" y="121" text-anchor="middle">32.0 ARCADE</text>
+<line class="dim" x1="309.8" y1="124" x2="651.6" y2="124"/><line class="dim-t" x1="309.8" y1="127" x2="315.8" y2="121"/><line class="dim-t" x1="645.6" y1="127" x2="651.6" y2="121"/><text class="t-dim halo" x="480.7" y="121" text-anchor="middle">73.0 OPEN PLAZA</text>
+<line class="dim" x1="676.2" y1="160" x2="676.2" y2="121"/><line class="dim" x1="768.2" y1="160" x2="768.2" y2="121"/><line class="dim" x1="673.2" y1="124" x2="771.2" y2="124"/><line class="dim-t" x1="673.2" y1="127" x2="679.2" y2="121"/><line class="dim-t" x1="765.2" y1="127" x2="771.2" y2="121"/><text class="t-dim halo" x="722.2" y="121" text-anchor="middle">20.0 SHOP</text>
+<line class="dim" x1="457" y1="234" x2="527.4" y2="234"/><line class="dim-t" x1="457" y1="237" x2="463" y2="231"/><line class="dim-t" x1="521.4" y1="237" x2="527.4" y2="231"/><text class="t-dim halo" x="492.2" y="231" text-anchor="middle">Ø14.0 BENCH RING</text>
+<line class="dim" x1="145.36" y1="160" x2="145.36" y2="223"/><line class="dim-t" x1="142.36" y1="223" x2="148.36" y2="217"/><line class="dim-t" x1="142.36" y1="166" x2="148.36" y2="160"/><text class="t-dim halo" x="155.36" y="191.5" text-anchor="middle" transform="rotate(-90 155.36 191.5)">6.00</text>
+<line class="dim" x1="775.56" y1="163" x2="775.56" y2="223"/><line class="dim-t" x1="772.56" y1="223" x2="778.56" y2="217"/><line class="dim-t" x1="772.56" y1="169" x2="778.56" y2="163"/><text class="t-dim halo" x="785.56" y="193" text-anchor="middle" transform="rotate(-90 785.56 193)">5.40</text>
+<line class="dim" x1="300.84" y1="169" x2="300.84" y2="223"/><line class="dim-t" x1="297.84" y1="223" x2="303.84" y2="217"/><line class="dim-t" x1="297.84" y1="175" x2="303.84" y2="169"/><text class="t-dim halo" x="310.84" y="196" text-anchor="middle" transform="rotate(-90 310.84 196)">4.80 WALL</text>
+<rect x="46" y="106" width="993.6" height="184" class="frame"/></svg>

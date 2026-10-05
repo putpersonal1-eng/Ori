@@ -75,6 +75,14 @@
 .t-teal{fill:#0D7F8A}
 .t-inv{fill:#FBFCFC}
 .halo{paint-order:stroke;stroke:#FBFCFC;stroke-width:3px;stroke-linejoin:round}
+.z-road{fill:#93A3B2;opacity:.6}
+.lane{fill:none;stroke:#FBFCFC;stroke-width:1;stroke-dasharray:6 5}
+.zebra{fill:#FBFCFC}
+.tree-s{fill:#E5539A;fill-opacity:.45;stroke:#E5539A;stroke-width:.8}
+.trim-y{fill:none;stroke:#F0BE2C;stroke-width:2.4}
+.arc-y{fill:#F0BE2C;fill-opacity:.32}
+.key{fill:#16283A}
+.statue{fill:#FBFCFC;stroke:#16283A;stroke-width:1.2}
 </style><defs>
 <pattern id="ar-brick" width="8" height="8" patternUnits="userSpaceOnUse"><path class="pat-s" d="M0 4 2 2 4 4 6 2 8 4M0 8 2 6 4 8 6 6 8 8"/></pattern>
 <pattern id="ar-sand" width="9" height="9" patternUnits="userSpaceOnUse"><circle class="pat-d" cx="1.5" cy="1.5" r=".55"/><circle class="pat-d" cx="6" cy="4.5" r=".5"/><circle class="pat-d" cx="3" cy="7.5" r=".45"/></pattern>
