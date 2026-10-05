@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="620" height="590" viewBox="0 0 620 590" role="img" aria-label="A-302 Wave Cafe plan"><style>@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Condensed:wght@500;600;700&amp;family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;display=swap');
+.sheet-bg{fill:#FBFCFC}
+.frame{fill:none;stroke:#16283A;stroke-width:1.4}
+.frame-in{fill:none;stroke:#16283A;stroke-width:.7}
+.ln{fill:none;stroke:#16283A;stroke-width:1}
+.ln-h{fill:none;stroke:#16283A;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.ln-m{fill:none;stroke:#4A5C6F;stroke-width:.8}
+.ln-f{fill:none;stroke:#93A3B2;stroke-width:.6}
+.ln-b{fill:none;stroke:#4A5C6F;stroke-width:.8;stroke-dasharray:4 3}
+.ln-water{fill:none;stroke:#0D7F8A;stroke-width:1.2}
+.gap{stroke:#FBFCFC;stroke-width:5}
+.z-paver,.z-town{fill:#E1E6EA}
+.z-brick{fill:#EDD0BD}
+.z-lawn{fill:#CDE4B3}
+.z-conc{fill:#D3D9DC}
+.z-timber{fill:#E6CFA6}
+.z-sand{fill:#F2E1BA}
+.z-sea{fill:#BCE4EB}
+.z-deep{fill:#8CC7D8}
+.z-cliff{fill:#CBC5BC}
+.z-rockp{fill:#CBC5BC;opacity:.75}
+.bldg{fill:#D5DFE9;stroke:#16283A;stroke-width:1.6}
+.bldg-l{fill:#D5DFE9;stroke:#16283A;stroke-width:.9}
+.beyond{fill:#D5DFE9;fill-opacity:.55;stroke:#4A5C6F;stroke-width:.8}
+.under{fill:#D5DFE9;fill-opacity:.5;stroke:#4A5C6F;stroke-width:.8;stroke-dasharray:3 2}
+.wall{fill:#FBFCFC;stroke:#16283A;stroke-width:4}
+.glass{fill:none;stroke:#0D7F8A;stroke-width:1.6}
+.solid{fill:#16283A}
+.led{fill:#16283A;opacity:.85}
+.conc{fill:#D3D9DC;stroke:#16283A;stroke-width:1}
+.poche{fill:#CBC5BC}
+.water{fill:#BCE4EB;opacity:.85}
+.tree{fill:#9BCA84;stroke:#58894C;stroke-width:.7}
+.trunk{fill:none;stroke:#58894C;stroke-width:1.4}
+.prop{fill:#FBFCFC;stroke:#16283A;stroke-width:.7}
+.prop-d{fill:#4A5C6F}
+.umb-y{fill:#F0BE2C;stroke:#16283A;stroke-width:.5}
+.umb-p{fill:#E5539A;stroke:#16283A;stroke-width:.5}
+.umb-c{fill:#24ABCC;stroke:#16283A;stroke-width:.5}
+.chalk-y{fill:#F0BE2C}
+.chalk-p{fill:#E5539A}
+.chalk-c{fill:#24ABCC}
+.ring-acc{fill:none;stroke:#D93A55;stroke-width:1.6}
+.bunting{fill:none;stroke:#E5539A;stroke-width:1;stroke-dasharray:2.5 2}
+.pat-s{fill:none;stroke:#93A3B2;stroke-width:.5}
+.pat-d{fill:#93A3B2}
+.pat-w{fill:none;stroke:#FBFCFC;stroke-width:.7;opacity:.7}
+.pat-g{fill:none;stroke:#58894C;stroke-width:.6;opacity:.55}
+.path-edge{fill:none;stroke:#93A3B2;stroke-width:17}
+.path-fill{fill:none;stroke:#E1E6EA;stroke-width:15}
+.grid{fill:none;stroke:#93A3B2;stroke-width:.5;stroke-dasharray:2 4}
+.bubble{fill:#FBFCFC;stroke:#16283A;stroke-width:.8}
+.circ1{fill:none;stroke:#D93A55;stroke-width:2.2;stroke-dasharray:8 4;stroke-linecap:round}
+.circ2{fill:none;stroke:#D93A55;stroke-width:1.2;stroke-dasharray:3 3;stroke-linecap:round}
+.sight{fill:none;stroke:#0D7F8A;stroke-width:1.4;stroke-dasharray:1.5 3.5;stroke-linecap:round}
+.cut{fill:none;stroke:#D93A55;stroke-width:.9;stroke-dasharray:14 3 2 3}
+.cut-h{fill:none;stroke:#D93A55;stroke-width:3}
+.acc-f{fill:#D93A55}
+.teal-f{fill:#0D7F8A}
+.ink-f{fill:#16283A}
+.sheet-f{fill:#FBFCFC}
+.dim{fill:none;stroke:#16283A;stroke-width:.6}
+.dim-t{fill:none;stroke:#16283A;stroke-width:1.1}
+.avatar{fill:#24ABCC;stroke:#16283A;stroke-width:.6}
+.cam{fill:#0D7F8A}
+.t-zone{font:700 12px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.08em;fill:#16283A}
+.t-big{font:700 16px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.14em;fill:#16283A}
+.t-lbl{font:600 9.5px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.03em;fill:#16283A}
+.t-sm{font:500 8px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.02em;fill:#4A5C6F}
+.t-dim{font:600 8.5px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;fill:#16283A}
+.t-head{font:700 15px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.12em;fill:#16283A}
+.t-title{font:800 21px "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;fill:#16283A}
+.t-acc{fill:#D93A55}
+.t-teal{fill:#0D7F8A}
+.t-inv{fill:#FBFCFC}
+.halo{paint-order:stroke;stroke:#FBFCFC;stroke-width:3px;stroke-linejoin:round}
+</style><defs>
+<pattern id="cf-brick" width="8" height="8" patternUnits="userSpaceOnUse"><path class="pat-s" d="M0 4 2 2 4 4 6 2 8 4M0 8 2 6 4 8 6 6 8 8"/></pattern>
+<pattern id="cf-sand" width="9" height="9" patternUnits="userSpaceOnUse"><circle class="pat-d" cx="1.5" cy="1.5" r=".55"/><circle class="pat-d" cx="6" cy="4.5" r=".5"/><circle class="pat-d" cx="3" cy="7.5" r=".45"/></pattern>
+<pattern id="cf-board" width="3" height="10" patternUnits="userSpaceOnUse"><path class="pat-s" d="M0 0V10"/></pattern>
+<pattern id="cf-rock" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="pat-s" d="M0 0V6"/></pattern>
+<pattern id="cf-water" width="18" height="10" patternUnits="userSpaceOnUse"><path class="pat-w" d="M1 6q2-2.4 4 0t4 0"/></pattern>
+<pattern id="cf-lawn" width="14" height="12" patternUnits="userSpaceOnUse"><path class="pat-g" d="M3 3l1.2 2 1.2-2M9 8l1.2 2 1.2-2"/></pattern>
+<pattern id="cf-hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><path class="pat-s" d="M0 0V5"/></pattern>
+<pattern id="cf-earth" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="pat-s" d="M0 0V6"/><circle class="pat-d" cx="3" cy="3" r=".5"/></pattern>
+<marker id="cf-arr" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="acc-f" d="M0 0 10 5 0 10z"/></marker>
+<marker id="cf-arrt" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="teal-f" d="M0 0 10 5 0 10z"/></marker>
+<marker id="cf-arrk" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto-start-reverse"><path class="ink-f" d="M0 0 10 5 0 10z"/></marker>
+</defs>
+<rect class="sheet-bg" width="620" height="590"/>
+<rect class="ink-f" x="24" y="13" width="55.0" height="18"/>
+<text class="t-head t-inv" x="30" y="27">A-302</text>
+<text class="t-head" x="89.0" y="27">WAVE CAFÉ · PLAN + TERRACE</text>
+<text class="t-sm" x="24" y="44">12 px = 1 m · café 28 × 24 m, terrace 40 × 10 m · world X 132–172, Y 46–80</text>
+<rect x="60" y="76" width="120" height="288" class="z-brick"/>
+<rect x="60" y="76" width="120" height="288" fill="url(#cf-brick)"/>
+<text x="120" y="224.8" text-anchor="middle" class="t-lbl halo" transform="rotate(-90 120 224.8)">PLAZA</text>
+<rect x="60" y="364" width="480" height="120" class="z-timber"/>
+<rect x="60" y="364" width="480" height="120" fill="url(#cf-board)"/>
+<line x1="60" y1="484" x2="468" y2="484" class="ln-h"/>
+<line x1="540" y1="364" x2="540" y2="484" class="ln-h"/>
+<text x="504" y="502" text-anchor="middle" class="t-sm">open to bank top</text>
+<rect x="180" y="76" width="336" height="288" class="wall"/>
+<line x1="180" y1="148" x2="180" y2="220" class="gap"/>
+<line x1="180" y1="148" x2="180" y2="220" class="glass"/>
+<line x1="204" y1="364" x2="492" y2="364" class="gap"/>
+<line x1="204" y1="364" x2="492" y2="364" class="glass"/>
+<line x1="108" y1="184" x2="172.8" y2="184" class="ln-h" marker-end="url(#cf-arrk)"/>
+<text x="115.2" y="169.6" text-anchor="start" class="t-sm halo">ENTRY 6.00</text>
+<rect x="228" y="90.4" width="192" height="26.4" class="prop"/>
+<rect x="396" y="116.8" width="24" height="55.2" class="prop"/>
+<rect x="252" y="116.8" width="72" height="12" class="umb-y"/>
+<text x="312" y="108.4" text-anchor="middle" class="t-sm">COUNTER · ESPRESSO BAR</text>
+<rect x="426" y="80.8" width="85.2" height="103.2" class="conc"/>
+<rect x="426" y="80.8" width="85.2" height="103.2" fill="url(#cf-hatch)"/>
+<text x="468" y="131.2" text-anchor="middle" class="t-sm halo">KITCHEN</text>
+<text x="468" y="148" text-anchor="middle" class="t-sm halo">back of house</text>
+<circle cx="228" cy="178" r="7.2" class="prop"/>
+<circle cx="216" cy="178" r="3.6" class="prop-d"/>
+<circle cx="240" cy="178" r="3.6" class="prop-d"/>
+<circle cx="282" cy="178" r="7.2" class="prop"/>
+<circle cx="270" cy="178" r="3.6" class="prop-d"/>
+<circle cx="294" cy="178" r="3.6" class="prop-d"/>
+<circle cx="336" cy="178" r="7.2" class="prop"/>
+<circle cx="324" cy="178" r="3.6" class="prop-d"/>
+<circle cx="348" cy="178" r="3.6" class="prop-d"/>
+<circle cx="282" cy="226" r="7.2" class="prop"/>
+<circle cx="270" cy="226" r="3.6" class="prop-d"/>
+<circle cx="294" cy="226" r="3.6" class="prop-d"/>
+<circle cx="336" cy="226" r="7.2" class="prop"/>
+<circle cx="324" cy="226" r="3.6" class="prop-d"/>
+<circle cx="348" cy="226" r="3.6" class="prop-d"/>
+<circle cx="390" cy="226" r="7.2" class="prop"/>
+<circle cx="378" cy="226" r="3.6" class="prop-d"/>
+<circle cx="402" cy="226" r="3.6" class="prop-d"/>
+<circle cx="282" cy="274" r="7.2" class="prop"/>
+<circle cx="270" cy="274" r="3.6" class="prop-d"/>
+<circle cx="294" cy="274" r="3.6" class="prop-d"/>
+<circle cx="336" cy="274" r="7.2" class="prop"/>
+<circle cx="324" cy="274" r="3.6" class="prop-d"/>
+<circle cx="348" cy="274" r="3.6" class="prop-d"/>
+<circle cx="390" cy="274" r="7.2" class="prop"/>
+<circle cx="378" cy="274" r="3.6" class="prop-d"/>
+<circle cx="402" cy="274" r="3.6" class="prop-d"/>
+<rect x="484.8" y="208" width="26.4" height="28.8" class="umb-c" opacity=".7"/>
+<rect x="463.2" y="214" width="16.8" height="16.8" class="prop"/>
+<rect x="484.8" y="244" width="26.4" height="28.8" class="umb-c" opacity=".7"/>
+<rect x="463.2" y="250" width="16.8" height="16.8" class="prop"/>
+<rect x="484.8" y="280" width="26.4" height="28.8" class="umb-c" opacity=".7"/>
+<rect x="463.2" y="286" width="16.8" height="16.8" class="prop"/>
+<rect x="484.8" y="316" width="26.4" height="28.8" class="umb-c" opacity=".7"/>
+<rect x="463.2" y="322" width="16.8" height="16.8" class="prop"/>
+<text x="451.2" y="272.8" text-anchor="middle" class="t-sm" transform="rotate(-90 451.2 272.8)">BOOTHS ×4</text>
+<rect x="216" y="344.8" width="240" height="8.4" class="prop"/>
+<circle cx="228" cy="337.6" r="3.6" class="prop-d"/>
+<circle cx="252" cy="337.6" r="3.6" class="prop-d"/>
+<circle cx="276" cy="337.6" r="3.6" class="prop-d"/>
+<circle cx="300" cy="337.6" r="3.6" class="prop-d"/>
+<circle cx="324" cy="337.6" r="3.6" class="prop-d"/>
+<circle cx="348" cy="337.6" r="3.6" class="prop-d"/>
+<circle cx="372" cy="337.6" r="3.6" class="prop-d"/>
+<circle cx="396" cy="337.6" r="3.6" class="prop-d"/>
+<circle cx="420" cy="337.6" r="3.6" class="prop-d"/>
+<circle cx="444" cy="337.6" r="3.6" class="prop-d"/>
+<text x="336" y="330.4" text-anchor="middle" class="t-sm">WINDOW BAR · SEA VIEW</text>
+<rect x="187.2" y="244" width="69.6" height="96" class="ln-b"/>
+<rect x="184.8" y="239.2" width="7.2" height="110.4" class="prop-d"/>
+<circle cx="216" cy="263.2" r="9.6" class="umb-p" opacity=".8"/>
+<circle cx="240" cy="292" r="9.6" class="umb-p" opacity=".8"/>
+<circle cx="216" cy="320.8" r="9.6" class="umb-p" opacity=".8"/>
+<text x="223.2" y="234.4" text-anchor="middle" class="t-sm">BOOK NOOK</text>
+<circle cx="108" cy="412" r="19.2" class="umb-y"/>
+<circle cx="108" cy="412" r="3.6" class="ink-f"/>
+<circle cx="180" cy="418" r="19.2" class="umb-y"/>
+<circle cx="180" cy="418" r="3.6" class="ink-f"/>
+<circle cx="252" cy="412" r="19.2" class="umb-y"/>
+<circle cx="252" cy="412" r="3.6" class="ink-f"/>
+<circle cx="324" cy="418" r="19.2" class="umb-y"/>
+<circle cx="324" cy="418" r="3.6" class="ink-f"/>
+<circle cx="396" cy="412" r="19.2" class="umb-y"/>
+<circle cx="396" cy="412" r="3.6" class="ink-f"/>
+<circle cx="468" cy="418" r="19.2" class="umb-y"/>
+<circle cx="468" cy="418" r="3.6" class="ink-f"/>
+<rect x="84" y="467.2" width="360" height="12" class="z-lawn"/>
+<rect x="84" y="467.2" width="360" height="12" class="ln-m"/>
+<text x="264" y="460" text-anchor="middle" class="t-sm halo">PLANTER BENCH · glass rail 1.10</text>
+<line x1="420" y1="484" x2="492" y2="556" class="sight" marker-end="url(#cf-arrt)"/>
+<text x="396" y="558.4" text-anchor="middle" class="t-sm t-teal">V2 → LIGHTHOUSE</text>
+<text x="348" y="517.6" text-anchor="middle" class="t-sm">SKATE GARDEN BANK BELOW ↓</text>
+<text x="348" y="299.2" text-anchor="middle" class="t-sm">FFL +4.80</text>
+<text x="300" y="386.8" text-anchor="middle" class="t-sm halo">TERRACE +4.80 · cantilevered over the bank</text>
+<line class="dim" x1="180" y1="74" x2="180" y2="53.8"/><line class="dim" x1="516" y1="74" x2="516" y2="53.8"/><line class="dim" x1="177" y1="56.8" x2="519" y2="56.8"/><line class="dim-t" x1="177" y1="59.8" x2="183" y2="53.8"/><line class="dim-t" x1="513" y1="59.8" x2="519" y2="53.8"/><text class="t-dim halo" x="348" y="53.8" text-anchor="middle">28.00</text>
+<line class="dim" x1="60" y1="486" x2="60" y2="539.8"/><line class="dim" x1="540" y1="486" x2="540" y2="539.8"/><line class="dim" x1="57" y1="536.8" x2="543" y2="536.8"/><line class="dim-t" x1="57" y1="539.8" x2="63" y2="533.8"/><line class="dim-t" x1="537" y1="539.8" x2="543" y2="533.8"/><text class="t-dim halo" x="300" y="533.8" text-anchor="middle">40.00 TERRACE</text>
+<line class="dim" x1="518" y1="76" x2="538.2" y2="76"/><line class="dim" x1="518" y1="364" x2="538.2" y2="364"/><line class="dim" x1="535.2" y1="73" x2="535.2" y2="367"/><line class="dim-t" x1="532.2" y1="79" x2="538.2" y2="73"/><line class="dim-t" x1="532.2" y1="367" x2="538.2" y2="361"/><text class="t-dim halo" x="545.2" y="220" text-anchor="middle" transform="rotate(-90 545.2 220)">24.00</text>
+<line class="dim" x1="58" y1="364" x2="37.8" y2="364"/><line class="dim" x1="58" y1="484" x2="37.8" y2="484"/><line class="dim" x1="40.8" y1="361" x2="40.8" y2="487"/><line class="dim-t" x1="37.8" y1="367" x2="43.8" y2="361"/><line class="dim-t" x1="37.8" y1="487" x2="43.8" y2="481"/><text class="t-dim halo" x="36.8" y="424" text-anchor="middle" transform="rotate(-90 36.8 424)">10.00</text>
+<g transform="translate(84 100)"><polygon class="ink-f" points="0,-9 4,3 0,0 -4,3"/><text class="t-sm" x="0" y="-11" text-anchor="middle">N</text></g></svg>

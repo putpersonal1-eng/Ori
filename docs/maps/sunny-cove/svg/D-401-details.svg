@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="720" viewBox="0 0 1100 720" role="img" aria-label="D-401 Standard details"><style>@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Condensed:wght@500;600;700&amp;family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;display=swap');
+.sheet-bg{fill:#FBFCFC}
+.frame{fill:none;stroke:#16283A;stroke-width:1.4}
+.frame-in{fill:none;stroke:#16283A;stroke-width:.7}
+.ln{fill:none;stroke:#16283A;stroke-width:1}
+.ln-h{fill:none;stroke:#16283A;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.ln-m{fill:none;stroke:#4A5C6F;stroke-width:.8}
+.ln-f{fill:none;stroke:#93A3B2;stroke-width:.6}
+.ln-b{fill:none;stroke:#4A5C6F;stroke-width:.8;stroke-dasharray:4 3}
+.ln-water{fill:none;stroke:#0D7F8A;stroke-width:1.2}
+.gap{stroke:#FBFCFC;stroke-width:5}
+.z-paver,.z-town{fill:#E1E6EA}
+.z-brick{fill:#EDD0BD}
+.z-lawn{fill:#CDE4B3}
+.z-conc{fill:#D3D9DC}
+.z-timber{fill:#E6CFA6}
+.z-sand{fill:#F2E1BA}
+.z-sea{fill:#BCE4EB}
+.z-deep{fill:#8CC7D8}
+.z-cliff{fill:#CBC5BC}
+.z-rockp{fill:#CBC5BC;opacity:.75}
+.bldg{fill:#D5DFE9;stroke:#16283A;stroke-width:1.6}
+.bldg-l{fill:#D5DFE9;stroke:#16283A;stroke-width:.9}
+.beyond{fill:#D5DFE9;fill-opacity:.55;stroke:#4A5C6F;stroke-width:.8}
+.under{fill:#D5DFE9;fill-opacity:.5;stroke:#4A5C6F;stroke-width:.8;stroke-dasharray:3 2}
+.wall{fill:#FBFCFC;stroke:#16283A;stroke-width:4}
+.glass{fill:none;stroke:#0D7F8A;stroke-width:1.6}
+.solid{fill:#16283A}
+.led{fill:#16283A;opacity:.85}
+.conc{fill:#D3D9DC;stroke:#16283A;stroke-width:1}
+.poche{fill:#CBC5BC}
+.water{fill:#BCE4EB;opacity:.85}
+.tree{fill:#9BCA84;stroke:#58894C;stroke-width:.7}
+.trunk{fill:none;stroke:#58894C;stroke-width:1.4}
+.prop{fill:#FBFCFC;stroke:#16283A;stroke-width:.7}
+.prop-d{fill:#4A5C6F}
+.umb-y{fill:#F0BE2C;stroke:#16283A;stroke-width:.5}
+.umb-p{fill:#E5539A;stroke:#16283A;stroke-width:.5}
+.umb-c{fill:#24ABCC;stroke:#16283A;stroke-width:.5}
+.chalk-y{fill:#F0BE2C}
+.chalk-p{fill:#E5539A}
+.chalk-c{fill:#24ABCC}
+.ring-acc{fill:none;stroke:#D93A55;stroke-width:1.6}
+.bunting{fill:none;stroke:#E5539A;stroke-width:1;stroke-dasharray:2.5 2}
+.pat-s{fill:none;stroke:#93A3B2;stroke-width:.5}
+.pat-d{fill:#93A3B2}
+.pat-w{fill:none;stroke:#FBFCFC;stroke-width:.7;opacity:.7}
+.pat-g{fill:none;stroke:#58894C;stroke-width:.6;opacity:.55}
+.path-edge{fill:none;stroke:#93A3B2;stroke-width:17}
+.path-fill{fill:none;stroke:#E1E6EA;stroke-width:15}
+.grid{fill:none;stroke:#93A3B2;stroke-width:.5;stroke-dasharray:2 4}
+.bubble{fill:#FBFCFC;stroke:#16283A;stroke-width:.8}
+.circ1{fill:none;stroke:#D93A55;stroke-width:2.2;stroke-dasharray:8 4;stroke-linecap:round}
+.circ2{fill:none;stroke:#D93A55;stroke-width:1.2;stroke-dasharray:3 3;stroke-linecap:round}
+.sight{fill:none;stroke:#0D7F8A;stroke-width:1.4;stroke-dasharray:1.5 3.5;stroke-linecap:round}
+.cut{fill:none;stroke:#D93A55;stroke-width:.9;stroke-dasharray:14 3 2 3}
+.cut-h{fill:none;stroke:#D93A55;stroke-width:3}
+.acc-f{fill:#D93A55}
+.teal-f{fill:#0D7F8A}
+.ink-f{fill:#16283A}
+.sheet-f{fill:#FBFCFC}
+.dim{fill:none;stroke:#16283A;stroke-width:.6}
+.dim-t{fill:none;stroke:#16283A;stroke-width:1.1}
+.avatar{fill:#24ABCC;stroke:#16283A;stroke-width:.6}
+.cam{fill:#0D7F8A}
+.t-zone{font:700 12px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.08em;fill:#16283A}
+.t-big{font:700 16px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.14em;fill:#16283A}
+.t-lbl{font:600 9.5px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.03em;fill:#16283A}
+.t-sm{font:500 8px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.02em;fill:#4A5C6F}
+.t-dim{font:600 8.5px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;fill:#16283A}
+.t-head{font:700 15px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.12em;fill:#16283A}
+.t-title{font:800 21px "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;fill:#16283A}
+.t-acc{fill:#D93A55}
+.t-teal{fill:#0D7F8A}
+.t-inv{fill:#FBFCFC}
+.halo{paint-order:stroke;stroke:#FBFCFC;stroke-width:3px;stroke-linejoin:round}
+</style><defs>
+<pattern id="dt-brick" width="8" height="8" patternUnits="userSpaceOnUse"><path class="pat-s" d="M0 4 2 2 4 4 6 2 8 4M0 8 2 6 4 8 6 6 8 8"/></pattern>
+<pattern id="dt-sand" width="9" height="9" patternUnits="userSpaceOnUse"><circle class="pat-d" cx="1.5" cy="1.5" r=".55"/><circle class="pat-d" cx="6" cy="4.5" r=".5"/><circle class="pat-d" cx="3" cy="7.5" r=".45"/></pattern>
+<pattern id="dt-board" width="3" height="10" patternUnits="userSpaceOnUse"><path class="pat-s" d="M0 0V10"/></pattern>
+<pattern id="dt-rock" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="pat-s" d="M0 0V6"/></pattern>
+<pattern id="dt-water" width="18" height="10" patternUnits="userSpaceOnUse"><path class="pat-w" d="M1 6q2-2.4 4 0t4 0"/></pattern>
+<pattern id="dt-lawn" width="14" height="12" patternUnits="userSpaceOnUse"><path class="pat-g" d="M3 3l1.2 2 1.2-2M9 8l1.2 2 1.2-2"/></pattern>
+<pattern id="dt-hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><path class="pat-s" d="M0 0V5"/></pattern>
+<pattern id="dt-earth" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="pat-s" d="M0 0V6"/><circle class="pat-d" cx="3" cy="3" r=".5"/></pattern>
+<marker id="dt-arr" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="acc-f" d="M0 0 10 5 0 10z"/></marker>
+<marker id="dt-arrt" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="teal-f" d="M0 0 10 5 0 10z"/></marker>
+<marker id="dt-arrk" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto-start-reverse"><path class="ink-f" d="M0 0 10 5 0 10z"/></marker>
+</defs>
+<rect class="sheet-bg" width="1100" height="720"/>
+<rect class="ink-f" x="24" y="13" width="55.0" height="18"/>
+<text class="t-head t-inv" x="30" y="27">D-401</text>
+<text class="t-head" x="89.0" y="27">STANDARD DETAILS</text>
+<text class="t-sm" x="24" y="44">D1–D2 at 48 px = 1 m · D3 at 40 px = 1 m · D4 at 24 px = 1 m · avatar silhouettes are 1.30 m</text>
+<rect class="frame-in" x="20" y="60" width="520" height="310"/>
+<rect class="frame-in" x="560" y="60" width="520" height="310"/>
+<rect class="frame-in" x="20" y="390" width="520" height="310"/>
+<rect class="frame-in" x="560" y="390" width="520" height="310"/>
+<circle class="bubble" cx="42" cy="84" r="12"/><text class="t-lbl" x="42" y="87.5" text-anchor="middle">D1</text><text class="t-head" x="62" y="84">SUNSET STEPS · SECTION</text><text class="t-sm" x="62" y="97">terrace seating facing the sea · e.g. +4.40 / +4.00 / +3.60</text>
+<polygon points="80,246.6 152,246.6 152,265.8 296,265.8 296,285 488,285 488,313.8 80,313.8" class="poche"/>
+<polygon points="80,246.6 152,246.6 152,265.8 296,265.8 296,285 488,285 488,313.8 80,313.8" fill="url(#dt-earth)"/>
+<polyline points="80,246.6 152,246.6 152,265.8 296,265.8 296,285 488,285" class="ln-h"/>
+<polyline points="80,246.6 152,246.6 152,256.2 224,256.2 224,265.8 296,265.8 296,275.4 368,275.4 368,285 488,285" class="ln-b"/>
+<rect x="130.4" y="243.72" width="21.6" height="2.88" class="z-timber"/>
+<rect x="130.4" y="243.72" width="21.6" height="2.88" class="ln"/>
+<rect x="274.4" y="262.92" width="21.6" height="2.88" class="z-timber"/>
+<rect x="274.4" y="262.92" width="21.6" height="2.88" class="ln"/>
+<rect class="avatar" x="128.77" y="222.5" width="22.46" height="21.22" rx="8.99"/>
+<rect class="avatar" x="140" y="236.23" width="21.22" height="7.49" rx="3.12"/>
+<rect class="avatar" x="156.22" y="236.23" width="6.24" height="24.96" rx="2.5"/>
+<circle class="avatar" cx="140" cy="210.84" r="13.73"/>
+<rect class="avatar" x="212.77" y="230.86" width="22.46" height="34.94" rx="8.99"/>
+<circle class="avatar" cx="224" cy="219.19" r="13.73"/>
+<rect class="avatar" x="385.57" y="250.06" width="22.46" height="34.94" rx="8.99"/>
+<circle class="avatar" cx="396.8" cy="238.39" r="13.73"/>
+<ellipse cx="444.8" cy="276.36" rx="21.6" ry="8.64" class="umb-p"/>
+<line class="dim" x1="164" y1="243.6" x2="164" y2="268.8"/><line class="dim-t" x1="161" y1="268.8" x2="167" y2="262.8"/><line class="dim-t" x1="161" y1="249.6" x2="167" y2="243.6"/><text class="t-dim halo" x="174" y="256.2" text-anchor="middle" transform="rotate(-90 174 256.2)">0.40</text>
+<line class="dim" x1="308" y1="262.8" x2="308" y2="288"/><line class="dim-t" x1="305" y1="288" x2="311" y2="282"/><line class="dim-t" x1="305" y1="268.8" x2="311" y2="262.8"/><text class="t-dim halo" x="318" y="275.4" text-anchor="middle" transform="rotate(-90 318 275.4)">0.40</text>
+<line class="dim" x1="152" y1="315.8" x2="152" y2="331.2"/><line class="dim" x1="296" y1="315.8" x2="296" y2="331.2"/><line class="dim" x1="149" y1="328.2" x2="299" y2="328.2"/><line class="dim-t" x1="149" y1="331.2" x2="155" y2="325.2"/><line class="dim-t" x1="293" y1="331.2" x2="299" y2="325.2"/><text class="t-dim halo" x="224" y="325.2" text-anchor="middle">3.00 TERRACE</text>
+<line class="dim" x1="152" y1="263.8" x2="152" y2="188.4"/><line class="dim" x1="252.8" y1="263.8" x2="252.8" y2="188.4"/><line class="dim" x1="149" y1="191.4" x2="255.8" y2="191.4"/><line class="dim-t" x1="149" y1="194.4" x2="155" y2="188.4"/><line class="dim-t" x1="249.8" y1="194.4" x2="255.8" y2="188.4"/><text class="t-dim halo" x="202.4" y="188.4" text-anchor="middle">2.10 LOUNGE</text>
+<line class="dim" x1="252.8" y1="263.8" x2="252.8" y2="188.4"/><line class="dim" x1="296" y1="263.8" x2="296" y2="188.4"/><line class="dim" x1="249.8" y1="191.4" x2="299" y2="191.4"/><line class="dim-t" x1="249.8" y1="194.4" x2="255.8" y2="188.4"/><line class="dim-t" x1="293" y1="194.4" x2="299" y2="188.4"/><text class="t-dim halo" x="274.4" y="188.4" text-anchor="middle">0.90 SEAT</text>
+<line class="dim" x1="202.4" y1="200.4" x2="202.4" y2="268.8"/><line class="dim-t" x1="199.4" y1="268.8" x2="205.4" y2="262.8"/><line class="dim-t" x1="199.4" y1="206.4" x2="205.4" y2="200.4"/><text class="t-dim halo" x="198.4" y="234.6" text-anchor="middle" transform="rotate(-90 198.4 234.6)">1.30</text>
+<line x1="334.4" y1="275.4" x2="368" y2="229.8" class="ln-m"/>
+<circle cx="334.4" cy="275.4" r="0"/>
+<circle class="ink-f" cx="334.4" cy="275.4" r="1.8"/>
+<text class="t-sm halo" x="371" y="227.8" text-anchor="start">AISLE beyond · 0.20 risers</text>
+<line x1="132.8" y1="244.68" x2="36.8" y2="222.6" class="ln-m"/>
+<circle cx="132.8" cy="244.68" r="0"/>
+<circle class="ink-f" cx="132.8" cy="244.68" r="1.8"/>
+<text class="t-sm halo" x="39.8" y="220.6" text-anchor="start">TIMBER SEAT CAP 0.45</text>
+<text x="483.2" y="354.6" text-anchor="end" class="t-lbl">SEA →</text>
+<text x="36.8" y="354.6" text-anchor="start" class="t-sm">Riser 0.40 &lt; max step 0.45: terraces are walkable without the aisle.</text>
+<circle class="bubble" cx="582" cy="84" r="12"/><text class="t-lbl" x="582" y="87.5" text-anchor="middle">D2</text><text class="t-head" x="602" y="84">SEA WALL + BEACH STAIR · SECTION</text><text class="t-sm" x="602" y="97">promenade +2.40 to beach +1.20 · 3 stairs + 1 ramp along the wall</text>
+<polygon points="836.8,302.8 1043.2,306.64 1043.2,317.2 736,317.2" class="z-sand"/>
+<polygon points="836.8,302.8 1043.2,306.64 1043.2,317.2 736,317.2" fill="url(#dt-sand)"/>
+<line x1="836.8" y1="302.8" x2="1043.2" y2="306.64" class="ln"/>
+<polygon points="592,252.4 716.8,252.4 716.8,317.2 592,317.2" class="poche"/>
+<polygon points="592,252.4 716.8,252.4 716.8,317.2 592,317.2" fill="url(#dt-earth)"/>
+<rect x="716.8" y="252.4" width="19.2" height="64.8" class="conc"/>
+<rect x="592" y="245.2" width="144" height="7.2" class="z-timber"/>
+<rect x="592" y="245.2" width="144" height="7.2" class="ln"/>
+<polygon points="736,245.2 736,252.4 750.4,252.4 750.4,259.6 764.8,259.6 764.8,266.8 779.2,266.8 779.2,274 793.6,274 793.6,281.2 808,281.2 808,288.4 822.4,288.4 822.4,295.6 836.8,295.6 836.8,302.8 836.8,317.2 736,317.2" class="conc"/>
+<line x1="732.16" y1="245.2" x2="732.16" y2="192.4" class="ln-b"/>
+<line x1="726.4" y1="192.4" x2="737.92" y2="192.4" class="ln-b"/>
+<line x1="736" y1="202" x2="836.8" y2="259.6" class="ln"/>
+<line x1="743.2" y1="206.32" x2="743.2" y2="252.4" class="ln-m"/>
+<line x1="829.6" y1="255.76" x2="829.6" y2="295.6" class="ln-m"/>
+<circle cx="947.2" cy="297.04" r="6.72" class="ring-acc"/>
+<circle cx="947.2" cy="284.56" r="6.72" class="ring-acc"/>
+<circle cx="947.2" cy="272.08" r="6.72" class="ring-acc"/>
+<rect class="avatar" x="614.37" y="210.26" width="22.46" height="34.94" rx="8.99"/>
+<circle class="avatar" cx="625.6" cy="198.59" r="13.73"/>
+<rect class="avatar" x="883.17" y="269.3" width="22.46" height="34.94" rx="8.99"/>
+<circle class="avatar" cx="894.4" cy="257.63" r="13.73"/>
+<line class="dim" x1="738" y1="302.8" x2="863.8" y2="302.8"/><line class="dim" x1="738" y1="245.2" x2="863.8" y2="245.2"/><line class="dim" x1="860.8" y1="242.2" x2="860.8" y2="305.8"/><line class="dim-t" x1="857.8" y1="305.8" x2="863.8" y2="299.8"/><line class="dim-t" x1="857.8" y1="248.2" x2="863.8" y2="242.2"/><text class="t-dim halo" x="870.8" y="274" text-anchor="middle" transform="rotate(-90 870.8 274)">8R × 0.150 = 1.20</text>
+<line class="dim" x1="736" y1="319.2" x2="736" y2="337"/><line class="dim" x1="836.8" y1="319.2" x2="836.8" y2="337"/><line class="dim" x1="733" y1="334" x2="839.8" y2="334"/><line class="dim-t" x1="733" y1="337" x2="739" y2="331"/><line class="dim-t" x1="833.8" y1="337" x2="839.8" y2="331"/><text class="t-dim halo" x="786.4" y="331" text-anchor="middle">7T × 0.300 = 2.10</text>
+<line class="dim" x1="712" y1="189.4" x2="712" y2="248.2"/><line class="dim-t" x1="709" y1="248.2" x2="715" y2="242.2"/><line class="dim-t" x1="709" y1="195.4" x2="715" y2="189.4"/><text class="t-dim halo" x="708" y="218.8" text-anchor="middle" transform="rotate(-90 708 218.8)">1.10 RAIL</text>
+<line x1="788.8" y1="231.76" x2="812.8" y2="197.2" class="ln-m"/>
+<circle cx="788.8" cy="231.76" r="0"/>
+<circle class="ink-f" cx="788.8" cy="231.76" r="1.8"/>
+<text class="t-sm halo" x="815.8" y="195.2" text-anchor="start">HANDRAIL 0.90 over nosing</text>
+<line x1="947.2" y1="278.8" x2="976" y2="245.2" class="ln-m"/>
+<circle cx="947.2" cy="278.8" r="0"/>
+<circle class="ink-f" cx="947.2" cy="278.8" r="1.8"/>
+<text class="t-sm halo" x="979" y="243.2" text-anchor="start">LIFEBUOY STACK (ref 4)</text>
+<polygon class="ink-f" points="597.6,238.2 605.6,238.2 601.6,245.2"/>
+<text class="t-dim halo" x="608.6" y="256.2" text-anchor="start">+2.40 PROMENADE</text>
+<polygon class="ink-f" points="1000.8,299.16 1008.8,299.16 1004.8,306.16"/>
+<text class="t-dim halo" x="1011.8" y="303.16" text-anchor="start">+1.20 BEACH</text>
+<text x="692.8" y="283.6" text-anchor="middle" class="t-sm halo" transform="rotate(-90 692.8 283.6)">SEA WALL</text>
+<circle class="bubble" cx="42" cy="414" r="12"/><text class="t-lbl" x="42" y="417.5" text-anchor="middle">D3</text><text class="t-head" x="62" y="414">SKATE GARDEN SET · ELEVATION</text><text class="t-sm" x="62" y="427">grindables need an ollie: set CanStepUpOn = No on rails and ledges</text>
+<rect x="32" y="600" width="492" height="20" class="poche"/>
+<rect x="32" y="600" width="492" height="20" fill="url(#dt-earth)"/>
+<line x1="32" y1="600" x2="524" y2="600" class="ln-h"/>
+<line x1="32" y1="582" x2="524" y2="582" class="ln-b"/>
+<line x1="32" y1="564" x2="524" y2="564" class="sight"/>
+<text x="36" y="579.2" text-anchor="start" class="t-sm halo">MAX STEP 0.45</text>
+<text x="36" y="561.2" text-anchor="start" class="t-sm t-teal halo">JUMP APEX 0.90 (assumed)</text>
+<rect x="52" y="594" width="56" height="6" class="conc"/>
+<rect x="132" y="588" width="104" height="12" class="conc"/>
+<rect x="260" y="580" width="96" height="20" class="conc"/>
+<rect x="260" y="579.2" width="96" height="2" class="solid"/>
+<line x1="388" y1="600" x2="388" y2="584.8" class="ln"/>
+<line x1="460" y1="600" x2="460" y2="584.8" class="ln"/>
+<rect x="376" y="583.2" width="96" height="1.6" class="solid"/>
+<rect class="avatar" x="498.64" y="570.88" width="18.72" height="29.12" rx="7.49"/>
+<circle class="avatar" cx="508" cy="561.16" r="11.44"/>
+<line class="dim" x1="116" y1="591" x2="116" y2="603"/><line class="dim-t" x1="113" y1="603" x2="119" y2="597"/><line class="dim-t" x1="113" y1="597" x2="119" y2="591"/><text class="t-dim halo" x="126" y="597" text-anchor="middle" transform="rotate(-90 126 597)">0.15</text>
+<line class="dim" x1="244" y1="585" x2="244" y2="603"/><line class="dim-t" x1="241" y1="603" x2="247" y2="597"/><line class="dim-t" x1="241" y1="591" x2="247" y2="585"/><text class="t-dim halo" x="254" y="594" text-anchor="middle" transform="rotate(-90 254 594)">0.30</text>
+<line class="dim" x1="364" y1="576.2" x2="364" y2="603"/><line class="dim-t" x1="361" y1="603" x2="367" y2="597"/><line class="dim-t" x1="361" y1="582.2" x2="367" y2="576.2"/><text class="t-dim halo" x="374" y="589.6" text-anchor="middle" transform="rotate(-90 374 589.6)">0.50</text>
+<line class="dim" x1="480" y1="580.2" x2="480" y2="603"/><line class="dim-t" x1="477" y1="603" x2="483" y2="597"/><line class="dim-t" x1="477" y1="586.2" x2="483" y2="580.2"/><text class="t-dim halo" x="490" y="591.6" text-anchor="middle" transform="rotate(-90 490 591.6)">0.40</text>
+<text x="80" y="634" text-anchor="middle" class="t-lbl">GRIND CURB</text>
+<text x="80" y="646" text-anchor="middle" class="t-sm">walk-on · length 8–12 m</text>
+<text x="184" y="634" text-anchor="middle" class="t-lbl">MANUAL PAD</text>
+<text x="184" y="646" text-anchor="middle" class="t-sm">walk-on · length 8–12 m</text>
+<text x="308" y="634" text-anchor="middle" class="t-lbl">LEDGE + STEEL COPING</text>
+<text x="308" y="646" text-anchor="middle" class="t-sm">ollie-on · length 8–12 m</text>
+<text x="424" y="634" text-anchor="middle" class="t-lbl">FLAT RAIL Ø50</text>
+<text x="424" y="646" text-anchor="middle" class="t-sm">ollie-on · length 8–12 m</text>
+<text x="36" y="670" text-anchor="start" class="t-sm">White paver curbs along the promenade edge copy ref 1. Quarter pipe 1.50 high on the east edge.</text>
+<circle class="bubble" cx="582" cy="414" r="12"/><text class="t-lbl" x="582" y="417.5" text-anchor="middle">D4</text><text class="t-head" x="602" y="414">SHOP UNIT UNDER THE TERRACE · SECTION</text><text class="t-sm" x="602" y="427">6 units built into the brick retaining wall · plaza +4.80, terrace +9.60</text>
+<polygon points="572,662.4 1004,662.4 1004,648 620,648 620,532.8 572,532.8" class="poche"/>
+<polygon points="572,662.4 1004,662.4 1004,648 620,648 620,532.8 572,532.8" fill="url(#dt-earth)"/>
+<rect x="572" y="532.8" width="292.8" height="7.2" class="solid"/>
+<rect x="572" y="530.4" width="292.8" height="2.4" class="z-paver"/>
+<line x1="861.2" y1="532.8" x2="861.2" y2="506.4" class="ln"/>
+<line x1="850.4" y1="506.4" x2="867.2" y2="506.4" class="ln-h"/>
+<line x1="620" y1="648" x2="1004" y2="648" class="ln-h"/>
+<line x1="860" y1="571.2" x2="860" y2="540" class="glass"/>
+<line x1="860" y1="648" x2="860" y2="571.2" class="ln-b"/>
+<rect x="855.2" y="540" width="9.6" height="21.6" class="solid"/>
+<polygon points="864.8,561.6 922.4,571.2 922.4,574.8 864.8,566.4" class="umb-p"/>
+<path d="M861.2 508.8 Q932 542.4 1004 523.2" class="bunting"/>
+<rect x="668" y="621.6" width="28.8" height="26.4" class="prop"/>
+<rect x="622.4" y="590.4" width="12" height="57.6" class="prop"/>
+<line x1="692" y1="540" x2="692" y2="549.6" class="ln-m"/>
+<circle cx="692" cy="552" r="2.88" class="chalk-y"/>
+<line x1="764" y1="540" x2="764" y2="549.6" class="ln-m"/>
+<circle cx="764" cy="552" r="2.88" class="chalk-y"/>
+<rect class="avatar" x="739.18" y="630.53" width="11.23" height="17.47" rx="4.49"/>
+<circle class="avatar" cx="744.8" cy="624.69" r="6.86"/>
+<rect class="avatar" x="916.78" y="630.53" width="11.23" height="17.47" rx="4.49"/>
+<circle class="avatar" cx="922.4" cy="624.69" r="6.86"/>
+<line x1="744.8" y1="621.6" x2="668" y2="592.8" class="sight"/>
+<rect x="658.4" y="588" width="14.4" height="8.4" class="cam"/>
+<text x="648.8" y="580.8" text-anchor="start" class="t-sm t-teal halo">CAMERA BOOM 3.50</text>
+<line class="dim" x1="617" y1="656.4" x2="863" y2="656.4"/><line class="dim-t" x1="617" y1="659.4" x2="623" y2="653.4"/><line class="dim-t" x1="857" y1="659.4" x2="863" y2="653.4"/><text class="t-dim halo" x="740" y="653.4" text-anchor="middle">10.00 UNIT DEPTH</text>
+<line class="dim" x1="802.4" y1="537" x2="802.4" y2="651"/><line class="dim-t" x1="799.4" y1="651" x2="805.4" y2="645"/><line class="dim-t" x1="799.4" y1="543" x2="805.4" y2="537"/><text class="t-dim halo" x="798.4" y="594" text-anchor="middle" transform="rotate(-90 798.4 594)">4.50 CLEAR</text>
+<line class="dim" x1="845.6" y1="568.2" x2="845.6" y2="651"/><line class="dim-t" x1="842.6" y1="651" x2="848.6" y2="645"/><line class="dim-t" x1="842.6" y1="574.2" x2="848.6" y2="568.2"/><text class="t-dim halo" x="841.6" y="609.6" text-anchor="middle" transform="rotate(-90 841.6 609.6)">3.20 DOOR</text>
+<line class="dim" x1="884" y1="503.4" x2="884" y2="535.8"/><line class="dim-t" x1="881" y1="535.8" x2="887" y2="529.8"/><line class="dim-t" x1="881" y1="509.4" x2="887" y2="503.4"/><text class="t-dim halo" x="894" y="519.6" text-anchor="middle" transform="rotate(-90 894 519.6)">1.10</text>
+<line class="dim" x1="861.8" y1="588" x2="925.4" y2="588"/><line class="dim-t" x1="861.8" y1="591" x2="867.8" y2="585"/><line class="dim-t" x1="919.4" y1="591" x2="925.4" y2="585"/><text class="t-dim halo" x="893.6" y="585" text-anchor="middle">2.40 AWNING</text>
+<polygon class="ink-f" points="932.8,641 940.8,641 936.8,648"/>
+<text class="t-dim halo" x="943.8" y="645" text-anchor="start">+4.80 PLAZA · FFL</text>
+<polygon class="ink-f" points="640,523.4 648,523.4 644,530.4"/>
+<text class="t-dim halo" x="651" y="527.4" text-anchor="start">+9.60 HILL TERRACE</text>
+<text x="572" y="673.2" text-anchor="start" class="t-sm">Doors 3.00 × 3.20 min · interiors 4.50 clear so the third-person camera never clips.</text></svg>

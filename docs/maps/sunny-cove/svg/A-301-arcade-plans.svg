@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="470" viewBox="0 0 800 470" role="img" aria-label="A-301 Pixel Pop Arcade plans"><style>@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Condensed:wght@500;600;700&amp;family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;display=swap');
+.sheet-bg{fill:#FBFCFC}
+.frame{fill:none;stroke:#16283A;stroke-width:1.4}
+.frame-in{fill:none;stroke:#16283A;stroke-width:.7}
+.ln{fill:none;stroke:#16283A;stroke-width:1}
+.ln-h{fill:none;stroke:#16283A;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.ln-m{fill:none;stroke:#4A5C6F;stroke-width:.8}
+.ln-f{fill:none;stroke:#93A3B2;stroke-width:.6}
+.ln-b{fill:none;stroke:#4A5C6F;stroke-width:.8;stroke-dasharray:4 3}
+.ln-water{fill:none;stroke:#0D7F8A;stroke-width:1.2}
+.gap{stroke:#FBFCFC;stroke-width:5}
+.z-paver,.z-town{fill:#E1E6EA}
+.z-brick{fill:#EDD0BD}
+.z-lawn{fill:#CDE4B3}
+.z-conc{fill:#D3D9DC}
+.z-timber{fill:#E6CFA6}
+.z-sand{fill:#F2E1BA}
+.z-sea{fill:#BCE4EB}
+.z-deep{fill:#8CC7D8}
+.z-cliff{fill:#CBC5BC}
+.z-rockp{fill:#CBC5BC;opacity:.75}
+.bldg{fill:#D5DFE9;stroke:#16283A;stroke-width:1.6}
+.bldg-l{fill:#D5DFE9;stroke:#16283A;stroke-width:.9}
+.beyond{fill:#D5DFE9;fill-opacity:.55;stroke:#4A5C6F;stroke-width:.8}
+.under{fill:#D5DFE9;fill-opacity:.5;stroke:#4A5C6F;stroke-width:.8;stroke-dasharray:3 2}
+.wall{fill:#FBFCFC;stroke:#16283A;stroke-width:4}
+.glass{fill:none;stroke:#0D7F8A;stroke-width:1.6}
+.solid{fill:#16283A}
+.led{fill:#16283A;opacity:.85}
+.conc{fill:#D3D9DC;stroke:#16283A;stroke-width:1}
+.poche{fill:#CBC5BC}
+.water{fill:#BCE4EB;opacity:.85}
+.tree{fill:#9BCA84;stroke:#58894C;stroke-width:.7}
+.trunk{fill:none;stroke:#58894C;stroke-width:1.4}
+.prop{fill:#FBFCFC;stroke:#16283A;stroke-width:.7}
+.prop-d{fill:#4A5C6F}
+.umb-y{fill:#F0BE2C;stroke:#16283A;stroke-width:.5}
+.umb-p{fill:#E5539A;stroke:#16283A;stroke-width:.5}
+.umb-c{fill:#24ABCC;stroke:#16283A;stroke-width:.5}
+.chalk-y{fill:#F0BE2C}
+.chalk-p{fill:#E5539A}
+.chalk-c{fill:#24ABCC}
+.ring-acc{fill:none;stroke:#D93A55;stroke-width:1.6}
+.bunting{fill:none;stroke:#E5539A;stroke-width:1;stroke-dasharray:2.5 2}
+.pat-s{fill:none;stroke:#93A3B2;stroke-width:.5}
+.pat-d{fill:#93A3B2}
+.pat-w{fill:none;stroke:#FBFCFC;stroke-width:.7;opacity:.7}
+.pat-g{fill:none;stroke:#58894C;stroke-width:.6;opacity:.55}
+.path-edge{fill:none;stroke:#93A3B2;stroke-width:17}
+.path-fill{fill:none;stroke:#E1E6EA;stroke-width:15}
+.grid{fill:none;stroke:#93A3B2;stroke-width:.5;stroke-dasharray:2 4}
+.bubble{fill:#FBFCFC;stroke:#16283A;stroke-width:.8}
+.circ1{fill:none;stroke:#D93A55;stroke-width:2.2;stroke-dasharray:8 4;stroke-linecap:round}
+.circ2{fill:none;stroke:#D93A55;stroke-width:1.2;stroke-dasharray:3 3;stroke-linecap:round}
+.sight{fill:none;stroke:#0D7F8A;stroke-width:1.4;stroke-dasharray:1.5 3.5;stroke-linecap:round}
+.cut{fill:none;stroke:#D93A55;stroke-width:.9;stroke-dasharray:14 3 2 3}
+.cut-h{fill:none;stroke:#D93A55;stroke-width:3}
+.acc-f{fill:#D93A55}
+.teal-f{fill:#0D7F8A}
+.ink-f{fill:#16283A}
+.sheet-f{fill:#FBFCFC}
+.dim{fill:none;stroke:#16283A;stroke-width:.6}
+.dim-t{fill:none;stroke:#16283A;stroke-width:1.1}
+.avatar{fill:#24ABCC;stroke:#16283A;stroke-width:.6}
+.cam{fill:#0D7F8A}
+.t-zone{font:700 12px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.08em;fill:#16283A}
+.t-big{font:700 16px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.14em;fill:#16283A}
+.t-lbl{font:600 9.5px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.03em;fill:#16283A}
+.t-sm{font:500 8px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.02em;fill:#4A5C6F}
+.t-dim{font:600 8.5px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;fill:#16283A}
+.t-head{font:700 15px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.12em;fill:#16283A}
+.t-title{font:800 21px "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;fill:#16283A}
+.t-acc{fill:#D93A55}
+.t-teal{fill:#0D7F8A}
+.t-inv{fill:#FBFCFC}
+.halo{paint-order:stroke;stroke:#FBFCFC;stroke-width:3px;stroke-linejoin:round}
+</style><defs>
+<pattern id="ar-brick" width="8" height="8" patternUnits="userSpaceOnUse"><path class="pat-s" d="M0 4 2 2 4 4 6 2 8 4M0 8 2 6 4 8 6 6 8 8"/></pattern>
+<pattern id="ar-sand" width="9" height="9" patternUnits="userSpaceOnUse"><circle class="pat-d" cx="1.5" cy="1.5" r=".55"/><circle class="pat-d" cx="6" cy="4.5" r=".5"/><circle class="pat-d" cx="3" cy="7.5" r=".45"/></pattern>
+<pattern id="ar-board" width="3" height="10" patternUnits="userSpaceOnUse"><path class="pat-s" d="M0 0V10"/></pattern>
+<pattern id="ar-rock" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="pat-s" d="M0 0V6"/></pattern>
+<pattern id="ar-water" width="18" height="10" patternUnits="userSpaceOnUse"><path class="pat-w" d="M1 6q2-2.4 4 0t4 0"/></pattern>
+<pattern id="ar-lawn" width="14" height="12" patternUnits="userSpaceOnUse"><path class="pat-g" d="M3 3l1.2 2 1.2-2M9 8l1.2 2 1.2-2"/></pattern>
+<pattern id="ar-hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><path class="pat-s" d="M0 0V5"/></pattern>
+<pattern id="ar-earth" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="pat-s" d="M0 0V6"/><circle class="pat-d" cx="3" cy="3" r=".5"/></pattern>
+<marker id="ar-arr" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="acc-f" d="M0 0 10 5 0 10z"/></marker>
+<marker id="ar-arrt" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="teal-f" d="M0 0 10 5 0 10z"/></marker>
+<marker id="ar-arrk" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto-start-reverse"><path class="ink-f" d="M0 0 10 5 0 10z"/></marker>
+</defs>
+<rect class="sheet-bg" width="800" height="470"/>
+<rect class="ink-f" x="24" y="13" width="55.0" height="18"/>
+<text class="t-head t-inv" x="30" y="27">A-301</text>
+<text class="t-head" x="89.0" y="27">PIXEL POP ARCADE · FLOOR PLANS</text>
+<text class="t-sm" x="24" y="44">10 px = 1 m · 32 × 32 m · world X 28–60, Y 34–66 · entrance faces the plaza (east)</text>
+<g transform="translate(770 34)"><polygon class="ink-f" points="0,-10 5,4 0,1 -5,4"/><text class="t-sm" x="0" y="-13" text-anchor="middle">N</text></g>
+<rect x="40" y="80" width="320" height="320" class="wall"/>
+<rect x="180" y="180" width="80" height="100" class="ln-h"/>
+<line x1="184" y1="216" x2="218" y2="216" class="ln-m"/>
+<line x1="222" y1="216" x2="256" y2="216" class="ln-m"/>
+<line x1="184" y1="222" x2="218" y2="222" class="ln-m"/>
+<line x1="222" y1="222" x2="256" y2="222" class="ln-m"/>
+<line x1="184" y1="228" x2="218" y2="228" class="ln-m"/>
+<line x1="222" y1="228" x2="256" y2="228" class="ln-m"/>
+<line x1="184" y1="234" x2="218" y2="234" class="ln-m"/>
+<line x1="222" y1="234" x2="256" y2="234" class="ln-m"/>
+<line x1="184" y1="240" x2="218" y2="240" class="ln-m"/>
+<line x1="222" y1="240" x2="256" y2="240" class="ln-m"/>
+<line x1="184" y1="246" x2="218" y2="246" class="ln-m"/>
+<line x1="222" y1="246" x2="256" y2="246" class="ln-m"/>
+<line x1="184" y1="252" x2="218" y2="252" class="ln-m"/>
+<line x1="222" y1="252" x2="256" y2="252" class="ln-m"/>
+<line x1="184" y1="258" x2="218" y2="258" class="ln-m"/>
+<line x1="222" y1="258" x2="256" y2="258" class="ln-m"/>
+<line x1="184" y1="264" x2="218" y2="264" class="ln-m"/>
+<line x1="222" y1="264" x2="256" y2="264" class="ln-m"/>
+<line x1="220" y1="184" x2="220" y2="276" class="ln"/>
+<line x1="201" y1="262" x2="201" y2="204" class="ln" marker-end="url(#ar-arrk)"/>
+<rect x="266" y="220" width="24" height="30" class="prop"/>
+<line x1="266" y1="220" x2="290" y2="250" class="ln-f"/>
+<line x1="290" y1="220" x2="266" y2="250" class="ln-f"/>
+<text x="278" y="266" text-anchor="middle" class="t-sm">LIFT</text>
+<text x="220" y="296" text-anchor="middle" class="t-sm">CORE · 2 × 16R</text>
+<line x1="360" y1="200" x2="360" y2="280" class="gap"/>
+<line x1="360" y1="200" x2="360" y2="280" class="glass"/>
+<rect x="280" y="100" width="70" height="40" class="prop"/>
+<text x="315" y="119" text-anchor="middle" class="t-sm">TOKENS</text>
+<text x="315" y="133" text-anchor="middle" class="t-sm">PRIZES</text>
+<rect x="50" y="95" width="30" height="20" class="prop"/>
+<rect x="50" y="119" width="30" height="20" class="prop"/>
+<rect x="50" y="143" width="30" height="20" class="prop"/>
+<rect x="50" y="167" width="30" height="20" class="prop"/>
+<rect x="50" y="191" width="30" height="20" class="prop"/>
+<rect x="50" y="215" width="30" height="20" class="prop"/>
+<text x="94" y="170" text-anchor="middle" class="t-sm" transform="rotate(-90 94 170)">RACING ×6</text>
+<rect x="120" y="110" width="40" height="24" class="prop"/>
+<line x1="140" y1="110" x2="140" y2="134" class="ln-f"/>
+<rect x="120" y="160" width="40" height="24" class="prop"/>
+<line x1="140" y1="160" x2="140" y2="184" class="ln-f"/>
+<text x="140" y="214" text-anchor="middle" class="t-sm">AIR HOCKEY ×2</text>
+<rect x="180" y="86" width="16" height="34" class="prop"/>
+<rect x="200" y="86" width="16" height="34" class="prop"/>
+<rect x="220" y="86" width="16" height="34" class="prop"/>
+<rect x="240" y="86" width="16" height="34" class="prop"/>
+<text x="220" y="140" text-anchor="middle" class="t-sm">HOOPS ×4</text>
+<rect x="70" y="260" width="100" height="120" class="z-paver"/>
+<rect x="70" y="260" width="100" height="120" class="ln"/>
+<rect x="85" y="280" width="32" height="32" class="umb-y"/>
+<rect x="125" y="280" width="32" height="32" class="umb-y"/>
+<rect x="85" y="330" width="32" height="32" class="umb-p"/>
+<rect x="125" y="330" width="32" height="32" class="umb-p"/>
+<rect x="64" y="254" width="112" height="132" class="ln-b"/>
+<text x="120" y="374" text-anchor="middle" class="t-sm halo">BEAT STAGE +0.30</text>
+<rect x="180" y="320" width="18" height="18" class="prop"/>
+<rect x="180" y="364" width="18" height="18" class="prop"/>
+<rect x="200" y="320" width="18" height="18" class="prop"/>
+<rect x="200" y="364" width="18" height="18" class="prop"/>
+<rect x="220" y="320" width="18" height="18" class="prop"/>
+<rect x="220" y="364" width="18" height="18" class="prop"/>
+<rect x="240" y="320" width="18" height="18" class="prop"/>
+<rect x="240" y="364" width="18" height="18" class="prop"/>
+<rect x="260" y="320" width="18" height="18" class="prop"/>
+<rect x="260" y="364" width="18" height="18" class="prop"/>
+<rect x="280" y="320" width="18" height="18" class="prop"/>
+<rect x="280" y="364" width="18" height="18" class="prop"/>
+<text x="240" y="356" text-anchor="middle" class="t-sm">CLAW ALLEY ×12</text>
+<rect x="315" y="310" width="40" height="38" class="prop"/>
+<rect x="315" y="352" width="40" height="38" class="prop"/>
+<text x="309" y="350" text-anchor="middle" class="t-sm" transform="rotate(-90 309 350)">PHOTO STICKER ×2</text>
+<text x="320" y="246" text-anchor="middle" class="t-lbl">FOYER</text>
+<text x="320" y="264" text-anchor="middle" class="t-sm">FFL +4.80</text>
+<line x1="400" y1="240" x2="366" y2="240" class="ln-h" marker-end="url(#ar-arrk)"/>
+<text x="416" y="240" text-anchor="middle" class="t-sm" transform="rotate(-90 416 240)">ENTRY FROM PLAZA · 8.00</text>
+<line class="dim" x1="40" y1="78" x2="40" y2="61"/><line class="dim" x1="360" y1="78" x2="360" y2="61"/><line class="dim" x1="37" y1="64" x2="363" y2="64"/><line class="dim-t" x1="37" y1="67" x2="43" y2="61"/><line class="dim-t" x1="357" y1="67" x2="363" y2="61"/><text class="t-dim halo" x="200" y="61" text-anchor="middle">32.00</text>
+<line class="dim" x1="38" y1="80" x2="21" y2="80"/><line class="dim" x1="38" y1="400" x2="21" y2="400"/><line class="dim" x1="24" y1="77" x2="24" y2="403"/><line class="dim-t" x1="21" y1="83" x2="27" y2="77"/><line class="dim-t" x1="21" y1="403" x2="27" y2="397"/><text class="t-dim halo" x="20" y="240" text-anchor="middle" transform="rotate(-90 20 240)">32.00</text>
+<text x="200" y="430" text-anchor="middle" class="t-head">GROUND FLOOR +4.80</text>
+<rect x="430" y="80" width="320" height="320" class="wall"/>
+<rect x="570" y="180" width="80" height="100" class="ln-h"/>
+<line x1="574" y1="216" x2="608" y2="216" class="ln-m"/>
+<line x1="612" y1="216" x2="646" y2="216" class="ln-m"/>
+<line x1="574" y1="222" x2="608" y2="222" class="ln-m"/>
+<line x1="612" y1="222" x2="646" y2="222" class="ln-m"/>
+<line x1="574" y1="228" x2="608" y2="228" class="ln-m"/>
+<line x1="612" y1="228" x2="646" y2="228" class="ln-m"/>
+<line x1="574" y1="234" x2="608" y2="234" class="ln-m"/>
+<line x1="612" y1="234" x2="646" y2="234" class="ln-m"/>
+<line x1="574" y1="240" x2="608" y2="240" class="ln-m"/>
+<line x1="612" y1="240" x2="646" y2="240" class="ln-m"/>
+<line x1="574" y1="246" x2="608" y2="246" class="ln-m"/>
+<line x1="612" y1="246" x2="646" y2="246" class="ln-m"/>
+<line x1="574" y1="252" x2="608" y2="252" class="ln-m"/>
+<line x1="612" y1="252" x2="646" y2="252" class="ln-m"/>
+<line x1="574" y1="258" x2="608" y2="258" class="ln-m"/>
+<line x1="612" y1="258" x2="646" y2="258" class="ln-m"/>
+<line x1="574" y1="264" x2="608" y2="264" class="ln-m"/>
+<line x1="612" y1="264" x2="646" y2="264" class="ln-m"/>
+<line x1="610" y1="184" x2="610" y2="276" class="ln"/>
+<line x1="591" y1="262" x2="591" y2="204" class="ln" marker-end="url(#ar-arrk)"/>
+<rect x="656" y="220" width="24" height="30" class="prop"/>
+<line x1="656" y1="220" x2="680" y2="250" class="ln-f"/>
+<line x1="680" y1="220" x2="656" y2="250" class="ln-f"/>
+<text x="668" y="266" text-anchor="middle" class="t-sm">LIFT</text>
+<text x="610" y="296" text-anchor="middle" class="t-sm">CORE · 2 × 16R</text>
+<line x1="550" y1="80" x2="630" y2="80" class="gap"/>
+<rect x="550" y="40" width="80" height="40" class="bldg-l"/>
+<line x1="550" y1="40" x2="550" y2="80" class="ln-h"/>
+<line x1="630" y1="40" x2="630" y2="80" class="ln-h"/>
+<text x="640" y="64" text-anchor="start" class="t-sm">BRIDGE → HILL TERRACE +9.60</text>
+<line x1="750" y1="160" x2="750" y2="340" class="gap"/>
+<line x1="750" y1="160" x2="750" y2="340" class="glass"/>
+<rect x="753" y="170" width="7" height="140" class="led"/>
+<text x="774" y="240" text-anchor="middle" class="t-sm" transform="rotate(-90 774 240)">LED SCREEN · exterior</text>
+<circle cx="470" cy="115" r="15" class="prop"/>
+<circle cx="470" cy="115" r="6" class="umb-c"/>
+<circle cx="520" cy="115" r="15" class="prop"/>
+<circle cx="520" cy="115" r="6" class="umb-c"/>
+<circle cx="470" cy="165" r="15" class="prop"/>
+<circle cx="470" cy="165" r="6" class="umb-c"/>
+<circle cx="520" cy="165" r="15" class="prop"/>
+<circle cx="520" cy="165" r="6" class="umb-c"/>
+<text x="495" y="206" text-anchor="middle" class="t-sm">VR PODS ×4</text>
+<rect x="670" y="110" width="70" height="20" class="prop"/>
+<rect x="670" y="145" width="70" height="20" class="prop"/>
+<rect x="670" y="180" width="70" height="20" class="prop"/>
+<text x="705" y="103" text-anchor="middle" class="t-sm">MUSIC CABINETS</text>
+<rect x="450" y="240" width="110" height="140" class="z-paver"/>
+<rect x="450" y="240" width="110" height="140" class="ln-b"/>
+<circle cx="505" cy="310" r="40" class="ln-m" stroke-dasharray="2 2"/>
+<text x="505" y="316" text-anchor="middle" class="t-sm halo">PARTY ARENA</text>
+<text x="505" y="332" text-anchor="middle" class="t-sm halo">11 × 14</text>
+<rect x="575" y="300" width="70" height="16" class="prop"/>
+<text x="610" y="330" text-anchor="middle" class="t-sm">VENDING</text>
+<rect x="714" y="270" width="28" height="110" class="prop"/>
+<rect x="671" y="286" width="18" height="18" class="prop"/>
+<rect x="671" y="321" width="18" height="18" class="prop"/>
+<rect x="671" y="356" width="18" height="18" class="prop"/>
+<text x="676" y="390" text-anchor="middle" class="t-sm">LOUNGE · view to plaza</text>
+<text x="590" y="374" text-anchor="middle" class="t-sm">FFL +9.60</text>
+<text x="590" y="430" text-anchor="middle" class="t-head">UPPER FLOOR +9.60</text></svg>
