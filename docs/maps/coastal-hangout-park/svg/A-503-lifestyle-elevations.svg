@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="950" viewBox="0 0 1100 950" role="img" aria-label="A-503 Lifestyle elevations"><style>@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Condensed:wght@500;600;700&amp;family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;display=swap');
+.sheet-bg{fill:#FBFCFC}
+.frame{fill:none;stroke:#16283A;stroke-width:1.4}
+.frame-in{fill:none;stroke:#16283A;stroke-width:.7}
+.ln{fill:none;stroke:#16283A;stroke-width:1}
+.ln-h{fill:none;stroke:#16283A;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.ln-m{fill:none;stroke:#4A5C6F;stroke-width:.8}
+.ln-f{fill:none;stroke:#93A3B2;stroke-width:.6}
+.ln-b{fill:none;stroke:#4A5C6F;stroke-width:.8;stroke-dasharray:4 3}
+.ln-water{fill:none;stroke:#0D7F8A;stroke-width:1.2}
+.gap{stroke:#FBFCFC;stroke-width:5}
+.z-paver,.z-town{fill:#E1E6EA}
+.z-brick{fill:#EDD0BD}
+.z-lawn{fill:#CDE4B3}
+.z-conc{fill:#D3D9DC}
+.z-timber{fill:#E6CFA6}
+.z-sand{fill:#FBF7EA}
+.z-sea{fill:#BCE4EB}
+.z-deep{fill:#8CC7D8}
+.z-cliff{fill:#CBC5BC}
+.z-rockp{fill:#CBC5BC;opacity:.75}
+.bldg{fill:#D5DFE9;stroke:#16283A;stroke-width:1.6}
+.bldg-l{fill:#D5DFE9;stroke:#16283A;stroke-width:.9}
+.beyond{fill:#D5DFE9;fill-opacity:.55;stroke:#4A5C6F;stroke-width:.8}
+.under{fill:#D5DFE9;fill-opacity:.5;stroke:#4A5C6F;stroke-width:.8;stroke-dasharray:3 2}
+.wall{fill:#FBFCFC;stroke:#16283A;stroke-width:4}
+.glass{fill:none;stroke:#0D7F8A;stroke-width:1.6}
+.solid{fill:#16283A}
+.led{fill:#16283A;opacity:.85}
+.conc{fill:#D3D9DC;stroke:#16283A;stroke-width:1}
+.poche{fill:#CBC5BC}
+.water{fill:#BCE4EB;opacity:.85}
+.tree{fill:#9BCA84;stroke:#58894C;stroke-width:.7}
+.trunk{fill:none;stroke:#58894C;stroke-width:1.4}
+.prop{fill:#FBFCFC;stroke:#16283A;stroke-width:.7}
+.prop-d{fill:#4A5C6F}
+.umb-y{fill:#F0BE2C;stroke:#16283A;stroke-width:.5}
+.umb-p{fill:#E5539A;stroke:#16283A;stroke-width:.5}
+.umb-c{fill:#24ABCC;stroke:#16283A;stroke-width:.5}
+.chalk-y{fill:#F0BE2C}
+.chalk-p{fill:#E5539A}
+.chalk-c{fill:#24ABCC}
+.ring-acc{fill:none;stroke:#D93A55;stroke-width:1.6}
+.bunting{fill:none;stroke:#E5539A;stroke-width:1;stroke-dasharray:2.5 2}
+.pat-s{fill:none;stroke:#93A3B2;stroke-width:.5}
+.pat-d{fill:#93A3B2}
+.pat-w{fill:none;stroke:#FBFCFC;stroke-width:.7;opacity:.7}
+.pat-g{fill:none;stroke:#58894C;stroke-width:.6;opacity:.55}
+.path-edge{fill:none;stroke:#93A3B2;stroke-width:17}
+.path-fill{fill:none;stroke:#E1E6EA;stroke-width:15}
+.grid{fill:none;stroke:#93A3B2;stroke-width:.5;stroke-dasharray:2 4}
+.bubble{fill:#FBFCFC;stroke:#16283A;stroke-width:.8}
+.circ1{fill:none;stroke:#D93A55;stroke-width:2.2;stroke-dasharray:8 4;stroke-linecap:round}
+.circ2{fill:none;stroke:#D93A55;stroke-width:1.2;stroke-dasharray:3 3;stroke-linecap:round}
+.sight{fill:none;stroke:#0D7F8A;stroke-width:1.4;stroke-dasharray:1.5 3.5;stroke-linecap:round}
+.cut{fill:none;stroke:#D93A55;stroke-width:.9;stroke-dasharray:14 3 2 3}
+.cut-h{fill:none;stroke:#D93A55;stroke-width:3}
+.acc-f{fill:#D93A55}
+.teal-f{fill:#0D7F8A}
+.ink-f{fill:#16283A}
+.sheet-f{fill:#FBFCFC}
+.dim{fill:none;stroke:#16283A;stroke-width:.6}
+.dim-t{fill:none;stroke:#16283A;stroke-width:1.1}
+.avatar{fill:#24ABCC;stroke:#16283A;stroke-width:.6}
+.cam{fill:#0D7F8A}
+.t-zone{font:700 12px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.08em;fill:#16283A}
+.t-big{font:700 16px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.14em;fill:#16283A}
+.t-lbl{font:600 9.5px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.03em;fill:#16283A}
+.t-sm{font:500 8px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.02em;fill:#4A5C6F}
+.t-dim{font:600 8.5px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;fill:#16283A}
+.t-head{font:700 15px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.12em;fill:#16283A}
+.t-title{font:800 21px "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;fill:#16283A}
+.t-acc{fill:#D93A55}
+.t-teal{fill:#0D7F8A}
+.t-inv{fill:#FBFCFC}
+.halo{paint-order:stroke;stroke:#FBFCFC;stroke-width:3px;stroke-linejoin:round}
+.z-road{fill:#93A3B2;opacity:.6}
+.lane{fill:none;stroke:#FBFCFC;stroke-width:1;stroke-dasharray:6 5}
+.zebra{fill:#FBFCFC}
+.tree-s{fill:#E5539A;fill-opacity:.45;stroke:#E5539A;stroke-width:.8}
+.trim-y{fill:none;stroke:#F0BE2C;stroke-width:2.4}
+.arc-y{fill:#F0BE2C;fill-opacity:.32}
+.key{fill:#16283A}
+.statue{fill:#FBFCFC;stroke:#16283A;stroke-width:1.2}
+.tree-o{fill:#9BCA84;stroke:#58894C;stroke-width:1.5}
+.tree-f{fill:#9BCA84}
+.sak-o{fill:#F5C3D8;stroke:#E5539A;stroke-width:1.3}
+.sak-f{fill:#F5C3D8}
+.shrub-o{fill:#86BB6D;stroke:#58894C;stroke-width:1}
+.shrub-f{fill:#86BB6D}
+.bed{fill:#86BB6D;stroke:#58894C;stroke-width:.9}
+.leaf{fill:none;stroke:#58894C;stroke-width:.7;opacity:.8;stroke-linecap:round}
+.blossom{fill:#E5539A}
+.palm{fill:#7DB268;stroke:#58894C;stroke-width:.6;stroke-linejoin:round}
+.shadow{fill:#16283A;opacity:.12}
+.rock{fill:#CBC5BC;stroke:#4A5C6F;stroke-width:.8;stroke-linejoin:round}
+.foam{fill:none;stroke:#FFFFFF;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.foam-d{fill:none;stroke:#FFFFFF;stroke-width:1;stroke-dasharray:4 3;stroke-linecap:round}
+.z-mid{fill:#A5D6E2}
+.z-wet{fill:#F0EAD8}
+.roof{fill:#BAC7D4;stroke:#16283A;stroke-width:1.6}
+.roof-2{fill:#9DAFC1}
+.post{fill:#16283A}
+.rail{fill:none;stroke:#16283A;stroke-width:.9}
+.tread{fill:none;stroke:#4A5C6F;stroke-width:.5}
+.joint{fill:none;stroke:#93A3B2;stroke-width:.45}
+.band{fill:#C4D1D8}
+.wall-l{fill:none;stroke:#16283A;stroke-width:3.2;stroke-linecap:square}
+.wall6{fill:none;stroke:#16283A;stroke-width:2.4}
+.string{fill:none;stroke:#4A5C6F;stroke-width:.6;stroke-dasharray:1 2}
+.bulb{fill:#F0BE2C}
+.door{fill:none;stroke:#4A5C6F;stroke-width:.6}
+.curb{fill:none;stroke:#16283A;stroke-width:1.1;stroke-linejoin:round}
+.wallp{fill:#4A5C6F;stroke:#16283A;stroke-width:.5;stroke-linejoin:miter}
+
+.e-yel{fill:#F7CB3B;stroke:#16283A;stroke-width:.9;stroke-linejoin:round}
+.e-yel2{fill:#E3AE1F}
+.e-yel3{fill:#FFE27A}
+.e-cream{fill:#F7F2E6;stroke:#16283A;stroke-width:.9;stroke-linejoin:round}
+.e-cream2{fill:#DED6C3}
+.e-dark{fill:#2E333B}
+.e-blue{fill:#2F8FE8;stroke:#16283A;stroke-width:.7}
+.e-red{fill:#E8414E;stroke:#16283A;stroke-width:.7}
+.e-green{fill:#3FB950;stroke:#16283A;stroke-width:.7}
+.e-glass{fill:#CBE8EE;stroke:#16283A;stroke-width:.8}
+.e-glass-t{fill:#CBE8EE;fill-opacity:.45;stroke:none}
+.e-glow{fill:#FFE7B0}
+.e-pink{fill:#F59BC3}
+.e-pink-o{fill:#F59BC3;stroke:#16283A;stroke-width:.7}
+.e-lilac{fill:#B9A2EE}
+.e-poster{fill:#3D8BE0;stroke:#16283A;stroke-width:.6}
+.e-wall{fill:#F1E9DA;stroke:#16283A;stroke-width:.9;stroke-linejoin:round}
+.e-coral{fill:#EE8A6B;stroke:#16283A;stroke-width:.8}
+.e-mint{fill:#A9DCC6;stroke:#16283A;stroke-width:.8}
+.e-navy{fill:#2C3E57}
+.e-steel{fill:#8C99A6;stroke:#16283A;stroke-width:.6}
+.e-wood{fill:#E6CFA6;stroke:#16283A;stroke-width:.8}
+.e-conc{fill:#D3D9DC;stroke:#16283A;stroke-width:.8}
+.e-thatch{fill:#D9B477;stroke:#16283A;stroke-width:.9;stroke-linejoin:round}
+.e-orange{fill:#F59A3A}
+.e-white{fill:#FFFFFF}
+.e-sky{fill:#E4F2F7}
+.e-shadow{fill:#16283A;opacity:.15}
+.e-joint{fill:none;stroke:#16283A;stroke-width:.45;opacity:.3}
+.e-mull{fill:none;stroke:#16283A;stroke-width:1}
+.e-mull-t{fill:none;stroke:#2E333B;stroke-width:1.6}
+.e-hl{fill:none;stroke:#FFFFFF;stroke-width:1.4;opacity:.75;stroke-linecap:round}
+.e-led{fill:none;stroke:#FFFFFF;stroke-width:1.6;stroke-linecap:round}
+.e-led-p{fill:none;stroke:#F59BC3;stroke-width:1.4;stroke-linecap:round}
+.e-led-c{fill:none;stroke:#24ABCC;stroke-width:1.4;stroke-linecap:round}
+.e-out{fill:none;stroke:#16283A;stroke-width:1.3;stroke-linejoin:round}
+.e-ghost{fill:none;stroke:#4A5C6F;stroke-width:.8;stroke-dasharray:4 3}
+.e-ground{fill:none;stroke:#16283A;stroke-width:2.2;stroke-linecap:square}
+.e-wave{fill:none;stroke:#3D8BE0;stroke-width:1.2;stroke-linecap:round}
+.e-wave-y{fill:none;stroke:#E3AE1F;stroke-width:1.4;stroke-linecap:round}
+.e-break{fill:none;stroke:#4A5C6F;stroke-width:.8}
+.e-rope{fill:none;stroke:#4A5C6F;stroke-width:.6}
+.e-fern{fill:#86BB6D;stroke:#58894C;stroke-width:.6;stroke-linejoin:round}
+.e-key{font:600 9px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.03em;fill:#16283A}
+.e-fd{font-family:"Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif}
+.e-fb{font-family:"Barlow", ui-sans-serif, system-ui, sans-serif}
+.e-fc{font-family:"Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif}
+</style><defs><pattern id="ce-earth" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="pat-s" d="M0 0V6"/><circle class="pat-d" cx="3" cy="3" r=".5"/></pattern><pattern id="ce-clad" width="10" height="10" patternUnits="userSpaceOnUse"><path class="e-joint" d="M0 10H10"/></pattern><pattern id="ce-slat" width="4" height="10" patternUnits="userSpaceOnUse"><path class="e-joint" d="M2 0V10"/></pattern><pattern id="ce-awn-y" width="12" height="10" patternUnits="userSpaceOnUse"><rect width="6" height="10" class="e-yel3"/><rect x="6" width="6" height="10" class="e-white"/></pattern><pattern id="ce-awn-p" width="12" height="10" patternUnits="userSpaceOnUse"><rect width="6" height="10" class="e-pink"/><rect x="6" width="6" height="10" class="e-white"/></pattern><pattern id="ce-awn-c" width="12" height="10" patternUnits="userSpaceOnUse"><rect width="6" height="10" class="chalk-c"/><rect x="6" width="6" height="10" class="e-white"/></pattern><pattern id="ce-thatch" width="5" height="6" patternUnits="userSpaceOnUse"><path class="e-joint" d="M0 6L2.5 0M2.5 6L5 0"/></pattern><marker id="ce-arrk" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto-start-reverse"><path class="ink-f" d="M0 0 10 5 0 10z"/></marker></defs>
+<rect class="sheet-bg" width="1100" height="950"/>
+<rect class="ink-f" x="24" y="17" width="55.0" height="18"/>
+<text class="t-head t-inv" x="30" y="31">A-503</text>
+<text class="t-head" x="89.0" y="31">LIFESTYLE &amp; SOUVENIR · ELEVATIONS</text>
+<text class="t-sm" x="24" y="48">Re-traced footprint (L-101): yellow trim on three sides, canopy band with roof garden, centre awning and shop sign · 20 px = 1 m</text>
+<rect class="frame" x="12" y="50" width="1076" height="888"/>
+<rect x="150" y="130" width="780" height="160" class="e-sky"/>
+<rect x="486.6" y="218" width="283.4" height="72" class="beyond"/>
+<rect x="310" y="182" width="460" height="108" class="e-white"/>
+<rect x="310" y="182" width="460" height="108" class="e-out"/>
+<rect x="310" y="174" width="460" height="8" class="e-yel"/>
+<text class="e-fd" x="540" y="200" text-anchor="middle" style="font-weight:800;font-size:13.89px;fill:#2E333B;letter-spacing:0px">LIFESTYLE &amp; SOUVENIR</text>
+<text class="e-fb" x="414" y="215" text-anchor="middle" style="font-weight:700;font-size:6.67px;fill:#2E333B;letter-spacing:0px">ライフスタイル＆おみやげ</text>
+<rect x="310" y="230" width="460" height="60" class="e-white"/>
+<rect x="310" y="230" width="460" height="5" class="e-dark"/>
+<ellipse class="shrub-o" cx="555.3" cy="224.16" rx="7.3" ry="6.57"/>
+<ellipse class="shrub-o" cx="565.96" cy="223.22" rx="8.48" ry="7.63"/>
+<ellipse class="shrub-o" cx="574.54" cy="225.17" rx="6.03" ry="5.43"/>
+<ellipse class="shrub-o" cx="586.28" cy="222.05" rx="9.93" ry="8.94"/>
+<ellipse class="shrub-o" cx="598.55" cy="222.57" rx="9.29" ry="8.36"/>
+<ellipse class="shrub-o" cx="611.33" cy="222" rx="10" ry="9"/>
+<ellipse class="shrub-o" cx="621.39" cy="224.36" rx="7.05" ry="6.35"/>
+<ellipse class="shrub-o" cx="630.3" cy="224.56" rx="6.8" ry="6.12"/>
+<ellipse class="shrub-o" cx="638.56" cy="225.02" rx="6.22" ry="5.6"/>
+<ellipse class="shrub-o" cx="647.2" cy="224.58" rx="6.78" ry="6.1"/>
+<ellipse class="shrub-o" cx="655.33" cy="225.12" rx="6.1" ry="5.49"/>
+<ellipse class="shrub-o" cx="665.92" cy="222.99" rx="8.77" ry="7.89"/>
+<ellipse class="shrub-o" cx="676.02" cy="224.03" rx="7.46" ry="6.72"/>
+<ellipse class="shrub-o" cx="687.52" cy="222.59" rx="9.26" ry="8.34"/>
+<rect x="313.4" y="235" width="173.2" height="12" class="e-yel"/>
+<text class="e-fc" x="400" y="244" text-anchor="middle" style="font-weight:700;font-size:5.56px;fill:#2E333B;letter-spacing:0px">GOODS · HOME · GIFTS</text>
+<rect x="320" y="248" width="160" height="42" class="e-glow"/>
+<rect x="320" y="248" width="160" height="42" class="e-glass-t"/>
+<line x1="360" y1="290" x2="360" y2="248" class="e-mull-t"/>
+<line x1="400" y1="290" x2="400" y2="248" class="e-mull-t"/>
+<line x1="440" y1="290" x2="440" y2="248" class="e-mull-t"/>
+<rect x="320" y="248" width="160" height="42" style="fill:none;stroke:#2E333B;stroke-width:1.8"/>
+<line x1="328" y1="279.5" x2="342" y2="258.5" class="e-hl"/>
+<line x1="368" y1="279.5" x2="382" y2="258.5" class="e-hl"/>
+<line x1="408" y1="279.5" x2="422" y2="258.5" class="e-hl"/>
+<line x1="448" y1="279.5" x2="462" y2="258.5" class="e-hl"/>
+<rect x="490" y="244" width="50" height="46" class="e-glow"/>
+<rect x="490" y="244" width="50" height="46" class="e-glass-t"/>
+<line x1="515" y1="290" x2="515" y2="244" class="e-mull-t"/>
+<rect x="490" y="244" width="50" height="46" style="fill:none;stroke:#2E333B;stroke-width:1.8"/>
+<line x1="495" y1="278.5" x2="503.75" y2="255.5" class="e-hl"/>
+<line x1="520" y1="278.5" x2="528.75" y2="255.5" class="e-hl"/>
+<rect x="700" y="244" width="62" height="30" class="e-glass"/>
+<line x1="731" y1="274" x2="731" y2="244" class="e-mull-t"/>
+<rect x="700" y="244" width="62" height="30" style="fill:none;stroke:#2E333B;stroke-width:1.8"/>
+<line x1="706.2" y1="266.5" x2="717.05" y2="251.5" class="e-hl"/>
+<line x1="737.2" y1="266.5" x2="748.05" y2="251.5" class="e-hl"/>
+<rect x="543.4" y="243" width="150" height="16" class="e-yel"/>
+<rect x="543.4" y="243" width="150" height="16" class="e-out"/>
+<rect x="543.4" y="259" width="150" height="7" class="e-shadow"/>
+<rect x="548" y="260" width="142" height="30" class="e-glow"/>
+<rect x="548" y="260" width="142" height="30" class="e-glass-t"/>
+<line x1="583.5" y1="290" x2="583.5" y2="260" class="e-mull-t"/>
+<line x1="619" y1="290" x2="619" y2="260" class="e-mull-t"/>
+<line x1="654.5" y1="290" x2="654.5" y2="260" class="e-mull-t"/>
+<rect x="548" y="260" width="142" height="30" style="fill:none;stroke:#2E333B;stroke-width:1.8"/>
+<line x1="555.1" y1="282.5" x2="567.53" y2="267.5" class="e-hl"/>
+<line x1="590.6" y1="282.5" x2="603.03" y2="267.5" class="e-hl"/>
+<line x1="626.1" y1="282.5" x2="638.52" y2="267.5" class="e-hl"/>
+<line x1="661.6" y1="282.5" x2="674.03" y2="267.5" class="e-hl"/>
+<rect x="560.8" y="274" width="2.4" height="16" class="e-dark"/>
+<rect x="672.8" y="274" width="2.4" height="16" class="e-dark"/>
+<path d="M553 275 L683 275 Q686 275 686 272 L686 264 Q686 261 683 261 L553 261 Q550 261 550 264 L550 272 Q550 275 553 275 Z" class="e-pink-o"/>
+<text class="e-fd" x="618" y="272" text-anchor="middle" style="font-weight:800;font-size:10.56px;fill:#FFFFFF;letter-spacing:0px">SOUVENIR</text>
+<rect x="320" y="270" width="83.4" height="20" class="e-wood"/>
+<rect x="322" y="269" width="79.4" height="3" class="e-cream"/>
+<rect x="321" y="243" width="2" height="47" class="e-dark"/>
+<rect x="400.4" y="243" width="2" height="47" class="e-dark"/>
+<rect x="316" y="237" width="91.4" height="7" fill="url(#ce-awn-c)"/>
+<rect x="316" y="237" width="91.4" height="7" class="e-out"/>
+<circle cx="328" cy="265" r="3.4" class="chalk-y"/>
+<circle cx="339" cy="265" r="3.4" class="chalk-y"/>
+<circle cx="350" cy="265" r="3.4" class="chalk-y"/>
+<circle cx="361" cy="265" r="3.4" class="chalk-p"/>
+<circle cx="372" cy="265" r="3.4" class="chalk-p"/>
+<circle cx="383" cy="265" r="3.4" class="chalk-p"/>
+<circle cx="394" cy="265" r="3.4" class="chalk-p"/>
+<rect x="488.8" y="280" width="36" height="10" class="e-pink-o"/>
+<ellipse cx="506.8" cy="269.35" rx="12.1" ry="10.65" class="statue"/>
+<circle cx="506.8" cy="254.83" r="8.23" class="statue"/>
+<polygon points="499.54,250.96 501.48,244.67 504.86,248.06" class="statue"/>
+<polygon points="514.06,250.96 512.12,244.67 508.74,248.06" class="statue"/>
+<circle cx="515.51" cy="266.45" r="2.71" class="chalk-p"/>
+<rect x="730" y="254" width="46.6" height="36" class="e-white"/>
+<rect x="730" y="254" width="46.6" height="36" class="e-out"/>
+<rect x="736" y="260" width="34" height="16" class="e-blue"/>
+<text class="e-fc" x="753" y="271" text-anchor="middle" style="font-weight:700;font-size:4.44px;fill:#FFFFFF;letter-spacing:0px">DRINKS</text>
+<ellipse class="shrub-o" cx="784.29" cy="272.97" rx="6.29" ry="5.66"/>
+<ellipse class="shrub-o" cx="794.56" cy="271.3" rx="8.38" ry="7.54"/>
+<ellipse class="shrub-o" cx="807.03" cy="270.03" rx="9.96" ry="8.96"/>
+<ellipse class="shrub-o" cx="817.39" cy="272.1" rx="7.38" ry="6.64"/>
+<ellipse class="shrub-o" cx="827.78" cy="271.46" rx="8.18" ry="7.36"/>
+<ellipse class="shrub-o" cx="837.73" cy="272" rx="7.5" ry="6.75"/>
+<ellipse class="shrub-o" cx="848.94" cy="270.83" rx="8.96" ry="8.06"/>
+<ellipse class="shrub-o" cx="860.37" cy="271.01" rx="8.74" ry="7.87"/>
+<rect x="776.6" y="278" width="86.8" height="12" class="e-conc"/>
+<line x1="220" y1="290" x2="220" y2="242" class="e-mull"/>
+<path d="M190 249 Q208 240 220 233 Q232 240 250 249 Z" class="umb-y"/>
+<line x1="217" y1="234" x2="205" y2="248" class="e-joint"/>
+<line x1="220" y1="234" x2="220" y2="248" class="e-joint"/>
+<line x1="223" y1="234" x2="235" y2="248" class="e-joint"/>
+<circle cx="220" cy="232" r="1.2" class="ink-f"/>
+<line x1="180" y1="290" x2="180" y2="209.4" class="trunk"/>
+<g class="tree-o"><ellipse cx="180" cy="209.4" rx="32.4" ry="33.79"/><ellipse cx="153.56" cy="218.08" rx="19.5" ry="17.46"/><ellipse cx="153.02" cy="202.47" rx="17.08" ry="19.35"/><ellipse cx="162.5" cy="188.2" rx="17.28" ry="18.34"/><ellipse cx="176.5" cy="182.4" rx="16.18" ry="17.33"/><ellipse cx="188.72" cy="183.55" rx="16.81" ry="17.36"/><ellipse cx="200.56" cy="191" rx="19.17" ry="19.94"/><ellipse cx="207.09" cy="202.89" rx="19.24" ry="18.81"/><ellipse cx="207.57" cy="213.59" rx="18.78" ry="18.28"/></g>
+<g class="tree-f"><ellipse cx="180" cy="209.4" rx="31.5" ry="32.89"/><ellipse cx="153.56" cy="218.08" rx="18.6" ry="16.56"/><ellipse cx="153.02" cy="202.47" rx="16.18" ry="18.45"/><ellipse cx="162.5" cy="188.2" rx="16.38" ry="17.44"/><ellipse cx="176.5" cy="182.4" rx="15.28" ry="16.43"/><ellipse cx="188.72" cy="183.55" rx="15.91" ry="16.46"/><ellipse cx="200.56" cy="191" rx="18.27" ry="19.04"/><ellipse cx="207.09" cy="202.89" rx="18.34" ry="17.91"/><ellipse cx="207.57" cy="213.59" rx="17.88" ry="17.38"/></g>
+<line x1="882" y1="290" x2="882" y2="242" class="e-mull"/>
+<path d="M852 249 Q870 240 882 233 Q894 240 912 249 Z" class="umb-c"/>
+<line x1="879" y1="234" x2="867" y2="248" class="e-joint"/>
+<line x1="882" y1="234" x2="882" y2="248" class="e-joint"/>
+<line x1="885" y1="234" x2="897" y2="248" class="e-joint"/>
+<circle cx="882" cy="232" r="1.2" class="ink-f"/>
+<path d="M910 290 Q912.4 212 922 160" class="trunk"/>
+<path class="palm" d="M922 160Q895.93 141.16 869.86 160.49Q895.93 146.16 922 160Z M922 160Q903.05 139.66 884.1 150.56Q903.05 144.66 922 160Z M922 160Q914.43 135.17 906.87 133.22Q914.43 140.17 922 160Z M922 160Q922.38 133.01 922.77 124.54Q922.38 138.01 922 160Z M922 160Q930.48 131.81 938.96 128.89Q930.48 136.81 922 160Z M922 160Q941.82 139.19 961.64 150.66Q941.82 144.19 922 160Z M922 160Q945.11 145.05 968.21 164.11Q945.11 150.05 922 160Z"/>
+<g class="avatar"><circle cx="454" cy="260.3" r="2.48"/><rect x="450.7" y="262.94" width="6.6" height="13.2" rx="1.98"/><rect x="451.19" y="275.15" width="2.48" height="14.85" rx="0.99"/><rect x="454.33" y="275.15" width="2.48" height="14.85" rx="0.99"/></g>
+<polygon points="150,290 930,290 930,300 150,300" class="poche"/>
+<polygon points="150,290 930,290 930,300 150,300" fill="url(#ce-earth)"/>
+<polyline points="150,290 930,290" class="e-ground"/>
+<line class="dim" x1="307" y1="305" x2="773" y2="305"/><line class="dim-t" x1="307" y1="308" x2="313" y2="302"/><line class="dim-t" x1="767" y1="308" x2="773" y2="302"/><text class="t-dim halo" x="540" y="302" text-anchor="middle">23.00 SHOP</text>
+<line class="dim" x1="540.4" y1="315" x2="696.4" y2="315"/><line class="dim-t" x1="540.4" y1="318" x2="546.4" y2="312"/><line class="dim-t" x1="690.4" y1="318" x2="696.4" y2="312"/><text class="t-dim halo" x="618.4" y="312" text-anchor="middle">7.50 AWNING</text>
+<line class="dim" x1="788" y1="171" x2="788" y2="293"/><line class="dim-t" x1="785" y1="293" x2="791" y2="287"/><line class="dim-t" x1="785" y1="177" x2="791" y2="171"/><text class="t-dim halo" x="798" y="232" text-anchor="middle" transform="rotate(-90 798 232)">5.80</text>
+<polygon class="ink-f" points="143,283 151,283 147,290"/>
+<text class="t-dim halo" x="140" y="287" text-anchor="end">+3.60</text>
+<polygon class="ink-f" points="143,223 151,223 147,230"/>
+<text class="t-dim halo" x="140" y="227" text-anchor="end">+6.60 CANOPY</text>
+<polygon class="ink-f" points="143,167 151,167 147,174"/>
+<text class="t-dim halo" x="140" y="171" text-anchor="end">+9.40 TRIM</text>
+<line x1="616" y1="220" x2="570" y2="144" class="ln-m"/>
+<circle class="ink-f" cx="616" cy="220" r="1.8"/>
+<text class="e-key halo" x="573" y="147" text-anchor="start">Roof garden on the canopy (traced)</text>
+<circle class="bubble" cx="161" cy="342" r="11"/><text class="t-lbl" x="161" y="345.5" text-anchor="middle">10</text><text class="t-head" x="178" y="346">LIFESTYLE &amp; SOUVENIR · SOUTH · FRONT</text><text class="t-sm" x="178" y="358">looking north · canopy band, centre awning, shop sign, stall and photo statue</text>
+<rect x="150" y="419" width="680" height="156" class="e-sky"/>
+<rect x="220" y="503" width="90" height="72" class="beyond"/>
+<rect x="183.4" y="483" width="43.2" height="20" class="e-white"/>
+<rect x="183.4" y="483" width="43.2" height="20" class="e-out"/>
+<rect x="310" y="467" width="333.4" height="108" class="e-white"/>
+<rect x="310" y="467" width="333.4" height="108" class="e-out"/>
+<rect x="310" y="459" width="333.4" height="8" class="e-yel"/>
+<rect x="330" y="495" width="96" height="64" class="e-glass"/>
+<line x1="362" y1="559" x2="362" y2="495" class="e-mull-t"/>
+<line x1="394" y1="559" x2="394" y2="495" class="e-mull-t"/>
+<rect x="330" y="495" width="96" height="64" style="fill:none;stroke:#2E333B;stroke-width:1.8"/>
+<line x1="336.4" y1="543" x2="347.6" y2="511" class="e-hl"/>
+<line x1="368.4" y1="543" x2="379.6" y2="511" class="e-hl"/>
+<line x1="400.4" y1="543" x2="411.6" y2="511" class="e-hl"/>
+<rect x="530" y="495" width="100" height="64" class="e-glass"/>
+<line x1="563.33" y1="559" x2="563.33" y2="495" class="e-mull-t"/>
+<line x1="596.67" y1="559" x2="596.67" y2="495" class="e-mull-t"/>
+<rect x="530" y="495" width="100" height="64" style="fill:none;stroke:#2E333B;stroke-width:1.8"/>
+<line x1="536.67" y1="543" x2="548.33" y2="511" class="e-hl"/>
+<line x1="570" y1="543" x2="581.67" y2="511" class="e-hl"/>
+<line x1="603.33" y1="543" x2="615" y2="511" class="e-hl"/>
+<rect x="443.4" y="515" width="66.6" height="60" class="e-glow"/>
+<rect x="443.4" y="515" width="66.6" height="60" class="e-glass-t"/>
+<line x1="476.7" y1="575" x2="476.7" y2="515" class="e-mull-t"/>
+<rect x="443.4" y="515" width="66.6" height="60" style="fill:none;stroke:#2E333B;stroke-width:1.8"/>
+<line x1="450.06" y1="560" x2="461.72" y2="530" class="e-hl"/>
+<line x1="483.36" y1="560" x2="495.01" y2="530" class="e-hl"/>
+<rect x="436" y="505" width="82" height="6" class="e-yel"/>
+<rect x="440" y="511" width="74" height="6" class="e-shadow"/>
+<text class="e-fc" x="476.6" y="499" text-anchor="middle" style="font-weight:700;font-size:6.11px;fill:#2E333B;letter-spacing:0px">WELCOME</text>
+<rect x="643.4" y="515" width="83.2" height="60" class="e-white"/>
+<rect x="643.4" y="515" width="83.2" height="60" class="e-out"/>
+<rect x="643.4" y="515" width="83.2" height="5" class="e-dark"/>
+<polygon points="726.6,528 763.4,532 763.4,544 726.6,544" class="e-yel"/>
+<rect x="762" y="546" width="3" height="29" class="e-dark"/>
+<rect x="763.4" y="546" width="33.2" height="14" class="e-pink-o"/>
+<rect x="726.6" y="555" width="43.4" height="20" class="e-wood"/>
+<rect x="728.6" y="554" width="39.4" height="3" class="e-cream"/>
+<rect x="727.6" y="528" width="2" height="47" class="e-dark"/>
+<rect x="767" y="528" width="2" height="47" class="e-dark"/>
+<rect x="722.6" y="522" width="51.4" height="7" fill="url(#ce-awn-c)"/>
+<rect x="722.6" y="522" width="51.4" height="7" class="e-out"/>
+<circle cx="734.6" cy="550" r="3.4" class="chalk-p"/>
+<circle cx="745.6" cy="550" r="3.4" class="chalk-c"/>
+<circle cx="756.6" cy="550" r="3.4" class="chalk-c"/>
+<ellipse class="shrub-o" cx="245.8" cy="556.76" rx="7.8" ry="7.02"/>
+<ellipse class="shrub-o" cx="255.89" cy="556.8" rx="7.75" ry="6.97"/>
+<ellipse class="shrub-o" cx="264.38" cy="558.07" rx="6.17" ry="5.55"/>
+<ellipse class="shrub-o" cx="275.3" cy="555.74" rx="9.07" ry="8.16"/>
+<ellipse class="shrub-o" cx="286.72" cy="556.04" rx="8.69" ry="7.82"/>
+<ellipse class="shrub-o" cx="298.01" cy="556.05" rx="8.68" ry="7.82"/>
+<ellipse class="shrub-o" cx="308.5" cy="556.69" rx="7.89" ry="7.1"/>
+<ellipse class="shrub-o" cx="319.56" cy="556.05" rx="8.69" ry="7.82"/>
+<ellipse class="shrub-o" cx="331.7" cy="555.38" rx="9.53" ry="8.58"/>
+<ellipse class="shrub-o" cx="343.33" cy="555.99" rx="8.77" ry="7.89"/>
+<ellipse class="shrub-o" cx="353.34" cy="557.09" rx="7.38" ry="6.64"/>
+<ellipse class="shrub-o" cx="365.14" cy="555.33" rx="9.59" ry="8.63"/>
+<ellipse class="shrub-o" cx="375.29" cy="557.19" rx="7.27" ry="6.54"/>
+<ellipse class="shrub-o" cx="383.8" cy="557.93" rx="6.34" ry="5.7"/>
+<rect x="236" y="563" width="147.4" height="12" class="e-conc"/>
+<line x1="560" y1="575" x2="560" y2="527" class="e-mull"/>
+<path d="M530 534 Q548 525 560 518 Q572 525 590 534 Z" class="umb-y"/>
+<line x1="557" y1="519" x2="545" y2="533" class="e-joint"/>
+<line x1="560" y1="519" x2="560" y2="533" class="e-joint"/>
+<line x1="563" y1="519" x2="575" y2="533" class="e-joint"/>
+<circle cx="560" cy="517" r="1.2" class="ink-f"/>
+<g class="avatar"><circle cx="420" cy="544.4" r="2.55"/><rect x="416.6" y="547.12" width="6.8" height="13.6" rx="2.04"/><rect x="417.11" y="559.7" width="2.55" height="15.3" rx="1.02"/><rect x="420.34" y="559.7" width="2.55" height="15.3" rx="1.02"/></g>
+<polygon points="150,575 830,575 830,585 150,585" class="poche"/>
+<polygon points="150,575 830,575 830,585 150,585" fill="url(#ce-earth)"/>
+<polyline points="150,575 830,575" class="e-ground"/>
+<line class="dim" x1="307" y1="590" x2="646.4" y2="590"/><line class="dim-t" x1="307" y1="593" x2="313" y2="587"/><line class="dim-t" x1="640.4" y1="593" x2="646.4" y2="587"/><text class="t-dim halo" x="476.7" y="587" text-anchor="middle">16.67 SHOP</text>
+<polygon class="ink-f" points="143,568 151,568 147,575"/>
+<text class="t-dim halo" x="140" y="572" text-anchor="end">+3.60</text>
+<polygon class="ink-f" points="143,496 151,496 147,503"/>
+<text class="t-dim halo" x="140" y="500" text-anchor="end">+7.20 ANNEX</text>
+<polygon class="ink-f" points="143,452 151,452 147,459"/>
+<text class="t-dim halo" x="140" y="456" text-anchor="end">+9.40</text>
+<circle class="bubble" cx="161" cy="616" r="11"/><text class="t-lbl" x="161" y="619.5" text-anchor="middle">11</text><text class="t-head" x="178" y="620">LIFESTYLE &amp; SOUVENIR · WEST · SIDE TO THE PLAZA</text><text class="t-sm" x="178" y="632">looking east · double doors on the seating terrace</text>
+<rect x="150" y="704" width="760" height="156" class="e-sky"/>
+<rect x="763.4" y="788" width="90" height="72" class="e-white"/>
+<rect x="763.4" y="788" width="90" height="72" class="e-out"/>
+<rect x="763.4" y="788" width="90" height="6" class="e-yel"/>
+<rect x="780" y="816" width="24" height="44" class="e-steel"/>
+<rect x="846.6" y="768" width="43.4" height="20" class="e-white"/>
+<rect x="846.6" y="768" width="43.4" height="20" class="e-out"/>
+<rect x="430" y="752" width="333.4" height="108" class="e-white"/>
+<rect x="430" y="752" width="333.4" height="108" class="e-out"/>
+<rect x="430" y="744" width="333.4" height="8" class="e-yel"/>
+<rect x="446" y="784" width="52" height="48" class="e-glass"/>
+<line x1="472" y1="832" x2="472" y2="784" class="e-mull-t"/>
+<rect x="446" y="784" width="52" height="48" style="fill:none;stroke:#2E333B;stroke-width:1.8"/>
+<line x1="451.2" y1="820" x2="460.3" y2="796" class="e-hl"/>
+<line x1="477.2" y1="820" x2="486.3" y2="796" class="e-hl"/>
+<rect x="562" y="784" width="48" height="48" class="e-glass"/>
+<line x1="586" y1="832" x2="586" y2="784" class="e-mull-t"/>
+<rect x="562" y="784" width="48" height="48" style="fill:none;stroke:#2E333B;stroke-width:1.8"/>
+<line x1="566.8" y1="820" x2="575.2" y2="796" class="e-hl"/>
+<line x1="590.8" y1="820" x2="599.2" y2="796" class="e-hl"/>
+<rect x="658" y="784" width="88" height="48" class="e-glass"/>
+<line x1="702" y1="832" x2="702" y2="784" class="e-mull-t"/>
+<rect x="658" y="784" width="88" height="48" style="fill:none;stroke:#2E333B;stroke-width:1.8"/>
+<line x1="666.8" y1="820" x2="682.2" y2="796" class="e-hl"/>
+<line x1="710.8" y1="820" x2="726.2" y2="796" class="e-hl"/>
+<rect x="510" y="816" width="24" height="44" class="e-steel"/>
+<rect x="579" y="760" width="22" height="14" class="e-steel"/>
+<rect x="699" y="760" width="22" height="14" class="e-steel"/>
+<rect x="346.6" y="800" width="83.4" height="60" class="e-white"/>
+<rect x="346.6" y="800" width="83.4" height="60" class="e-out"/>
+<rect x="346.6" y="800" width="83.4" height="5" class="e-yel"/>
+<rect x="303.4" y="824" width="33.2" height="36" class="e-white"/>
+<rect x="303.4" y="824" width="33.2" height="36" class="e-out"/>
+<ellipse class="shrub-o" cx="238.48" cy="842.01" rx="7.48" ry="6.73"/>
+<ellipse class="shrub-o" cx="250.53" cy="840.16" rx="9.8" ry="8.82"/>
+<ellipse class="shrub-o" cx="260.27" cy="842.56" rx="6.8" ry="6.12"/>
+<rect x="230" y="848" width="33.4" height="12" class="e-conc"/>
+<rect x="430" y="816" width="76.6" height="44" class="e-white"/>
+<rect x="430" y="816" width="76.6" height="44" class="e-out"/>
+<polygon points="427,816 468.3,794 509.6,816" class="e-cream"/>
+<line x1="468.3" y1="860" x2="468.3" y2="816" class="e-joint"/>
+<rect x="496" y="816" width="67.4" height="44" class="e-white"/>
+<rect x="496" y="816" width="67.4" height="44" class="e-out"/>
+<polygon points="493,816 529.7,794 566.4,816" class="e-cream"/>
+<line x1="529.7" y1="860" x2="529.7" y2="816" class="e-joint"/>
+<line x1="172" y1="860" x2="172" y2="812" class="e-mull"/>
+<path d="M142 819 Q160 810 172 803 Q184 810 202 819 Z" class="umb-c"/>
+<line x1="169" y1="804" x2="157" y2="818" class="e-joint"/>
+<line x1="172" y1="804" x2="172" y2="818" class="e-joint"/>
+<line x1="175" y1="804" x2="187" y2="818" class="e-joint"/>
+<circle cx="172" cy="802" r="1.2" class="ink-f"/>
+<path d="M630 860 Q632.4 778.4 642 724" class="trunk"/>
+<path class="palm" d="M642 724Q617.11 708.21 592.22 728.57Q617.11 713.21 642 724Z M642 724Q622.92 703.98 603.84 715.22Q622.92 708.98 642 724Z M642 724Q630.63 696.62 619.25 696.52Q630.63 701.62 642 724Z M642 724Q642.22 694.45 642.45 684.62Q642.22 699.45 642 724Z M642 724Q650.79 699.32 659.59 698.46Q650.79 704.32 642 724Z M642 724Q661.12 699.09 680.23 707.35Q661.12 704.09 642 724Z M642 724Q667.22 706.95 692.45 726.71Q667.22 711.95 642 724Z"/>
+<path d="M270 860 Q272.4 788 282 740" class="trunk"/>
+<path class="palm" d="M282 740Q257.1 726.06 232.2 747.93Q257.1 731.06 282 740Z M282 740Q264.06 716.49 246.12 724.46Q264.06 721.49 282 740Z M282 740Q271.59 711.53 261.18 710.05Q271.59 716.53 282 740Z M282 740Q280.99 711.99 279.97 703.47Q280.99 716.99 282 740Z M282 740Q292.49 714.27 302.98 714.28Q292.49 719.27 282 740Z M282 740Q302.55 717.3 323.11 728.31Q302.55 722.3 282 740Z M282 740Q308.02 720.3 334.04 738.94Q308.02 725.3 282 740Z"/>
+<polygon points="150,860 910,860 910,870 150,870" class="poche"/>
+<polygon points="150,860 910,860 910,870 150,870" fill="url(#ce-earth)"/>
+<polyline points="150,860 910,860" class="e-ground"/>
+<line class="dim" x1="427" y1="875" x2="766.4" y2="875"/><line class="dim-t" x1="427" y1="878" x2="433" y2="872"/><line class="dim-t" x1="760.4" y1="878" x2="766.4" y2="872"/><text class="t-dim halo" x="596.7" y="872" text-anchor="middle">16.67 SHOP</text>
+<line class="dim" x1="760.4" y1="875" x2="856.4" y2="875"/><line class="dim-t" x1="760.4" y1="878" x2="766.4" y2="872"/><line class="dim-t" x1="850.4" y1="878" x2="856.4" y2="872"/><text class="t-dim halo" x="808.4" y="872" text-anchor="middle">4.50</text>
+<polygon class="ink-f" points="143,853 151,853 147,860"/>
+<text class="t-dim halo" x="140" y="857" text-anchor="end">+3.60</text>
+<polygon class="ink-f" points="143,737 151,737 147,744"/>
+<text class="t-dim halo" x="140" y="741" text-anchor="end">+9.40</text>
+<circle class="bubble" cx="161" cy="901" r="11"/><text class="t-lbl" x="161" y="904.5" text-anchor="middle">12</text><text class="t-head" x="178" y="905">LIFESTYLE &amp; SOUVENIR · EAST · BACK</text><text class="t-sm" x="178" y="917">looking west · service door, annex, east terrace tents in front</text>
+<text class="t-head" x="862" y="455">MATERIALS</text>
+<rect class="e-white" x="862" y="469" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="892" y="479">White render</text>
+<rect class="e-yel" x="862" y="488" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="892" y="498">Yellow trim and canopy</text>
+<rect class="e-pink-o" x="862" y="507" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="892" y="517">Pink shop sign</text>
+<rect class="e-dark" x="862" y="526" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="892" y="536">Graphite fascia</text>
+<rect class="e-glass" x="862" y="545" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="892" y="555">Clear glazing</text>
+<rect class="e-glow" x="862" y="564" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="892" y="574">Lit interior</text></svg>

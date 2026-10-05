@@ -1,0 +1,801 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="1000" viewBox="0 0 1100 1000" role="img" aria-label="A-502 Fashion and cafe elevations"><style>@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Condensed:wght@500;600;700&amp;family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;display=swap');
+.sheet-bg{fill:#FBFCFC}
+.frame{fill:none;stroke:#16283A;stroke-width:1.4}
+.frame-in{fill:none;stroke:#16283A;stroke-width:.7}
+.ln{fill:none;stroke:#16283A;stroke-width:1}
+.ln-h{fill:none;stroke:#16283A;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.ln-m{fill:none;stroke:#4A5C6F;stroke-width:.8}
+.ln-f{fill:none;stroke:#93A3B2;stroke-width:.6}
+.ln-b{fill:none;stroke:#4A5C6F;stroke-width:.8;stroke-dasharray:4 3}
+.ln-water{fill:none;stroke:#0D7F8A;stroke-width:1.2}
+.gap{stroke:#FBFCFC;stroke-width:5}
+.z-paver,.z-town{fill:#E1E6EA}
+.z-brick{fill:#EDD0BD}
+.z-lawn{fill:#CDE4B3}
+.z-conc{fill:#D3D9DC}
+.z-timber{fill:#E6CFA6}
+.z-sand{fill:#FBF7EA}
+.z-sea{fill:#BCE4EB}
+.z-deep{fill:#8CC7D8}
+.z-cliff{fill:#CBC5BC}
+.z-rockp{fill:#CBC5BC;opacity:.75}
+.bldg{fill:#D5DFE9;stroke:#16283A;stroke-width:1.6}
+.bldg-l{fill:#D5DFE9;stroke:#16283A;stroke-width:.9}
+.beyond{fill:#D5DFE9;fill-opacity:.55;stroke:#4A5C6F;stroke-width:.8}
+.under{fill:#D5DFE9;fill-opacity:.5;stroke:#4A5C6F;stroke-width:.8;stroke-dasharray:3 2}
+.wall{fill:#FBFCFC;stroke:#16283A;stroke-width:4}
+.glass{fill:none;stroke:#0D7F8A;stroke-width:1.6}
+.solid{fill:#16283A}
+.led{fill:#16283A;opacity:.85}
+.conc{fill:#D3D9DC;stroke:#16283A;stroke-width:1}
+.poche{fill:#CBC5BC}
+.water{fill:#BCE4EB;opacity:.85}
+.tree{fill:#9BCA84;stroke:#58894C;stroke-width:.7}
+.trunk{fill:none;stroke:#58894C;stroke-width:1.4}
+.prop{fill:#FBFCFC;stroke:#16283A;stroke-width:.7}
+.prop-d{fill:#4A5C6F}
+.umb-y{fill:#F0BE2C;stroke:#16283A;stroke-width:.5}
+.umb-p{fill:#E5539A;stroke:#16283A;stroke-width:.5}
+.umb-c{fill:#24ABCC;stroke:#16283A;stroke-width:.5}
+.chalk-y{fill:#F0BE2C}
+.chalk-p{fill:#E5539A}
+.chalk-c{fill:#24ABCC}
+.ring-acc{fill:none;stroke:#D93A55;stroke-width:1.6}
+.bunting{fill:none;stroke:#E5539A;stroke-width:1;stroke-dasharray:2.5 2}
+.pat-s{fill:none;stroke:#93A3B2;stroke-width:.5}
+.pat-d{fill:#93A3B2}
+.pat-w{fill:none;stroke:#FBFCFC;stroke-width:.7;opacity:.7}
+.pat-g{fill:none;stroke:#58894C;stroke-width:.6;opacity:.55}
+.path-edge{fill:none;stroke:#93A3B2;stroke-width:17}
+.path-fill{fill:none;stroke:#E1E6EA;stroke-width:15}
+.grid{fill:none;stroke:#93A3B2;stroke-width:.5;stroke-dasharray:2 4}
+.bubble{fill:#FBFCFC;stroke:#16283A;stroke-width:.8}
+.circ1{fill:none;stroke:#D93A55;stroke-width:2.2;stroke-dasharray:8 4;stroke-linecap:round}
+.circ2{fill:none;stroke:#D93A55;stroke-width:1.2;stroke-dasharray:3 3;stroke-linecap:round}
+.sight{fill:none;stroke:#0D7F8A;stroke-width:1.4;stroke-dasharray:1.5 3.5;stroke-linecap:round}
+.cut{fill:none;stroke:#D93A55;stroke-width:.9;stroke-dasharray:14 3 2 3}
+.cut-h{fill:none;stroke:#D93A55;stroke-width:3}
+.acc-f{fill:#D93A55}
+.teal-f{fill:#0D7F8A}
+.ink-f{fill:#16283A}
+.sheet-f{fill:#FBFCFC}
+.dim{fill:none;stroke:#16283A;stroke-width:.6}
+.dim-t{fill:none;stroke:#16283A;stroke-width:1.1}
+.avatar{fill:#24ABCC;stroke:#16283A;stroke-width:.6}
+.cam{fill:#0D7F8A}
+.t-zone{font:700 12px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.08em;fill:#16283A}
+.t-big{font:700 16px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.14em;fill:#16283A}
+.t-lbl{font:600 9.5px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.03em;fill:#16283A}
+.t-sm{font:500 8px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.02em;fill:#4A5C6F}
+.t-dim{font:600 8.5px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;fill:#16283A}
+.t-head{font:700 15px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.12em;fill:#16283A}
+.t-title{font:800 21px "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;fill:#16283A}
+.t-acc{fill:#D93A55}
+.t-teal{fill:#0D7F8A}
+.t-inv{fill:#FBFCFC}
+.halo{paint-order:stroke;stroke:#FBFCFC;stroke-width:3px;stroke-linejoin:round}
+.z-road{fill:#93A3B2;opacity:.6}
+.lane{fill:none;stroke:#FBFCFC;stroke-width:1;stroke-dasharray:6 5}
+.zebra{fill:#FBFCFC}
+.tree-s{fill:#E5539A;fill-opacity:.45;stroke:#E5539A;stroke-width:.8}
+.trim-y{fill:none;stroke:#F0BE2C;stroke-width:2.4}
+.arc-y{fill:#F0BE2C;fill-opacity:.32}
+.key{fill:#16283A}
+.statue{fill:#FBFCFC;stroke:#16283A;stroke-width:1.2}
+.tree-o{fill:#9BCA84;stroke:#58894C;stroke-width:1.5}
+.tree-f{fill:#9BCA84}
+.sak-o{fill:#F5C3D8;stroke:#E5539A;stroke-width:1.3}
+.sak-f{fill:#F5C3D8}
+.shrub-o{fill:#86BB6D;stroke:#58894C;stroke-width:1}
+.shrub-f{fill:#86BB6D}
+.bed{fill:#86BB6D;stroke:#58894C;stroke-width:.9}
+.leaf{fill:none;stroke:#58894C;stroke-width:.7;opacity:.8;stroke-linecap:round}
+.blossom{fill:#E5539A}
+.palm{fill:#7DB268;stroke:#58894C;stroke-width:.6;stroke-linejoin:round}
+.shadow{fill:#16283A;opacity:.12}
+.rock{fill:#CBC5BC;stroke:#4A5C6F;stroke-width:.8;stroke-linejoin:round}
+.foam{fill:none;stroke:#FFFFFF;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.foam-d{fill:none;stroke:#FFFFFF;stroke-width:1;stroke-dasharray:4 3;stroke-linecap:round}
+.z-mid{fill:#A5D6E2}
+.z-wet{fill:#F0EAD8}
+.roof{fill:#BAC7D4;stroke:#16283A;stroke-width:1.6}
+.roof-2{fill:#9DAFC1}
+.post{fill:#16283A}
+.rail{fill:none;stroke:#16283A;stroke-width:.9}
+.tread{fill:none;stroke:#4A5C6F;stroke-width:.5}
+.joint{fill:none;stroke:#93A3B2;stroke-width:.45}
+.band{fill:#C4D1D8}
+.wall-l{fill:none;stroke:#16283A;stroke-width:3.2;stroke-linecap:square}
+.wall6{fill:none;stroke:#16283A;stroke-width:2.4}
+.string{fill:none;stroke:#4A5C6F;stroke-width:.6;stroke-dasharray:1 2}
+.bulb{fill:#F0BE2C}
+.door{fill:none;stroke:#4A5C6F;stroke-width:.6}
+.curb{fill:none;stroke:#16283A;stroke-width:1.1;stroke-linejoin:round}
+.wallp{fill:#4A5C6F;stroke:#16283A;stroke-width:.5;stroke-linejoin:miter}
+
+.e-yel{fill:#F7CB3B;stroke:#16283A;stroke-width:.9;stroke-linejoin:round}
+.e-yel2{fill:#E3AE1F}
+.e-yel3{fill:#FFE27A}
+.e-cream{fill:#F7F2E6;stroke:#16283A;stroke-width:.9;stroke-linejoin:round}
+.e-cream2{fill:#DED6C3}
+.e-dark{fill:#2E333B}
+.e-blue{fill:#2F8FE8;stroke:#16283A;stroke-width:.7}
+.e-red{fill:#E8414E;stroke:#16283A;stroke-width:.7}
+.e-green{fill:#3FB950;stroke:#16283A;stroke-width:.7}
+.e-glass{fill:#CBE8EE;stroke:#16283A;stroke-width:.8}
+.e-glass-t{fill:#CBE8EE;fill-opacity:.45;stroke:none}
+.e-glow{fill:#FFE7B0}
+.e-pink{fill:#F59BC3}
+.e-pink-o{fill:#F59BC3;stroke:#16283A;stroke-width:.7}
+.e-lilac{fill:#B9A2EE}
+.e-poster{fill:#3D8BE0;stroke:#16283A;stroke-width:.6}
+.e-wall{fill:#F1E9DA;stroke:#16283A;stroke-width:.9;stroke-linejoin:round}
+.e-coral{fill:#EE8A6B;stroke:#16283A;stroke-width:.8}
+.e-mint{fill:#A9DCC6;stroke:#16283A;stroke-width:.8}
+.e-navy{fill:#2C3E57}
+.e-steel{fill:#8C99A6;stroke:#16283A;stroke-width:.6}
+.e-wood{fill:#E6CFA6;stroke:#16283A;stroke-width:.8}
+.e-conc{fill:#D3D9DC;stroke:#16283A;stroke-width:.8}
+.e-thatch{fill:#D9B477;stroke:#16283A;stroke-width:.9;stroke-linejoin:round}
+.e-orange{fill:#F59A3A}
+.e-white{fill:#FFFFFF}
+.e-sky{fill:#E4F2F7}
+.e-shadow{fill:#16283A;opacity:.15}
+.e-joint{fill:none;stroke:#16283A;stroke-width:.45;opacity:.3}
+.e-mull{fill:none;stroke:#16283A;stroke-width:1}
+.e-mull-t{fill:none;stroke:#2E333B;stroke-width:1.6}
+.e-hl{fill:none;stroke:#FFFFFF;stroke-width:1.4;opacity:.75;stroke-linecap:round}
+.e-led{fill:none;stroke:#FFFFFF;stroke-width:1.6;stroke-linecap:round}
+.e-led-p{fill:none;stroke:#F59BC3;stroke-width:1.4;stroke-linecap:round}
+.e-led-c{fill:none;stroke:#24ABCC;stroke-width:1.4;stroke-linecap:round}
+.e-out{fill:none;stroke:#16283A;stroke-width:1.3;stroke-linejoin:round}
+.e-ghost{fill:none;stroke:#4A5C6F;stroke-width:.8;stroke-dasharray:4 3}
+.e-ground{fill:none;stroke:#16283A;stroke-width:2.2;stroke-linecap:square}
+.e-wave{fill:none;stroke:#3D8BE0;stroke-width:1.2;stroke-linecap:round}
+.e-wave-y{fill:none;stroke:#E3AE1F;stroke-width:1.4;stroke-linecap:round}
+.e-break{fill:none;stroke:#4A5C6F;stroke-width:.8}
+.e-rope{fill:none;stroke:#4A5C6F;stroke-width:.6}
+.e-fern{fill:#86BB6D;stroke:#58894C;stroke-width:.6;stroke-linejoin:round}
+.e-key{font:600 9px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.03em;fill:#16283A}
+.e-fd{font-family:"Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif}
+.e-fb{font-family:"Barlow", ui-sans-serif, system-ui, sans-serif}
+.e-fc{font-family:"Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif}
+</style><defs><pattern id="ce-earth" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="pat-s" d="M0 0V6"/><circle class="pat-d" cx="3" cy="3" r=".5"/></pattern><pattern id="ce-clad" width="10" height="10" patternUnits="userSpaceOnUse"><path class="e-joint" d="M0 10H10"/></pattern><pattern id="ce-slat" width="4" height="10" patternUnits="userSpaceOnUse"><path class="e-joint" d="M2 0V10"/></pattern><pattern id="ce-awn-y" width="12" height="10" patternUnits="userSpaceOnUse"><rect width="6" height="10" class="e-yel3"/><rect x="6" width="6" height="10" class="e-white"/></pattern><pattern id="ce-awn-p" width="12" height="10" patternUnits="userSpaceOnUse"><rect width="6" height="10" class="e-pink"/><rect x="6" width="6" height="10" class="e-white"/></pattern><pattern id="ce-awn-c" width="12" height="10" patternUnits="userSpaceOnUse"><rect width="6" height="10" class="chalk-c"/><rect x="6" width="6" height="10" class="e-white"/></pattern><pattern id="ce-thatch" width="5" height="6" patternUnits="userSpaceOnUse"><path class="e-joint" d="M0 6L2.5 0M2.5 6L5 0"/></pattern><marker id="ce-arrk" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto-start-reverse"><path class="ink-f" d="M0 0 10 5 0 10z"/></marker></defs>
+<rect class="sheet-bg" width="1100" height="1000"/>
+<rect class="ink-f" x="24" y="17" width="55.0" height="18"/>
+<text class="t-head t-inv" x="30" y="31">A-502</text>
+<text class="t-head" x="89.0" y="31">FASHION &amp; GOODS AND CAFÉ · ELEVATIONS</text>
+<text class="t-sm" x="24" y="48">Footprints from L-101 · levels from L-202 · all views 14 px = 1 m (1:100 at sheet size)</text>
+<rect class="frame" x="12" y="50" width="1076" height="938"/>
+<rect x="150" y="101.6" width="343" height="148.4" class="e-sky"/>
+<rect x="437" y="182.8" width="56" height="67.2" class="beyond"/>
+<line x1="437" y1="167.4" x2="493" y2="167.4" class="e-out"/>
+<line x1="442.6" y1="182.8" x2="442.6" y2="167.4" class="e-mull"/>
+<line x1="456.6" y1="182.8" x2="456.6" y2="167.4" class="e-mull"/>
+<line x1="470.6" y1="182.8" x2="470.6" y2="167.4" class="e-mull"/>
+<line x1="484.6" y1="182.8" x2="484.6" y2="167.4" class="e-mull"/>
+<line x1="474.8" y1="182.8" x2="474.8" y2="130.72" class="trunk"/>
+<g class="tree-o"><ellipse cx="474.8" cy="130.72" rx="25.2" ry="21.83"/><ellipse cx="454.29" cy="136.47" rx="13.46" ry="12.04"/><ellipse cx="454.01" cy="125.67" rx="15.24" ry="11.61"/><ellipse cx="461.52" cy="116.81" rx="15.02" ry="11.5"/><ellipse cx="469.08" cy="113.75" rx="14.15" ry="13.88"/><ellipse cx="477.57" cy="113.28" rx="14.42" ry="13.74"/><ellipse cx="492.1" cy="120.11" rx="14.48" ry="12.28"/><ellipse cx="495.05" cy="124.39" rx="13.66" ry="11.55"/><ellipse cx="495.94" cy="134.68" rx="13.29" ry="13.83"/></g>
+<g class="tree-f"><ellipse cx="474.8" cy="130.72" rx="24.3" ry="20.93"/><ellipse cx="454.29" cy="136.47" rx="12.56" ry="11.14"/><ellipse cx="454.01" cy="125.67" rx="14.34" ry="10.71"/><ellipse cx="461.52" cy="116.81" rx="14.12" ry="10.6"/><ellipse cx="469.08" cy="113.75" rx="13.25" ry="12.98"/><ellipse cx="477.57" cy="113.28" rx="13.52" ry="12.84"/><ellipse cx="492.1" cy="120.11" rx="13.58" ry="11.38"/><ellipse cx="495.05" cy="124.39" rx="12.76" ry="10.65"/><ellipse cx="495.94" cy="134.68" rx="12.39" ry="12.93"/></g>
+<rect x="150" y="157.6" width="42" height="92.4" class="e-yel"/>
+<rect x="150" y="161.52" width="42" height="2.8" class="e-pink"/>
+<rect x="150" y="157.6" width="42" height="1.68" class="e-dark"/>
+<rect x="150" y="142.2" width="42" height="15.4" class="e-glass-t"/>
+<line x1="150" y1="157.6" x2="150" y2="142.2" class="e-mull"/>
+<line x1="171" y1="157.6" x2="171" y2="142.2" class="e-mull"/>
+<line x1="192" y1="157.6" x2="192" y2="142.2" class="e-mull"/>
+<line x1="150" y1="142.2" x2="192" y2="142.2" class="e-out"/>
+<line x1="154.2" y1="154.1" x2="159.8" y2="145" class="e-hl"/>
+<polyline points="150,250 150,201 146.5,197.78 153.5,194.42 150,191.2 150,142.2" class="e-break"/>
+<rect x="192" y="115.6" width="245" height="134.4" class="e-wall"/>
+<rect x="192" y="115.6" width="245" height="8.4" class="e-coral"/>
+<rect x="192" y="115.6" width="245" height="1.68" class="e-dark"/>
+<rect x="270.4" y="178.6" width="166.6" height="4.2" class="e-coral"/>
+<rect x="197.6" y="128.2" width="70" height="121.8" class="e-glass"/>
+<line x1="220.93" y1="250" x2="220.93" y2="128.2" class="e-mull-t"/>
+<line x1="244.27" y1="250" x2="244.27" y2="128.2" class="e-mull-t"/>
+<rect x="197.6" y="128.2" width="70" height="121.8" style="fill:none;stroke:#2E333B;stroke-width:1.8"/>
+<line x1="202.27" y1="219.55" x2="210.43" y2="158.65" class="e-hl"/>
+<line x1="225.6" y1="219.55" x2="233.77" y2="158.65" class="e-hl"/>
+<line x1="248.93" y1="219.55" x2="257.1" y2="158.65" class="e-hl"/>
+<polyline points="204.6,250 211.25,250 211.25,245.8 217.9,245.8 217.9,241.6 224.55,241.6 224.55,237.4 231.2,237.4 231.2,233.2 237.85,233.2 237.85,229 244.5,229 244.5,224.8 251.15,224.8 251.15,220.6 257.8,220.6 257.8,216.4" class="e-mull"/>
+<line x1="204.6" y1="236" x2="257.8" y2="202.4" class="e-mull"/>
+<polyline points="257.8,216.4 251.15,216.4 251.15,212.2 244.5,212.2 244.5,208 237.85,208 237.85,203.8 231.2,203.8 231.2,199.6 224.55,199.6 224.55,195.4 217.9,195.4 217.9,191.2 211.25,191.2 211.25,187 204.6,187 204.6,182.8" class="e-mull"/>
+<line x1="257.8" y1="202.4" x2="204.6" y2="168.8" class="e-mull"/>
+<rect x="256.4" y="216.4" width="5.6" height="1.68" class="e-dark"/>
+<text x="232.6" y="196.8" text-anchor="middle" class="t-sm"></text>
+<rect x="197.6" y="181.12" width="70" height="2.38" class="e-dark"/>
+<rect x="206" y="212.2" width="33.6" height="37.8" class="e-glow"/>
+<rect x="206" y="212.2" width="33.6" height="37.8" class="e-glass-t"/>
+<line x1="222.8" y1="250" x2="222.8" y2="212.2" class="e-mull-t"/>
+<rect x="206" y="212.2" width="33.6" height="37.8" style="fill:none;stroke:#2E333B;stroke-width:1.8"/>
+<line x1="209.36" y1="240.55" x2="215.24" y2="221.65" class="e-hl"/>
+<line x1="226.16" y1="240.55" x2="232.04" y2="221.65" class="e-hl"/>
+<rect x="194.8" y="205.2" width="78.4" height="3.5" class="e-coral"/>
+<rect x="197.6" y="208.7" width="72.8" height="4.2" class="e-shadow"/>
+<text class="e-fc" x="232.6" y="203.1" text-anchor="middle" style="font-weight:700;font-size:3.89px;fill:#2E333B;letter-spacing:0px">ENTRANCE</text>
+<rect x="276" y="195.4" width="155.4" height="54.6" class="e-glow"/>
+<line x1="314.85" y1="250" x2="314.85" y2="195.4" class="e-mull-t"/>
+<line x1="353.7" y1="250" x2="353.7" y2="195.4" class="e-mull-t"/>
+<line x1="392.55" y1="250" x2="392.55" y2="195.4" class="e-mull-t"/>
+<rect x="276" y="195.4" width="155.4" height="54.6" style="fill:none;stroke:#2E333B;stroke-width:1.8"/>
+<line x1="283.77" y1="236.35" x2="297.37" y2="209.05" class="e-hl"/>
+<line x1="322.62" y1="236.35" x2="336.22" y2="209.05" class="e-hl"/>
+<line x1="361.47" y1="236.35" x2="375.07" y2="209.05" class="e-hl"/>
+<line x1="400.32" y1="236.35" x2="413.92" y2="209.05" class="e-hl"/>
+<g class="avatar"><circle cx="295.6" cy="226.55" r="1.84"/><rect x="293.15" y="228.51" width="4.9" height="9.8" rx="1.47"/><rect x="293.52" y="237.57" width="1.84" height="11.03" rx="0.73"/><rect x="295.85" y="237.57" width="1.84" height="11.03" rx="0.73"/></g>
+<g class="avatar"><circle cx="330.6" cy="226.55" r="1.84"/><rect x="328.15" y="228.51" width="4.9" height="9.8" rx="1.47"/><rect x="328.52" y="237.57" width="1.84" height="11.03" rx="0.73"/><rect x="330.85" y="237.57" width="1.84" height="11.03" rx="0.73"/></g>
+<g class="avatar"><circle cx="365.6" cy="226.55" r="1.84"/><rect x="363.15" y="228.51" width="4.9" height="9.8" rx="1.47"/><rect x="363.52" y="237.57" width="1.84" height="11.03" rx="0.73"/><rect x="365.85" y="237.57" width="1.84" height="11.03" rx="0.73"/></g>
+<g class="avatar"><circle cx="402" cy="226.55" r="1.84"/><rect x="399.55" y="228.51" width="4.9" height="9.8" rx="1.47"/><rect x="399.92" y="237.57" width="1.84" height="11.03" rx="0.73"/><rect x="402.25" y="237.57" width="1.84" height="11.03" rx="0.73"/></g>
+<rect x="276" y="195.4" width="155.4" height="54.6" class="e-glass-t"/>
+<line x1="314.85" y1="250" x2="314.85" y2="195.4" class="e-mull-t"/>
+<line x1="353.7" y1="250" x2="353.7" y2="195.4" class="e-mull-t"/>
+<line x1="392.55" y1="250" x2="392.55" y2="195.4" class="e-mull-t"/>
+<rect x="276" y="195.4" width="155.4" height="54.6" style="fill:none;stroke:#2E333B;stroke-width:1.8"/>
+<line x1="283.77" y1="236.35" x2="297.37" y2="209.05" class="e-hl"/>
+<line x1="322.62" y1="236.35" x2="336.22" y2="209.05" class="e-hl"/>
+<line x1="361.47" y1="236.35" x2="375.07" y2="209.05" class="e-hl"/>
+<line x1="400.32" y1="236.35" x2="413.92" y2="209.05" class="e-hl"/>
+<text class="e-fd" x="353.7" y="191.9" text-anchor="middle" style="font-weight:800;font-size:8.17px;fill:#2E333B;letter-spacing:0px">FASHION &amp; GOODS</text>
+<text class="e-fd" x="353.7" y="200.58" text-anchor="middle" style="font-weight:800;font-size:1.94px;fill:#FFFFFF;letter-spacing:0px"></text>
+<rect x="276" y="129.6" width="155.4" height="44.8" class="e-glass"/>
+<line x1="314.85" y1="174.4" x2="314.85" y2="129.6" class="e-mull-t"/>
+<line x1="353.7" y1="174.4" x2="353.7" y2="129.6" class="e-mull-t"/>
+<line x1="392.55" y1="174.4" x2="392.55" y2="129.6" class="e-mull-t"/>
+<rect x="276" y="129.6" width="155.4" height="44.8" style="fill:none;stroke:#2E333B;stroke-width:1.8"/>
+<line x1="283.77" y1="163.2" x2="297.37" y2="140.8" class="e-hl"/>
+<line x1="322.62" y1="163.2" x2="336.22" y2="140.8" class="e-hl"/>
+<line x1="361.47" y1="163.2" x2="375.07" y2="140.8" class="e-hl"/>
+<line x1="400.32" y1="163.2" x2="413.92" y2="140.8" class="e-hl"/>
+<rect x="279.92" y="128.2" width="1.96" height="47.6" class="e-wood"/>
+<rect x="289.72" y="128.2" width="1.96" height="47.6" class="e-wood"/>
+<rect x="299.52" y="128.2" width="1.96" height="47.6" class="e-wood"/>
+<rect x="309.32" y="128.2" width="1.96" height="47.6" class="e-wood"/>
+<rect x="319.12" y="128.2" width="1.96" height="47.6" class="e-wood"/>
+<rect x="328.92" y="128.2" width="1.96" height="47.6" class="e-wood"/>
+<rect x="338.72" y="128.2" width="1.96" height="47.6" class="e-wood"/>
+<rect x="348.52" y="128.2" width="1.96" height="47.6" class="e-wood"/>
+<rect x="358.32" y="128.2" width="1.96" height="47.6" class="e-wood"/>
+<rect x="368.12" y="128.2" width="1.96" height="47.6" class="e-wood"/>
+<rect x="377.92" y="128.2" width="1.96" height="47.6" class="e-wood"/>
+<rect x="387.72" y="128.2" width="1.96" height="47.6" class="e-wood"/>
+<rect x="397.52" y="128.2" width="1.96" height="47.6" class="e-wood"/>
+<rect x="407.32" y="128.2" width="1.96" height="47.6" class="e-wood"/>
+<rect x="417.12" y="128.2" width="1.96" height="47.6" class="e-wood"/>
+<rect x="426.92" y="128.2" width="1.96" height="47.6" class="e-wood"/>
+<text class="e-fb" x="315.2" y="121.9" text-anchor="middle" style="font-weight:700;font-size:5.06px;fill:#FFFFFF;letter-spacing:0px">ファッション＆グッズ</text>
+<ellipse class="shrub-o" cx="282.46" cy="235.65" rx="7.44" ry="6.69"/>
+<ellipse class="shrub-o" cx="289.35" cy="237.87" rx="4.66" ry="4.2"/>
+<ellipse class="shrub-o" cx="297.43" cy="236.26" rx="6.68" ry="6.01"/>
+<ellipse class="shrub-o" cx="305.38" cy="236.84" rx="5.95" ry="5.36"/>
+<ellipse class="shrub-o" cx="314.49" cy="235.74" rx="7.33" ry="6.59"/>
+<ellipse class="shrub-o" cx="322.41" cy="237.02" rx="5.72" ry="5.15"/>
+<ellipse class="shrub-o" cx="331.38" cy="235.79" rx="7.26" ry="6.53"/>
+<ellipse class="shrub-o" cx="338.54" cy="237.62" rx="4.98" ry="4.48"/>
+<ellipse class="shrub-o" cx="347.51" cy="235.61" rx="7.48" ry="6.74"/>
+<ellipse class="shrub-o" cx="355.5" cy="237.01" rx="5.74" ry="5.17"/>
+<ellipse class="shrub-o" cx="362.27" cy="237.56" rx="5.05" ry="4.54"/>
+<ellipse class="shrub-o" cx="369.32" cy="237.17" rx="5.54" ry="4.98"/>
+<ellipse class="shrub-o" cx="377.38" cy="236.49" rx="6.39" ry="5.75"/>
+<ellipse class="shrub-o" cx="383.9" cy="237.92" rx="4.6" ry="4.14"/>
+<ellipse class="shrub-o" cx="390.94" cy="237.07" rx="5.66" ry="5.1"/>
+<ellipse class="shrub-o" cx="397.17" cy="237.97" rx="4.53" ry="4.08"/>
+<ellipse class="shrub-o" cx="403.24" cy="237.83" rx="4.71" ry="4.24"/>
+<ellipse class="shrub-o" cx="409.66" cy="237.59" rx="5.01" ry="4.51"/>
+<rect x="273.62" y="241.6" width="140" height="8.4" class="e-conc"/>
+<polygon points="150,250 493,250 493,257 150,257" class="poche"/>
+<polygon points="150,250 493,250 493,257 150,257" fill="url(#ce-earth)"/>
+<polyline points="150,250 493,250" class="e-ground"/>
+<line class="dim" x1="189" y1="264" x2="440" y2="264"/><line class="dim-t" x1="189" y1="267" x2="195" y2="261"/><line class="dim-t" x1="434" y1="267" x2="440" y2="261"/><text class="t-dim halo" x="314.5" y="261" text-anchor="middle">17.50 FASHION &amp; GOODS</text>
+<line class="dim" x1="444" y1="112.6" x2="444" y2="253"/><line class="dim-t" x1="441" y1="253" x2="447" y2="247"/><line class="dim-t" x1="441" y1="118.6" x2="447" y2="112.6"/><text class="t-dim halo" x="454" y="182.8" text-anchor="middle" transform="rotate(-90 454 182.8)">9.60</text>
+<polygon class="ink-f" points="143.9,243 151.9,243 147.9,250"/>
+<text class="t-dim halo" x="140.9" y="247" text-anchor="end">+3.60</text>
+<polygon class="ink-f" points="143.9,175.8 151.9,175.8 147.9,182.8"/>
+<text class="t-dim halo" x="140.9" y="179.8" text-anchor="end">+8.40 UPPER FLOOR</text>
+<polygon class="ink-f" points="143.9,117 151.9,117 147.9,124"/>
+<text class="t-dim halo" x="140.9" y="121" text-anchor="end">+12.60 ROOF</text>
+<polygon class="ink-f" points="143.9,108.6 151.9,108.6 147.9,115.6"/>
+<text class="t-dim halo" x="140.9" y="112.6" text-anchor="end">+13.20</text>
+<line x1="234" y1="167.4" x2="304" y2="96" class="ln-m"/>
+<circle class="ink-f" cx="234" cy="167.4" r="1.8"/>
+<text class="e-key halo" x="307" y="99" text-anchor="start">Glazed stair core · 2 × 16R dogleg</text>
+<circle class="bubble" cx="161" cy="276.1" r="11"/><text class="t-lbl" x="161" y="279.6" text-anchor="middle">4</text><text class="t-head" x="178" y="280.1">FASHION &amp; GOODS · EAST · FRONT</text><text class="t-sm" x="178" y="292.1">looking west · entrance at the SE corner, planters in front</text>
+<rect x="700" y="101.6" width="322" height="128.8" class="e-sky"/>
+<rect x="973" y="157.6" width="49" height="81.2" class="e-yel"/>
+<rect x="973" y="161.52" width="49" height="2.8" class="e-pink"/>
+<rect x="973" y="157.6" width="49" height="1.68" class="e-dark"/>
+<rect x="973" y="142.2" width="49" height="15.4" class="e-glass-t"/>
+<line x1="973" y1="157.6" x2="973" y2="142.2" class="e-mull"/>
+<line x1="994" y1="157.6" x2="994" y2="142.2" class="e-mull"/>
+<line x1="1015" y1="157.6" x2="1015" y2="142.2" class="e-mull"/>
+<line x1="973" y1="142.2" x2="1022" y2="142.2" class="e-out"/>
+<line x1="977.2" y1="154.1" x2="982.8" y2="145" class="e-hl"/>
+<rect x="728" y="115.6" width="245" height="112" class="e-wall"/>
+<rect x="728" y="115.6" width="245" height="8.4" class="e-coral"/>
+<rect x="728" y="115.6" width="245" height="1.68" class="e-dark"/>
+<rect x="772.8" y="136.6" width="33.6" height="33.6" class="e-glass"/>
+<rect x="772.8" y="136.6" width="33.6" height="33.6" style="fill:none;stroke:#2E333B;stroke-width:1.8"/>
+<line x1="779.52" y1="161.8" x2="791.28" y2="145" class="e-hl"/>
+<rect x="771.4" y="170.2" width="36.4" height="2.1" class="e-coral"/>
+<rect x="840" y="136.6" width="33.6" height="33.6" class="e-glass"/>
+<rect x="840" y="136.6" width="33.6" height="33.6" style="fill:none;stroke:#2E333B;stroke-width:1.8"/>
+<line x1="846.72" y1="161.8" x2="858.48" y2="145" class="e-hl"/>
+<rect x="838.6" y="170.2" width="36.4" height="2.1" class="e-coral"/>
+<rect x="907.2" y="136.6" width="33.6" height="33.6" class="e-glass"/>
+<rect x="907.2" y="136.6" width="33.6" height="33.6" style="fill:none;stroke:#2E333B;stroke-width:1.8"/>
+<line x1="913.92" y1="161.8" x2="925.68" y2="145" class="e-hl"/>
+<rect x="905.8" y="170.2" width="36.4" height="2.1" class="e-coral"/>
+<rect x="731.22" y="124" width="1.96" height="103.6" class="e-steel"/>
+<rect x="967.82" y="124" width="1.96" height="103.6" class="e-steel"/>
+<rect x="804.3" y="184.2" width="15.4" height="9.8" class="e-steel"/>
+<circle cx="812" cy="189.1" r="3.5" class="e-joint"/>
+<rect x="872.9" y="184.2" width="15.4" height="9.8" class="e-steel"/>
+<circle cx="880.6" cy="189.1" r="3.5" class="e-joint"/>
+<rect x="739.2" y="152" width="16.8" height="30.8" class="e-steel"/>
+<rect x="736.4" y="190.39" width="37.8" height="2.17" class="e-conc"/>
+<rect x="736.4" y="188.22" width="33.6" height="2.17" class="e-conc"/>
+<rect x="736.4" y="186.05" width="29.4" height="2.17" class="e-conc"/>
+<rect x="736.4" y="183.88" width="25.2" height="2.17" class="e-conc"/>
+<text x="747.6" y="147.1" text-anchor="middle" class="t-sm halo">SERVICE</text>
+<polygon points="700,189.9 716.8,189.9 716.8,190.96 733.6,190.96 733.6,192.03 750.4,192.03 750.4,193.09 767.2,193.09 767.2,194.16 784,194.16 784,195.22 800.8,195.22 800.8,196.29 817.6,196.29 817.6,197.35 834.4,197.35 834.4,198.42 851.2,198.42 851.2,199.48 868,199.48 868,200.55 884.8,200.55 884.8,201.61 901.6,201.61 901.6,202.68 918.4,202.68 918.4,203.74 935.2,203.74 935.2,204.81 952,204.81 952,205.87 968.8,205.87 968.8,206.94 985.6,206.94 985.6,208 1002.4,208 1002.4,209.06 1019.2,209.06 1019.2,210.13 1022,210.13 1022,218.53 700,218.53" class="poche"/>
+<polygon points="700,189.9 716.8,189.9 716.8,190.96 733.6,190.96 733.6,192.03 750.4,192.03 750.4,193.09 767.2,193.09 767.2,194.16 784,194.16 784,195.22 800.8,195.22 800.8,196.29 817.6,196.29 817.6,197.35 834.4,197.35 834.4,198.42 851.2,198.42 851.2,199.48 868,199.48 868,200.55 884.8,200.55 884.8,201.61 901.6,201.61 901.6,202.68 918.4,202.68 918.4,203.74 935.2,203.74 935.2,204.81 952,204.81 952,205.87 968.8,205.87 968.8,206.94 985.6,206.94 985.6,208 1002.4,208 1002.4,209.06 1019.2,209.06 1019.2,210.13 1022,210.13 1022,218.53 700,218.53" fill="url(#ce-earth)"/>
+<polyline points="700,189.9 716.8,189.9 716.8,190.96 733.6,190.96 733.6,192.03 750.4,192.03 750.4,193.09 767.2,193.09 767.2,194.16 784,194.16 784,195.22 800.8,195.22 800.8,196.29 817.6,196.29 817.6,197.35 834.4,197.35 834.4,198.42 851.2,198.42 851.2,199.48 868,199.48 868,200.55 884.8,200.55 884.8,201.61 901.6,201.61 901.6,202.68 918.4,202.68 918.4,203.74 935.2,203.74 935.2,204.81 952,204.81 952,205.87 968.8,205.87 968.8,206.94 985.6,206.94 985.6,208 1002.4,208 1002.4,209.06 1019.2,209.06 1019.2,210.13 1022,210.13" class="e-ground"/>
+<line class="dim" x1="725" y1="257" x2="976" y2="257"/><line class="dim-t" x1="725" y1="260" x2="731" y2="254"/><line class="dim-t" x1="970" y1="260" x2="976" y2="254"/><text class="t-dim halo" x="850.5" y="254" text-anchor="middle">17.50</text>
+<polygon class="ink-f" points="693.9,184.67 701.9,184.67 697.9,191.67"/>
+<text class="t-dim halo" x="690.9" y="188.67" text-anchor="end">+7.77 LANE</text>
+<polygon class="ink-f" points="693.9,175.8 701.9,175.8 697.9,182.8"/>
+<text class="t-dim halo" x="690.9" y="179.8" text-anchor="end">+8.40</text>
+<polygon class="ink-f" points="693.9,108.6 701.9,108.6 697.9,115.6"/>
+<text class="t-dim halo" x="690.9" y="112.6" text-anchor="end">+13.20</text>
+<circle class="bubble" cx="711" cy="269.8" r="11"/><text class="t-lbl" x="711" y="273.3" text-anchor="middle">6</text><text class="t-head" x="728" y="273.8">FASHION &amp; GOODS · WEST · BACK</text><text class="t-sm" x="728" y="285.8">looking east · lane +7.77 → +6.66</text>
+<rect x="150" y="393.2" width="623" height="86.8" class="e-sky"/>
+<rect x="267.6" y="397.4" width="175" height="15.4" class="e-glass-t"/>
+<line x1="267.6" y1="412.8" x2="267.6" y2="397.4" class="e-mull"/>
+<line x1="288.6" y1="412.8" x2="288.6" y2="397.4" class="e-mull"/>
+<line x1="309.6" y1="412.8" x2="309.6" y2="397.4" class="e-mull"/>
+<line x1="330.6" y1="412.8" x2="330.6" y2="397.4" class="e-mull"/>
+<line x1="351.6" y1="412.8" x2="351.6" y2="397.4" class="e-mull"/>
+<line x1="372.6" y1="412.8" x2="372.6" y2="397.4" class="e-mull"/>
+<line x1="393.6" y1="412.8" x2="393.6" y2="397.4" class="e-mull"/>
+<line x1="414.6" y1="412.8" x2="414.6" y2="397.4" class="e-mull"/>
+<line x1="435.6" y1="412.8" x2="435.6" y2="397.4" class="e-mull"/>
+<line x1="267.6" y1="397.4" x2="442.6" y2="397.4" class="e-out"/>
+<line x1="271.8" y1="409.3" x2="277.4" y2="400.2" class="e-hl"/>
+<line x1="313.8" y1="409.3" x2="319.4" y2="400.2" class="e-hl"/>
+<line x1="355.8" y1="409.3" x2="361.4" y2="400.2" class="e-hl"/>
+<line x1="397.8" y1="409.3" x2="403.4" y2="400.2" class="e-hl"/>
+<rect x="472" y="406.5" width="22.4" height="6.3" class="e-steel"/>
+<rect x="508.4" y="406.5" width="22.4" height="6.3" class="e-steel"/>
+<rect x="544.8" y="406.5" width="22.4" height="6.3" class="e-steel"/>
+<rect x="581.2" y="406.5" width="22.4" height="6.3" class="e-steel"/>
+<rect x="617.6" y="406.5" width="22.4" height="6.3" class="e-steel"/>
+<rect x="654" y="406.5" width="22.4" height="6.3" class="e-steel"/>
+<rect x="690.4" y="406.5" width="22.4" height="6.3" class="e-steel"/>
+<rect x="262" y="412.8" width="478.38" height="67.2" class="e-wall"/>
+<rect x="262" y="412.8" width="478.38" height="8.4" class="e-coral"/>
+<rect x="262" y="412.8" width="478.38" height="1.68" class="e-dark"/>
+<rect x="276" y="428.2" width="450.8" height="42" class="e-glass"/>
+<line x1="313.57" y1="470.2" x2="313.57" y2="428.2" class="e-mull-t"/>
+<line x1="351.13" y1="470.2" x2="351.13" y2="428.2" class="e-mull-t"/>
+<line x1="388.7" y1="470.2" x2="388.7" y2="428.2" class="e-mull-t"/>
+<line x1="426.27" y1="470.2" x2="426.27" y2="428.2" class="e-mull-t"/>
+<line x1="463.83" y1="470.2" x2="463.83" y2="428.2" class="e-mull-t"/>
+<line x1="501.4" y1="470.2" x2="501.4" y2="428.2" class="e-mull-t"/>
+<line x1="538.97" y1="470.2" x2="538.97" y2="428.2" class="e-mull-t"/>
+<line x1="576.53" y1="470.2" x2="576.53" y2="428.2" class="e-mull-t"/>
+<line x1="614.1" y1="470.2" x2="614.1" y2="428.2" class="e-mull-t"/>
+<line x1="651.67" y1="470.2" x2="651.67" y2="428.2" class="e-mull-t"/>
+<line x1="689.23" y1="470.2" x2="689.23" y2="428.2" class="e-mull-t"/>
+<rect x="276" y="428.2" width="450.8" height="42" style="fill:none;stroke:#2E333B;stroke-width:1.8"/>
+<line x1="283.51" y1="459.7" x2="296.66" y2="438.7" class="e-hl"/>
+<line x1="321.08" y1="459.7" x2="334.23" y2="438.7" class="e-hl"/>
+<line x1="358.65" y1="459.7" x2="371.8" y2="438.7" class="e-hl"/>
+<line x1="396.21" y1="459.7" x2="409.36" y2="438.7" class="e-hl"/>
+<line x1="433.78" y1="459.7" x2="446.93" y2="438.7" class="e-hl"/>
+<line x1="471.35" y1="459.7" x2="484.5" y2="438.7" class="e-hl"/>
+<line x1="508.91" y1="459.7" x2="522.06" y2="438.7" class="e-hl"/>
+<line x1="546.48" y1="459.7" x2="559.63" y2="438.7" class="e-hl"/>
+<line x1="584.05" y1="459.7" x2="597.2" y2="438.7" class="e-hl"/>
+<line x1="621.61" y1="459.7" x2="634.76" y2="438.7" class="e-hl"/>
+<line x1="659.18" y1="459.7" x2="672.33" y2="438.7" class="e-hl"/>
+<line x1="696.75" y1="459.7" x2="709.89" y2="438.7" class="e-hl"/>
+<rect x="284.4" y="426.8" width="1.96" height="44.8" class="e-wood"/>
+<rect x="303.16" y="426.8" width="1.96" height="44.8" class="e-wood"/>
+<rect x="321.92" y="426.8" width="1.96" height="44.8" class="e-wood"/>
+<rect x="340.68" y="426.8" width="1.96" height="44.8" class="e-wood"/>
+<rect x="359.44" y="426.8" width="1.96" height="44.8" class="e-wood"/>
+<rect x="378.2" y="426.8" width="1.96" height="44.8" class="e-wood"/>
+<rect x="396.96" y="426.8" width="1.96" height="44.8" class="e-wood"/>
+<rect x="415.72" y="426.8" width="1.96" height="44.8" class="e-wood"/>
+<rect x="434.48" y="426.8" width="1.96" height="44.8" class="e-wood"/>
+<rect x="453.24" y="426.8" width="1.96" height="44.8" class="e-wood"/>
+<rect x="472" y="426.8" width="1.96" height="44.8" class="e-wood"/>
+<rect x="490.76" y="426.8" width="1.96" height="44.8" class="e-wood"/>
+<rect x="509.52" y="426.8" width="1.96" height="44.8" class="e-wood"/>
+<rect x="528.28" y="426.8" width="1.96" height="44.8" class="e-wood"/>
+<rect x="547.04" y="426.8" width="1.96" height="44.8" class="e-wood"/>
+<rect x="565.8" y="426.8" width="1.96" height="44.8" class="e-wood"/>
+<rect x="584.56" y="426.8" width="1.96" height="44.8" class="e-wood"/>
+<rect x="603.32" y="426.8" width="1.96" height="44.8" class="e-wood"/>
+<rect x="622.08" y="426.8" width="1.96" height="44.8" class="e-wood"/>
+<rect x="640.84" y="426.8" width="1.96" height="44.8" class="e-wood"/>
+<rect x="659.6" y="426.8" width="1.96" height="44.8" class="e-wood"/>
+<rect x="678.36" y="426.8" width="1.96" height="44.8" class="e-wood"/>
+<rect x="697.12" y="426.8" width="1.96" height="44.8" class="e-wood"/>
+<rect x="715.88" y="426.8" width="1.96" height="44.8" class="e-wood"/>
+<text class="e-fd" x="501.4" y="419.24" text-anchor="middle" style="font-weight:800;font-size:6.22px;fill:#FFFFFF;letter-spacing:0px">FASHION &amp; GOODS</text>
+<rect x="435.6" y="438" width="70" height="42" class="e-ghost"/>
+<line x1="435.6" y1="447.8" x2="505.6" y2="447.8" class="e-ghost"/>
+<text x="470.6" y="461.8" text-anchor="middle" class="t-sm halo">KIOSK 3 in front</text>
+<rect x="505.6" y="438" width="154" height="42" class="e-ghost"/>
+<line x1="505.6" y1="447.8" x2="659.6" y2="447.8" class="e-ghost"/>
+<text x="582.6" y="461.8" text-anchor="middle" class="t-sm halo">KIOSK 2 in front</text>
+<rect x="659.6" y="438" width="86.8" height="42" class="e-ghost"/>
+<line x1="659.6" y1="447.8" x2="746.4" y2="447.8" class="e-ghost"/>
+<text x="703" y="461.8" text-anchor="middle" class="t-sm halo">KIOSK 1 in front</text>
+<ellipse class="shrub-o" cx="164.33" cy="468.26" rx="5.93" ry="5.34"/>
+<ellipse class="shrub-o" cx="172.8" cy="467.65" rx="6.69" ry="6.02"/>
+<ellipse class="shrub-o" cx="180.28" cy="468.62" rx="5.48" ry="4.93"/>
+<ellipse class="shrub-o" cx="188.12" cy="468.05" rx="6.19" ry="5.57"/>
+<ellipse class="shrub-o" cx="196.8" cy="467.54" rx="6.82" ry="6.14"/>
+<ellipse class="shrub-o" cx="204.51" cy="468.47" rx="5.66" ry="5.09"/>
+<ellipse class="shrub-o" cx="212.46" cy="468" rx="6.25" ry="5.63"/>
+<ellipse class="shrub-o" cx="220.57" cy="468.01" rx="6.24" ry="5.61"/>
+<ellipse class="shrub-o" cx="229.05" cy="467.72" rx="6.6" ry="5.94"/>
+<ellipse class="shrub-o" cx="235.33" cy="469.56" rx="4.3" ry="3.87"/>
+<ellipse class="shrub-o" cx="241.3" cy="469.26" rx="4.67" ry="4.21"/>
+<ellipse class="shrub-o" cx="249.69" cy="467.41" rx="6.99" ry="6.29"/>
+<ellipse class="shrub-o" cx="258.08" cy="467.97" rx="6.29" ry="5.66"/>
+<ellipse class="shrub-o" cx="264.9" cy="469.06" rx="4.93" ry="4.44"/>
+<ellipse class="shrub-o" cx="272.65" cy="467.98" rx="6.28" ry="5.65"/>
+<ellipse class="shrub-o" cx="279.21" cy="469.26" rx="4.67" ry="4.21"/>
+<ellipse class="shrub-o" cx="285.82" cy="468.83" rx="5.21" ry="4.69"/>
+<ellipse class="shrub-o" cx="292.82" cy="468.65" rx="5.43" ry="4.89"/>
+<ellipse class="shrub-o" cx="299.29" cy="469.13" rx="4.84" ry="4.36"/>
+<ellipse class="shrub-o" cx="305.33" cy="469.33" rx="4.59" ry="4.13"/>
+<ellipse class="shrub-o" cx="312.33" cy="468.5" rx="5.62" ry="5.06"/>
+<ellipse class="shrub-o" cx="320.03" cy="468.19" rx="6.01" ry="5.41"/>
+<ellipse class="shrub-o" cx="326.92" cy="468.93" rx="5.09" ry="4.58"/>
+<ellipse class="shrub-o" cx="334.5" cy="468.16" rx="6.05" ry="5.44"/>
+<ellipse class="shrub-o" cx="343.26" cy="467.44" rx="6.95" ry="6.25"/>
+<ellipse class="shrub-o" cx="349.7" cy="469.52" rx="4.35" ry="3.92"/>
+<ellipse class="shrub-o" cx="355.98" cy="469.02" rx="4.98" ry="4.48"/>
+<ellipse class="shrub-o" cx="361.93" cy="469.44" rx="4.45" ry="4.01"/>
+<ellipse class="shrub-o" cx="369.36" cy="468.12" rx="6.1" ry="5.49"/>
+<ellipse class="shrub-o" cx="376.55" cy="468.72" rx="5.36" ry="4.82"/>
+<ellipse class="shrub-o" cx="383.59" cy="468.66" rx="5.43" ry="4.89"/>
+<ellipse class="shrub-o" cx="390.11" cy="469.09" rx="4.89" ry="4.4"/>
+<ellipse class="shrub-o" cx="397.95" cy="467.9" rx="6.38" ry="5.74"/>
+<ellipse class="shrub-o" cx="406.19" cy="467.94" rx="6.32" ry="5.69"/>
+<ellipse class="shrub-o" cx="413.54" cy="468.64" rx="5.45" ry="4.91"/>
+<ellipse class="shrub-o" cx="421.68" cy="467.79" rx="6.51" ry="5.86"/>
+<ellipse class="shrub-o" cx="428.48" cy="469.12" rx="4.85" ry="4.36"/>
+<ellipse class="shrub-o" cx="435.1" cy="468.87" rx="5.16" ry="4.65"/>
+<ellipse class="shrub-o" cx="443.53" cy="467.49" rx="6.88" ry="6.19"/>
+<ellipse class="shrub-o" cx="450.44" cy="469.13" rx="4.84" ry="4.35"/>
+<ellipse class="shrub-o" cx="456.49" cy="469.32" rx="4.6" ry="4.14"/>
+<ellipse class="shrub-o" cx="462.16" cy="469.57" rx="4.29" ry="3.86"/>
+<ellipse class="shrub-o" cx="469.53" cy="468.13" rx="6.08" ry="5.47"/>
+<ellipse class="shrub-o" cx="477.85" cy="467.8" rx="6.5" ry="5.85"/>
+<ellipse class="shrub-o" cx="484.15" cy="469.52" rx="4.34" ry="3.91"/>
+<ellipse class="shrub-o" cx="490.99" cy="468.57" rx="5.54" ry="4.99"/>
+<ellipse class="shrub-o" cx="497.96" cy="468.75" rx="5.31" ry="4.78"/>
+<ellipse class="shrub-o" cx="504.67" cy="468.91" rx="5.12" ry="4.61"/>
+<ellipse class="shrub-o" cx="511.07" cy="469.11" rx="4.86" ry="4.37"/>
+<ellipse class="shrub-o" cx="517.8" cy="468.78" rx="5.28" ry="4.75"/>
+<ellipse class="shrub-o" cx="523.98" cy="469.32" rx="4.6" ry="4.14"/>
+<ellipse class="shrub-o" cx="532.14" cy="467.58" rx="6.78" ry="6.1"/>
+<ellipse class="shrub-o" cx="538.93" cy="469.19" rx="4.76" ry="4.28"/>
+<ellipse class="shrub-o" cx="546.06" cy="468.44" rx="5.7" ry="5.13"/>
+<ellipse class="shrub-o" cx="553.76" cy="468.2" rx="5.99" ry="5.39"/>
+<ellipse class="shrub-o" cx="561.6" cy="468.17" rx="6.04" ry="5.44"/>
+<ellipse class="shrub-o" cx="568.94" cy="468.58" rx="5.53" ry="4.98"/>
+<ellipse class="shrub-o" cx="576.26" cy="468.47" rx="5.66" ry="5.1"/>
+<ellipse class="shrub-o" cx="584.78" cy="467.54" rx="6.82" ry="6.14"/>
+<ellipse class="shrub-o" cx="591.52" cy="469.25" rx="4.69" ry="4.22"/>
+<ellipse class="shrub-o" cx="597.68" cy="469.19" rx="4.76" ry="4.29"/>
+<ellipse class="shrub-o" cx="604.16" cy="468.96" rx="5.05" ry="4.54"/>
+<ellipse class="shrub-o" cx="611.94" cy="467.98" rx="6.27" ry="5.65"/>
+<ellipse class="shrub-o" cx="619.21" cy="468.69" rx="5.39" ry="4.85"/>
+<ellipse class="shrub-o" cx="626.12" cy="468.77" rx="5.29" ry="4.76"/>
+<ellipse class="shrub-o" cx="632.12" cy="469.47" rx="4.42" ry="3.98"/>
+<ellipse class="shrub-o" cx="638" cy="469.36" rx="4.55" ry="4.1"/>
+<ellipse class="shrub-o" cx="645.39" cy="468.18" rx="6.02" ry="5.42"/>
+<ellipse class="shrub-o" cx="652.04" cy="469.13" rx="4.84" ry="4.36"/>
+<ellipse class="shrub-o" cx="658.98" cy="468.61" rx="5.49" ry="4.94"/>
+<ellipse class="shrub-o" cx="665.49" cy="469.11" rx="4.87" ry="4.38"/>
+<ellipse class="shrub-o" cx="672.03" cy="468.94" rx="5.07" ry="4.56"/>
+<ellipse class="shrub-o" cx="678.28" cy="469.21" rx="4.74" ry="4.26"/>
+<ellipse class="shrub-o" cx="686.45" cy="467.61" rx="6.74" ry="6.07"/>
+<ellipse class="shrub-o" cx="694.42" cy="468.24" rx="5.95" ry="5.35"/>
+<ellipse class="shrub-o" cx="701.76" cy="468.55" rx="5.56" ry="5.01"/>
+<ellipse class="shrub-o" cx="708.27" cy="469.13" rx="4.84" ry="4.36"/>
+<ellipse class="shrub-o" cx="716.27" cy="467.77" rx="6.54" ry="5.89"/>
+<ellipse class="shrub-o" cx="724" cy="468.38" rx="5.77" ry="5.19"/>
+<ellipse class="shrub-o" cx="730.31" cy="469.34" rx="4.57" ry="4.12"/>
+<ellipse class="shrub-o" cx="736.39" cy="469.24" rx="4.71" ry="4.24"/>
+<ellipse class="shrub-o" cx="744.66" cy="467.51" rx="6.86" ry="6.17"/>
+<rect x="158.4" y="473" width="583.1" height="7" class="e-conc"/>
+<line x1="158.4" y1="457.6" x2="262" y2="457.6" class="e-out"/>
+<line x1="161.2" y1="473" x2="161.2" y2="457.6" class="e-mull"/>
+<line x1="175.2" y1="473" x2="175.2" y2="457.6" class="e-mull"/>
+<line x1="189.2" y1="473" x2="189.2" y2="457.6" class="e-mull"/>
+<line x1="203.2" y1="473" x2="203.2" y2="457.6" class="e-mull"/>
+<line x1="217.2" y1="473" x2="217.2" y2="457.6" class="e-mull"/>
+<line x1="231.2" y1="473" x2="231.2" y2="457.6" class="e-mull"/>
+<line x1="245.2" y1="473" x2="245.2" y2="457.6" class="e-mull"/>
+<line x1="259.2" y1="473" x2="259.2" y2="457.6" class="e-mull"/>
+<line x1="199" y1="480" x2="199" y2="423.58" class="trunk"/>
+<g class="tree-o"><ellipse cx="199" cy="423.58" rx="27.72" ry="23.65"/><ellipse cx="175.32" cy="425.99" rx="14.43" ry="13.16"/><ellipse cx="176.13" cy="418.12" rx="13.15" ry="13.98"/><ellipse cx="183.41" cy="409.15" rx="15.58" ry="11.97"/><ellipse cx="193.58" cy="405.02" rx="13.92" ry="13.77"/><ellipse cx="204.11" cy="404.97" rx="15.84" ry="14.37"/><ellipse cx="215.52" cy="409.82" rx="14.69" ry="13.71"/><ellipse cx="221.23" cy="416.63" rx="15.09" ry="14.56"/><ellipse cx="222.41" cy="427.29" rx="15.72" ry="13.63"/></g>
+<g class="tree-f"><ellipse cx="199" cy="423.58" rx="26.82" ry="22.75"/><ellipse cx="175.32" cy="425.99" rx="13.53" ry="12.26"/><ellipse cx="176.13" cy="418.12" rx="12.25" ry="13.08"/><ellipse cx="183.41" cy="409.15" rx="14.68" ry="11.07"/><ellipse cx="193.58" cy="405.02" rx="13.02" ry="12.87"/><ellipse cx="204.11" cy="404.97" rx="14.94" ry="13.47"/><ellipse cx="215.52" cy="409.82" rx="13.79" ry="12.81"/><ellipse cx="221.23" cy="416.63" rx="14.19" ry="13.66"/><ellipse cx="222.41" cy="427.29" rx="14.82" ry="12.73"/></g>
+<polygon points="150,480 740.38,480 742.2,489.05 773,489.05 773,496.05 150,496.05" class="poche"/>
+<polygon points="150,480 740.38,480 742.2,489.05 773,489.05 773,496.05 150,496.05" fill="url(#ce-earth)"/>
+<polyline points="150,480 740.38,480 742.2,489.05 773,489.05" class="e-ground"/>
+<line class="dim" x1="259" y1="491.9" x2="743.38" y2="491.9"/><line class="dim-t" x1="259" y1="494.9" x2="265" y2="488.9"/><line class="dim-t" x1="737.38" y1="494.9" x2="743.38" y2="488.9"/><text class="t-dim halo" x="501.19" y="488.9" text-anchor="middle">34.17</text>
+<polygon class="ink-f" points="143.9,473 151.9,473 147.9,480"/>
+<text class="t-dim halo" x="140.9" y="477" text-anchor="end">+8.40 KIOSK STRIP</text>
+<polygon class="ink-f" points="143.9,414.2 151.9,414.2 147.9,421.2"/>
+<text class="t-dim halo" x="140.9" y="418.2" text-anchor="end">+12.60</text>
+<polygon class="ink-f" points="143.9,405.8 151.9,405.8 147.9,412.8"/>
+<text class="t-dim halo" x="140.9" y="409.8" text-anchor="end">+13.20</text>
+<line x1="346" y1="400.2" x2="276" y2="384.8" class="ln-m"/>
+<circle class="ink-f" cx="346" cy="400.2" r="1.8"/>
+<text class="e-key halo" x="279" y="387.8" text-anchor="start">Roof deck rail (stair core continues up)</text>
+<circle class="bubble" cx="161" cy="506.1" r="11"/><text class="t-lbl" x="161" y="509.6" text-anchor="middle">5</text><text class="t-head" x="178" y="510.1">FASHION &amp; GOODS · NORTH · SIDE TO THE STREET</text><text class="t-sm" x="178" y="522.1">looking south from the kiosk strip · kiosks dashed (A-504)</text>
+<rect x="150" y="585.2" width="420" height="114.8" class="e-sky"/>
+<rect x="192" y="607.6" width="378" height="28" class="e-yel"/>
+<rect x="192" y="611.52" width="378" height="2.8" class="e-pink"/>
+<rect x="192" y="607.6" width="378" height="1.68" class="e-dark"/>
+<rect x="192" y="592.2" width="378" height="15.4" class="e-glass-t"/>
+<line x1="192" y1="607.6" x2="192" y2="592.2" class="e-mull"/>
+<line x1="213" y1="607.6" x2="213" y2="592.2" class="e-mull"/>
+<line x1="234" y1="607.6" x2="234" y2="592.2" class="e-mull"/>
+<line x1="255" y1="607.6" x2="255" y2="592.2" class="e-mull"/>
+<line x1="276" y1="607.6" x2="276" y2="592.2" class="e-mull"/>
+<line x1="297" y1="607.6" x2="297" y2="592.2" class="e-mull"/>
+<line x1="318" y1="607.6" x2="318" y2="592.2" class="e-mull"/>
+<line x1="339" y1="607.6" x2="339" y2="592.2" class="e-mull"/>
+<line x1="360" y1="607.6" x2="360" y2="592.2" class="e-mull"/>
+<line x1="381" y1="607.6" x2="381" y2="592.2" class="e-mull"/>
+<line x1="402" y1="607.6" x2="402" y2="592.2" class="e-mull"/>
+<line x1="423" y1="607.6" x2="423" y2="592.2" class="e-mull"/>
+<line x1="444" y1="607.6" x2="444" y2="592.2" class="e-mull"/>
+<line x1="465" y1="607.6" x2="465" y2="592.2" class="e-mull"/>
+<line x1="486" y1="607.6" x2="486" y2="592.2" class="e-mull"/>
+<line x1="507" y1="607.6" x2="507" y2="592.2" class="e-mull"/>
+<line x1="528" y1="607.6" x2="528" y2="592.2" class="e-mull"/>
+<line x1="549" y1="607.6" x2="549" y2="592.2" class="e-mull"/>
+<line x1="570" y1="607.6" x2="570" y2="592.2" class="e-mull"/>
+<line x1="192" y1="592.2" x2="570" y2="592.2" class="e-out"/>
+<line x1="196.2" y1="604.1" x2="201.8" y2="595" class="e-hl"/>
+<line x1="238.2" y1="604.1" x2="243.8" y2="595" class="e-hl"/>
+<line x1="280.2" y1="604.1" x2="285.8" y2="595" class="e-hl"/>
+<line x1="322.2" y1="604.1" x2="327.8" y2="595" class="e-hl"/>
+<line x1="364.2" y1="604.1" x2="369.8" y2="595" class="e-hl"/>
+<line x1="406.2" y1="604.1" x2="411.8" y2="595" class="e-hl"/>
+<line x1="448.2" y1="604.1" x2="453.8" y2="595" class="e-hl"/>
+<line x1="490.2" y1="604.1" x2="495.8" y2="595" class="e-hl"/>
+<line x1="532.2" y1="604.1" x2="537.8" y2="595" class="e-hl"/>
+<circle cx="231.9" cy="626.5" r="7" class="e-cream"/>
+<circle cx="231.9" cy="626.5" r="5.18" class="e-glass"/>
+<path class="e-hl" d="M228.75 625.1A3.5 3.5 0 0 1 232.6 623"/>
+<circle cx="273.9" cy="626.5" r="7" class="e-cream"/>
+<circle cx="273.9" cy="626.5" r="5.18" class="e-glass"/>
+<path class="e-hl" d="M270.75 625.1A3.5 3.5 0 0 1 274.6 623"/>
+<circle cx="315.9" cy="626.5" r="7" class="e-cream"/>
+<circle cx="315.9" cy="626.5" r="5.18" class="e-glass"/>
+<path class="e-hl" d="M312.75 625.1A3.5 3.5 0 0 1 316.6 623"/>
+<circle cx="357.9" cy="626.5" r="7" class="e-cream"/>
+<circle cx="357.9" cy="626.5" r="5.18" class="e-glass"/>
+<path class="e-hl" d="M354.75 625.1A3.5 3.5 0 0 1 358.6 623"/>
+<circle cx="399.9" cy="626.5" r="7" class="e-cream"/>
+<circle cx="399.9" cy="626.5" r="5.18" class="e-glass"/>
+<path class="e-hl" d="M396.75 625.1A3.5 3.5 0 0 1 400.6 623"/>
+<circle cx="441.9" cy="626.5" r="7" class="e-cream"/>
+<circle cx="441.9" cy="626.5" r="5.18" class="e-glass"/>
+<path class="e-hl" d="M438.75 625.1A3.5 3.5 0 0 1 442.6 623"/>
+<circle cx="483.9" cy="626.5" r="7" class="e-cream"/>
+<circle cx="483.9" cy="626.5" r="5.18" class="e-glass"/>
+<path class="e-hl" d="M480.75 625.1A3.5 3.5 0 0 1 484.6 623"/>
+<circle cx="525.9" cy="626.5" r="7" class="e-cream"/>
+<circle cx="525.9" cy="626.5" r="5.18" class="e-glass"/>
+<path class="e-hl" d="M522.75 625.1A3.5 3.5 0 0 1 526.6 623"/>
+<text x="381" y="587.3" text-anchor="middle" class="t-sm halo">ARCADE beyond</text>
+<rect x="192" y="635.6" width="326.62" height="64.4" class="e-cream"/>
+<rect x="192" y="635.6" width="326.62" height="5.6" class="e-yel"/>
+<rect x="192" y="635.6" width="326.62" height="1.4" class="e-dark"/>
+<rect x="203.2" y="658" width="22.4" height="22.4" class="e-glass"/>
+<rect x="203.2" y="658" width="22.4" height="22.4" style="fill:none;stroke:#2E333B;stroke-width:1.8"/>
+<line x1="207.68" y1="674.8" x2="215.52" y2="663.6" class="e-hl"/>
+<ellipse class="shrub-o" cx="198.38" cy="694.89" rx="6.38" ry="5.74"/>
+<ellipse class="shrub-o" cx="206.88" cy="694.73" rx="6.58" ry="5.92"/>
+<ellipse class="shrub-o" cx="216.24" cy="694.09" rx="7.39" ry="6.65"/>
+<ellipse class="shrub-o" cx="224.29" cy="695.34" rx="5.83" ry="5.24"/>
+<ellipse class="shrub-o" cx="231.86" cy="695.34" rx="5.83" ry="5.24"/>
+<rect x="242.4" y="664.3" width="271.6" height="35.7" class="e-glow"/>
+<rect x="256.4" y="689.5" width="1.12" height="10.5" class="e-dark"/>
+<rect x="250.1" y="689.08" width="13.72" height="0.84" class="e-dark"/>
+<rect x="292.8" y="689.5" width="1.12" height="10.5" class="e-dark"/>
+<rect x="286.5" y="689.08" width="13.72" height="0.84" class="e-dark"/>
+<rect x="329.2" y="689.5" width="1.12" height="10.5" class="e-dark"/>
+<rect x="322.9" y="689.08" width="13.72" height="0.84" class="e-dark"/>
+<rect x="365.6" y="689.5" width="1.12" height="10.5" class="e-dark"/>
+<rect x="359.3" y="689.08" width="13.72" height="0.84" class="e-dark"/>
+<rect x="402" y="689.5" width="1.12" height="10.5" class="e-dark"/>
+<rect x="395.7" y="689.08" width="13.72" height="0.84" class="e-dark"/>
+<rect x="438.4" y="689.5" width="1.12" height="10.5" class="e-dark"/>
+<rect x="432.1" y="689.08" width="13.72" height="0.84" class="e-dark"/>
+<rect x="474.8" y="689.5" width="1.12" height="10.5" class="e-dark"/>
+<rect x="468.5" y="689.08" width="13.72" height="0.84" class="e-dark"/>
+<rect x="444" y="684.6" width="64.4" height="15.4" class="e-wood"/>
+<rect x="242.4" y="664.3" width="271.6" height="35.7" class="e-glass-t"/>
+<line x1="276.35" y1="700" x2="276.35" y2="664.3" class="e-mull-t"/>
+<line x1="310.3" y1="700" x2="310.3" y2="664.3" class="e-mull-t"/>
+<line x1="344.25" y1="700" x2="344.25" y2="664.3" class="e-mull-t"/>
+<line x1="378.2" y1="700" x2="378.2" y2="664.3" class="e-mull-t"/>
+<line x1="412.15" y1="700" x2="412.15" y2="664.3" class="e-mull-t"/>
+<line x1="446.1" y1="700" x2="446.1" y2="664.3" class="e-mull-t"/>
+<line x1="480.05" y1="700" x2="480.05" y2="664.3" class="e-mull-t"/>
+<rect x="242.4" y="664.3" width="271.6" height="35.7" style="fill:none;stroke:#2E333B;stroke-width:1.8"/>
+<line x1="249.19" y1="691.08" x2="261.07" y2="673.23" class="e-hl"/>
+<line x1="283.14" y1="691.08" x2="295.02" y2="673.23" class="e-hl"/>
+<line x1="317.09" y1="691.08" x2="328.97" y2="673.23" class="e-hl"/>
+<line x1="351.04" y1="691.08" x2="362.92" y2="673.23" class="e-hl"/>
+<line x1="384.99" y1="691.08" x2="396.87" y2="673.23" class="e-hl"/>
+<line x1="418.94" y1="691.08" x2="430.82" y2="673.23" class="e-hl"/>
+<line x1="452.89" y1="691.08" x2="464.77" y2="673.23" class="e-hl"/>
+<line x1="486.84" y1="691.08" x2="498.72" y2="673.23" class="e-hl"/>
+<rect x="237.5" y="652.4" width="281.12" height="9.1" fill="url(#ce-awn-y)"/>
+<rect x="237.5" y="652.4" width="281.12" height="9.1" class="e-out"/>
+<rect x="237.5" y="661.5" width="281.12" height="5.6" class="e-white"/>
+<rect x="237.5" y="661.5" width="281.12" height="5.6" class="e-out"/>
+<rect x="237.5" y="667.1" width="281.12" height="4.9" class="e-shadow"/>
+<text class="e-fc" x="378.2" y="665.84" text-anchor="middle" style="font-weight:700;font-size:5.06px;fill:#2E333B;letter-spacing:1.68px">SEASIDE CAFE</text>
+<rect x="273.9" y="644.7" width="4.2" height="5.6" class="e-dark"/>
+<circle cx="276" cy="651.7" r="1.96" class="e-yel3"/>
+<rect x="376.1" y="644.7" width="4.2" height="5.6" class="e-dark"/>
+<circle cx="378.2" cy="651.7" r="1.96" class="e-yel3"/>
+<rect x="478.3" y="644.7" width="4.2" height="5.6" class="e-dark"/>
+<circle cx="480.4" cy="651.7" r="1.96" class="e-yel3"/>
+<line x1="556" y1="700" x2="556" y2="666.4" class="e-mull"/>
+<path d="M535 671.3 Q547.6 665 556 660.1 Q564.4 665 577 671.3 Z" class="umb-c"/>
+<line x1="553.9" y1="660.8" x2="545.5" y2="670.6" class="e-joint"/>
+<line x1="556" y1="660.8" x2="556" y2="670.6" class="e-joint"/>
+<line x1="558.1" y1="660.8" x2="566.5" y2="670.6" class="e-joint"/>
+<circle cx="556" cy="659.4" r="0.84" class="ink-f"/>
+<polygon points="530.1,700 532.2,685.3 540.6,685.3 542.7,700" class="e-wood"/>
+<polygon points="531.36,697.9 532.9,686.7 539.9,686.7 541.44,697.9" class="e-dark"/>
+<text class="e-fc" x="536.4" y="689.5" text-anchor="middle" style="font-weight:600;font-size:2.33px;fill:#FFFFFF;letter-spacing:0px">PLAY</text>
+<text class="e-fc" x="536.4" y="692.3" text-anchor="middle" style="font-weight:600;font-size:2.33px;fill:#FFFFFF;letter-spacing:0px">EAT</text>
+<text class="e-fc" x="536.4" y="695.1" text-anchor="middle" style="font-weight:600;font-size:2.33px;fill:#FFFFFF;letter-spacing:0px">CHILL</text>
+<g class="avatar"><circle cx="325" cy="678.83" r="1.76"/><rect x="322.65" y="680.71" width="4.7" height="9.41" rx="1.41"/><rect x="323" y="689.42" width="1.76" height="10.58" rx="0.71"/><rect x="325.24" y="689.42" width="1.76" height="10.58" rx="0.71"/></g>
+<polygon points="150,700 570,700 570,707 150,707" class="poche"/>
+<polygon points="150,700 570,700 570,707 150,707" fill="url(#ce-earth)"/>
+<polyline points="150,700 570,700" class="e-ground"/>
+<rect x="234" y="700" width="336" height="2.52" class="e-wood"/>
+<line class="dim" x1="189" y1="710.5" x2="521.62" y2="710.5"/><line class="dim-t" x1="189" y1="713.5" x2="195" y2="707.5"/><line class="dim-t" x1="515.62" y1="713.5" x2="521.62" y2="707.5"/><text class="t-dim halo" x="355.31" y="707.5" text-anchor="middle">23.33 CAFÉ</text>
+<line class="dim" x1="234.5" y1="716.8" x2="521.62" y2="716.8"/><line class="dim-t" x1="234.5" y1="719.8" x2="240.5" y2="713.8"/><line class="dim-t" x1="515.62" y1="719.8" x2="521.62" y2="713.8"/><text class="t-dim halo" x="378.06" y="713.8" text-anchor="middle">20.08 AWNING</text>
+<polygon class="ink-f" points="143.9,693 151.9,693 147.9,700"/>
+<text class="t-dim halo" x="140.9" y="697" text-anchor="end">+3.60 TERRACE</text>
+<polygon class="ink-f" points="143.9,634.2 151.9,634.2 147.9,641.2"/>
+<text class="t-dim halo" x="140.9" y="638.2" text-anchor="end">+7.80 ROOF</text>
+<polygon class="ink-f" points="143.9,600.6 151.9,600.6 147.9,607.6"/>
+<text class="t-dim halo" x="140.9" y="604.6" text-anchor="end">+10.20</text>
+<circle class="bubble" cx="161" cy="735.9" r="11"/><text class="t-lbl" x="161" y="739.4" text-anchor="middle">7</text><text class="t-head" x="178" y="739.9">CAFÉ · SOUTH · FRONT TO THE TERRACE</text><text class="t-sm" x="178" y="751.9">looking north · folding glass front, 2.5 m awning</text>
+<rect x="660" y="585.2" width="336" height="114.8" class="e-sky"/>
+<rect x="961" y="607.6" width="35" height="92.4" class="e-yel"/>
+<rect x="961" y="611.52" width="35" height="2.8" class="e-pink"/>
+<rect x="961" y="592.2" width="35" height="15.4" class="e-glass-t"/>
+<line x1="961" y1="607.6" x2="961" y2="592.2" class="e-mull"/>
+<line x1="982" y1="607.6" x2="982" y2="592.2" class="e-mull"/>
+<line x1="961" y1="592.2" x2="996" y2="592.2" class="e-out"/>
+<line x1="965.2" y1="604.1" x2="970.8" y2="595" class="e-hl"/>
+<polyline points="996,700 996,651 992.5,647.78 999.5,644.42 996,641.2 996,592.2" class="e-break"/>
+<text x="978.5" y="587.3" text-anchor="middle" class="t-sm halo">ARCADE</text>
+<rect x="786" y="635.6" width="128.38" height="64.4" class="e-cream"/>
+<rect x="786" y="635.6" width="128.38" height="5.6" class="e-yel"/>
+<rect x="794.4" y="660.8" width="28" height="25.2" class="e-glass"/>
+<rect x="794.4" y="660.8" width="28" height="25.2" style="fill:none;stroke:#2E333B;stroke-width:1.8"/>
+<line x1="800" y1="679.7" x2="809.8" y2="667.1" class="e-hl"/>
+<rect x="867.2" y="660.8" width="39.2" height="25.2" class="e-glass"/>
+<line x1="886.8" y1="686" x2="886.8" y2="660.8" class="e-mull-t"/>
+<rect x="867.2" y="660.8" width="39.2" height="25.2" style="fill:none;stroke:#2E333B;stroke-width:1.8"/>
+<line x1="871.12" y1="679.7" x2="877.98" y2="667.1" class="e-hl"/>
+<line x1="890.72" y1="679.7" x2="897.58" y2="667.1" class="e-hl"/>
+<rect x="829.4" y="660.8" width="29.4" height="39.2" class="e-glow"/>
+<rect x="829.4" y="660.8" width="29.4" height="39.2" class="e-glass-t"/>
+<line x1="844.1" y1="700" x2="844.1" y2="660.8" class="e-mull-t"/>
+<rect x="829.4" y="660.8" width="29.4" height="39.2" style="fill:none;stroke:#2E333B;stroke-width:1.8"/>
+<line x1="832.34" y1="690.2" x2="837.49" y2="670.6" class="e-hl"/>
+<line x1="847.04" y1="690.2" x2="852.19" y2="670.6" class="e-hl"/>
+<rect x="751" y="652.4" width="35" height="19.6" fill="url(#ce-awn-y)"/>
+<rect x="751" y="652.4" width="35" height="19.6" class="e-out"/>
+<rect x="914.38" y="649.6" width="46.62" height="50.4" class="e-yel"/>
+<rect x="914.38" y="649.6" width="46.62" height="4.2" class="e-dark"/>
+<rect x="919" y="665" width="37.8" height="35" class="e-glow"/>
+<line x1="937.9" y1="700" x2="937.9" y2="665" class="e-mull-t"/>
+<rect x="919" y="665" width="37.8" height="35" style="fill:none;stroke:#2E333B;stroke-width:1.8"/>
+<line x1="922.78" y1="691.25" x2="929.39" y2="673.75" class="e-hl"/>
+<line x1="941.68" y1="691.25" x2="948.29" y2="673.75" class="e-hl"/>
+<path d="M920.4 662.9 L954.98 662.9 Q957.78 662.9 957.78 660.1 L957.78 658 Q957.78 655.2 954.98 655.2 L920.4 655.2 Q917.6 655.2 917.6 658 L917.6 660.1 Q917.6 662.9 920.4 662.9 Z" class="e-pink-o"/>
+<text class="e-fd" x="937.62" y="661.08" text-anchor="middle" style="font-weight:800;font-size:5.83px;fill:#FFFFFF;letter-spacing:0px">PRIZE</text>
+<line x1="772" y1="700" x2="772" y2="666.4" class="e-mull"/>
+<path d="M751 671.3 Q763.6 665 772 660.1 Q780.4 665 793 671.3 Z" class="umb-p"/>
+<line x1="769.9" y1="660.8" x2="761.5" y2="670.6" class="e-joint"/>
+<line x1="772" y1="660.8" x2="772" y2="670.6" class="e-joint"/>
+<line x1="774.1" y1="660.8" x2="782.5" y2="670.6" class="e-joint"/>
+<circle cx="772" cy="659.4" r="0.84" class="ink-f"/>
+<line x1="695" y1="700" x2="695" y2="666.4" class="e-mull"/>
+<path d="M674 671.3 Q686.6 665 695 660.1 Q703.4 665 716 671.3 Z" class="umb-y"/>
+<line x1="692.9" y1="660.8" x2="684.5" y2="670.6" class="e-joint"/>
+<line x1="695" y1="660.8" x2="695" y2="670.6" class="e-joint"/>
+<line x1="697.1" y1="660.8" x2="705.5" y2="670.6" class="e-joint"/>
+<circle cx="695" cy="659.4" r="0.84" class="ink-f"/>
+<g class="avatar"><circle cx="735.6" cy="678.58" r="1.78"/><rect x="733.22" y="680.48" width="4.76" height="9.52" rx="1.43"/><rect x="733.58" y="689.29" width="1.78" height="10.71" rx="0.71"/><rect x="735.84" y="689.29" width="1.78" height="10.71" rx="0.71"/></g>
+<polygon points="660,700 996,700 996,707 660,707" class="poche"/>
+<polygon points="660,700 996,700 996,707 660,707" fill="url(#ce-earth)"/>
+<polyline points="660,700 996,700" class="e-ground"/>
+<rect x="660" y="700" width="254.38" height="2.52" class="e-wood"/>
+<line class="dim" x1="783" y1="714" x2="917.38" y2="714"/><line class="dim-t" x1="783" y1="717" x2="789" y2="711"/><line class="dim-t" x1="911.38" y1="717" x2="917.38" y2="711"/><text class="t-dim halo" x="850.19" y="711" text-anchor="middle">9.17 CAFÉ</text>
+<polygon class="ink-f" points="653.9,693 661.9,693 657.9,700"/>
+<text class="t-dim halo" x="650.9" y="697" text-anchor="end">+3.60</text>
+<polygon class="ink-f" points="653.9,628.6 661.9,628.6 657.9,635.6"/>
+<text class="t-dim halo" x="650.9" y="632.6" text-anchor="end">+8.20</text>
+<circle class="bubble" cx="671" cy="727.5" r="11"/><text class="t-lbl" x="671" y="731" text-anchor="middle">8</text><text class="t-head" x="688" y="731.5">CAFÉ · EAST · SIDE</text><text class="t-sm" x="688" y="743.5">looking west across the terrace</text>
+<rect x="150" y="795.2" width="238" height="110.6" class="e-sky"/>
+<rect x="150" y="817.6" width="56" height="88.2" class="e-yel"/>
+<rect x="150" y="821.52" width="56" height="2.8" class="e-pink"/>
+<rect x="150" y="817.6" width="56" height="1.68" class="e-dark"/>
+<rect x="150" y="802.2" width="56" height="15.4" class="e-glass-t"/>
+<line x1="150" y1="817.6" x2="150" y2="802.2" class="e-mull"/>
+<line x1="171" y1="817.6" x2="171" y2="802.2" class="e-mull"/>
+<line x1="192" y1="817.6" x2="192" y2="802.2" class="e-mull"/>
+<line x1="150" y1="802.2" x2="206" y2="802.2" class="e-out"/>
+<line x1="154.2" y1="814.1" x2="159.8" y2="805" class="e-hl"/>
+<line x1="196.2" y1="814.1" x2="201.8" y2="805" class="e-hl"/>
+<rect x="159.38" y="859.6" width="46.62" height="44.8" class="e-yel"/>
+<rect x="159.38" y="859.6" width="46.62" height="4.2" class="e-dark"/>
+<rect x="206" y="845.6" width="128.38" height="60.2" class="e-cream"/>
+<rect x="206" y="845.6" width="128.38" height="5.6" class="e-yel"/>
+<rect x="238.2" y="826" width="4.2" height="19.6" class="e-steel"/>
+<rect x="236.1" y="823.2" width="8.4" height="2.8" class="e-dark"/>
+<rect x="217.2" y="863.8" width="58.8" height="11.2" class="e-glass"/>
+<line x1="236.8" y1="875" x2="236.8" y2="863.8" class="e-mull-t"/>
+<line x1="256.4" y1="875" x2="256.4" y2="863.8" class="e-mull-t"/>
+<rect x="217.2" y="863.8" width="58.8" height="11.2" style="fill:none;stroke:#2E333B;stroke-width:1.8"/>
+<line x1="221.12" y1="872.2" x2="227.98" y2="866.6" class="e-hl"/>
+<line x1="240.72" y1="872.2" x2="247.58" y2="866.6" class="e-hl"/>
+<line x1="260.32" y1="872.2" x2="267.18" y2="866.6" class="e-hl"/>
+<rect x="253.6" y="877.8" width="16.8" height="9.8" class="e-steel"/>
+<circle cx="262" cy="882.7" r="3.5" class="e-joint"/>
+<rect x="288.18" y="869.68" width="15.4" height="30.8" class="e-steel"/>
+<text x="295.88" y="864.78" text-anchor="middle" class="t-sm halo">KITCHEN</text>
+<rect x="312.26" y="886.85" width="10.64" height="15.4" class="e-mint"/>
+<rect x="323.46" y="886.85" width="10.64" height="15.4" class="e-mint"/>
+<ellipse class="shrub-o" cx="343.97" cy="897.81" rx="7.77" ry="6.99"/>
+<ellipse class="shrub-o" cx="351.65" cy="899.74" rx="5.35" ry="4.82"/>
+<ellipse class="shrub-o" cx="361.17" cy="897.7" rx="7.91" ry="7.12"/>
+<ellipse class="shrub-o" cx="369.1" cy="899.58" rx="5.56" ry="5.01"/>
+<ellipse class="shrub-o" cx="377.06" cy="899" rx="6.29" ry="5.66"/>
+<ellipse class="shrub-o" cx="386.61" cy="897.89" rx="7.67" ry="6.91"/>
+<polygon points="150,891.01 166.8,891.01 166.8,892.07 183.6,892.07 183.6,893.14 200.4,893.14 200.4,894.2 217.2,894.2 217.2,895.27 234,895.27 234,896.33 250.8,896.33 250.8,897.4 267.6,897.4 267.6,898.46 284.4,898.46 284.4,899.53 301.2,899.53 301.2,900.59 318,900.59 318,901.66 334.8,901.66 334.8,902.72 351.6,902.72 351.6,903.79 368.4,903.79 368.4,904.85 385.2,904.85 385.2,905.92 388,905.92 388,914.32 150,914.32" class="poche"/>
+<polygon points="150,891.01 166.8,891.01 166.8,892.07 183.6,892.07 183.6,893.14 200.4,893.14 200.4,894.2 217.2,894.2 217.2,895.27 234,895.27 234,896.33 250.8,896.33 250.8,897.4 267.6,897.4 267.6,898.46 284.4,898.46 284.4,899.53 301.2,899.53 301.2,900.59 318,900.59 318,901.66 334.8,901.66 334.8,902.72 351.6,902.72 351.6,903.79 368.4,903.79 368.4,904.85 385.2,904.85 385.2,905.92 388,905.92 388,914.32 150,914.32" fill="url(#ce-earth)"/>
+<polyline points="150,891.01 166.8,891.01 166.8,892.07 183.6,892.07 183.6,893.14 200.4,893.14 200.4,894.2 217.2,894.2 217.2,895.27 234,895.27 234,896.33 250.8,896.33 250.8,897.4 267.6,897.4 267.6,898.46 284.4,898.46 284.4,899.53 301.2,899.53 301.2,900.59 318,900.59 318,901.66 334.8,901.66 334.8,902.72 351.6,902.72 351.6,903.79 368.4,903.79 368.4,904.85 385.2,904.85 385.2,905.92 388,905.92" class="e-ground"/>
+<line class="dim" x1="203" y1="919.8" x2="337.38" y2="919.8"/><line class="dim-t" x1="203" y1="922.8" x2="209" y2="916.8"/><line class="dim-t" x1="331.38" y1="922.8" x2="337.38" y2="916.8"/><text class="t-dim halo" x="270.19" y="916.8" text-anchor="middle">9.17</text>
+<polygon class="ink-f" points="143.9,887.56 151.9,887.56 147.9,894.56"/>
+<text class="t-dim halo" x="140.9" y="891.56" text-anchor="end">+4.70 LANE</text>
+<polygon class="ink-f" points="143.9,838.6 151.9,838.6 147.9,845.6"/>
+<text class="t-dim halo" x="140.9" y="842.6" text-anchor="end">+8.20</text>
+<line x1="240.3" y1="824.6" x2="269" y2="803.6" class="ln-m"/>
+<circle class="ink-f" cx="240.3" cy="824.6" r="1.8"/>
+<text class="e-key halo" x="272" y="806.6" text-anchor="start">Kitchen flue</text>
+<circle class="bubble" cx="161" cy="927" r="11"/><text class="t-lbl" x="161" y="930.5" text-anchor="middle">9</text><text class="t-head" x="178" y="931">CAFÉ · WEST · BACK</text><text class="t-sm" x="178" y="943">looking east · lane +4.70 → +4.12, kitchen door 4R down inside</text>
+<text class="t-head" x="640" y="800">MATERIALS</text>
+<rect class="e-wall" x="640" y="814" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="670" y="824">Warm white render</text>
+<rect class="e-coral" x="640" y="833" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="670" y="843">Terracotta bands and coping</text>
+<rect class="e-wood" x="640" y="852" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="670" y="862">Timber fins</text>
+<rect class="e-cream" x="640" y="871" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="670" y="881">Café render</text>
+<rect class="e-yel" x="640" y="890" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="670" y="900">Yellow trim, arcade</text>
+<rect class="e-glass" x="640" y="909" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="670" y="919">Clear glazing</text>
+<rect class="e-glow" x="640" y="928" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="670" y="938">Lit interior</text></svg>

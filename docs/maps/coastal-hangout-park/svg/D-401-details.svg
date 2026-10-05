@@ -113,6 +113,54 @@
 .door{fill:none;stroke:#4A5C6F;stroke-width:.6}
 .curb{fill:none;stroke:#16283A;stroke-width:1.1;stroke-linejoin:round}
 .wallp{fill:#4A5C6F;stroke:#16283A;stroke-width:.5;stroke-linejoin:miter}
+
+.e-yel{fill:#F7CB3B;stroke:#16283A;stroke-width:.9;stroke-linejoin:round}
+.e-yel2{fill:#E3AE1F}
+.e-yel3{fill:#FFE27A}
+.e-cream{fill:#F7F2E6;stroke:#16283A;stroke-width:.9;stroke-linejoin:round}
+.e-cream2{fill:#DED6C3}
+.e-dark{fill:#2E333B}
+.e-blue{fill:#2F8FE8;stroke:#16283A;stroke-width:.7}
+.e-red{fill:#E8414E;stroke:#16283A;stroke-width:.7}
+.e-green{fill:#3FB950;stroke:#16283A;stroke-width:.7}
+.e-glass{fill:#CBE8EE;stroke:#16283A;stroke-width:.8}
+.e-glass-t{fill:#CBE8EE;fill-opacity:.45;stroke:none}
+.e-glow{fill:#FFE7B0}
+.e-pink{fill:#F59BC3}
+.e-pink-o{fill:#F59BC3;stroke:#16283A;stroke-width:.7}
+.e-lilac{fill:#B9A2EE}
+.e-poster{fill:#3D8BE0;stroke:#16283A;stroke-width:.6}
+.e-wall{fill:#F1E9DA;stroke:#16283A;stroke-width:.9;stroke-linejoin:round}
+.e-coral{fill:#EE8A6B;stroke:#16283A;stroke-width:.8}
+.e-mint{fill:#A9DCC6;stroke:#16283A;stroke-width:.8}
+.e-navy{fill:#2C3E57}
+.e-steel{fill:#8C99A6;stroke:#16283A;stroke-width:.6}
+.e-wood{fill:#E6CFA6;stroke:#16283A;stroke-width:.8}
+.e-conc{fill:#D3D9DC;stroke:#16283A;stroke-width:.8}
+.e-thatch{fill:#D9B477;stroke:#16283A;stroke-width:.9;stroke-linejoin:round}
+.e-orange{fill:#F59A3A}
+.e-white{fill:#FFFFFF}
+.e-sky{fill:#E4F2F7}
+.e-shadow{fill:#16283A;opacity:.15}
+.e-joint{fill:none;stroke:#16283A;stroke-width:.45;opacity:.3}
+.e-mull{fill:none;stroke:#16283A;stroke-width:1}
+.e-mull-t{fill:none;stroke:#2E333B;stroke-width:1.6}
+.e-hl{fill:none;stroke:#FFFFFF;stroke-width:1.4;opacity:.75;stroke-linecap:round}
+.e-led{fill:none;stroke:#FFFFFF;stroke-width:1.6;stroke-linecap:round}
+.e-led-p{fill:none;stroke:#F59BC3;stroke-width:1.4;stroke-linecap:round}
+.e-led-c{fill:none;stroke:#24ABCC;stroke-width:1.4;stroke-linecap:round}
+.e-out{fill:none;stroke:#16283A;stroke-width:1.3;stroke-linejoin:round}
+.e-ghost{fill:none;stroke:#4A5C6F;stroke-width:.8;stroke-dasharray:4 3}
+.e-ground{fill:none;stroke:#16283A;stroke-width:2.2;stroke-linecap:square}
+.e-wave{fill:none;stroke:#3D8BE0;stroke-width:1.2;stroke-linecap:round}
+.e-wave-y{fill:none;stroke:#E3AE1F;stroke-width:1.4;stroke-linecap:round}
+.e-break{fill:none;stroke:#4A5C6F;stroke-width:.8}
+.e-rope{fill:none;stroke:#4A5C6F;stroke-width:.6}
+.e-fern{fill:#86BB6D;stroke:#58894C;stroke-width:.6;stroke-linejoin:round}
+.e-key{font:600 9px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.03em;fill:#16283A}
+.e-fd{font-family:"Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif}
+.e-fb{font-family:"Barlow", ui-sans-serif, system-ui, sans-serif}
+.e-fc{font-family:"Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif}
 </style><defs>
 <pattern id="cd-brick" width="8" height="8" patternUnits="userSpaceOnUse"><path class="pat-s" d="M0 4 2 2 4 4 6 2 8 4M0 8 2 6 4 8 6 6 8 8"/></pattern>
 <pattern id="cd-sand" width="9" height="9" patternUnits="userSpaceOnUse"><circle class="pat-d" cx="1.5" cy="1.5" r=".55"/><circle class="pat-d" cx="6" cy="4.5" r=".5"/><circle class="pat-d" cx="3" cy="7.5" r=".45"/></pattern>

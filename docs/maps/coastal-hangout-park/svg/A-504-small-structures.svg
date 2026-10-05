@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="990" viewBox="0 0 1100 990" role="img" aria-label="A-504 Small structures"><style>@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Condensed:wght@500;600;700&amp;family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;display=swap');
+.sheet-bg{fill:#FBFCFC}
+.frame{fill:none;stroke:#16283A;stroke-width:1.4}
+.frame-in{fill:none;stroke:#16283A;stroke-width:.7}
+.ln{fill:none;stroke:#16283A;stroke-width:1}
+.ln-h{fill:none;stroke:#16283A;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.ln-m{fill:none;stroke:#4A5C6F;stroke-width:.8}
+.ln-f{fill:none;stroke:#93A3B2;stroke-width:.6}
+.ln-b{fill:none;stroke:#4A5C6F;stroke-width:.8;stroke-dasharray:4 3}
+.ln-water{fill:none;stroke:#0D7F8A;stroke-width:1.2}
+.gap{stroke:#FBFCFC;stroke-width:5}
+.z-paver,.z-town{fill:#E1E6EA}
+.z-brick{fill:#EDD0BD}
+.z-lawn{fill:#CDE4B3}
+.z-conc{fill:#D3D9DC}
+.z-timber{fill:#E6CFA6}
+.z-sand{fill:#FBF7EA}
+.z-sea{fill:#BCE4EB}
+.z-deep{fill:#8CC7D8}
+.z-cliff{fill:#CBC5BC}
+.z-rockp{fill:#CBC5BC;opacity:.75}
+.bldg{fill:#D5DFE9;stroke:#16283A;stroke-width:1.6}
+.bldg-l{fill:#D5DFE9;stroke:#16283A;stroke-width:.9}
+.beyond{fill:#D5DFE9;fill-opacity:.55;stroke:#4A5C6F;stroke-width:.8}
+.under{fill:#D5DFE9;fill-opacity:.5;stroke:#4A5C6F;stroke-width:.8;stroke-dasharray:3 2}
+.wall{fill:#FBFCFC;stroke:#16283A;stroke-width:4}
+.glass{fill:none;stroke:#0D7F8A;stroke-width:1.6}
+.solid{fill:#16283A}
+.led{fill:#16283A;opacity:.85}
+.conc{fill:#D3D9DC;stroke:#16283A;stroke-width:1}
+.poche{fill:#CBC5BC}
+.water{fill:#BCE4EB;opacity:.85}
+.tree{fill:#9BCA84;stroke:#58894C;stroke-width:.7}
+.trunk{fill:none;stroke:#58894C;stroke-width:1.4}
+.prop{fill:#FBFCFC;stroke:#16283A;stroke-width:.7}
+.prop-d{fill:#4A5C6F}
+.umb-y{fill:#F0BE2C;stroke:#16283A;stroke-width:.5}
+.umb-p{fill:#E5539A;stroke:#16283A;stroke-width:.5}
+.umb-c{fill:#24ABCC;stroke:#16283A;stroke-width:.5}
+.chalk-y{fill:#F0BE2C}
+.chalk-p{fill:#E5539A}
+.chalk-c{fill:#24ABCC}
+.ring-acc{fill:none;stroke:#D93A55;stroke-width:1.6}
+.bunting{fill:none;stroke:#E5539A;stroke-width:1;stroke-dasharray:2.5 2}
+.pat-s{fill:none;stroke:#93A3B2;stroke-width:.5}
+.pat-d{fill:#93A3B2}
+.pat-w{fill:none;stroke:#FBFCFC;stroke-width:.7;opacity:.7}
+.pat-g{fill:none;stroke:#58894C;stroke-width:.6;opacity:.55}
+.path-edge{fill:none;stroke:#93A3B2;stroke-width:17}
+.path-fill{fill:none;stroke:#E1E6EA;stroke-width:15}
+.grid{fill:none;stroke:#93A3B2;stroke-width:.5;stroke-dasharray:2 4}
+.bubble{fill:#FBFCFC;stroke:#16283A;stroke-width:.8}
+.circ1{fill:none;stroke:#D93A55;stroke-width:2.2;stroke-dasharray:8 4;stroke-linecap:round}
+.circ2{fill:none;stroke:#D93A55;stroke-width:1.2;stroke-dasharray:3 3;stroke-linecap:round}
+.sight{fill:none;stroke:#0D7F8A;stroke-width:1.4;stroke-dasharray:1.5 3.5;stroke-linecap:round}
+.cut{fill:none;stroke:#D93A55;stroke-width:.9;stroke-dasharray:14 3 2 3}
+.cut-h{fill:none;stroke:#D93A55;stroke-width:3}
+.acc-f{fill:#D93A55}
+.teal-f{fill:#0D7F8A}
+.ink-f{fill:#16283A}
+.sheet-f{fill:#FBFCFC}
+.dim{fill:none;stroke:#16283A;stroke-width:.6}
+.dim-t{fill:none;stroke:#16283A;stroke-width:1.1}
+.avatar{fill:#24ABCC;stroke:#16283A;stroke-width:.6}
+.cam{fill:#0D7F8A}
+.t-zone{font:700 12px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.08em;fill:#16283A}
+.t-big{font:700 16px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.14em;fill:#16283A}
+.t-lbl{font:600 9.5px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.03em;fill:#16283A}
+.t-sm{font:500 8px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.02em;fill:#4A5C6F}
+.t-dim{font:600 8.5px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;fill:#16283A}
+.t-head{font:700 15px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.12em;fill:#16283A}
+.t-title{font:800 21px "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;fill:#16283A}
+.t-acc{fill:#D93A55}
+.t-teal{fill:#0D7F8A}
+.t-inv{fill:#FBFCFC}
+.halo{paint-order:stroke;stroke:#FBFCFC;stroke-width:3px;stroke-linejoin:round}
+.z-road{fill:#93A3B2;opacity:.6}
+.lane{fill:none;stroke:#FBFCFC;stroke-width:1;stroke-dasharray:6 5}
+.zebra{fill:#FBFCFC}
+.tree-s{fill:#E5539A;fill-opacity:.45;stroke:#E5539A;stroke-width:.8}
+.trim-y{fill:none;stroke:#F0BE2C;stroke-width:2.4}
+.arc-y{fill:#F0BE2C;fill-opacity:.32}
+.key{fill:#16283A}
+.statue{fill:#FBFCFC;stroke:#16283A;stroke-width:1.2}
+.tree-o{fill:#9BCA84;stroke:#58894C;stroke-width:1.5}
+.tree-f{fill:#9BCA84}
+.sak-o{fill:#F5C3D8;stroke:#E5539A;stroke-width:1.3}
+.sak-f{fill:#F5C3D8}
+.shrub-o{fill:#86BB6D;stroke:#58894C;stroke-width:1}
+.shrub-f{fill:#86BB6D}
+.bed{fill:#86BB6D;stroke:#58894C;stroke-width:.9}
+.leaf{fill:none;stroke:#58894C;stroke-width:.7;opacity:.8;stroke-linecap:round}
+.blossom{fill:#E5539A}
+.palm{fill:#7DB268;stroke:#58894C;stroke-width:.6;stroke-linejoin:round}
+.shadow{fill:#16283A;opacity:.12}
+.rock{fill:#CBC5BC;stroke:#4A5C6F;stroke-width:.8;stroke-linejoin:round}
+.foam{fill:none;stroke:#FFFFFF;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.foam-d{fill:none;stroke:#FFFFFF;stroke-width:1;stroke-dasharray:4 3;stroke-linecap:round}
+.z-mid{fill:#A5D6E2}
+.z-wet{fill:#F0EAD8}
+.roof{fill:#BAC7D4;stroke:#16283A;stroke-width:1.6}
+.roof-2{fill:#9DAFC1}
+.post{fill:#16283A}
+.rail{fill:none;stroke:#16283A;stroke-width:.9}
+.tread{fill:none;stroke:#4A5C6F;stroke-width:.5}
+.joint{fill:none;stroke:#93A3B2;stroke-width:.45}
+.band{fill:#C4D1D8}
+.wall-l{fill:none;stroke:#16283A;stroke-width:3.2;stroke-linecap:square}
+.wall6{fill:none;stroke:#16283A;stroke-width:2.4}
+.string{fill:none;stroke:#4A5C6F;stroke-width:.6;stroke-dasharray:1 2}
+.bulb{fill:#F0BE2C}
+.door{fill:none;stroke:#4A5C6F;stroke-width:.6}
+.curb{fill:none;stroke:#16283A;stroke-width:1.1;stroke-linejoin:round}
+.wallp{fill:#4A5C6F;stroke:#16283A;stroke-width:.5;stroke-linejoin:miter}
+
+.e-yel{fill:#F7CB3B;stroke:#16283A;stroke-width:.9;stroke-linejoin:round}
+.e-yel2{fill:#E3AE1F}
+.e-yel3{fill:#FFE27A}
+.e-cream{fill:#F7F2E6;stroke:#16283A;stroke-width:.9;stroke-linejoin:round}
+.e-cream2{fill:#DED6C3}
+.e-dark{fill:#2E333B}
+.e-blue{fill:#2F8FE8;stroke:#16283A;stroke-width:.7}
+.e-red{fill:#E8414E;stroke:#16283A;stroke-width:.7}
+.e-green{fill:#3FB950;stroke:#16283A;stroke-width:.7}
+.e-glass{fill:#CBE8EE;stroke:#16283A;stroke-width:.8}
+.e-glass-t{fill:#CBE8EE;fill-opacity:.45;stroke:none}
+.e-glow{fill:#FFE7B0}
+.e-pink{fill:#F59BC3}
+.e-pink-o{fill:#F59BC3;stroke:#16283A;stroke-width:.7}
+.e-lilac{fill:#B9A2EE}
+.e-poster{fill:#3D8BE0;stroke:#16283A;stroke-width:.6}
+.e-wall{fill:#F1E9DA;stroke:#16283A;stroke-width:.9;stroke-linejoin:round}
+.e-coral{fill:#EE8A6B;stroke:#16283A;stroke-width:.8}
+.e-mint{fill:#A9DCC6;stroke:#16283A;stroke-width:.8}
+.e-navy{fill:#2C3E57}
+.e-steel{fill:#8C99A6;stroke:#16283A;stroke-width:.6}
+.e-wood{fill:#E6CFA6;stroke:#16283A;stroke-width:.8}
+.e-conc{fill:#D3D9DC;stroke:#16283A;stroke-width:.8}
+.e-thatch{fill:#D9B477;stroke:#16283A;stroke-width:.9;stroke-linejoin:round}
+.e-orange{fill:#F59A3A}
+.e-white{fill:#FFFFFF}
+.e-sky{fill:#E4F2F7}
+.e-shadow{fill:#16283A;opacity:.15}
+.e-joint{fill:none;stroke:#16283A;stroke-width:.45;opacity:.3}
+.e-mull{fill:none;stroke:#16283A;stroke-width:1}
+.e-mull-t{fill:none;stroke:#2E333B;stroke-width:1.6}
+.e-hl{fill:none;stroke:#FFFFFF;stroke-width:1.4;opacity:.75;stroke-linecap:round}
+.e-led{fill:none;stroke:#FFFFFF;stroke-width:1.6;stroke-linecap:round}
+.e-led-p{fill:none;stroke:#F59BC3;stroke-width:1.4;stroke-linecap:round}
+.e-led-c{fill:none;stroke:#24ABCC;stroke-width:1.4;stroke-linecap:round}
+.e-out{fill:none;stroke:#16283A;stroke-width:1.3;stroke-linejoin:round}
+.e-ghost{fill:none;stroke:#4A5C6F;stroke-width:.8;stroke-dasharray:4 3}
+.e-ground{fill:none;stroke:#16283A;stroke-width:2.2;stroke-linecap:square}
+.e-wave{fill:none;stroke:#3D8BE0;stroke-width:1.2;stroke-linecap:round}
+.e-wave-y{fill:none;stroke:#E3AE1F;stroke-width:1.4;stroke-linecap:round}
+.e-break{fill:none;stroke:#4A5C6F;stroke-width:.8}
+.e-rope{fill:none;stroke:#4A5C6F;stroke-width:.6}
+.e-fern{fill:#86BB6D;stroke:#58894C;stroke-width:.6;stroke-linejoin:round}
+.e-key{font:600 9px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.03em;fill:#16283A}
+.e-fd{font-family:"Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif}
+.e-fb{font-family:"Barlow", ui-sans-serif, system-ui, sans-serif}
+.e-fc{font-family:"Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif}
+</style><defs><pattern id="ce-earth" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="pat-s" d="M0 0V6"/><circle class="pat-d" cx="3" cy="3" r=".5"/></pattern><pattern id="ce-clad" width="10" height="10" patternUnits="userSpaceOnUse"><path class="e-joint" d="M0 10H10"/></pattern><pattern id="ce-slat" width="4" height="10" patternUnits="userSpaceOnUse"><path class="e-joint" d="M2 0V10"/></pattern><pattern id="ce-awn-y" width="12" height="10" patternUnits="userSpaceOnUse"><rect width="6" height="10" class="e-yel3"/><rect x="6" width="6" height="10" class="e-white"/></pattern><pattern id="ce-awn-p" width="12" height="10" patternUnits="userSpaceOnUse"><rect width="6" height="10" class="e-pink"/><rect x="6" width="6" height="10" class="e-white"/></pattern><pattern id="ce-awn-c" width="12" height="10" patternUnits="userSpaceOnUse"><rect width="6" height="10" class="chalk-c"/><rect x="6" width="6" height="10" class="e-white"/></pattern><pattern id="ce-thatch" width="5" height="6" patternUnits="userSpaceOnUse"><path class="e-joint" d="M0 6L2.5 0M2.5 6L5 0"/></pattern><marker id="ce-arrk" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto-start-reverse"><path class="ink-f" d="M0 0 10 5 0 10z"/></marker></defs>
+<rect class="sheet-bg" width="1100" height="990"/>
+<rect class="ink-f" x="24" y="17" width="55.0" height="18"/>
+<text class="t-head t-inv" x="30" y="31">A-504</text>
+<text class="t-head" x="89.0" y="31">SMALL STRUCTURES · FOOD TRUCK, STREET KIOSK, BEACH HUT, STAGE</text>
+<text class="t-sm" x="24" y="48">Truck 34 px = 1 m · kiosk and hut 21 px = 1 m · stage 11 px = 1 m · each set: front, side, back</text>
+<text x="210.5" y="234" text-anchor="middle" class="t-lbl">SIDE · SERVING HATCH</text>
+<text x="421.3" y="234" text-anchor="middle" class="t-lbl">FRONT · CAB</text>
+<text x="550.5" y="234" text-anchor="middle" class="t-lbl">BACK</text>
+<rect x="100" y="98" width="170" height="86.7" class="e-cream"/>
+<path d="M108.5 184.7 L261.5 184.7 Q270 184.7 270 176.2 L270 106.5 Q270 98 261.5 98 L108.5 98 Q100 98 100 106.5 L100 176.2 Q100 184.7 108.5 184.7 Z" class="e-out"/>
+<path d="M270 184.7 L321 184.7 L321 149 L307.4 113.3 L270 113.3 Z" class="e-pink-o"/>
+<polygon points="278.5,143.9 310.8,143.9 302.3,120.1 278.5,120.1" class="e-glass"/>
+<rect x="100" y="174.5" width="221" height="10.2" class="e-dark"/>
+<rect x="130.6" y="120.1" width="115.6" height="37.4" class="e-glow"/>
+<rect x="127.2" y="157.5" width="122.4" height="3.4" class="e-steel"/>
+<polygon points="123.8,116.7 253,116.7 259.8,99.7 117,99.7" fill="url(#ce-awn-p)"/>
+<polygon points="123.8,116.7 253,116.7 259.8,99.7 117,99.7" class="e-out"/>
+<path d="M151.68 96.3 L225.12 96.3 Q229.2 96.3 229.2 92.22 L229.2 83.38 Q229.2 79.3 225.12 79.3 L151.68 79.3 Q147.6 79.3 147.6 83.38 L147.6 92.22 Q147.6 96.3 151.68 96.3 Z" class="e-dark"/>
+<text class="e-fc" x="188.4" y="91.88" text-anchor="middle" style="font-weight:700;font-size:10.39px;fill:#FFFFFF;letter-spacing:0px">STREET EATS</text>
+<circle cx="140.8" cy="185.72" r="14.28" class="e-dark"/>
+<circle cx="140.8" cy="185.72" r="6.12" class="e-steel"/>
+<circle cx="283.6" cy="185.72" r="14.28" class="e-dark"/>
+<circle cx="283.6" cy="185.72" r="6.12" class="e-steel"/>
+<rect x="83" y="159.2" width="13.6" height="40.8" class="e-dark"/>
+<text class="e-fc" x="89.8" y="176.2" text-anchor="middle" style="font-weight:700;font-size:4.72px;fill:#FFFFFF;letter-spacing:0px" transform="rotate(-90 89.8 176.2)">MENU</text>
+<rect x="378.8" y="113.3" width="85" height="71.4" class="e-pink-o"/>
+<rect x="385.6" y="120.1" width="71.4" height="27.2" class="e-glass"/>
+<rect x="389" y="166" width="64.6" height="15.3" class="e-dark"/>
+<circle cx="392.4" cy="159.2" r="4.76" class="e-yel3"/>
+<circle cx="450.2" cy="159.2" r="4.76" class="e-yel3"/>
+<rect x="383.9" y="98" width="74.8" height="15.3" class="e-cream"/>
+<rect x="373.7" y="128.6" width="5.1" height="13.6" class="e-dark"/>
+<rect x="463.8" y="128.6" width="5.1" height="13.6" class="e-dark"/>
+<rect x="383.9" y="183" width="10.2" height="17" class="e-dark"/>
+<rect x="448.5" y="183" width="10.2" height="17" class="e-dark"/>
+<rect x="508" y="98" width="85" height="86.7" class="e-cream"/>
+<rect x="508" y="98" width="85" height="86.7" class="e-out"/>
+<line x1="550.5" y1="179.6" x2="550.5" y2="104.8" class="e-mull"/>
+<rect x="508" y="174.5" width="85" height="10.2" class="e-dark"/>
+<rect x="514.8" y="159.2" width="6.8" height="10.2" class="e-red"/>
+<rect x="579.4" y="159.2" width="6.8" height="10.2" class="e-red"/>
+<rect x="528.4" y="121.8" width="44.2" height="23.8" fill="url(#ce-awn-p)"/>
+<rect x="513.1" y="183" width="10.2" height="17" class="e-dark"/>
+<rect x="577.7" y="183" width="10.2" height="17" class="e-dark"/>
+<polygon points="72.8,200 338,200 338,208.5 72.8,208.5" class="poche"/>
+<polygon points="72.8,200 338,200 338,208.5 72.8,208.5" fill="url(#ce-earth)"/>
+<polyline points="72.8,200 338,200" class="e-ground"/>
+<polygon points="365.2,200 477.4,200 477.4,208.5 365.2,208.5" class="poche"/>
+<polygon points="365.2,200 477.4,200 477.4,208.5 365.2,208.5" fill="url(#ce-earth)"/>
+<polyline points="365.2,200 477.4,200" class="e-ground"/>
+<polygon points="494.4,200 606.6,200 606.6,208.5 494.4,208.5" class="poche"/>
+<polygon points="494.4,200 606.6,200 606.6,208.5 494.4,208.5" fill="url(#ce-earth)"/>
+<polyline points="494.4,200 606.6,200" class="e-ground"/>
+<line class="dim" x1="97" y1="254.4" x2="324" y2="254.4"/><line class="dim-t" x1="97" y1="257.4" x2="103" y2="251.4"/><line class="dim-t" x1="318" y1="257.4" x2="324" y2="251.4"/><text class="t-dim halo" x="210.5" y="251.4" text-anchor="middle">6.50</text>
+<line class="dim" x1="375.8" y1="254.4" x2="466.8" y2="254.4"/><line class="dim-t" x1="375.8" y1="257.4" x2="381.8" y2="251.4"/><line class="dim-t" x1="460.8" y1="257.4" x2="466.8" y2="251.4"/><text class="t-dim halo" x="421.3" y="251.4" text-anchor="middle">2.50</text>
+<line class="dim" x1="623.6" y1="95" x2="623.6" y2="203"/><line class="dim-t" x1="620.6" y1="203" x2="626.6" y2="197"/><line class="dim-t" x1="620.6" y1="101" x2="626.6" y2="95"/><text class="t-dim halo" x="633.6" y="149" text-anchor="middle" transform="rotate(-90 633.6 149)">3.00</text>
+<circle class="bubble" cx="83.8" cy="275.9" r="11"/><text class="t-lbl" x="83.8" y="279.4" text-anchor="middle">13</text><text class="t-head" x="100.8" y="279.9">FOOD TRUCK</text><text class="t-sm" x="100.8" y="291.9">4 at the truck zone, real size (S-1) · pink, cyan and yellow stripe sets</text>
+<rect x="100" y="356.76" width="231.88" height="63.24" class="e-wall"/>
+<rect x="100" y="356.76" width="231.88" height="63.24" class="e-out"/>
+<rect x="105.27" y="373.62" width="47.43" height="25.3" class="e-glow"/>
+<rect x="105.27" y="373.62" width="47.43" height="3.16" class="e-steel"/>
+<rect x="103.16" y="397.87" width="51.65" height="2.11" class="e-wood"/>
+<circle cx="110.54" cy="393.65" r="3.37" class="chalk-y"/>
+<circle cx="121.08" cy="393.65" r="3.37" class="e-green"/>
+<circle cx="131.62" cy="393.65" r="3.37" class="chalk-p"/>
+<circle cx="142.16" cy="393.65" r="3.37" class="chalk-c"/>
+<rect x="163.24" y="373.62" width="47.43" height="25.3" class="e-glow"/>
+<rect x="163.24" y="373.62" width="47.43" height="3.16" class="e-steel"/>
+<rect x="161.13" y="397.87" width="51.65" height="2.11" class="e-wood"/>
+<circle cx="168.51" cy="393.65" r="3.37" class="chalk-y"/>
+<circle cx="179.05" cy="393.65" r="3.37" class="e-green"/>
+<circle cx="189.59" cy="393.65" r="3.37" class="chalk-p"/>
+<circle cx="200.13" cy="393.65" r="3.37" class="chalk-c"/>
+<rect x="221.21" y="373.62" width="47.43" height="25.3" class="e-glow"/>
+<rect x="221.21" y="373.62" width="47.43" height="3.16" class="e-steel"/>
+<rect x="219.1" y="397.87" width="51.65" height="2.11" class="e-wood"/>
+<circle cx="226.48" cy="393.65" r="3.37" class="chalk-c"/>
+<circle cx="237.02" cy="393.65" r="3.37" class="e-green"/>
+<circle cx="247.56" cy="393.65" r="3.37" class="chalk-y"/>
+<circle cx="258.1" cy="393.65" r="3.37" class="chalk-c"/>
+<rect x="279.18" y="373.62" width="47.43" height="25.3" class="e-glow"/>
+<rect x="279.18" y="373.62" width="47.43" height="3.16" class="e-steel"/>
+<rect x="277.07" y="397.87" width="51.65" height="2.11" class="e-wood"/>
+<circle cx="284.45" cy="393.65" r="3.37" class="chalk-c"/>
+<circle cx="294.99" cy="393.65" r="3.37" class="e-green"/>
+<circle cx="305.53" cy="393.65" r="3.37" class="chalk-y"/>
+<circle cx="316.07" cy="393.65" r="3.37" class="chalk-c"/>
+<rect x="95.78" y="362.03" width="240.31" height="9.49" fill="url(#ce-awn-y)"/>
+<rect x="95.78" y="362.03" width="240.31" height="9.49" class="e-out"/>
+<rect x="100" y="354.65" width="231.88" height="5.27" class="e-dark"/>
+<rect x="395.12" y="356.76" width="99.08" height="63.24" class="e-wall"/>
+<rect x="395.12" y="356.76" width="99.08" height="63.24" class="e-out"/>
+<polygon points="369.82,371.52 395.12,362.03 395.12,371.52" class="e-yel"/>
+<rect x="395.12" y="354.65" width="99.08" height="5.27" class="e-dark"/>
+<rect x="445.71" y="375.73" width="18.97" height="44.27" class="e-steel"/>
+<rect x="553.22" y="356.76" width="231.88" height="63.24" class="e-wall"/>
+<rect x="553.22" y="356.76" width="231.88" height="63.24" class="e-out"/>
+<rect x="553.22" y="354.65" width="231.88" height="5.27" class="e-dark"/>
+<rect x="574.3" y="375.73" width="18.97" height="44.27" class="e-steel"/>
+<rect x="679.7" y="373.62" width="25.3" height="12.65" class="e-steel"/>
+<text x="215.94" y="445.3" text-anchor="middle" class="t-lbl">FRONT · TO THE STREET</text>
+<text x="444.66" y="445.3" text-anchor="middle" class="t-lbl">SIDE</text>
+<text x="669.16" y="445.3" text-anchor="middle" class="t-lbl">BACK</text>
+<polygon points="78.92,420 352.96,420 352.96,427.38 78.92,427.38" class="poche"/>
+<polygon points="78.92,420 352.96,420 352.96,427.38 78.92,427.38" fill="url(#ce-earth)"/>
+<polyline points="78.92,420 352.96,420" class="e-ground"/>
+<polygon points="365.61,420 511.06,420 511.06,427.38 365.61,427.38" class="poche"/>
+<polygon points="365.61,420 511.06,420 511.06,427.38 365.61,427.38" fill="url(#ce-earth)"/>
+<polyline points="365.61,420 511.06,420" class="e-ground"/>
+<polygon points="538.46,420 799.86,420 799.86,427.38 538.46,427.38" class="poche"/>
+<polygon points="538.46,420 799.86,420 799.86,427.38 538.46,427.38" fill="url(#ce-earth)"/>
+<polyline points="538.46,420 799.86,420" class="e-ground"/>
+<line class="dim" x1="97" y1="460.05" x2="334.88" y2="460.05"/><line class="dim-t" x1="97" y1="463.05" x2="103" y2="457.05"/><line class="dim-t" x1="328.88" y1="463.05" x2="334.88" y2="457.05"/><text class="t-dim halo" x="215.94" y="457.05" text-anchor="middle">11.00</text>
+<line class="dim" x1="392.12" y1="460.05" x2="497.2" y2="460.05"/><line class="dim-t" x1="392.12" y1="463.05" x2="398.12" y2="457.05"/><line class="dim-t" x1="491.2" y1="463.05" x2="497.2" y2="457.05"/><text class="t-dim halo" x="444.66" y="457.05" text-anchor="middle">4.70</text>
+<line class="dim" x1="808.29" y1="351.65" x2="808.29" y2="423"/><line class="dim-t" x1="805.29" y1="423" x2="811.29" y2="417"/><line class="dim-t" x1="805.29" y1="357.65" x2="811.29" y2="351.65"/><text class="t-dim halo" x="818.29" y="387.33" text-anchor="middle" transform="rotate(-90 818.29 387.33)">3.10</text>
+<circle class="bubble" cx="89.92" cy="477.13" r="11"/><text class="t-lbl" x="89.92" y="480.63" text-anchor="middle">14</text><text class="t-head" x="106.92" y="481.13">STREET KIOSK (KIOSK 2)</text><text class="t-sm" x="106.92" y="493.13">on the kiosk strip +8.40 · kiosks 1 and 3 use the same kit at 6.2 and 5.0 m</text>
+<rect x="100" y="643.68" width="158.1" height="6.32" class="e-wood"/>
+<rect x="106.32" y="595.19" width="145.45" height="48.48" class="e-wood"/>
+<line x1="106.32" y1="643.68" x2="106.32" y2="595.19" class="e-joint"/>
+<line x1="111.59" y1="643.68" x2="111.59" y2="595.19" class="e-joint"/>
+<line x1="116.86" y1="643.68" x2="116.86" y2="595.19" class="e-joint"/>
+<line x1="122.13" y1="643.68" x2="122.13" y2="595.19" class="e-joint"/>
+<line x1="127.4" y1="643.68" x2="127.4" y2="595.19" class="e-joint"/>
+<line x1="132.67" y1="643.68" x2="132.67" y2="595.19" class="e-joint"/>
+<line x1="137.94" y1="643.68" x2="137.94" y2="595.19" class="e-joint"/>
+<line x1="143.21" y1="643.68" x2="143.21" y2="595.19" class="e-joint"/>
+<line x1="148.48" y1="643.68" x2="148.48" y2="595.19" class="e-joint"/>
+<line x1="153.75" y1="643.68" x2="153.75" y2="595.19" class="e-joint"/>
+<line x1="159.02" y1="643.68" x2="159.02" y2="595.19" class="e-joint"/>
+<line x1="164.29" y1="643.68" x2="164.29" y2="595.19" class="e-joint"/>
+<line x1="169.56" y1="643.68" x2="169.56" y2="595.19" class="e-joint"/>
+<line x1="174.83" y1="643.68" x2="174.83" y2="595.19" class="e-joint"/>
+<line x1="180.1" y1="643.68" x2="180.1" y2="595.19" class="e-joint"/>
+<line x1="185.37" y1="643.68" x2="185.37" y2="595.19" class="e-joint"/>
+<line x1="190.64" y1="643.68" x2="190.64" y2="595.19" class="e-joint"/>
+<line x1="195.91" y1="643.68" x2="195.91" y2="595.19" class="e-joint"/>
+<line x1="201.18" y1="643.68" x2="201.18" y2="595.19" class="e-joint"/>
+<line x1="206.45" y1="643.68" x2="206.45" y2="595.19" class="e-joint"/>
+<line x1="211.72" y1="643.68" x2="211.72" y2="595.19" class="e-joint"/>
+<line x1="216.99" y1="643.68" x2="216.99" y2="595.19" class="e-joint"/>
+<line x1="222.26" y1="643.68" x2="222.26" y2="595.19" class="e-joint"/>
+<line x1="227.53" y1="643.68" x2="227.53" y2="595.19" class="e-joint"/>
+<line x1="232.8" y1="643.68" x2="232.8" y2="595.19" class="e-joint"/>
+<line x1="238.07" y1="643.68" x2="238.07" y2="595.19" class="e-joint"/>
+<line x1="243.34" y1="643.68" x2="243.34" y2="595.19" class="e-joint"/>
+<line x1="248.61" y1="643.68" x2="248.61" y2="595.19" class="e-joint"/>
+<rect x="121.08" y="603.62" width="115.94" height="18.97" class="e-glow"/>
+<rect x="118.97" y="622.17" width="120.16" height="2.53" class="e-wood"/>
+<path d="M135.41 602.57 L222.69 602.57 Q224.37 602.57 224.37 600.88 L224.37 597.93 Q224.37 596.25 222.69 596.25 L135.41 596.25 Q133.73 596.25 133.73 597.93 L133.73 600.88 Q133.73 602.57 135.41 602.57 Z" class="e-cream"/>
+<text class="e-fc" x="179.05" y="601.31" text-anchor="middle" style="font-weight:700;font-size:4.68px;fill:#2E333B;letter-spacing:0px">RENTAL · LIFEGUARD</text>
+<path d="M129.51 643.68 L129.51 643.68 Q133.1 643.68 133.1 640.09 L133.1 609.32 Q133.1 605.73 129.51 605.73 L129.51 605.73 Q125.93 605.73 125.93 609.32 L125.93 640.09 Q125.93 643.68 129.51 643.68 Z" class="e-blue"/>
+<path d="M140.05 643.68 L140.05 643.68 Q143.64 643.68 143.64 640.09 L143.64 609.32 Q143.64 605.73 140.05 605.73 L140.05 605.73 Q136.47 605.73 136.47 609.32 L136.47 640.09 Q136.47 643.68 140.05 643.68 Z" class="e-yel"/>
+<path d="M218.05 643.68 L218.05 643.68 Q221.63 643.68 221.63 640.09 L221.63 609.32 Q221.63 605.73 218.05 605.73 L218.05 605.73 Q214.46 605.73 214.46 609.32 L214.46 640.09 Q214.46 643.68 218.05 643.68 Z" class="e-pink-o"/>
+<polygon points="83.14,595.19 179.05,553.03 274.96,595.19" class="e-thatch"/>
+
+<rect x="321.34" y="643.68" width="218.6" height="6.32" class="e-wood"/>
+<rect x="348.74" y="595.19" width="127.96" height="48.48" class="e-wood"/>
+<line x1="348.74" y1="643.68" x2="348.74" y2="595.19" class="e-joint"/>
+<line x1="354.01" y1="643.68" x2="354.01" y2="595.19" class="e-joint"/>
+<line x1="359.28" y1="643.68" x2="359.28" y2="595.19" class="e-joint"/>
+<line x1="364.55" y1="643.68" x2="364.55" y2="595.19" class="e-joint"/>
+<line x1="369.82" y1="643.68" x2="369.82" y2="595.19" class="e-joint"/>
+<line x1="375.09" y1="643.68" x2="375.09" y2="595.19" class="e-joint"/>
+<line x1="380.36" y1="643.68" x2="380.36" y2="595.19" class="e-joint"/>
+<line x1="385.63" y1="643.68" x2="385.63" y2="595.19" class="e-joint"/>
+<line x1="390.9" y1="643.68" x2="390.9" y2="595.19" class="e-joint"/>
+<line x1="396.17" y1="643.68" x2="396.17" y2="595.19" class="e-joint"/>
+<line x1="401.44" y1="643.68" x2="401.44" y2="595.19" class="e-joint"/>
+<line x1="406.71" y1="643.68" x2="406.71" y2="595.19" class="e-joint"/>
+<line x1="411.98" y1="643.68" x2="411.98" y2="595.19" class="e-joint"/>
+<line x1="417.25" y1="643.68" x2="417.25" y2="595.19" class="e-joint"/>
+<line x1="422.52" y1="643.68" x2="422.52" y2="595.19" class="e-joint"/>
+<line x1="427.79" y1="643.68" x2="427.79" y2="595.19" class="e-joint"/>
+<line x1="433.06" y1="643.68" x2="433.06" y2="595.19" class="e-joint"/>
+<line x1="438.33" y1="643.68" x2="438.33" y2="595.19" class="e-joint"/>
+<line x1="443.6" y1="643.68" x2="443.6" y2="595.19" class="e-joint"/>
+<line x1="448.87" y1="643.68" x2="448.87" y2="595.19" class="e-joint"/>
+<line x1="454.14" y1="643.68" x2="454.14" y2="595.19" class="e-joint"/>
+<line x1="459.41" y1="643.68" x2="459.41" y2="595.19" class="e-joint"/>
+<line x1="464.68" y1="643.68" x2="464.68" y2="595.19" class="e-joint"/>
+<line x1="469.95" y1="643.68" x2="469.95" y2="595.19" class="e-joint"/>
+<line x1="475.22" y1="643.68" x2="475.22" y2="595.19" class="e-joint"/>
+<rect x="384.58" y="607.84" width="33.73" height="14.76" class="e-glass"/>
+<polygon points="325.56,595.19 400.07,553.03 425.37,553.03 499.89,595.19" class="e-thatch"/>
+
+<rect x="595.38" y="643.68" width="158.1" height="6.32" class="e-wood"/>
+<rect x="601.7" y="595.19" width="145.45" height="48.48" class="e-wood"/>
+<line x1="601.7" y1="643.68" x2="601.7" y2="595.19" class="e-joint"/>
+<line x1="606.97" y1="643.68" x2="606.97" y2="595.19" class="e-joint"/>
+<line x1="612.24" y1="643.68" x2="612.24" y2="595.19" class="e-joint"/>
+<line x1="617.51" y1="643.68" x2="617.51" y2="595.19" class="e-joint"/>
+<line x1="622.78" y1="643.68" x2="622.78" y2="595.19" class="e-joint"/>
+<line x1="628.05" y1="643.68" x2="628.05" y2="595.19" class="e-joint"/>
+<line x1="633.32" y1="643.68" x2="633.32" y2="595.19" class="e-joint"/>
+<line x1="638.59" y1="643.68" x2="638.59" y2="595.19" class="e-joint"/>
+<line x1="643.86" y1="643.68" x2="643.86" y2="595.19" class="e-joint"/>
+<line x1="649.13" y1="643.68" x2="649.13" y2="595.19" class="e-joint"/>
+<line x1="654.4" y1="643.68" x2="654.4" y2="595.19" class="e-joint"/>
+<line x1="659.67" y1="643.68" x2="659.67" y2="595.19" class="e-joint"/>
+<line x1="664.94" y1="643.68" x2="664.94" y2="595.19" class="e-joint"/>
+<line x1="670.21" y1="643.68" x2="670.21" y2="595.19" class="e-joint"/>
+<line x1="675.48" y1="643.68" x2="675.48" y2="595.19" class="e-joint"/>
+<line x1="680.75" y1="643.68" x2="680.75" y2="595.19" class="e-joint"/>
+<line x1="686.02" y1="643.68" x2="686.02" y2="595.19" class="e-joint"/>
+<line x1="691.29" y1="643.68" x2="691.29" y2="595.19" class="e-joint"/>
+<line x1="696.56" y1="643.68" x2="696.56" y2="595.19" class="e-joint"/>
+<line x1="701.83" y1="643.68" x2="701.83" y2="595.19" class="e-joint"/>
+<line x1="707.1" y1="643.68" x2="707.1" y2="595.19" class="e-joint"/>
+<line x1="712.37" y1="643.68" x2="712.37" y2="595.19" class="e-joint"/>
+<line x1="717.64" y1="643.68" x2="717.64" y2="595.19" class="e-joint"/>
+<line x1="722.91" y1="643.68" x2="722.91" y2="595.19" class="e-joint"/>
+<line x1="728.18" y1="643.68" x2="728.18" y2="595.19" class="e-joint"/>
+<line x1="733.45" y1="643.68" x2="733.45" y2="595.19" class="e-joint"/>
+<line x1="738.72" y1="643.68" x2="738.72" y2="595.19" class="e-joint"/>
+<line x1="743.99" y1="643.68" x2="743.99" y2="595.19" class="e-joint"/>
+<rect x="664.94" y="601.52" width="18.97" height="42.16" class="e-steel"/>
+<polygon points="578.52,595.19 674.43,553.03 770.34,595.19" class="e-thatch"/>
+
+<text x="179.05" y="675.3" text-anchor="middle" class="t-lbl">FRONT · TO THE SEA</text>
+<text x="412.72" y="675.3" text-anchor="middle" class="t-lbl">SIDE · DECK 3.7 m</text>
+<text x="674.43" y="675.3" text-anchor="middle" class="t-lbl">BACK</text>
+<polygon points="70.49,650 289.72,650 289.72,657.38 70.49,657.38" class="poche"/>
+<polygon points="70.49,650 289.72,650 289.72,657.38 70.49,657.38" fill="url(#ce-earth)"/>
+<polyline points="70.49,650 289.72,650" class="e-ground"/>
+<polygon points="306.58,650 555.33,650 555.33,657.38 306.58,657.38" class="poche"/>
+<polygon points="306.58,650 555.33,650 555.33,657.38 306.58,657.38" fill="url(#ce-earth)"/>
+<polyline points="306.58,650 555.33,650" class="e-ground"/>
+<polygon points="565.87,650 782.99,650 782.99,657.38 565.87,657.38" class="poche"/>
+<polygon points="565.87,650 782.99,650 782.99,657.38 565.87,657.38" fill="url(#ce-earth)"/>
+<polyline points="565.87,650 782.99,650" class="e-ground"/>
+<line class="dim" x1="97" y1="690.05" x2="261.1" y2="690.05"/><line class="dim-t" x1="97" y1="693.05" x2="103" y2="687.05"/><line class="dim-t" x1="255.1" y1="693.05" x2="261.1" y2="687.05"/><text class="t-dim halo" x="179.05" y="687.05" text-anchor="middle">7.50</text>
+<line class="dim" x1="791.42" y1="550.03" x2="791.42" y2="653"/><line class="dim-t" x1="788.42" y1="653" x2="794.42" y2="647"/><line class="dim-t" x1="788.42" y1="556.03" x2="794.42" y2="550.03"/><text class="t-dim halo" x="801.42" y="601.52" text-anchor="middle" transform="rotate(-90 801.42 601.52)">4.60</text>
+<circle class="bubble" cx="81.49" cy="707.13" r="11"/><text class="t-lbl" x="81.49" y="710.63" text-anchor="middle">15</text><text class="t-head" x="98.49" y="711.13">BEACH HUT</text><text class="t-sm" x="98.49" y="723.13">sand +1.00 · thatched hip roof, rental counter, boards</text>
+<rect x="90" y="867" width="316.8" height="33" class="beyond"/>
+<line x1="90" y1="854.9" x2="406.8" y2="854.9" class="e-out"/>
+<line x1="92.2" y1="867" x2="92.2" y2="854.9" class="e-mull"/>
+<line x1="114.2" y1="867" x2="114.2" y2="854.9" class="e-mull"/>
+<line x1="136.2" y1="867" x2="136.2" y2="854.9" class="e-mull"/>
+<line x1="158.2" y1="867" x2="158.2" y2="854.9" class="e-mull"/>
+<line x1="180.2" y1="867" x2="180.2" y2="854.9" class="e-mull"/>
+<line x1="202.2" y1="867" x2="202.2" y2="854.9" class="e-mull"/>
+<line x1="224.2" y1="867" x2="224.2" y2="854.9" class="e-mull"/>
+<line x1="246.2" y1="867" x2="246.2" y2="854.9" class="e-mull"/>
+<line x1="268.2" y1="867" x2="268.2" y2="854.9" class="e-mull"/>
+<line x1="290.2" y1="867" x2="290.2" y2="854.9" class="e-mull"/>
+<line x1="312.2" y1="867" x2="312.2" y2="854.9" class="e-mull"/>
+<line x1="334.2" y1="867" x2="334.2" y2="854.9" class="e-mull"/>
+<line x1="356.2" y1="867" x2="356.2" y2="854.9" class="e-mull"/>
+<line x1="378.2" y1="867" x2="378.2" y2="854.9" class="e-mull"/>
+<line x1="400.2" y1="867" x2="400.2" y2="854.9" class="e-mull"/>
+<line x1="140.6" y1="867" x2="140.6" y2="826.08" class="trunk"/>
+<g class="tree-o"><ellipse cx="140.6" cy="826.08" rx="19.8" ry="17.15"/><ellipse cx="123.96" cy="829.07" rx="10.96" ry="10.4"/><ellipse cx="123.72" cy="824.11" rx="9.82" ry="9.17"/><ellipse cx="128.22" cy="816.58" rx="11.89" ry="8.96"/><ellipse cx="135.07" cy="813.01" rx="10.31" ry="9.54"/><ellipse cx="145.02" cy="812.73" rx="10.09" ry="9.47"/><ellipse cx="154.19" cy="817.73" rx="9.51" ry="9.29"/><ellipse cx="157.13" cy="822.68" rx="11.63" ry="9.28"/><ellipse cx="156.6" cy="830.85" rx="10.44" ry="9.5"/></g>
+<g class="tree-f"><ellipse cx="140.6" cy="826.08" rx="18.9" ry="16.25"/><ellipse cx="123.96" cy="829.07" rx="10.06" ry="9.5"/><ellipse cx="123.72" cy="824.11" rx="8.92" ry="8.27"/><ellipse cx="128.22" cy="816.58" rx="10.99" ry="8.06"/><ellipse cx="135.07" cy="813.01" rx="9.41" ry="8.64"/><ellipse cx="145.02" cy="812.73" rx="9.19" ry="8.57"/><ellipse cx="154.19" cy="817.73" rx="8.61" ry="8.39"/><ellipse cx="157.13" cy="822.68" rx="10.73" ry="8.38"/><ellipse cx="156.6" cy="830.85" rx="9.54" ry="8.6"/></g>
+<line x1="228.6" y1="867" x2="228.6" y2="826.08" class="trunk"/>
+<g class="tree-o"><ellipse cx="228.6" cy="826.08" rx="19.8" ry="17.15"/><ellipse cx="212.77" cy="831.22" rx="9.91" ry="9.51"/><ellipse cx="212.03" cy="822.81" rx="11.65" ry="10.64"/><ellipse cx="217.01" cy="815.95" rx="9.45" ry="10.58"/><ellipse cx="225.45" cy="812.5" rx="11.43" ry="9.04"/><ellipse cx="234.79" cy="813.21" rx="9.52" ry="8.86"/><ellipse cx="241.52" cy="817.06" rx="11.78" ry="10.57"/><ellipse cx="245.1" cy="822.59" rx="11.94" ry="9.65"/><ellipse cx="245.47" cy="828.1" rx="11.43" ry="10.54"/></g>
+<g class="tree-f"><ellipse cx="228.6" cy="826.08" rx="18.9" ry="16.25"/><ellipse cx="212.77" cy="831.22" rx="9.01" ry="8.61"/><ellipse cx="212.03" cy="822.81" rx="10.75" ry="9.74"/><ellipse cx="217.01" cy="815.95" rx="8.55" ry="9.68"/><ellipse cx="225.45" cy="812.5" rx="10.53" ry="8.14"/><ellipse cx="234.79" cy="813.21" rx="8.62" ry="7.96"/><ellipse cx="241.52" cy="817.06" rx="10.88" ry="9.67"/><ellipse cx="245.1" cy="822.59" rx="11.04" ry="8.75"/><ellipse cx="245.47" cy="828.1" rx="10.53" ry="9.64"/></g>
+<line x1="305.6" y1="867" x2="305.6" y2="826.08" class="trunk"/>
+<g class="tree-o"><ellipse cx="305.6" cy="826.08" rx="19.8" ry="17.15"/><ellipse cx="288.78" cy="828.36" rx="11.19" ry="8.8"/><ellipse cx="288.73" cy="824.08" rx="11.4" ry="9.13"/><ellipse cx="294.43" cy="815.64" rx="11.82" ry="9.41"/><ellipse cx="299.22" cy="813.27" rx="10.37" ry="10.48"/><ellipse cx="310.81" cy="812.92" rx="10.07" ry="8.6"/><ellipse cx="318.06" cy="816.64" rx="10.19" ry="9.45"/><ellipse cx="322.04" cy="822.43" rx="9.35" ry="9.05"/><ellipse cx="322.44" cy="828.27" rx="12.02" ry="10.6"/></g>
+<g class="tree-f"><ellipse cx="305.6" cy="826.08" rx="18.9" ry="16.25"/><ellipse cx="288.78" cy="828.36" rx="10.29" ry="7.9"/><ellipse cx="288.73" cy="824.08" rx="10.5" ry="8.23"/><ellipse cx="294.43" cy="815.64" rx="10.92" ry="8.51"/><ellipse cx="299.22" cy="813.27" rx="9.47" ry="9.58"/><ellipse cx="310.81" cy="812.92" rx="9.17" ry="7.7"/><ellipse cx="318.06" cy="816.64" rx="9.29" ry="8.55"/><ellipse cx="322.04" cy="822.43" rx="8.45" ry="8.15"/><ellipse cx="322.44" cy="828.27" rx="11.12" ry="9.7"/></g>
+<rect x="112" y="893.4" width="272.8" height="6.6" class="e-wood"/>
+<line x1="114.2" y1="898.35" x2="382.6" y2="898.35" class="e-mull"/>
+<line x1="114.2" y1="896.7" x2="382.6" y2="896.7" class="e-mull"/>
+<line x1="114.2" y1="895.05" x2="382.6" y2="895.05" class="e-mull"/>
+<rect x="193.4" y="875.8" width="17.6" height="17.6" class="e-dark"/>
+<circle cx="202.2" cy="887.35" r="4.62" class="e-steel"/>
+<circle cx="202.2" cy="879.65" r="1.98" class="e-steel"/>
+<rect x="193.4" y="858.2" width="17.6" height="17.6" class="e-dark"/>
+<circle cx="202.2" cy="869.75" r="4.62" class="e-steel"/>
+<circle cx="202.2" cy="862.05" r="1.98" class="e-steel"/>
+<rect x="348.5" y="875.8" width="17.6" height="17.6" class="e-dark"/>
+<circle cx="357.3" cy="887.35" r="4.62" class="e-steel"/>
+<circle cx="357.3" cy="879.65" r="1.98" class="e-steel"/>
+<rect x="348.5" y="858.2" width="17.6" height="17.6" class="e-dark"/>
+<circle cx="357.3" cy="869.75" r="4.62" class="e-steel"/>
+<circle cx="357.3" cy="862.05" r="1.98" class="e-steel"/>
+<line x1="112" y1="893.4" x2="112" y2="845" class="e-mull"/>
+<line x1="156" y1="893.4" x2="156" y2="845" class="e-mull"/>
+<line x1="200" y1="893.4" x2="200" y2="845" class="e-mull"/>
+<line x1="244" y1="893.4" x2="244" y2="845" class="e-mull"/>
+<line x1="288" y1="893.4" x2="288" y2="845" class="e-mull"/>
+<line x1="332" y1="893.4" x2="332" y2="845" class="e-mull"/>
+<line x1="376" y1="893.4" x2="376" y2="845" class="e-mull"/>
+<polyline points="112,845 117.5,845.56 123,846.92 128.5,848.29 134,848.85 139.5,848.29 145,846.92 150.5,845.56 156,845 161.5,845.56 167,846.92 172.5,848.29 178,848.85 183.5,848.29 189,846.92 194.5,845.56 200,845 205.5,845.56 211,846.92 216.5,848.29 222,848.85 227.5,848.29 233,846.92 238.5,845.56 244,845 249.5,845.56 255,846.92 260.5,848.29 266,848.85 271.5,848.29 277,846.92 282.5,845.56 288,845 293.5,845.56 299,846.92 304.5,848.29 310,848.85 315.5,848.29 321,846.92 326.5,845.56 332,845 337.5,845.56 343,846.92 348.5,848.29 354,848.85 359.5,848.29 365,846.92 370.5,845.56 376,845 381.5,845.56" class="string"/>
+<polygon points="90,900 406.8,900 406.8,904.95 90,904.95" class="poche"/>
+<polygon points="90,900 406.8,900 406.8,904.95 90,904.95" fill="url(#ce-earth)"/>
+<polyline points="90,900 406.8,900" class="e-ground"/>
+<text x="248.4" y="801" text-anchor="middle" class="t-lbl">FRONT · FROM THE LAWN</text>
+<line class="dim" x1="109" y1="910.45" x2="387.8" y2="910.45"/><line class="dim-t" x1="109" y1="913.45" x2="115" y2="907.45"/><line class="dim-t" x1="381.8" y1="913.45" x2="387.8" y2="907.45"/><text class="t-dim halo" x="248.4" y="907.45" text-anchor="middle">24.8 DECK</text>
+<rect x="440" y="867" width="316.8" height="33" class="beyond"/>
+<line x1="440" y1="854.9" x2="756.8" y2="854.9" class="e-out"/>
+<line x1="442.2" y1="867" x2="442.2" y2="854.9" class="e-mull"/>
+<line x1="464.2" y1="867" x2="464.2" y2="854.9" class="e-mull"/>
+<line x1="486.2" y1="867" x2="486.2" y2="854.9" class="e-mull"/>
+<line x1="508.2" y1="867" x2="508.2" y2="854.9" class="e-mull"/>
+<line x1="530.2" y1="867" x2="530.2" y2="854.9" class="e-mull"/>
+<line x1="552.2" y1="867" x2="552.2" y2="854.9" class="e-mull"/>
+<line x1="574.2" y1="867" x2="574.2" y2="854.9" class="e-mull"/>
+<line x1="596.2" y1="867" x2="596.2" y2="854.9" class="e-mull"/>
+<line x1="618.2" y1="867" x2="618.2" y2="854.9" class="e-mull"/>
+<line x1="640.2" y1="867" x2="640.2" y2="854.9" class="e-mull"/>
+<line x1="662.2" y1="867" x2="662.2" y2="854.9" class="e-mull"/>
+<line x1="684.2" y1="867" x2="684.2" y2="854.9" class="e-mull"/>
+<line x1="706.2" y1="867" x2="706.2" y2="854.9" class="e-mull"/>
+<line x1="728.2" y1="867" x2="728.2" y2="854.9" class="e-mull"/>
+<line x1="750.2" y1="867" x2="750.2" y2="854.9" class="e-mull"/>
+<line x1="490.6" y1="867" x2="490.6" y2="826.08" class="trunk"/>
+<g class="tree-o"><ellipse cx="490.6" cy="826.08" rx="19.8" ry="17.15"/><ellipse cx="473.96" cy="829.07" rx="10.96" ry="10.4"/><ellipse cx="473.72" cy="824.11" rx="9.82" ry="9.17"/><ellipse cx="478.22" cy="816.58" rx="11.89" ry="8.96"/><ellipse cx="485.07" cy="813.01" rx="10.31" ry="9.54"/><ellipse cx="495.02" cy="812.73" rx="10.09" ry="9.47"/><ellipse cx="504.19" cy="817.73" rx="9.51" ry="9.29"/><ellipse cx="507.13" cy="822.68" rx="11.63" ry="9.28"/><ellipse cx="506.6" cy="830.85" rx="10.44" ry="9.5"/></g>
+<g class="tree-f"><ellipse cx="490.6" cy="826.08" rx="18.9" ry="16.25"/><ellipse cx="473.96" cy="829.07" rx="10.06" ry="9.5"/><ellipse cx="473.72" cy="824.11" rx="8.92" ry="8.27"/><ellipse cx="478.22" cy="816.58" rx="10.99" ry="8.06"/><ellipse cx="485.07" cy="813.01" rx="9.41" ry="8.64"/><ellipse cx="495.02" cy="812.73" rx="9.19" ry="8.57"/><ellipse cx="504.19" cy="817.73" rx="8.61" ry="8.39"/><ellipse cx="507.13" cy="822.68" rx="10.73" ry="8.38"/><ellipse cx="506.6" cy="830.85" rx="9.54" ry="8.6"/></g>
+<line x1="578.6" y1="867" x2="578.6" y2="826.08" class="trunk"/>
+<g class="tree-o"><ellipse cx="578.6" cy="826.08" rx="19.8" ry="17.15"/><ellipse cx="562.77" cy="831.22" rx="9.91" ry="9.51"/><ellipse cx="562.03" cy="822.81" rx="11.65" ry="10.64"/><ellipse cx="567.01" cy="815.95" rx="9.45" ry="10.58"/><ellipse cx="575.45" cy="812.5" rx="11.43" ry="9.04"/><ellipse cx="584.79" cy="813.21" rx="9.52" ry="8.86"/><ellipse cx="591.52" cy="817.06" rx="11.78" ry="10.57"/><ellipse cx="595.1" cy="822.59" rx="11.94" ry="9.65"/><ellipse cx="595.47" cy="828.1" rx="11.43" ry="10.54"/></g>
+<g class="tree-f"><ellipse cx="578.6" cy="826.08" rx="18.9" ry="16.25"/><ellipse cx="562.77" cy="831.22" rx="9.01" ry="8.61"/><ellipse cx="562.03" cy="822.81" rx="10.75" ry="9.74"/><ellipse cx="567.01" cy="815.95" rx="8.55" ry="9.68"/><ellipse cx="575.45" cy="812.5" rx="10.53" ry="8.14"/><ellipse cx="584.79" cy="813.21" rx="8.62" ry="7.96"/><ellipse cx="591.52" cy="817.06" rx="10.88" ry="9.67"/><ellipse cx="595.1" cy="822.59" rx="11.04" ry="8.75"/><ellipse cx="595.47" cy="828.1" rx="10.53" ry="9.64"/></g>
+<line x1="655.6" y1="867" x2="655.6" y2="826.08" class="trunk"/>
+<g class="tree-o"><ellipse cx="655.6" cy="826.08" rx="19.8" ry="17.15"/><ellipse cx="638.78" cy="828.36" rx="11.19" ry="8.8"/><ellipse cx="638.73" cy="824.08" rx="11.4" ry="9.13"/><ellipse cx="644.43" cy="815.64" rx="11.82" ry="9.41"/><ellipse cx="649.22" cy="813.27" rx="10.37" ry="10.48"/><ellipse cx="660.81" cy="812.92" rx="10.07" ry="8.6"/><ellipse cx="668.06" cy="816.64" rx="10.19" ry="9.45"/><ellipse cx="672.04" cy="822.43" rx="9.35" ry="9.05"/><ellipse cx="672.44" cy="828.27" rx="12.02" ry="10.6"/></g>
+<g class="tree-f"><ellipse cx="655.6" cy="826.08" rx="18.9" ry="16.25"/><ellipse cx="638.78" cy="828.36" rx="10.29" ry="7.9"/><ellipse cx="638.73" cy="824.08" rx="10.5" ry="8.23"/><ellipse cx="644.43" cy="815.64" rx="10.92" ry="8.51"/><ellipse cx="649.22" cy="813.27" rx="9.47" ry="9.58"/><ellipse cx="660.81" cy="812.92" rx="9.17" ry="7.7"/><ellipse cx="668.06" cy="816.64" rx="9.29" ry="8.55"/><ellipse cx="672.04" cy="822.43" rx="8.45" ry="8.15"/><ellipse cx="672.44" cy="828.27" rx="11.12" ry="9.7"/></g>
+<rect x="462" y="893.4" width="272.8" height="6.6" class="e-wood"/>
+<line x1="464.2" y1="898.35" x2="732.6" y2="898.35" class="e-mull"/>
+<line x1="464.2" y1="896.7" x2="732.6" y2="896.7" class="e-mull"/>
+<line x1="464.2" y1="895.05" x2="732.6" y2="895.05" class="e-mull"/>
+<rect x="635.8" y="875.8" width="17.6" height="17.6" class="e-dark"/>
+<rect x="635.8" y="858.2" width="17.6" height="17.6" class="e-dark"/>
+<rect x="480.7" y="875.8" width="17.6" height="17.6" class="e-dark"/>
+<rect x="480.7" y="858.2" width="17.6" height="17.6" class="e-dark"/>
+<line x1="462" y1="893.4" x2="462" y2="845" class="e-mull"/>
+<line x1="506" y1="893.4" x2="506" y2="845" class="e-mull"/>
+<line x1="550" y1="893.4" x2="550" y2="845" class="e-mull"/>
+<line x1="594" y1="893.4" x2="594" y2="845" class="e-mull"/>
+<line x1="638" y1="893.4" x2="638" y2="845" class="e-mull"/>
+<line x1="682" y1="893.4" x2="682" y2="845" class="e-mull"/>
+<line x1="726" y1="893.4" x2="726" y2="845" class="e-mull"/>
+<polyline points="462,845 467.5,845.56 473,846.92 478.5,848.29 484,848.85 489.5,848.29 495,846.92 500.5,845.56 506,845 511.5,845.56 517,846.92 522.5,848.29 528,848.85 533.5,848.29 539,846.92 544.5,845.56 550,845 555.5,845.56 561,846.92 566.5,848.29 572,848.85 577.5,848.29 583,846.92 588.5,845.56 594,845 599.5,845.56 605,846.92 610.5,848.29 616,848.85 621.5,848.29 627,846.92 632.5,845.56 638,845 643.5,845.56 649,846.92 654.5,848.29 660,848.85 665.5,848.29 671,846.92 676.5,845.56 682,845 687.5,845.56 693,846.92 698.5,848.29 704,848.85 709.5,848.29 715,846.92 720.5,845.56 726,845 731.5,845.56" class="string"/>
+<polygon points="440,900 756.8,900 756.8,904.95 440,904.95" class="poche"/>
+<polygon points="440,900 756.8,900 756.8,904.95 440,904.95" fill="url(#ce-earth)"/>
+<polyline points="440,900 756.8,900" class="e-ground"/>
+<text x="598.4" y="801" text-anchor="middle" class="t-lbl">BACK · FROM THE TOP PLAZA</text>
+<line class="dim" x1="459" y1="910.45" x2="737.8" y2="910.45"/><line class="dim-t" x1="459" y1="913.45" x2="465" y2="907.45"/><line class="dim-t" x1="731.8" y1="913.45" x2="737.8" y2="907.45"/><text class="t-dim halo" x="598.4" y="907.45" text-anchor="middle">24.8 DECK</text>
+<rect x="790" y="867" width="291.5" height="33" class="beyond"/>
+<rect x="1037.5" y="867" width="44" height="33" class="e-conc"/>
+<line x1="1037.5" y1="900" x2="1039.7" y2="900" class="e-mull"/>
+<line x1="1039.7" y1="898.35" x2="1041.9" y2="898.35" class="e-mull"/>
+<line x1="1041.9" y1="896.7" x2="1044.1" y2="896.7" class="e-mull"/>
+<line x1="1044.1" y1="895.05" x2="1046.3" y2="895.05" class="e-mull"/>
+<line x1="1046.3" y1="893.4" x2="1048.5" y2="893.4" class="e-mull"/>
+<line x1="1048.5" y1="891.75" x2="1050.7" y2="891.75" class="e-mull"/>
+<line x1="1050.7" y1="890.1" x2="1052.9" y2="890.1" class="e-mull"/>
+<line x1="1052.9" y1="888.45" x2="1055.1" y2="888.45" class="e-mull"/>
+<line x1="1055.1" y1="886.8" x2="1057.3" y2="886.8" class="e-mull"/>
+<line x1="1057.3" y1="885.15" x2="1059.5" y2="885.15" class="e-mull"/>
+<line x1="1059.5" y1="883.5" x2="1061.7" y2="883.5" class="e-mull"/>
+<line x1="1061.7" y1="881.85" x2="1063.9" y2="881.85" class="e-mull"/>
+<line x1="1063.9" y1="880.2" x2="1066.1" y2="880.2" class="e-mull"/>
+<line x1="1066.1" y1="878.55" x2="1068.3" y2="878.55" class="e-mull"/>
+<line x1="1068.3" y1="876.9" x2="1070.5" y2="876.9" class="e-mull"/>
+<line x1="1070.5" y1="875.25" x2="1072.7" y2="875.25" class="e-mull"/>
+<line x1="1072.7" y1="873.6" x2="1074.9" y2="873.6" class="e-mull"/>
+<line x1="1074.9" y1="871.95" x2="1077.1" y2="871.95" class="e-mull"/>
+<line x1="1077.1" y1="870.3" x2="1079.3" y2="870.3" class="e-mull"/>
+<line x1="1079.3" y1="868.65" x2="1081.5" y2="868.65" class="e-mull"/>
+<rect x="812" y="893.4" width="203.5" height="6.6" class="e-wood"/>
+<rect x="987.45" y="875.8" width="17.6" height="17.6" class="e-dark"/>
+<circle cx="996.25" cy="887.35" r="4.62" class="e-steel"/>
+<circle cx="996.25" cy="879.65" r="1.98" class="e-steel"/>
+<rect x="987.45" y="858.2" width="17.6" height="17.6" class="e-dark"/>
+<circle cx="996.25" cy="869.75" r="4.62" class="e-steel"/>
+<circle cx="996.25" cy="862.05" r="1.98" class="e-steel"/>
+<rect x="952.8" y="875.8" width="17.6" height="17.6" class="e-dark"/>
+<circle cx="961.6" cy="887.35" r="4.62" class="e-steel"/>
+<circle cx="961.6" cy="879.65" r="1.98" class="e-steel"/>
+<rect x="952.8" y="858.2" width="17.6" height="17.6" class="e-dark"/>
+<circle cx="961.6" cy="869.75" r="4.62" class="e-steel"/>
+<circle cx="961.6" cy="862.05" r="1.98" class="e-steel"/>
+<polygon points="790,900 1081.5,900 1081.5,904.95 790,904.95" class="poche"/>
+<polygon points="790,900 1081.5,900 1081.5,904.95 790,904.95" fill="url(#ce-earth)"/>
+<polyline points="790,900 1081.5,900" class="e-ground"/>
+<text x="935.75" y="801" text-anchor="middle" class="t-lbl">SIDE</text>
+<polygon class="ink-f" points="88.2,893 96.2,893 92.2,900"/>
+<text class="t-dim halo" x="85.2" y="897" text-anchor="end">+3.60</text>
+<polygon class="ink-f" points="88.2,886.4 96.2,886.4 92.2,893.4"/>
+<text class="t-dim halo" x="85.2" y="890.4" text-anchor="end">+4.20 DECK</text>
+<circle class="bubble" cx="101" cy="925.7" r="11"/><text class="t-lbl" x="101" y="929.2" text-anchor="middle">16</text><text class="t-head" x="118" y="929.7">SMALL STAGE</text><text class="t-sm" x="118" y="941.7">deck 26 × 21 m at +4.20 · 4R edge steps · PA stacks 1.6 × 1.6 × 3.2 m · festoon lights</text>
+<rect class="frame" x="12" y="50" width="1076" height="928"/></svg>

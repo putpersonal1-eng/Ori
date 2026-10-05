@@ -41,6 +41,11 @@ All are in `index.html`, with standalone copies in `svg/`.
 - L-101: site plan with key numbers 1–12 as in the reference, and the reference underlay
 - L-201 / L-202: sections
 - D-401: main stair, seaside steps, pier, central planter
+- A-501: arcade elevations (front from the reference facade image, side, back)
+- A-502: Fashion & Goods and café elevations
+- A-503: Lifestyle & Souvenir elevations
+- A-504: food truck, street kiosk, beach hut and stage (front, side, back)
+- P-601: perspective, with a live three.js model (orbit, preset views) and rendered stills
 - S-2 / S-3 / S-4: key locations, gameplay metrics, connections
 
 `build.py` stops with an error if any walkable area can't be reached from Spawn A.
@@ -49,7 +54,21 @@ All are in `index.html`, with standalone copies in `svg/`.
 
 ```sh
 pip install shapely   # once
-python3 build.py      # rewrites index.html and svg/*.svg
+python3 build.py      # rewrites index.html, svg/*.svg and model/scene.json
 ```
+
+To refresh the rendered perspective stills in `img/` (needs Node and a Chromium):
+
+```sh
+npm i --no-save three@0.160.0 playwright
+node render_views.js && python3 build.py
+```
+
+Files:
+
+- `build.py`: plan, sections, details, schedules and the page
+- `elev.py`: elevation sheets A-501 to A-504
+- `model3d.py`: builds the 3D massing from the plan data (`model/scene.json`)
+- `park3d.js`: the three.js viewer used on the page and by `render_views.js`
 
 Shared drawing helpers live in `../drawkit.py`.

@@ -12,6 +12,7 @@ Geometry is in metres: X west -> east, Y north -> south, Z above sea level.
     python3 build.py   -> index.html + svg/*.svg
 """
 import base64
+import json
 import math
 import os
 import random
@@ -22,6 +23,8 @@ from shapely.ops import unary_union
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from drawkit import *  # noqa: E402,F401,F403
+import elev  # noqa: E402
+import model3d  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
@@ -302,6 +305,45 @@ def maneki_big(cv, u, v, r):
     cv.circle(u, v + r * .05, r * .12, "chalk-p")
 
 
+def hardscape():
+    """Walkable surfaces per level and the merged planting beds (metres). Shared by the plan and the 3D model."""
+    street_g = close_(unary_union([
+        GB(36, 135, 1302, 145), GB(470, 135, 727, 186), GB(88, 135, 392, 196), open_(GB(88, 135, 142, 632), 1.6), GB(120, 600, 142, 632),
+        GB(677, 184, 703, 217), GB(940, 140, 972, 155), GB(1060, 140, 1090, 165)]), 1.2)
+    plaza_core = G([(347, 197), (478, 197), (478, 186), (727, 186), (727, 192), (974, 192), (974, 250), (976, 300), (986, 338),
+                    (1004, 370), (1031, 405), (1060, 434), (1060, 478), (1056, 505), (1062, 540), (1050, 553), (1022, 598),
+                    (520, 594), (347, 592)])
+    junction = G([(1050, 553), (1080, 546), (1100, 546), (1106, 520), (1125, 516), (1160, 512), (1172, 524), (1197, 527),
+                  (1163, 550), (1130, 557), (1088, 572), (1082, 588), (1083, 600), (1076.3, 602.9), (1033, 614.5), (1020, 600),
+                  (1030, 575)])
+    plaza_g = close_(unary_union([plaza_core, GL(CURVE_LINE_PX, 3.25), GB(730, 192, 995, 217), GB(733, 217, 942, 312),
+                                  junction, GL(COAST_LINE_PX, 3.1)]), 2.0)
+    east_g = close_(unary_union([GL(EAST_PATH_PX, 1.2), G([(1188, 410), (1206, 404), (1210, 418), (1195, 422)])]), .8)
+    island = G(PALM_ISLAND_PX)
+    plaza_g = unary_union([plaza_g, east_g, island.buffer(2.5)]).difference(island)
+    top_g = close_(G([(1050, 200), (1094, 200), (1100, 190), (1050, 252)]), .6)
+    prom_g = G(PROM_PX)
+    terr_g = G([(282, 485), (347, 485), (347, 592), (160, 592), (160, 540), (282, 540)])
+    lawn_g = lawn_poly().difference(plaza_g).difference(top_g)
+    deck_g = G(DECK_PX)
+    paved = unary_union([street_g, plaza_g, top_g])
+    beds = [
+        (G([(990, 145), (1060, 145), (1060, 200), (1047.5, 200), (1047.5, 292.5), (1032.5, 305), (1030, 330), (1042.5, 360),
+            (1065, 390), (1090, 410), (1120, 422.5), (1150, 430), (1164, 424), (1150, 445), (1110, 445), (1060, 420), (1020, 380),
+            (1000, 330), (995, 250), (990, 200)]), 13),
+        (G([(1092, 150), (1207, 150), (1207, 237), (1100, 190), (1094, 200), (1092, 200)]), 14),
+        (G([(1207, 145), (1250, 145), (1250, 335), (1302, 290), (1302, 404), (1248, 410), (1243, 430), (1212, 425), (1207, 400)]), 15),
+        (G([(1080, 572), (1130, 557), (1163, 551), (1197, 528), (1215, 555), (1198, 585), (1176, 612), (1166, 636),
+            (1086.7, 641.7), (1076.3, 602.9), (1083, 600)]), 17),
+        (G([(1104, 402), (1148, 408), (1150, 430), (1112, 450), (1095, 448)]), 18),
+        (G([(1207, 425), (1243, 430), (1238, 490), (1232, 525), (1215, 555), (1197, 528), (1209, 500), (1207, 460)]), 19),
+        (GB(55, 145, 88, 640), 20), (GB(1160, 230, 1212, 425), 16), (GB(142, 540, 160, 592), 21), (GB(423, 145, 470, 196), 22)]
+    # one bed surface: neighbouring beds merge, so no seams between them
+    bed_all = unary_union([g for g, sd in beds]).difference(paved).difference(prom_g).difference(lawn_g).difference(deck_g)
+    return {"street": street_g, "plaza": plaza_g, "top": top_g, "prom": prom_g, "terr": terr_g, "lawn": lawn_g,
+            "deck": deck_g, "east": east_g, "island": island, "paved": paved, "beds": bed_all}
+
+
 def site_plan(underlay=False):
     p = "cp"
     W, H = 1630, 1110
@@ -372,26 +414,9 @@ def site_plan(underlay=False):
         cv.rect(*RP(*b), "", pat("hatch"))
     cv.rect(*RP(1252, 142, 1300, 328), "roof")
     # ---- hardscape: one surface per level, filleted junctions, one curb line ----
-    street_g = close_(unary_union([
-        GB(36, 135, 1302, 145), GB(470, 135, 727, 186), GB(88, 135, 392, 196), open_(GB(88, 135, 142, 632), 1.6), GB(120, 600, 142, 632),
-        GB(677, 184, 703, 217), GB(940, 140, 972, 155), GB(1060, 140, 1090, 165)]), 1.2)
-    plaza_core = G([(347, 197), (478, 197), (478, 186), (727, 186), (727, 192), (974, 192), (974, 250), (976, 300), (986, 338),
-                    (1004, 370), (1031, 405), (1060, 434), (1060, 478), (1056, 505), (1062, 540), (1050, 553), (1022, 598),
-                    (520, 594), (347, 592)])
-    junction = G([(1050, 553), (1080, 546), (1100, 546), (1106, 520), (1125, 516), (1160, 512), (1172, 524), (1197, 527),
-                  (1163, 550), (1130, 557), (1088, 572), (1082, 588), (1083, 600), (1076.3, 602.9), (1033, 614.5), (1020, 600),
-                  (1030, 575)])
-    plaza_g = close_(unary_union([plaza_core, GL(CURVE_LINE_PX, 3.25), GB(730, 192, 995, 217), GB(733, 217, 942, 312),
-                                  junction, GL(COAST_LINE_PX, 3.1)]), 2.0)
-    east_g = close_(unary_union([GL(EAST_PATH_PX, 1.2), G([(1188, 410), (1206, 404), (1210, 418), (1195, 422)])]), .8)
-    island = G(PALM_ISLAND_PX)
-    plaza_g = unary_union([plaza_g, east_g, island.buffer(2.5)]).difference(island)
-    top_g = close_(G([(1050, 200), (1094, 200), (1100, 190), (1050, 252)]), .6)
-    prom_g = G(PROM_PX)
-    terr_g = G([(282, 485), (347, 485), (347, 592), (160, 592), (160, 540), (282, 540)])
-    lawn_g = lawn_poly().difference(plaza_g).difference(top_g)
-    deck_g = G(DECK_PX)
-    paved = unary_union([street_g, plaza_g, top_g])
+    hs = hardscape()
+    street_g, plaza_g, top_g, prom_g, terr_g, lawn_g, deck_g = (hs[k] for k in ("street", "plaza", "top", "prom", "terr", "lawn", "deck"))
+    paved = hs["paved"]
     for g in (street_g, plaza_g.difference(prom_g), top_g):
         gd(cv, g, "z-paver")
     cx, cy = P(605, 417)
@@ -405,19 +430,7 @@ def site_plan(underlay=False):
     for arc in [[(1052, 312), (1072, 352), (1105, 386), (1145, 404), (1182, 392), (1204, 360)],
                 [(1078, 322), (1098, 350), (1128, 368), (1162, 366), (1186, 344)]]:
         cv.path(cr_cmds(PP(arc), closed=False), "ln-m", ' stroke-dasharray="1.2 2.6"')
-    beds = [
-        (G([(990, 145), (1060, 145), (1060, 200), (1047.5, 200), (1047.5, 292.5), (1032.5, 305), (1030, 330), (1042.5, 360),
-            (1065, 390), (1090, 410), (1120, 422.5), (1150, 430), (1164, 424), (1150, 445), (1110, 445), (1060, 420), (1020, 380),
-            (1000, 330), (995, 250), (990, 200)]), 13),
-        (G([(1092, 150), (1207, 150), (1207, 237), (1100, 190), (1094, 200), (1092, 200)]), 14),
-        (G([(1207, 145), (1250, 145), (1250, 335), (1302, 290), (1302, 404), (1248, 410), (1243, 430), (1212, 425), (1207, 400)]), 15),
-        (G([(1080, 572), (1130, 557), (1163, 551), (1197, 528), (1215, 555), (1198, 585), (1176, 612), (1166, 636),
-            (1086.7, 641.7), (1076.3, 602.9), (1083, 600)]), 17),
-        (G([(1104, 402), (1148, 408), (1150, 430), (1112, 450), (1095, 448)]), 18),
-        (G([(1207, 425), (1243, 430), (1238, 490), (1232, 525), (1215, 555), (1197, 528), (1209, 500), (1207, 460)]), 19),
-        (GB(55, 145, 88, 640), 20), (GB(1160, 230, 1212, 425), 16), (GB(142, 540, 160, 592), 21), (GB(423, 145, 470, 196), 22)]
-    # one bed surface: neighbouring beds merge, so no seams between them
-    bed_all = unary_union([g for g, sd in beds]).difference(paved).difference(prom_g).difference(lawn_g).difference(deck_g)
+    bed_all = hs["beds"]
     bed_g(cv, bed_all, 13)
     # timber decks
     for g in (prom_g, terr_g):
@@ -522,7 +535,7 @@ def site_plan(underlay=False):
         planter_g(cv, GB(*b_), 30 + i, density=.6, radius=0)
     cv.rect(*RP(643, 217, 677, 240), "chalk-y", ' fill-opacity=".6"')
     cv.rect(*RP(643, 217, 677, 240), "ln-m")
-    for i, b_ in enumerate([(730, 147, 940, 189), (280, 147, 390, 178), (142, 182, 222, 193), (248, 182, 392, 193), (112, 210, 140, 305),
+    for i, b_ in enumerate([(730, 147, 940, 189), (280, 147, 390, 178), (142, 182, 392, 193), (112, 210, 140, 305),
                             (733, 303, 940, 312), (828, 383, 841, 427)]):
         planter_g(cv, GB(*b_), 40 + i, density=.55)
     # fashion & goods: roof plan + east stair
@@ -549,8 +562,6 @@ def site_plan(underlay=False):
     for (x, y) in [(194, 370), (210, 395), (260, 360), (290, 410), (327, 380), (277, 450)]:
         u, v = P(x, y)
         cv.circle(u, v, .5, ("chalk-p", "chalk-c")[x % 2])
-    cv.line(*P(226, 195.5), *P(244, 195.5), "gap")
-    cv.line(*P(226, 195.5), *P(244, 195.5), "glass")
     st = RP(347.5, 333, 354.7, 438)
     cv.rect(*st, "z-paver")
     for k in range(4):
@@ -1380,7 +1391,7 @@ LOCATIONS = [
     (2, "Central Plaza", "+3.60", "C–F 2–4", "open paving Ø53 m", "Planter bed Ø19, bench ring Ø27, tree Ø22, four tree islands, cat statue, chalk art."),
     (3, "Arcade (Indoor)", "+4.05", "A–B 2–3", "34 × 27 m, parapet +10.20", "Interior as in the reference; game-controller front on the plaza (A-501) with 3 entrance steps; roof terrace +9.60."),
     (4, "Café (Indoor + Outdoor)", "+3.60", "A–B 4", "23 × 9 m + L-terrace", "Terrace faces the plaza and the promenade; 5 parasols."),
-    (5, "Shop (Fashion / Goods)", "+3.60 / +8.40", "A–B 2", "34 × 17.5 m, 2 floors", "Upper floor opens onto the kiosk strip; east stair to the roof deck."),
+    (5, "Shop (Fashion / Goods)", "+3.60 / +8.40", "A–B 2", "34 × 17.5 m, 2 floors", "Entrance and glazed stair core at the SE corner; upper floor looks over the kiosk strip and opens onto the arcade roof terrace (A-502)."),
     (6, "Food Truck Zone", "+3.60", "F–G 1–2", "36 × 14 m pad + walkway", "4 trucks, 6 parasol tables, string lights, deck on the west end."),
     (7, "Small Stage (Events)", "deck +4.20, lawn +3.60 → +4.80", "H–J 1–3", "deck 26 × 21 m · lawn ≈ 30 × 22 m", "Deck shape and lawn traced; top plaza and 20R stair from the street."),
     (8, "Shop (Lifestyle / Souvenir)", "+3.60", "G–H 3–4", "23 × 21 m + stalls", "Yellow trim, awnings and stall row as traced; east terrace beside the curved path."),
@@ -1404,6 +1415,37 @@ METRICS = [
 ]
 
 NOTES = {
+    "p601": [
+        "The 3D model is generated from the same data as the drawings: surfaces and levels from L-101, planters, trees, stairs and props as placed on the plan, buildings as on A-501 to A-504.",
+        "Levels are real: street +8.40 falling to +6.00, plaza +3.60, raked lawn up to +4.80, promenade +3.15, pier +2.40 and sand sloping into the sea at ±0.00.",
+        "Light is a morning sun from the south-east so the arcade front reads as in the facade image; the plans keep their south-west shadows.",
+        "The live view loads three.js from jsDelivr. model/scene.json holds the same massing data for the engine team.",
+    ],
+    "a501": [
+        "The east front follows the reference facade image: a game-controller sign with a cream D-pad grip and a buttons grip (blue, red, green) either side of the ARCADE · ゲームセンター band and pixel mascot.",
+        "Glass sliding doors 5.0 m wide under a lit lintel, with the poster panel (あそぼう! · GAMES FRIENDS GOOD TIMES) on the left and the SMALL GAMES BIG HAPPINESS panel on the right.",
+        "Three steps (0.15 m risers, 0.40 m treads) lift the floor to +4.05 across the whole controller frame; they are drawn on L-101.",
+        "Roof terrace at +9.60 behind a 0.60 m parapet and a 1.10 m glass rail, with parasols and floodlights aimed at the sign. It opens off the fashion shop's upper floor.",
+        "The south side has the porthole row above the prize-and-vending strip; the café in front of it is dashed. The back faces the stepped west lane.",
+    ],
+    "a502": [
+        "Fashion & Goods: two floors, +3.60 and +8.40. The entrance and a glazed dogleg stair are at the SE corner, because the traced planters run along the rest of the east front.",
+        "The north face rises 4.8 m above the kiosk strip behind the planted strip, with no door on that side, as in the reference. A roof deck rail shows above the parapet.",
+        "Café: a folding glass front under a 2.5 m striped awning with the SEASIDE CAFE valance (traced yellow strip on L-101). The arcade's porthole wall shows above the café parapet.",
+        "Backs face the west lane, which steps down along both buildings; service and kitchen doors sit at lane level.",
+    ],
+    "a503": [
+        "Re-traced from the reference: yellow parapet on the west, south and east edges, plant deck in the NW roof corner, and a 4.2 m canopy band on the south.",
+        "Centre awning (7.5 m) over the main shopfront, with the pink SOUVENIR sign on posts in front. The roof garden on the canopy is traced.",
+        "West double doors open onto the seating terrace beside the plaza; the planter strip has a gap for them on L-101.",
+        "East side faces the terrace with two white tents, a parasol and palms.",
+    ],
+    "a504": [
+        "Food truck at real size, 6.5 × 2.5 × 3.0 m, serving hatch on the plaza side, cab facing the walkway.",
+        "Street kiosk 2 (11 × 4.7 m) on the kiosk strip: open counters under a striped awning, facing the street. Kiosks 1 and 3 use the same kit.",
+        "Beach hut 7.5 × 6.7 m on a 0.3 m deck with a thatched hip roof, rental and lifeguard counter facing the sea.",
+        "Small stage: timber deck at +4.20 with 4-riser edge steps, two PA stacks and festoon lights; the street wall and its trees show behind.",
+    ],
     "l101": [
         "Every outline here is traced from the reference image in pixels and divided by 6 (the image's true scale). Turn on Reference underlay to see the original under the plan at 1:1.",
         "Only real-world objects were resized: trucks, parasols and speakers. Stairs keep their traced footprints with risers fitted to the level change.",
@@ -1444,10 +1486,8 @@ AREAS = {
 LINKS = [
     ("sidewalk", "forecourt", "Open frontage"),
     ("sidewalk", "kiosks", "Open frontage"),
-    ("kiosks", "fashion_up", "Upper-floor shopfront on the kiosk strip"),
     ("fashion_up", "arcade_roof", "Door and 8R stair onto the arcade roof"),
-    ("fashion_up", "fashion", "Stair inside the shop"),
-    ("plaza", "fashion_up", "Glazed stair core, SE corner · 2 × 16R"),
+    ("fashion", "fashion_up", "Glazed stair core, SE corner · 2 × 16R"),
     ("forecourt", "plaza", "Main stair · 12.8 m · 2 × 16R + landing"),
     ("forecourt", "plaza", "E stair · 4.3 m · 32R"),
     ("sidewalk", "plaza", "NW stair · 5.2 m · 32R"),
@@ -1506,13 +1546,65 @@ def check_connected(start="sidewalk"):
 
 
 
+def perspective_block(scene):
+    views = json.loads(scene).get("views", {})
+    buttons = "\n".join(f'    <button type="button" class="zb" data-view="{k}" aria-pressed="{str(k == "arcade").lower()}">{esc(v["name"])}</button>'
+                         for k, v in views.items())
+    stills = []
+    for k, v in views.items():
+        fp = os.path.join(HERE, "img", f"view_{k}.jpg")
+        if os.path.exists(fp):
+            with open(fp, "rb") as f:
+                b64 = base64.b64encode(f.read()).decode()
+            stills.append(f'<figure><img loading="lazy" src="data:image/jpeg;base64,{b64}" alt="{esc(v["name"])}, rendered from the 3D model">'
+                          f'<figcaption>{esc(v["name"])}</figcaption></figure>')
+    with open(os.path.join(HERE, "park3d.js"), encoding="utf-8") as f:
+        js = f.read().replace("export function mountPark", "function mountPark")
+    data = scene.replace("</", "<\\/")
+    return f"""
+<section class="block" id="p601">
+  <div class="block-head"><span class="sheet-no">P-601</span><h2>Perspective · 3D model</h2><span class="scale">massing from L-101 and A-501–A-504 · drag to orbit, scroll to zoom</span></div>
+  <div class="viewer"><canvas id="park3d" aria-label="Interactive 3D model of the park"></canvas>
+    <p class="viewer-msg" id="park3d-msg" hidden>The live view needs WebGL. The rendered views below show the same model.</p></div>
+  <div class="layers" role="group" aria-label="Camera views">
+    <span class="lbl">Views</span>
+{buttons}
+  </div>
+  <div class="stills">{"".join(stills)}</div>
+  <ul class="notes">{notes_html("p601")}</ul>
+</section>
+<script type="importmap">{{"imports":{{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}}}</script>
+<script id="park-scene" type="application/json">{data}</script>
+<script type="module">
+{js}
+const host = document.getElementById('park3d');
+let P = null;
+function start() {{
+  if (P) return;
+  try {{
+    P = mountPark(host, JSON.parse(document.getElementById('park-scene').textContent), {{ view: 'arcade' }});
+  }} catch (e) {{
+    document.getElementById('park3d-msg').hidden = false;
+  }}
+}}
+new IntersectionObserver((es, ob) => {{ if (es.some(x => x.isIntersecting)) {{ start(); ob.disconnect(); }} }}, {{ rootMargin: '300px' }}).observe(host);
+document.querySelectorAll('[data-view]').forEach(function (b) {{
+  b.addEventListener('click', function () {{
+    start();
+    if (P) P.setView(b.dataset.view);
+    document.querySelectorAll('[data-view]').forEach(function (o) {{ o.setAttribute('aria-pressed', String(o === b)); }});
+  }});
+}});
+</script>"""
+
+
 def notes_html(k):
     return "\n".join(f'<li data-n="{i + 1:02d}">{esc(t)}</li>' for i, t in enumerate(NOTES[k]))
 
 
-def page(svgs):
-    css = (PAGE_CSS.replace("%LIGHT%", css_tokens(LIGHT)).replace("%FONTS%", css_tokens(FONTS))
-           .replace("%DARK%", css_tokens(DARK, "    ")) + SVG_CSS + EXTRA_CSS)
+def page(svgs, scene="{}"):
+    css = (PAGE_CSS.replace("%LIGHT%", css_tokens(dict(LIGHT, **elev.F_LIGHT))).replace("%FONTS%", css_tokens(FONTS))
+           .replace("%DARK%", css_tokens(dict(DARK, **elev.F_DARK), "    ")) + SVG_CSS + elev.ELEV_CSS + EXTRA_CSS)
     corr = "\n".join(f'<tr><td><b>{esc(a)}</b></td><td class="num was">{esc(b)}</td><td class="num">{esc(c)}</td><td>{esc(d)}</td></tr>'
                      for a, b, c, d in CORRECTIONS)
     locs = "\n".join(f'<tr><td class="num"><span class="kn">{k}</span></td><td><b>{esc(a)}</b></td><td class="num">{esc(b)}</td>'
@@ -1579,6 +1671,11 @@ def page(svgs):
     <li><a href="#l201"><b>L-201</b> Section A–A</a></li>
     <li><a href="#l202"><b>L-202</b> Section B–B</a></li>
     <li><a href="#d401"><b>D-401</b> Details</a></li>
+    <li><a href="#a501"><b>A-501</b> Arcade elevations</a></li>
+    <li><a href="#a502"><b>A-502</b> Fashion + café</a></li>
+    <li><a href="#a503"><b>A-503</b> Lifestyle</a></li>
+    <li><a href="#a504"><b>A-504</b> Small structures</a></li>
+    <li><a href="#p601"><b>P-601</b> Perspective · 3D</a></li>
     <li><a href="#locations"><b>S-2</b> Key locations</a></li>
     <li><a href="#metrics"><b>S-3</b> Metrics</a></li>
     <li><a href="#connections"><b>S-4</b> Connections</a></li>
@@ -1606,6 +1703,11 @@ def page(svgs):
 {sheet("l201", "L-201", "Section A–A", "H 5 px = 1 m · V 10 px = 1 m", "aa", 900)}
 {sheet("l202", "L-202", "Section B–B", "H 4.6 px = 1 m · V 10 px = 1 m", "bb", 940)}
 {sheet("d401", "D-401", "Details", "mixed scales, see sheet", "details", 900)}
+{sheet("a501", "A-501", "Arcade elevations", "front 24 px = 1 m · side, back 14 px = 1 m", "a501", 940)}
+{sheet("a502", "A-502", "Fashion & Goods and café elevations", "14 px = 1 m", "a502", 940)}
+{sheet("a503", "A-503", "Lifestyle & Souvenir elevations", "20 px = 1 m", "a503", 940)}
+{sheet("a504", "A-504", "Small structures", "mixed scales, see sheet", "a504", 940)}
+{perspective_block(scene)}
 
 <section class="block" id="locations">
   <div class="block-head"><span class="sheet-no">S-2</span><h2>Key locations</h2><span class="scale">numbering as in the reference</span></div>
@@ -1666,6 +1768,14 @@ td.was { color: var(--accent); text-decoration: line-through; text-decoration-th
 .zb:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .zl { margin-left: 12px; }
 .kept { margin: 12px 0 0; font-size: 15px; color: var(--ink-2); max-width: 90ch; }
+.viewer { position: relative; aspect-ratio: 16 / 9; margin-top: 14px; background: var(--sheet); border: 1px solid var(--rule); overflow: hidden; }
+.viewer canvas { display: block; width: 100%; height: 100%; touch-action: none; cursor: grab; }
+.viewer canvas:active { cursor: grabbing; }
+.viewer-msg { position: absolute; inset: auto 16px 16px 16px; margin: 0; padding: 10px 14px; background: var(--sheet); border: 1px solid var(--rule); font-size: 15px; }
+.stills { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-top: 16px; }
+.stills figure { margin: 0; min-width: 0; }
+.stills img { display: block; width: 100%; height: auto; border: 1px solid var(--rule); }
+.stills figcaption { font: 600 13px var(--f-cond); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); margin-top: 6px; }
 """
 
 
@@ -1675,6 +1785,10 @@ def main():
         "aa": (section_aa, "L-201 Section A-A", "L-201-section-AA.svg"),
         "bb": (section_bb, "L-202 Section B-B", "L-202-section-BB.svg"),
         "details": (details, "D-401 Details", "D-401-details.svg"),
+        "a501": (elev.sheet_a501, "A-501 Arcade elevations", "A-501-arcade-elevations.svg"),
+        "a502": (elev.sheet_a502, "A-502 Fashion and cafe elevations", "A-502-fashion-cafe-elevations.svg"),
+        "a503": (elev.sheet_a503, "A-503 Lifestyle elevations", "A-503-lifestyle-elevations.svg"),
+        "a504": (elev.sheet_a504, "A-504 Small structures", "A-504-small-structures.svg"),
     }
     print("connected areas:", check_connected())
     svgs = {}
@@ -1685,9 +1799,14 @@ def main():
         body, w, h = fn()
         svgs[k] = (site_plan(underlay=ref_uri)[0] if k == "site" else body, w, h, label)
         with open(os.path.join(HERE, "svg", fname), "w", encoding="utf-8") as f:
-            f.write('<?xml version="1.0" encoding="UTF-8"?>\n' + wrap(body, w, h, label, standalone=True) + "\n")
+            f.write('<?xml version="1.0" encoding="UTF-8"?>\n' + wrap(body, w, h, label, standalone=True, extra_css=elev.ELEV_CSS,
+                                                                    extra_tokens=elev.F_LIGHT) + "\n")
+    scene = model3d.scene_json(sys.modules[__name__])
+    os.makedirs(os.path.join(HERE, "model"), exist_ok=True)
+    with open(os.path.join(HERE, "model", "scene.json"), "w", encoding="utf-8") as f:
+        f.write(scene)
     with open(os.path.join(HERE, "index.html"), "w", encoding="utf-8") as f:
-        f.write(page(svgs))
+        f.write(page(svgs, scene))
     print("wrote index.html and", len(builders), "SVG sheets")
 
 
