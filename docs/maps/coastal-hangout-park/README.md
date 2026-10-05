@@ -45,7 +45,9 @@ All are in `index.html`, with standalone copies in `svg/`.
 - A-502: Fashion & Goods and café elevations
 - A-503: Lifestyle & Souvenir elevations
 - A-504: food truck, street kiosk, beach hut and stage (front, side, back)
-- P-601: perspective, with a live three.js model (orbit, preset views) and rendered stills
+- A-505: main stair with escalators, the shotengai gate and the mural walls
+- P-601: perspective, with a live three.js model (orbit, preset views) and rendered stills;
+  hills wall the map on three sides with a tunnel at each end of the road
 - S-2 / S-3 / S-4: key locations, gameplay metrics, connections
 
 `build.py` stops with an error if any walkable area can't be reached from Spawn A.

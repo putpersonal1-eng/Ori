@@ -158,6 +158,16 @@
 .e-rope{fill:none;stroke:#4A5C6F;stroke-width:.6}
 .e-fern{fill:#86BB6D;stroke:#58894C;stroke-width:.6;stroke-linejoin:round}
 .e-key{font:600 9px "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;letter-spacing:.03em;fill:#16283A}
+.e-indigo{fill:#2E3FB0;stroke:#16283A;stroke-width:.8}
+.e-verm{fill:#D9432F;stroke:#16283A;stroke-width:.8}
+.e-kawara{fill:#3B4352;stroke:#16283A;stroke-width:.7;stroke-linejoin:round}
+.e-kawara-y{fill:#F7CB3B;stroke:#16283A;stroke-width:.7;stroke-linejoin:round}
+.e-tile{fill:none;stroke:#59627A;stroke-width:.8}
+.e-plaster{fill:#FAF8F3;stroke:#16283A;stroke-width:.9;stroke-linejoin:round}
+.e-gold{fill:#C9A24A}
+.e-white-o{fill:#FFFFFF;stroke:#16283A;stroke-width:1.4;stroke-linejoin:round}
+.e-portal{fill:#AEB6BF;stroke:#16283A;stroke-width:.8}
+.e-wood-d{fill:#8A5C3A;stroke:#16283A;stroke-width:.8}
 .e-fd{font-family:"Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif}
 .e-fb{font-family:"Barlow", ui-sans-serif, system-ui, sans-serif}
 .e-fc{font-family:"Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif}

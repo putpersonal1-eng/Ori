@@ -43,12 +43,160 @@ function glints(g, W, H, n) {
   }
 }
 
+function heartPath(g, x, y, s) {
+  g.beginPath();
+  g.moveTo(x, y + s * .55);
+  g.bezierCurveTo(x - s * 1.1, y - s * .1, x - s * .5, y - s * .75, x, y - s * .3);
+  g.bezierCurveTo(x + s * .5, y - s * .75, x + s * 1.1, y - s * .1, x, y + s * .55);
+  g.closePath();
+}
+
+function drawMascotAt(g, x0, y0, px) {
+  const cols = { O: '#E3AE1F', Y: '#FFE27A', K: '#2E333B', P: '#F59BC3' };
+  MASCOT.forEach((row, r) => [...row].forEach((ch, k) => {
+    if (cols[ch]) { g.fillStyle = cols[ch]; g.fillRect(x0 + k * px, y0 + r * px, px + 1, px + 1); }
+  }));
+}
+
+function drawExtra(L, g, W, H) {
+  const k = L.k;
+  if (k === 'ring') {
+    const r = Math.min(W, H) / 2, rm = r * .775, lw = r * .45;
+    g.lineWidth = lw; g.strokeStyle = L.fg || '#2E3FB0'; g.lineCap = 'butt';
+    g.beginPath(); g.arc(W / 2, H / 2, rm, (80 + 43) * Math.PI / 180, (80 + 360) * Math.PI / 180); g.stroke();
+  } else if (k === 'bubble') {
+    const p = W * .04, bh = H * .74;
+    g.fillStyle = '#fff'; g.strokeStyle = '#2E333B'; g.lineWidth = Math.max(3, W / 60);
+    rrectPath(g, p, p, W - 2 * p, bh - p, bh * .25); g.fill(); g.stroke();
+    g.beginPath(); g.moveTo(W * .2, bh - 2); g.lineTo(W * .15, H - p); g.lineTo(W * .38, bh - 2); g.closePath(); g.fill(); g.stroke();
+    g.fillStyle = '#fff'; g.fillRect(W * .2, bh - p - 2, W * .17, p + 3);
+    g.fillStyle = '#2E333B';
+    for (const d of [-1, 0, 1]) { g.beginPath(); g.arc(W / 2 + d * W * .17, (bh + p) / 2, bh * .09, 0, 7); g.fill(); }
+  } else if (k === 'vkana') {
+    const chars = [...L.txt], cs = Math.min(W * .95, H / chars.length);
+    g.fillStyle = L.fg; g.textAlign = 'center'; g.textBaseline = 'middle';
+    g.font = `800 ${Math.round(cs * .92)}px "Noto Sans JP", sans-serif`;
+    chars.forEach((c, i) => g.fillText(c, W / 2, cs * (i + .5)));
+  } else if (k === 'disc') {
+    g.fillStyle = L.bg; g.fillRect(0, 0, W, H);
+    const cols = Math.max(2, Math.round(W / (H / 4) * 1.0 / 1.0)), rows = 4;
+    const cw = W / cols, rh = H / rows, r = Math.min(cw, rh) * .38;
+    for (let i = 0; i < cols; i++) for (let j = 0; j < rows; j++) {
+      const x = (i + .5) * cw, y = (j + .5) * rh, st = (i * 3 + j * 2) % 4;
+      g.beginPath(); g.arc(x, y, r, 0, 7);
+      g.fillStyle = ['#C9A24A', '#F7F2E6', '#8C99A6', 'rgba(0,0,0,.3)'][st]; g.fill();
+      if (st === 1) { g.beginPath(); g.arc(x, y, r * .55, 0, 7); g.fillStyle = L.bg; g.fill(); }
+    }
+  } else if (k === 'noren') {
+    const n = 3, gap = W * .012;
+    g.fillStyle = '#B98B5A'; g.fillRect(0, 0, W, H * .06);
+    for (let i = 0; i < n; i++) { g.fillStyle = L.bg; g.fillRect(i * W / n + (i ? gap : 0), H * .06, W / n - gap, H * .94); }
+    g.strokeStyle = '#fff'; g.lineWidth = H * .07;
+    g.beginPath(); g.arc(W / 2, H * .5, H * .24, 0, 7); g.stroke();
+    g.fillStyle = '#fff'; g.beginPath(); g.arc(W / 2, H * .5, H * .08, 0, 7); g.fill();
+  } else if (k === 'cloud') {
+    const lobes = [[-.32, .1, .3], [-.05, -.28, .34], [.28, -.14, .3], [0, .12, .3], [-.3, .14, .22], [.32, .12, .24]];
+    for (const [dx, dy, rr] of lobes) { g.fillStyle = '#2E333B'; g.beginPath(); g.ellipse(W / 2 + dx * W * .9, H / 2 + dy * H * .8, rr * W * .9 + 3, rr * H * 1.0 + 3, 0, 0, 7); g.fill(); }
+    for (const [dx, dy, rr] of lobes) { g.fillStyle = '#2F8FE8'; g.beginPath(); g.ellipse(W / 2 + dx * W * .9, H / 2 + dy * H * .8, rr * W * .9, rr * H * 1.0, 0, 0, 7); g.fill(); }
+    g.fillStyle = '#fff'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.font = `800 ${Math.round(H * .26)}px ${FONT_C}`;
+    g.fillText(L.txt, W / 2, H * .52);
+  } else if (k === 'redpanel') {
+    g.fillStyle = '#E8414E'; g.fillRect(0, 0, W, H);
+    g.fillStyle = '#fff'; g.beginPath(); g.arc(W * .3, H * .5, H * .34, 0, 7); g.fill();
+    g.fillStyle = '#E8414E'; heartPath(g, W * .3, H * .5, H * .22); g.fill();
+    g.fillStyle = '#fff'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.font = `800 ${Math.round(H * .3)}px "Noto Sans JP", sans-serif`;
+    g.fillText(L.txt, W * .68, H * .54);
+  } else if (k === 'led') {
+    g.fillStyle = '#1B1F26'; g.fillRect(0, 0, W, H);
+    g.strokeStyle = '#8C99A6'; g.lineWidth = 3; g.strokeRect(4, 4, W - 8, H - 8);
+    g.fillStyle = '#FFB547'; g.textBaseline = 'middle'; g.font = `700 ${Math.round(H * .5)}px ${FONT_C}`;
+    let x = H * .4;
+    while (x < W) { g.fillText(L.txt + ' · ', x, H * .54); x += g.measureText(L.txt + ' · ').width; }
+  } else if (k === 'mural') {
+    const R = rng((L.seed || 0) + 5);
+    g.fillStyle = '#FAF8F3'; g.fillRect(0, 0, W, H);
+    for (let i = 0; i < 18; i++) {
+      g.globalAlpha = .55; g.fillStyle = ['#F59BC3', '#FFE27A', '#24ABCC', '#B9A2EE', '#A9DCC6'][i % 5];
+      g.beginPath(); g.arc(R() * W, R() * H, (.08 + R() * .14) * H, 0, 7); g.fill();
+    }
+    g.globalAlpha = 1;
+    const even = (L.seed || 0) % 2 === 0, tx = W * (even ? .3 : .68), ty = H * .45, s = H * .3;
+    g.fillStyle = '#fff'; g.strokeStyle = '#2E333B'; g.lineWidth = 3;
+    for (const d of [-1, 1]) { g.beginPath(); g.ellipse(tx + d * s * 1.35, ty - s * .2, s * .75, s * .4, 0, 0, 7); g.fill(); g.stroke(); }
+    g.fillStyle = '#A9DCC6'; rrectPath(g, tx - s, ty - s * .8, 2 * s, 1.6 * s, s * .25); g.fill(); g.stroke();
+    g.fillStyle = '#2E333B'; rrectPath(g, tx - s * .72, ty - s * .55, 1.44 * s, 1.07 * s, s * .15); g.fill();
+    g.fillStyle = '#CBE8EE'; g.fillRect(tx - s * .4, ty - s * .28, s * .16, s * .24); g.fillRect(tx + s * .24, ty - s * .28, s * .16, s * .24);
+    g.strokeStyle = '#CBE8EE'; g.beginPath(); g.moveTo(tx - s * .25, ty + s * .2); g.quadraticCurveTo(tx, ty + s * .42, tx + s * .25, ty + s * .2); g.stroke();
+    const cx = W * (even ? .7 : .25), cy = H * .75;
+    g.fillStyle = '#F59A3A'; g.strokeStyle = '#2E333B';
+    g.beginPath(); g.ellipse(cx, cy, H * .34, H * .14, 0, 0, 7); g.fill(); g.stroke();
+    g.beginPath(); g.arc(cx + H * .3, cy - H * .08, H * .12, 0, 7); g.fill(); g.stroke();
+    g.strokeStyle = '#fff'; g.lineWidth = 4;
+    for (let i = 0; i < 4; i++) { g.beginPath(); g.moveTo(cx - H * .2 + i * H * .12, cy - H * .11); g.lineTo(cx - H * .17 + i * H * .12, cy + H * .06); g.stroke(); }
+  } else if (k === 'banner') {
+    g.fillStyle = '#E0359B'; g.fillRect(0, 0, W, H);
+    g.fillStyle = '#3FD6E0';
+    for (const [x, y, r] of [[.25, .1, .1], [.7, .2, .07], [.4, .3, .06], [.8, .05, .05]]) { g.beginPath(); g.arc(x * W, y * H, r * W * 1.2, 0, 7); g.fill(); }
+    const cs = W / 4;
+    for (let i = 0; i < 4; i++) for (let j = 0; j < 3; j++) { g.fillStyle = (i + j) % 2 ? '#fff' : '#1B1F26'; g.fillRect(i * cs, H * .62 + j * cs, cs, cs); }
+    g.fillStyle = '#fff'; g.textAlign = 'center'; g.font = `800 ${Math.round(W * .3)}px "Noto Sans JP", sans-serif`;
+    ['海', '辺'].forEach((c, i) => g.fillText(c, W / 2, H * (.38 + i * .12)));
+  } else if (k === 'plaque') {
+    g.fillStyle = '#1B1F26'; g.fillRect(0, 0, W, H);
+    g.strokeStyle = '#C9A24A'; g.lineWidth = H * .05; g.strokeRect(H * .08, H * .08, W - H * .16, H - H * .16);
+    g.fillStyle = '#C9A24A'; g.textAlign = 'center'; g.textBaseline = 'middle';
+    g.font = `800 ${Math.round(H * .42)}px "Noto Sans JP", sans-serif`; g.fillText(L.txt, W / 2, H * .42);
+    g.font = `700 ${Math.round(H * .16)}px ${FONT_C}`; g.fillText(L.sub || '', W / 2, H * .78);
+  } else if (k === 'hsign') {
+    g.fillStyle = '#fff'; g.fillRect(0, 0, W, H);
+    g.strokeStyle = '#2E333B'; g.lineWidth = W * .08; g.strokeRect(W * .08, W * .08, W * .84, H - W * .16);
+    const chars = [...L.txt], cs = Math.min(W * .7, (H - W * .4) / chars.length);
+    g.fillStyle = '#2E333B'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.font = `700 ${Math.round(cs * .9)}px "Noto Sans JP", sans-serif`;
+    chars.forEach((c, i) => g.fillText(c, W / 2, W * .2 + cs * (i + .5)));
+  } else if (k === 'heart') {
+    g.fillStyle = '#E8414E'; g.strokeStyle = '#2E333B'; g.lineWidth = 4;
+    heartPath(g, W / 2, H / 2, H * .55); g.fill(); g.stroke();
+    g.fillStyle = '#fff'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.font = `800 ${Math.round(H * .2)}px "Noto Sans JP", sans-serif`;
+    g.fillText('すき', W / 2, H * .45);
+  } else if (k === 'cafesign') {
+    g.fillStyle = '#8A5C3A'; g.fillRect(0, 0, W, H);
+    g.strokeStyle = 'rgba(0,0,0,.18)'; g.lineWidth = 2;
+    for (let y = H / 8; y < H; y += H / 8) { g.beginPath(); g.moveTo(0, y); g.lineTo(W, y); g.stroke(); }
+    const r = H * .34, cx = H * .75;
+    g.fillStyle = '#fff'; g.beginPath(); g.arc(cx, H / 2, r, 0, 7); g.fill();
+    g.fillStyle = '#2E333B'; rrectPath(g, cx - r * .4, H / 2 - r * .1, r * .66, r * .52, r * .1); g.fill();
+    g.strokeStyle = '#2E333B'; g.lineWidth = r * .08; g.beginPath(); g.arc(cx + r * .3, H / 2 + r * .14, r * .14, 0, 7); g.stroke();
+    if (L.txt) {
+      g.fillStyle = '#fff'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.font = `700 ${Math.round(H * .44)}px ${FONT_C}`;
+      g.fillText(L.txt, W / 2 + H * .4, H * .54);
+    }
+  } else if (k === 'pier') {
+    g.fillStyle = '#FAF8F3'; g.fillRect(0, 0, W, H);
+    g.strokeStyle = 'rgba(0,0,0,.12)'; g.lineWidth = 2;
+    for (let y = H / 5; y < H; y += H / 5) { g.beginPath(); g.moveTo(0, y); g.lineTo(W, y); g.stroke(); }
+    g.fillStyle = '#2E333B'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.font = `700 ${Math.round(W * .17)}px "Noto Sans JP", sans-serif`;
+    ['コーヒー', 'スイーツ', 'やすらぎ'].forEach((t, i) => g.fillText(t, W / 2, H * (.22 + i * .13)));
+    g.fillStyle = '#2F8FE8'; g.beginPath(); g.moveTo(W * .2, H * .82); g.quadraticCurveTo(W * .35, H * .68, W * .55, H * .72);
+    g.quadraticCurveTo(W * .75, H * .76, W * .7, H * .84); g.quadraticCurveTo(W * .6, H * .78, W * .52, H * .84);
+    g.quadraticCurveTo(W * .7, H * .9, W * .82, H * .82); g.lineTo(W * .82, H * .88); g.lineTo(W * .2, H * .88); g.closePath(); g.fill();
+  } else if (k === 'tunnel') {
+    g.fillStyle = '#9AA3AD'; g.fillRect(0, 0, W, H);
+    g.fillStyle = '#14171C'; g.beginPath(); g.moveTo(W * .12, H); g.lineTo(W * .12, H * .45);
+    g.quadraticCurveTo(W * .5, -H * .05, W * .88, H * .45); g.lineTo(W * .88, H); g.closePath(); g.fill();
+    g.fillStyle = '#FFB547';
+    for (let i = 0; i < 5; i++) { g.beginPath(); g.arc(W * (.25 + i * .125), H * .32, W * .012, 0, 7); g.fill(); }
+  } else return false;
+  return true;
+}
+
 function drawLabel(L) {
-  const ppm = L.k === 'text' || L.k === 'pill' ? 160 : L.k === 'mascot' ? 40 : 64;
+  const ppm = L.k === 'text' || L.k === 'pill' ? 160 : L.k === 'mascot' ? 40 : ['vkana', 'hsign', 'heart', 'plaque', 'bubble', 'ring', 'cloud', 'redpanel', 'cafesign', 'pier'].includes(L.k) ? 120 : 64;
   const c = canvasFor(L.w, L.h, ppm);
   const g = c.getContext('2d');
   const W = c.width, H = c.height;
-  if (L.k === 'text') {
+  if (drawExtra(L, g, W, H)) {
+    // drawn by drawExtra
+  } else if (L.k === 'text') {
     g.font = `${L.font || 800} ${Math.round(H * .82)}px ${FONT_D}`;
     g.textAlign = 'center'; g.textBaseline = 'middle';
     g.lineJoin = 'round'; g.lineWidth = H * .1; g.strokeStyle = L.stroke || '#000';
@@ -204,8 +352,8 @@ export function mountPark(canvas, D, opt = {}) {
   const sm = opt.shadow || 4096;
   sun.shadow.mapSize.set(sm, sm);
   Object.assign(sun.shadow.camera, { left: -140, right: 140, top: 140, bottom: -140, near: 20, far: 520 });
-  sun.shadow.bias = -0.0003;
-  sun.shadow.normalBias = 0.04;
+  sun.shadow.bias = -0.0006;
+  sun.shadow.normalBias = 0.3;
   scene.add(sun, sun.target);
 
   const matCache = new Map();
@@ -216,6 +364,10 @@ export function mountPark(canvas, D, opt = {}) {
       let m;
       if (kind === 'glass') m = new THREE.MeshStandardMaterial({ color, roughness: .05, metalness: .2, transparent: true, opacity: .42, depthWrite: false });
       else m = new THREE.MeshStandardMaterial({ color, roughness: .86, metalness: 0, side: THREE.DoubleSide, flatShading: kind === 'flat' });
+      if (kind === 'soft') {
+        // soft ground (beds, sand, banks) sits just behind any hard surface it touches, so shared walls never flicker
+        m.polygonOffset = true; m.polygonOffsetFactor = 2; m.polygonOffsetUnits = 6;
+      }
       matCache.set(key, m);
     }
     return matCache.get(key);
@@ -272,6 +424,39 @@ export function mountPark(canvas, D, opt = {}) {
     else { g.rotateX(Math.PI / 2); g.translate(x, y, z); }
     put(ci, kind, g, kind !== 'glass');
   }
+  // terrain: hills that wall the map, coloured by height and slope
+  if (D.terrain) {
+    const T = D.terrain, nx = T.nx, nz = T.nz;
+    const pos = new Float32Array(nx * nz * 3), col = new Float32Array(nx * nz * 3);
+    const hAt = (i, j) => T.h[j * nx + i] / 10;
+    const grass = new THREE.Color('#7DB560'), grass2 = new THREE.Color('#5E9A4A'), rock = new THREE.Color('#A39C92'),
+      sand = new THREE.Color('#EFE6CC'), c = new THREE.Color();
+    for (let j = 0; j < nz; j++) for (let i = 0; i < nx; i++) {
+      const k = j * nx + i, h = hAt(i, j);
+      pos[k * 3] = T.x0 + i * T.d; pos[k * 3 + 1] = h; pos[k * 3 + 2] = T.z0 + j * T.d;
+      const gx = (hAt(Math.min(i + 1, nx - 1), j) - hAt(Math.max(i - 1, 0), j)) / (2 * T.d);
+      const gz = (hAt(i, Math.min(j + 1, nz - 1)) - hAt(i, Math.max(j - 1, 0))) / (2 * T.d);
+      const slope = Math.hypot(gx, gz);
+      if (h < 1.2) c.copy(sand);
+      else c.copy(grass).lerp(grass2, Math.min(1, h / 40)).lerp(rock, Math.min(1, Math.max(0, (slope - .85) / .6)));
+      col[k * 3] = c.r; col[k * 3 + 1] = c.g; col[k * 3 + 2] = c.b;
+    }
+    const idx = [];
+    for (let j = 0; j < nz - 1; j++) for (let i = 0; i < nx - 1; i++) {
+      const a = j * nx + i, b = a + 1, c2 = a + nx, d2 = c2 + 1;
+      if (Math.max(T.h[a], T.h[b], T.h[c2], T.h[d2]) < -25) continue;
+      idx.push(a, c2, b, b, c2, d2);
+    }
+    const tg = new THREE.BufferGeometry();
+    tg.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    tg.setAttribute('color', new THREE.BufferAttribute(col, 3));
+    tg.setIndex(idx);
+    tg.computeVertexNormals();
+    const tm = new THREE.Mesh(tg, new THREE.MeshStandardMaterial({ vertexColors: true, roughness: .95, flatShading: true }));
+    tm.receiveShadow = true; tm.castShadow = true;
+    scene.add(tm);
+  }
+
   // trees, sakura, palms
   const pal = name => { const i = D.pal.indexOf(name); return i >= 0 ? i : 0; };
   const TREE = ['#6DAA55', '#5B9A49', '#78B35E'], SAK = ['#F4B8D1', '#F7C8DC'], PALM = '#5E9A4A', TRUNK = '#8A6A4A';
@@ -341,8 +526,8 @@ export function mountPark(canvas, D, opt = {}) {
         continue;
       }
       const tex = drawLabel(L);
-      const lit = L.k === 'glow' || L.k === 'door';
-      const transparent = L.k === 'text' || L.k === 'mascot';
+      const lit = L.k === 'glow' || L.k === 'door' || L.k === 'led';
+      const transparent = ['text', 'mascot', 'ring', 'bubble', 'vkana', 'cloud', 'heart'].includes(L.k);
       const m = transparent ? new THREE.MeshBasicMaterial({ map: tex, transparent: true, side: THREE.DoubleSide })
         : new THREE.MeshStandardMaterial({ map: tex, roughness: L.k === 'glass' ? .15 : .7, metalness: L.k === 'glass' ? .2 : 0,
           emissive: lit ? 0xffffff : 0x000000, emissiveMap: lit ? tex : null, emissiveIntensity: lit ? .55 : 0, side: THREE.DoubleSide });

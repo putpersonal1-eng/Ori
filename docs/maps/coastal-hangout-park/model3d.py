@@ -25,7 +25,8 @@ COL = {
     "yel": "#F6C833", "yel-2": "#E0A915", "yel-3": "#FFE07A", "pink": "#F59BC3", "lilac": "#B9A2EE",
     "blue": "#2F8FE8", "red": "#E8414E", "green": "#3FB950", "cyan": "#24ABCC", "navy": "#2C3E57",
     "tree": "#6DAA55", "tree-2": "#5B9A49", "sak": "#F4B8D1", "palm": "#5E9A4A", "trunk": "#8A6A4A", "mint": "#A9DCC6",
-    "thatch": "#CFA866",
+    "thatch": "#CFA866", "plaster": "#FAF8F3", "kawara": "#3B4352", "verm": "#D9432F", "gold": "#C9A24A",
+    "portal": "#AEB6BF", "indigo": "#2E3FB0", "wood-d": "#8A5C3A",
 }
 
 
@@ -36,6 +37,7 @@ class Scene:
         self.slabs, self.boxes, self.cyls, self.prisms = [], [], [], []
         self.trees, self.shrubs, self.labels, self.rocks = [], [], [], []
         self.hard = []          # (polygon, hspec) for level lookups
+        self.terrain = None
 
     # ------------------------------------------------------------- data
     def c(self, name):
@@ -59,6 +61,8 @@ class Scene:
 
     def slab(self, g, top, color, mat="std", bot=-1.0, hard=True, vh=None):
         """Ground surface: polygon with a height spec (number, axis profile) or per-vertex heights."""
+        if not hard and mat == "std":
+            mat = "soft"
         for q in self.polys(g):
             rec = {"o": self.ring(q.exterior.coords), "h": [self.ring(r.coords) for r in q.interiors],
                    "c": self.c(color), "m": mat, "b": bot}
@@ -148,16 +152,18 @@ class Scene:
 
     def data(self):
         return {"pal": self.pal, "slabs": self.slabs, "prisms": self.prisms, "boxes": self.boxes, "cyls": self.cyls,
-                "trees": self.trees, "shrubs": self.shrubs, "labels": self.labels, "rocks": self.rocks,
+                "trees": self.trees, "shrubs": self.shrubs, "labels": self.labels, "rocks": self.rocks, "terrain": self.terrain,
                 "views": VIEWS, "sun": [80, 140, 120], "center": [100, 0, 70]}
 
 
 # camera presets: position, target, field of view
 VIEWS = {
-    "aerial": {"name": "Aerial from the south-east", "pos": [168, 92, 182], "tgt": [96, 2, 66], "fov": 42},
+    "aerial": {"name": "Aerial from the south", "pos": [150, 105, 215], "tgt": [100, 4, 62], "fov": 46},
     "arcade": {"name": "Arcade front from the plaza", "pos": [63.5, 5.35, 59.5], "tgt": [47.0, 7.6, 51.6], "fov": 55},
+    "gate": {"name": "Main stair, escalators and gate", "pos": [91.0, 5.4, 44.0], "tgt": [90.6, 9.6, 18.0], "fov": 58},
+    "fashion": {"name": "Fashion & Goods from the plaza", "pos": [66.0, 5.4, 41.0], "tgt": [47.5, 8.4, 28.0], "fov": 58},
     "plaza": {"name": "Central plaza from the east stair", "pos": [118.0, 14.0, 28.0], "tgt": [86.0, 3.6, 66.0], "fov": 55},
-    "cafe": {"name": "Café terrace from the plaza edge", "pos": [57.0, 5.5, 90.5], "tgt": [27.0, 5.4, 76.5], "fov": 60},
+    "cafe": {"name": "Seaside café from the promenade", "pos": [50.0, 6.0, 99.0], "tgt": [25.0, 6.2, 76.0], "fov": 56},
     "lifestyle": {"name": "Lifestyle & Souvenir from the promenade", "pos": [124.0, 5.4, 93.0], "tgt": [143.0, 6.0, 64.0], "fov": 58},
     "stage": {"name": "Stage and event lawn from the curved path", "pos": [163.0, 7.4, 62.0], "tgt": [180.0, 4.8, 36.0], "fov": 58},
     "beach": {"name": "Beach, promenade and pier", "pos": [70.0, 12.0, 150.0], "tgt": [110.0, 2.5, 100.0], "fov": 55},
@@ -199,9 +205,9 @@ def record_plan(b):
         rec["stair"].append((x0, y0, x1, y1, flights, landing))
         return orig["stair_ns"](cv, x0, y0, x1, y1, flights, landing, cheek, rails, label)
 
-    def quad_stair(cv, q, risers, label=None, cheek=(.3, .6)):
+    def quad_stair(cv, q, risers, label=None, cheek=(.3, .6), bow=(0.0, 0.0)):
         rec["quad"].append((q, risers))
-        return orig["quad_stair"](cv, q, risers, label, cheek)
+        return orig["quad_stair"](cv, q, risers, label, cheek, bow)
 
     def quad_treads(cv, q, count, fill="z-paver"):
         rec["treads"].append((q, count))
@@ -280,10 +286,10 @@ def build_ground(sc, b):
     L = math.hypot(t[0] - o[0], t[1] - o[1])
     sc.slab(hs["lawn"], {"ax": [o[0], o[1], (t[0] - o[0]) / L, (t[1] - o[1]) / L], "pts": [[0, 3.6], [L, 4.8]]}, "lawn")
     sc.slab(hs["prom"], 3.15, "timber")
-    sc.slab(hs["terr"], 3.62, "timber")
+    sc.slab(hs["terr"], 3.66, "timber")
     sc.slab(GB(93, 153, 140, 207), 8.42, "timber")
-    sc.slab(b.open_(GB(733, 219, 770, 302), 1.2), 3.63, "timber")
-    sc.slab(GB(770, 217, 942, 302), 3.62, "road")
+    sc.slab(b.open_(GB(733, 219, 770, 302), 1.2), 3.67, "timber")
+    sc.slab(GB(770, 217, 942, 302), 3.66, "road")
     # stage deck
     sc.prism(hs["deck"], 3.0, 4.2, "timber")
     sc.hard.append((hs["deck"], 4.2))
@@ -314,7 +320,7 @@ def build_ground(sc, b):
     sc.slab(unary_union([beds, rest]).simplify(.3).segmentize(2.5), None, "bed", vh=lambda x, z: idw(x, z) + .25, hard=False)
     # sea bed and water
     sc.slab(frame.difference(land.buffer(-.5)), -2.4, "seabed", bot=-3, hard=False)
-    sc.label([(X0 + X1) / 2, -.05, (Y0 + Y1) / 2 + 40], X1 - X0 + 80, Y1 - Y0 + 120, 0, "water")
+    sc.label([105, -.05, 165], 400, 520, 0, "water")
     return hs, idw
 
 
@@ -358,10 +364,11 @@ def build_props(sc, b, rec, idw):
             continue
         sc.cyl(u, base, v, .04, .04, 2.45, "dark", seg=6)
         sc.cyl(u, base + 2.1, v, r, .05, .55, colors.get(cls, "white"), seg=12)
-        sc.cyl(u, base, v, .5, .5, .74, "white", seg=12)
+        furn = "timber" if cls == "prop" else "white"
+        sc.cyl(u, base, v, .5, .5, .74, furn, seg=12)
         for k in range(chairs):
             a = k * 2 * math.pi / chairs + .4
-            sc.boxc(u + math.cos(a) * 1.0, base + .23, v + math.sin(a) * 1.0, .45, .46, .45, "white")
+            sc.boxc(u + math.cos(a) * 1.0, base + .23, v + math.sin(a) * 1.0, .45, .46, .45, furn)
     for (u, v, L, ang) in rec["bench"]:
         base = lv(u, v)
         sc.boxc(u, base + .43, v, L, .08, .5, "timber-2", ry=-ang)
@@ -532,83 +539,230 @@ def build_arcade(sc, b):
 
 
 def build_cafe(sc, b):
+    """White stone and timber seaside café after the café reference, with a roof terrace."""
     x0, x1, z0, z1 = 13.75, 37.08, 68.33, 77.5
-    sc.box(x0, 3.0, z0, x1, 7.8, z1, "cream")
-    roof(sc, x0, z0, x1, z1, 7.8, 8.2, "yel", sides="ES", cap="dark")
-    sc.box(x0 + 3, 8.2, z0 + 2.0, x0 + 4.2, 8.9, z0 + 3.0, "steel")
-    sc.label([27.3, 4.88, z1 + .03], 19.4, 2.55, 0, "glow")
-    # striped awning sloping down to the south, valance with the name
-    sc.label([27.29, 6.68, z1 + 1.2], 20.1, 2.5, 0, "stripe", rx=-75, a="#F6C833", b2="#FFFFFF")
-    sc.label([27.29, 6.15, z1 + 2.45], 20.1, .4, 0, "pill", txt="SEASIDE CAFE", fg="#2E333B", bg="#FFFFFF")
-    sc.label([x1 + .03, 4.9, 73.4], 2.1, 2.8, 90, "glow")
-    for u in (6.0, 13.3, 20.6):
+    sc.box(x0, 3.0, z0, x1, 7.8, z1, "plaster")
+    sc.box(x0 - .03, 7.8, z0 - .03, x1 + .03, 8.0, z1 + .03, "cream")
+    sc.box(x0 + .2, 8.0, z0 + .2, x1 - .2, 8.03, z1 - .2, "timber")
+    edges = [((x0 + .1, z0 + .1), (x1 - .1, z0 + .1)), ((x1 - .1, z0 + .1), (x1 - .1, z1 - .1)),
+             ((x1 - .1, z1 - .1), (x0 + .1, z1 - .1)), ((x0 + .1, z1 - .1), (x0 + .1, z0 + .1))]
+    for (ax, az), (bx, bz) in edges:
+        L = math.hypot(bx - ax, bz - az)
+        k = max(1, int(L / 1.2))
+        for i in range(k + 1):
+            t = i / k
+            sc.boxc(ax + (bx - ax) * t, 8.53, az + (bz - az) * t, .07, 1.05, .07, "dark")
+        mx, mz = (ax + bx) / 2, (az + bz) / 2
+        ang = math.degrees(math.atan2(bz - az, bx - ax))
+        for y in (8.35, 8.7):
+            sc.boxc(mx, y, mz, L, .04, .04, "dark", ry=-ang)
+        sc.boxc(mx, 9.1, mz, L + .1, .08, .16, "timber", ry=-ang)
+    for (px, py) in ((170, 500), (205, 522), (245, 503)):
+        u, v = b.P(px, py)
+        sc.cyl(u, 8.0, v, .04, .04, 2.3, "dark", seg=6)
+        sc.cyl(u, 9.8, v, 1.3, .05, .5, "white", seg=12)
+        sc.cyl(u, 8.0, v, .45, .45, .74, "timber", seg=12)
+        for kk in range(3):
+            a_ = kk * 2.1 + .3
+            sc.boxc(u + math.cos(a_) * .95, 8.25, v + math.sin(a_) * .95, .45, .5, .45, "timber")
+    for xx in (16.0, 22.0, 28.0, 33.5):
+        sc.box(xx, 8.0, z1 - 1.0, xx + 1.8, 8.45, z1 - .4, "timber")
+        sc.shrubs.append([round(xx + .9, 2), 8.45, round(z1 - .7, 2), .45])
+    # south front: glass under a deep timber canopy with the sign, corner pier
+    sc.label([25.85, 4.8, z1 + .03], 17.0, 2.4, 0, "glow")
+    sc.box(17.0, 6.0, z1, 34.55, 6.15, z1 + 2.5, "wood-d")
+    sc.box(17.0, 6.15, z1, 34.55, 7.55, z1 + .35, "wood-d")
+    sc.label([25.78, 6.85, z1 + .37], 17.4, 1.38, 0, "cafesign", txt="SEASIDE CAFE")
+    sc.box(34.55, 3.0, 74.97, x1 + .3, 8.0, z1 + .3, "plaster")
+    sc.label([35.95, 5.9, z1 + .33], 2.7, 4.0, 0, "pier")
+    # east side: glass doors, timber band with the cup mark
+    sc.label([x1 + .03, 4.8, 71.65], 5.9, 2.4, 90, "glow")
+    sc.box(x1, 6.15, z0, x1 + .35, 7.55, 74.97, "wood-d")
+    sc.label([x1 + .37, 6.85, 71.65], 6.6, 1.38, 90, "cafesign", txt="")
+    for u in (6.0, 13.3):
         sc.box(x0 + u - .15, 7.1, z1, x0 + u + .15, 7.5, z1 + .12, "dark")
+
+
+def kawara3d(sc, x0, z0, x1, z1, y, sides="NESW", color="kawara", proj=.75):
+    """Kawara tile eave on the given sides: a tilted tile slab and a ridge, projecting past the wall."""
+    L = {"N": x1 - x0, "S": x1 - x0, "E": z1 - z0, "W": z1 - z0}
+    for k in sides:
+        if k in "NS":
+            cx, cz = (x0 + x1) / 2, (z0 - proj / 2 + .15 if k == "N" else z1 + proj / 2 - .15)
+            sc.boxc(cx, y + .28, cz, L[k] + 2 * proj, .14, proj + .5, color, rx=(-24 if k == "N" else 24))
+            sc.boxc(cx, y + .5, (z0 + .1 if k == "N" else z1 - .1), L[k] + 2 * proj - .3, .18, .3, "kawara")
+        else:
+            cx, cz = (x0 - proj / 2 + .15 if k == "W" else x1 + proj / 2 - .15), (z0 + z1) / 2
+            sc.boxc(cx, y + .28, cz, L[k] + 2 * proj, .14, proj + .5, color, ry=(-90 if k == "W" else 90), rx=24)
+            sc.boxc((x0 + .1 if k == "W" else x1 - .1), y + .5, cz, .3, .18, L[k] + 2 * proj - .3, "kawara")
+
+
+def lantern(sc, x, y, z, r=.3):
+    sc.cyl(x, y, z, r, r, 0, "verm", axis="s")
+    sc.cyl(x, y + r * .85, z, r * .55, r * .55, .08, "dark", seg=10)
+    sc.cyl(x, y - r * .93, z, r * .55, r * .55, .08, "dark", seg=10)
 
 
 def build_fashion(sc, b):
     x0, x1, z0, z1 = 13.75, 47.92, 20.0, 37.5
-    sc.box(x0, 3.0, z0, x1, 12.6, z1, "wall")
-    roof(sc, x0, z0, x1, z1, 12.6, 13.2, "coral", cap="dark")
+    sc.box(x0, 3.0, z0, x1, 12.6, z1, "plaster")
+    roof(sc, x0, z0, x1, z1, 12.6, 12.9, "plaster", cap=None)
+    kawara3d(sc, x0, z0, x1, z1, 12.55, "NE")
     sc.box(35.0, 12.63, z0 + .3, 47.6, 12.68, z0 + 5.0, "timber")
+    sc.box(35.0, 12.9, z0 + .05, 47.5, 14.0, z0 + .1, "glass", "glass")
     for k in range(7):
         sc.box(16.5 + k * 2.6, 12.6, z0 + .6, 18.1 + k * 2.6, 13.3, z0 + 2.6, "steel")
-    sc.box(x1, 8.4, z0, x1 + .04, 8.7, z1 - 5.6, "coral")
     Z = lambda u: z1 - u  # noqa: E731
-    sc.label([x1 + .03, 5.55, Z(11.55)], 11.1, 3.9, 90, "glow")
-    sc.label([x1 + .03, 10.6, Z(11.55)], 11.1, 3.2, 90, "glass")
-    k = 6.35
-    while k < 17.1:
-        sc.box(x1, 8.9, Z(k + .07), x1 + .25, 12.3, Z(k - .07), "timber")
-        k += .7
-    sc.label([x1 + .03, 8.0, Z(11.55)], 9.0, .7, 90, "pill", txt="FASHION & GOODS", fg="#2E333B", bg="#EFE6D6")
-    sc.label([x1 + .03, 8.1, Z(2.9)], 5.0, 9.4, 90, "glass")
-    sc.label([x1 + .05, 4.95, Z(2.2)], 2.4, 2.7, 90, "glow")
-    sc.box(x1, 6.55, Z(5.8), x1 + 1.4, 6.8, Z(.2), "coral")
-    # north face to the kiosk strip: ribbon window with fins, roof sign
-    sc.label([30.8, 10.6, z0 - .03], 32.2, 3.0, 180, "glass")
-    k = x0 + 1.6
-    while k < x1 - 1:
-        sc.box(k - .07, 9.0, z0 - .25, k + .07, 12.2, z0, "timber")
-        k += 1.34
-    sc.label([30.8, 12.9, z0 - .05], 9.0, .45, 180, "pill", txt="FASHION & GOODS", fg="#FFFFFF", bg="#E98564")
-    sc.box(35.0, 13.2, z0, 47.5, 14.3, z0 + .05, "glass", "glass")
+    E = x1 + .03
+    sc.box(x1, 8.4, z0, x1 + .02, 8.5, z1, "gold")
+    sc.label([E, 11.62, Z(8.75)], 16.3, .65, 90, "led", txt="いらっしゃいませ · WELCOME · NEW ARRIVALS · ようこそ · SALE")
+    sc.label([E, 9.75, Z(9.6)], 2.9, 2.9, 90, "ring", fg="#2E3FB0")
+    sc.label([E, 9.85, Z(13.3)], 2.6, 1.8, 90, "bubble")
+    sc.label([E, 9.3, Z(16.75)], .62, 3.6, 90, "vkana", txt="ファッション", fg="#F59A3A")
+    sc.label([E, 7.3, Z(16.75)], .62, 1.2, 90, "vkana", txt="雑貨", fg="#2E333B")
+    sc.label([E, 9.88, Z(2.9)], 4.8, 2.35, 90, "glass")
+    sc.label([E, 5.6, Z(7.7)], 3.8, 3.8, 90, "disc", bg="#2E3FB0")
+    sc.label([E, 7.72, Z(7.7)], 2.0, .4, 90, "pill", txt="GOODS", fg="#FFFFFF", bg="#2E3FB0")
+    sc.label([E, 5.5, Z(13.15)], 6.1, 3.8, 90, "glow")
+    sc.box(x1, 3.6, Z(5.3), x1 + .25, 7.75, Z(.5), "portal")
+    sc.label([E + .23, 4.92, Z(2.9)], 4.2, 2.65, 90, "glow")
+    sc.label([E + .25, 5.85, Z(2.9)], 4.1, .8, 90, "noren", bg="#2E3FB0")
+    for u in (.3, 5.5):
+        lantern(sc, x1 + .35, 6.75, Z(u))
+    # north face to the street: LED ticker, logo, bubble, name, small windows, vertical katakana
+    N = z0 - .03
+    sc.box(x0, 9.0, z0 - .02, x1, 9.1, z0, "gold")
+    sc.label([x1 - 17.1, 11.65, N], 28.2, .6, 180, "led", txt="海辺のファッション＆雑貨 · SEASIDE FASHION & GOODS · いらっしゃいませ · WELCOME")
+    sc.label([x1 - 5.4, 10.2, N], 2.1, 2.1, 180, "ring", fg="#2E3FB0")
+    sc.label([x1 - 8.7, 10.3, N], 2.2, 1.45, 180, "bubble")
+    sc.label([x1 - 15.4, 10.1, N], 8.4, .9, 180, "pill", txt="FASHION & GOODS", fg="#2E3FB0", bg="#FAF8F3")
+    sc.label([x1 - 1.0, 10.95, N], .5, 2.8, 180, "vkana", txt="ファッション", fg="#F59A3A")
+    u = 22.0
+    while u < 33.0:
+        sc.label([x1 - u - .9, 10.1, N], 1.9, 1.5, 180, "glass")
+        u += 2.6
 
 
 def build_lifestyle(sc, b):
     x0, x1, z0, z1 = 130.33, 153.33, 55.0, 71.67
-    sc.box(x0, 3.0, z0, x1, 8.7, z1, "white")
-    roof(sc, x0, z0, x1, z1, 8.7, 9.0, "white", "dark")
-    for (a, c, d, e) in ((x0 - .03, z0, x0 + .35, z1), (x0, z1 - .35, x1, z1 + .03), (x1 - .35, z0, x1 + .03, z1)):
-        sc.box(a, 9.0, c, d, 9.4, e, "yel")
+    sc.box(x0, 3.0, z0, x1, 8.7, z1, "plaster")
+    roof(sc, x0, z0, x1, z1, 8.7, 8.95, "plaster", "dark")
+    kawara3d(sc, x0, z0, x1, z1, 8.65, "WSE", "yel")
     sc.box(x0 + .35, 8.73, z0 + .35, 138.0, 8.76, 58.0, "yel")
     for k in range(3):
         sc.box(132.0 + k * 2.0, 8.7, 55.8, 133.3 + k * 2.0, 9.4, 57.2, "steel")
-    sc.box(139.17, 3.0, 50.5, x1, 7.2, z0, "white")
+    sc.box(139.17, 3.0, 50.5, x1, 7.2, z0, "plaster")
+    kawara3d(sc, 139.17, 50.5, x1, z0, 7.15, "NE", "yel", .5)
     sc.box(141.83, 7.2, 48.67, 146.83, 8.2, 50.83, "white")
-    sc.box(x0, 3.0, z1, x1, 6.35, 75.83, "white")
+    sc.box(x0, 3.0, z1, x1, 6.35, 75.83, "plaster")
     roof(sc, x0, z1, x1, 75.83, 6.35, 6.62, "dark", "dark")
-    sc.box(130.5, 5.75, 75.83, 139.17, 6.35, 76.3, "yel")
+    sc.box(x0, 6.0, 75.83, x1, 6.05, 75.86, "gold")
+    sc.box(130.5, 5.75, 75.83, 139.17, 6.25, 76.3, "yel")
     sc.box(142.17, 6.6, 72.0, 149.17, 7.0, 75.33, "bed")
     sc.label([145.75, 5.55, 76.75], 7.5, 1.95, 0, "stripe", rx=-70, a="#F6C833", b2="#F6C833")
     sc.label([134.5, 4.6, 75.86], 8.0, 2.1, 0, "glow")
     sc.label([145.45, 4.35, 75.86], 7.1, 1.5, 0, "glow")
-    sc.label([142.0, 8.1, z1 - .68], 17.0, .9, 0, "pill", txt="LIFESTYLE & SOUVENIR", fg="#2E333B", bg="#FFFFFF")
+    S_ = z1 + .03
+    sc.label([133.43, 7.65, S_], 5.0, 1.4, 0, "redpanel", txt="おみやげ")
+    sc.label([142.33, 7.95, S_], 9.6, .62, 0, "pill", txt="LIFESTYLE & SOUVENIR", fg="#2E333B", bg="#FAF8F3")
+    sc.label([150.13, 7.65, S_], 2.9, 1.6, 0, "cloud", txt="SOUVENIR")
+    sc.label([152.88, 7.95, S_], .55, 1.2, 0, "vkana", txt="雑貨", fg="#D9432F")
+    sc.box(139.28, 3.6, 75.83, 141.88, 6.2, 75.98, "portal")
+    sc.label([140.58, 4.42, 76.0], 2.0, 1.6, 0, "glow")
+    sc.label([140.58, 4.9, 76.02], 2.0, .7, 0, "noren", bg="#D9432F")
+    sc.label([151.38, 4.95, 75.88], 3.3, 1.9, 0, "disc", bg="#D9432F")
+    for u in (131.5, 134.8, 138.1, 150.2, 152.4):
+        lantern(sc, u, 5.9, 76.15, .26)
     for u in (142.9, 148.5):
         sc.box(u - .06, 3.6, 78.44, u + .06, 4.4, 78.56, "dark")
     sc.label([145.75, 4.7, 78.5], 6.8, .7, 0, "pill", txt="SOUVENIR", fg="#FFFFFF", bg="#F59BC3")
-    sc.label([x0 - .03, 5.2, 63.33], 3.3, 3.0, -90, "glow")
-    for (a, c) in ((56.0, 60.8), (66.0, 71.0)):
-        sc.label([x0 - .03, 6.0, (a + c) / 2], c - a, 3.2, -90, "glass")
-    # stall, photo statue, vending kiosk, tents on the east terrace
+    # west face on the seating terrace
+    W_ = x0 - .03
+    sc.box(x0 - .02, 7.7, z0, x0, 7.8, z1, "gold")
+    sc.label([W_, 5.8, 58.4], 4.8, 3.0, -90, "disc", bg="#D9432F")
+    sc.box(x0 - .2, 3.6, 61.5, x0, 7.45, 65.2, "portal")
+    sc.label([x0 - .22, 4.95, 63.35], 3.1, 2.7, -90, "glow")
+    sc.label([x0 - .24, 5.91, 63.35], 3.0, .78, -90, "noren", bg="#D9432F")
+    for z in (61.2, 65.5):
+        lantern(sc, x0 - .4, 6.75, z, .26)
+    sc.label([W_, 5.85, 68.5], 5.0, 2.9, -90, "glass")
+    sc.label([W_, 7.6, 71.25], .5, 1.75, -90, "vkana", txt="おみやげ", fg="#D9432F")
+    # forecourt: stall, photo statue, vending kiosk, tents on the east terrace, heart sign
     sc.box(130.83, 3.6, 76.33, 135.0, 4.6, 78.0, "timber")
     sc.box(130.6, 5.9, 76.1, 135.2, 6.25, 78.2, "cyan")
     sc.cyl(140.17, 3.6, 79.67, 1.4, 1.4, .5, "pink", seg=20)
-    sc.cyl(140.17, 4.1, 79.67, .65, .55, 1.0, "white", seg=16)
-    sc.cyl(140.17, 5.1, 79.67, .5, .5, .5, "white", seg=16)
+    sc.cyl(140.17, 4.75, 79.67, .75, .75, 0, "white", axis="s")
+    sc.cyl(140.17, 5.75, 79.67, .55, .55, 0, "white", axis="s")
     sc.box(151.33, 3.6, 76.33, 153.67, 5.4, 78.0, "white")
+    sc.cyl(128.33, 3.6, 79.5, .06, .06, 2.6, "dark", seg=6)
+    sc.label([128.33, 6.6, 79.5], 1.5, 1.3, 0, "heart")
     for (a, c, d, e) in ((154.5, 65.0, 157.83, 68.33), (160.33, 67.83, 163.67, 71.67)):
         sc.box(a, 3.6, c, d, 5.8, e, "white")
         sc.cyl((a + d) / 2, 5.8, (c + e) / 2, (d - a) * .74, .05, 1.1, "cream", seg=4)
+
+
+def build_stair_gate(sc, b):
+    """Escalators in the main stair's middle lane, the shotengai gate, mural walls and LED tickers."""
+    zt, zb = 8.4, 3.6
+    y0 = elev.ESC_Y0
+    y1, y2 = y0 + elev.ESC_PLATE, y0 + elev.ESC_PLATE + elev.ESC_RUN
+    y3 = y2 + elev.ESC_PLATE
+    L = elev.ESC_RUN / math.cos(math.radians(30))
+    ym, zm = (y1 + y2) / 2, (zt + zb) / 2
+    for (e0, e1, d) in elev.ESC_X:
+        xm, w = (e0 + e1) / 2, e1 - e0
+        sc.box(e0, zt - .5, y0, e1, zt + .02, y1, "steel")
+        sc.box(e0, zb - .5, y2, e1, zb + .02, y3, "steel")
+        sc.boxc(xm, zm - .45, ym, w, .9, L + .4, "steel", rx=30)
+        for k in range(int(elev.ESC_RUN / .4)):
+            yy = y1 + (k + .5) * .4
+            sc.boxc(xm, zt - (yy - y1) * math.tan(math.radians(30)) + .03, yy, w - .3, .06, .38, "dark")
+        for x in (e0 + .06, e1 - .06):
+            sc.boxc(x, zm + .55, ym, .05, 1.0, L, "glass", "glass", rx=30)
+            sc.box(x - .025, zt + .05, y0 + .5, x + .025, zt + 1.0, y1, "glass", "glass")
+            sc.box(x - .025, zb + .05, y2, x + .025, zb + 1.0, y3 - .5, "glass", "glass")
+            sc.boxc(x, zm + 1.05, ym, .09, .09, L, "dark", rx=30)
+        sc.boxc(xm, zb + .6, y3 - .35, .7, .5, .06, "green" if d == "UP" else "red")
+    # gate on the forecourt
+    gx0, gx1 = elev.GATE_X
+    gy = elev.GATE_Y
+    for x in (gx0, gx1):
+        sc.boxc(x, zt + .25, gy, .9, .5, .9, "conc")
+        sc.boxc(x, zt + .5 + 3.375, gy, .66, 6.75, .66, "verm")
+    sc.box(gx0 - .9, zt + 5.55, gy - .22, gx1 + .9, zt + 6.05, gy + .22, "verm")
+    for x, k in ((gx0, 1), (gx1, -1)):
+        a, c = sorted((x + k * .33, x + k * 1.6))
+        sc.box(a, zt + 6.05, gy - .06, c, zt + 7.0, gy + .06, "cream")
+        for kk in range(1, 6):
+            sc.box(a + (c - a) * kk / 6 - .02, zt + 6.05, gy - .08, a + (c - a) * kk / 6 + .02, zt + 7.0, gy + .08, "dark")
+    xm = (gx0 + gx1) / 2
+    sc.box(xm - 1.9, zt + 6.1, gy - .12, xm + 1.9, zt + 7.0, gy + .12, "dark")
+    for ry, off in ((0, .14), (180, -.14)):
+        sc.label([xm, zt + 6.55, gy + off], 3.7, .82, ry, "plaque", txt="海辺ひろば", sub="SEASIDE PARK")
+    sc.box(gx0 - 1.4, zt + 7.0, gy - .25, gx1 + 1.4, zt + 7.25, gy + .25, "verm")
+    sc.box(gx0 - 1.6, zt + 7.25, gy - .45, gx1 + 1.6, zt + 7.85, gy + .45, "dark")
+    for x, k in ((gx0 - 1.6, -1), (gx1 + 1.6, 1)):
+        sc.boxc(x + k * .35, zt + 7.7, gy, .9, .32, .9, "dark", ry=0)
+    for i in range(5):
+        lantern(sc, gx0 + 1.6 + i * (gx1 - gx0 - 3.2) / 4, zt + 4.92, gy, .3)
+    for x, txt in ((gx0, "ようこそ"), (gx1, "海辺広場")):
+        for ry, off in ((180, -.36), (0, .36)):
+            sc.label([x, zt + 3.4, gy + off], .58, 2.6, ry, "hsign", txt=txt)
+    # mural walls with LED tickers facing the plaza
+    X = lambda px: (px - 60) / 6  # noqa: E731
+    for i, (a, c) in enumerate(((X(470), X(565)), (X(642), X(677)), (X(703), X(727)))):
+        if c - a > 4:
+            sc.label([(a + c) / 2, 5.9, y0 + .03], c - a - .6, 3.3, 0, "mural", seed=i)
+        sc.label([(a + c) / 2, 7.97, y0 + .03], c - a, .62, 0, "led", txt="ようこそ 海辺ひろばへ · WELCOME TO SEASIDE PARK · ゲーム · カフェ · ショップ")
+    # lamp posts with banners on the plaza (yellow base as in the reference)
+    for (px, py, side) in ((514, 580, 1), (752, 575, -1), (480, 330, 1), (730, 330, -1), (470, 520, 1), (740, 520, -1)):
+        x, z = b.P(px, py)
+        sc.cyl(x, 3.6, z, .11, .11, 1.4, "yel", seg=10)
+        sc.cyl(x, 5.0, z, .08, .08, 5.0, "steel", seg=8)
+        sc.boxc(x - side * .5, 10.0, z, 1.1, .1, .14, "dark")
+        sc.boxc(x - side * .95, 9.85, z, .5, .2, .3, "white")
+        sc.label([x + side * .62, 8.4, z], 1.0, 2.6, 0, "banner")
+        sc.label([x + side * .62, 8.4, z - .01], 1.0, 2.6, 180, "banner")
 
 
 def build_small(sc, b):
@@ -666,6 +820,57 @@ def build_small(sc, b):
         sc.prism(q, 3.45, 3.5, "dark")
 
 
+# hills that wall the map (north, west and an east headland); the sea stays open to the south
+INNER = [(-4, -14.5), (207, -14.5), (207, 30), (200, 46), (199.5, 100), (200.5, 160), (204, 215), (204, 420), (-4, 420)]
+
+
+def build_terrain(sc, b):
+    import shapely
+    d = 2.5
+    xs = np.arange(-90, 300.01, d)
+    zs = np.arange(-90, 240.01, d)
+    X, Z = np.meshgrid(xs, zs)
+    inner = Polygon(INNER).buffer(-3.0)
+    dist = shapely.distance(inner, shapely.points(X.ravel(), Z.ravel())).reshape(X.shape)
+    g0w = np.interp(Z, [-14, 40, 90, 105, 125], [8.4, 7.0, 4.0, 1.0, -1.5])
+    g0e = np.interp(Z, [-14, 30, 50, 60, 75], [8.4, 6.0, 3.0, 0.0, -2.0])
+    g0 = np.where(X < 100, g0w, g0e)
+    base = 30 - .09 * np.clip(Z + 14, 0, None)
+    base = np.where(Z > 195, base * np.clip((245 - Z) / 50, 0, 1), base)
+    noise = 4 * np.sin(X / 23) + 3 * np.cos(Z / 17 + X / 41) + 2 * np.sin((X + Z) / 11) + 1.5 * np.cos(X / 7 - Z / 9)
+    target = np.maximum(base + noise, g0 + 4)
+    m = np.clip((dist - 3.0) / 38, 0, 1)
+    m = m * m * (3 - 2 * m)
+    h = g0 - .4 + (target - g0 + .4) * m
+    for (px, pz, top) in ((-15, 6.7, 17.0), (218, 6.7, 15.0)):        # mounds over the tunnel portals
+        h = np.maximum(h, np.where(np.abs(X - px) < 30, top - ((X - px) ** 2 + (Z - pz) ** 2) / 45, -99))
+    h = np.where(dist <= 0, -30, h)
+    sc.terrain = {"x0": float(xs[0]), "z0": float(zs[0]), "d": d, "nx": len(xs), "nz": len(zs),
+                  "h": [int(round(v * 10)) for v in h.ravel()]}
+    # trees on the hills
+    rnd = random.Random(31)
+    n_ = 0
+    while n_ < 420:
+        i, j = rnd.randrange(1, len(xs) - 1), rnd.randrange(1, len(zs) - 1)
+        hh = h[j, i]
+        if dist[j, i] < 6 or hh < 3 or hh > 48:
+            continue
+        sl = math.hypot(h[j, i + 1] - h[j, i - 1], h[j + 1, i] - h[j - 1, i]) / (2 * d)
+        if sl > .9:
+            continue
+        x, z = xs[i] + rnd.uniform(-1, 1), zs[j] + rnd.uniform(-1, 1)
+        r = rnd.uniform(2.6, 4.6)
+        kind = "s" if rnd.random() < .06 else ("p" if z > 120 and rnd.random() < .3 else "t")
+        sc.trees.append([round(x, 2), round(hh - .3, 2), round(z, 2), round(r, 2), round(3.2 + r * 1.15, 2), kind, n_ % 97])
+        n_ += 1
+    # tunnel portals where the coastal road leaves the map
+    for (x0, x1, face, ry) in ((-6.0, -4.0, -3.97, 90), (207.0, 209.0, 206.97, -90)):
+        yb = 8.25 if x0 < 0 else 5.85
+        sc.box(x0, yb - 1, 1.2, x1, yb + 7.2, 12.2, "conc")
+        sc.label([face, yb + 3.4, 6.67], 10.0, 6.8, ry, "tunnel")
+        sc.box(x0 - 6 if x0 < 0 else x1, yb - .3, 2.5, x0 if x0 < 0 else x1 + 6, yb + 5.8, 10.9, "dark")
+
+
 def scene_data(b):
     sc = Scene(b)
     rec = record_plan(b)
@@ -675,6 +880,8 @@ def scene_data(b):
     build_fashion(sc, b)
     build_lifestyle(sc, b)
     build_small(sc, b)
+    build_stair_gate(sc, b)
+    build_terrain(sc, b)
     build_props(sc, b, rec, idw)
     return sc.data()
 
