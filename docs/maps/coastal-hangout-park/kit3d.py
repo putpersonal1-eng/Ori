@@ -421,8 +421,21 @@ def _simple_parts(g):
     return [p for p in out if p.geom_type == "Polygon" and p.area > .005]
 
 
-def planter_ground(sc, g, ground, inner_t=.3, h=.6, cap="cream"):
-    """Raised planter that follows the ground under it: wall, stone coping and soil, each vertex at ground + height."""
+def planter_ground(sc, g, ground_fn, inner_t=.3, h=.6, cap="cream"):
+    """Raised planter that follows the ground under it: wall, stone coping and soil, each vertex at ground + height.
+    The ground is read 0.7 m inside the outline, so an edge on a level boundary (plaza / promenade) does not pick up
+    the neighbouring level and tilt the planter; along a sloping street it still follows the slope."""
+    from shapely.geometry import Point
+    from shapely.ops import nearest_points
+    core = g.buffer(-.7)
+    if core.is_empty:
+        core = g.representative_point()
+
+    def ground(x, z):
+        p = Point(x, z)
+        if not core.contains(p):
+            p = nearest_points(core, p)[0]
+        return ground_fn(p.x, p.y)
     inner = g.buffer(-inner_t, join_style="mitre")
     gl = [ground(x, z) for x, z in list(g.exterior.coords)]
     bot = min(gl) - .3
@@ -433,7 +446,7 @@ def planter_ground(sc, g, ground, inner_t=.3, h=.6, cap="cream"):
         sc.plate_poly(part.segmentize(1.5), lambda x, z: ground(x, z) + h, cap, "stone", t=.06)
     for part in _simple_parts(inner):
         sc.plate_poly(part.segmentize(2.0), lambda x, z: ground(x, z) + h - .12, "bed", "ground", bot=bot)
-    return inner
+    return inner, ground
 
 
 def truck_hq(sc, cx, cz, ang, base, col):

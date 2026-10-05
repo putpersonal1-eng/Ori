@@ -1926,7 +1926,7 @@ def sheet_a505():
 
 
 # ================================================================ arcade interior (shared by L-101, A-506 and P-601)
-# Dark purple game hall after the interior references: neon floor tiles, a block-puzzle LED wall, a tower of
+# Game hall in the facade's red, yellow and white, after the interior references: neon floor tiles, a block-puzzle LED wall, a tower of
 # stacked CRT monitors with a robot face, two tiers of round drum machines, a row of cabinets, egg chairs,
 # sphere TV pods and server stacks with green code screens. Metres: x east, z south, floor +4.05, ceiling +9.30.
 ARC_IN = {

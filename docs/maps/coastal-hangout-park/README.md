@@ -20,7 +20,7 @@ area by area and redrawn at its true scale.
 - **Levels.** The image is flat, so the levels come from the stair lengths:
   - street +8.40, falling to +6.00 toward the station
   - plaza +3.60
-  - event lawn +3.60, level with the plaza; the curved flight at its tip takes the east path (+4.80) down 8 risers
+  - event lawn +3.60, level with the plaza; the east path ramps down to meet it (no steps at the lawn tip)
   - promenade +3.15 (3 steps down from the plaza)
   - sand +0.90
   - sea ±0.00
@@ -51,7 +51,7 @@ All are in `index.html`, with standalone copies in `svg/`.
   buildings are modelled in detail (framed openings, copings, tile eaves, 3D lettering,
   railings, escalators, the gate) with procedural PBR materials and ambient occlusion;
   trees, plants and rocks stay simple placeholders for the engine. The arcade has a full
-  interior (dark purple game hall), and the Ori logo landmark stands in the central fountain
+  interior (a game hall in the facade's red, yellow and white), and the Ori logo landmark stands in the central fountain
 - S-2 / S-3 / S-4: key locations, gameplay metrics, connections
 
 `build.py` stops with an error if any walkable area can't be reached from Spawn A.
@@ -83,7 +83,8 @@ Files:
 Every tree and palm is checked against the planting (beds, lawn, planter soil; palms may also
 stand on sand). Any that lands on paving, decks or road is moved to the nearest planting within
 6 m; street trees get tree pits on the town-side pavement. Palms on the sand keep 1.6 m off the
-sea wall. Lamps keep their traced spots unless they land in planting, under a crown, near a stair,
+sea wall, trunks keep 0.8 m off the street walls, and a tree standing inside a bigger neighbour's
+crown is dropped (`thin_crowns`). Lamps keep their traced spots unless they land in planting, under a crown, near a stair,
 bench, parasol set or truck, or within 1 m of a walkway edge; then they move to the nearest clear
 spot (`place_lamps`). In the model, planters stop short of walls, stair cheeks and facades, roof
 furniture is built only by its building, and soil and sand are cut into cells so their surfaces

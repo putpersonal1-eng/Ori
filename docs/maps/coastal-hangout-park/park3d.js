@@ -225,12 +225,13 @@ function drawExtra(L, g, W, H) {
     for (let i = 0; i < 5; i++) { g.beginPath(); g.arc(W * (.25 + i * .125), H * .32, W * .012, 0, 7); g.fill(); }
   } else if (k === 'neonwall') {
     const R = rng((L.seed || 0) + 9);
+    // red wall like the facade, cream base band with a yellow stripe, cream and yellow line art
     const grd = g.createLinearGradient(0, 0, 0, H);
-    grd.addColorStop(0, '#2A1458'); grd.addColorStop(1, '#3B1E78');
+    grd.addColorStop(0, '#9C1A23'); grd.addColorStop(1, '#C42A33');
     g.fillStyle = grd; g.fillRect(0, 0, W, H);
     g.lineCap = 'round';
     for (let i = 0; i < 7; i++) {
-      g.strokeStyle = i % 3 === 0 ? 'rgba(200,150,255,.85)' : 'rgba(160,110,255,.55)';
+      g.strokeStyle = i % 3 === 0 ? 'rgba(255,214,90,.9)' : 'rgba(255,240,215,.55)';
       g.lineWidth = H * (.008 + R() * .01);
       if (i % 2) g.setLineDash([H * .03, H * .025]); else g.setLineDash([]);
       g.beginPath();
@@ -238,11 +239,13 @@ function drawExtra(L, g, W, H) {
       g.arc(cx, cy, rr, R() * 6, R() * 6 + 1.5 + R() * 2); g.stroke();
     }
     g.setLineDash([]);
-    g.strokeStyle = 'rgba(210,170,255,.7)'; g.lineWidth = H * .01;
-    for (let i = 0; i < 3; i++) { const x = R() * W; g.beginPath(); g.moveTo(x, H); g.lineTo(x + H * .2, H * .2); g.lineTo(x + H * .4, H); g.stroke(); }
+    g.strokeStyle = 'rgba(255,240,215,.7)'; g.lineWidth = H * .01;
+    for (let i = 0; i < 3; i++) { const x = R() * W; g.beginPath(); g.moveTo(x, H * .74); g.lineTo(x + H * .2, H * .2); g.lineTo(x + H * .4, H * .74); g.stroke(); }
+    g.fillStyle = '#F6C833'; g.fillRect(0, H * .74, W, H * .035);
+    g.fillStyle = '#F3EBDD'; g.fillRect(0, H * .775, W, H * .225);
   } else if (k === 'tetris' || k === 'piece') {
-    g.fillStyle = '#120A26'; g.fillRect(0, 0, W, H);
-    const cols = ['#FF4D6D', '#FFC94D', '#4D7CFF', '#FF6FD8', '#5DE0FF', '#FFFFFF'];
+    g.fillStyle = '#1C1213'; g.fillRect(0, 0, W, H);
+    const cols = ['#FF4D4D', '#FFC94D', '#FFFFFF', '#FF8A3D', '#5DE0FF', '#FFFFFF'];
     const R = rng((L.seed || 0) + 21);
     const n = k === 'piece' ? 4 : 12, m = k === 'piece' ? 4 : Math.round(12 * H / W);
     const cw = W / n, ch = H / m;
@@ -261,7 +264,7 @@ function drawExtra(L, g, W, H) {
       g.fillStyle = 'rgba(255,255,255,.85)'; g.font = `800 ${Math.round(ch * .9)}px ${FONT_C}`; g.textAlign = 'center';
       g.fillText('+200', W * .55, H * .32);
     }
-    g.strokeStyle = '#9B6BFF'; g.lineWidth = Math.max(4, W / 120); g.strokeRect(2, 2, W - 4, H - 4);
+    g.strokeStyle = '#F6C833'; g.lineWidth = Math.max(4, W / 120); g.strokeRect(2, 2, W - 4, H - 4);
   } else if (k === 'code') {
     g.fillStyle = '#04140A'; g.fillRect(0, 0, W, H);
     const R = rng((L.seed || 0) + 31);
@@ -270,7 +273,7 @@ function drawExtra(L, g, W, H) {
     for (let j = 1; j < 12; j++) { let x = W * .06; while (x < W * .94) { const w = W * (.04 + R() * .12); if (R() > .2) g.fillRect(x, j * lh, w, lh * .45); x += w + W * .03; } }
   } else if (k === 'crt') {
     const R = rng((L.seed || 0) + 41);
-    const c1 = ['#3FE6F0', '#9BFF5A', '#FF5FC8', '#9B6BFF'][Math.floor(R() * 4)];
+    const c1 = ['#F6C833', '#FF5A4A', '#FFF2D8', '#3FE6F0'][Math.floor(R() * 4)];
     g.fillStyle = '#0B1A2A'; g.fillRect(0, 0, W, H);
     g.fillStyle = c1; rrectPath(g, W * .08, H * .1, W * .84, H * .8, H * .12); g.fill();
     g.fillStyle = 'rgba(0,0,0,.35)';
@@ -293,22 +296,22 @@ function drawExtra(L, g, W, H) {
     for (const ex of [.33, .67]) { g.beginPath(); g.moveTo(W * (ex - .12), H * .45); g.quadraticCurveTo(W * ex, H * .25, W * (ex + .12), H * .45); g.lineTo(W * (ex + .1), H * .52); g.quadraticCurveTo(W * ex, H * .36, W * (ex - .1), H * .52); g.fill(); }
   } else if (k === 'drum') {
     const R = rng((L.seed || 0) + 61);
-    g.fillStyle = '#0D1630'; g.beginPath(); g.arc(W / 2, H / 2, W / 2, 0, 7); g.fill();
-    const cols = ['#9BFF5A', '#3FE6F0', '#FF5FC8', '#9B6BFF', '#FFE45A'];
+    g.fillStyle = '#2A1A1C'; g.beginPath(); g.arc(W / 2, H / 2, W / 2, 0, 7); g.fill();
+    const cols = ['#F6C833', '#FF4A4A', '#FFF2D8', '#FF9A2E', '#FFD25A'];
     for (let i = 0; i < 5; i++) { g.strokeStyle = cols[(i + Math.floor(R() * 5)) % 5]; g.lineWidth = W * .05; g.beginPath(); g.arc(W / 2, H / 2, W * (.42 - i * .07), R() * 6, R() * 6 + 3 + R() * 2); g.stroke(); }
     g.fillStyle = '#FFFFFF'; g.beginPath(); g.arc(W / 2, H / 2, W * .06, 0, 7); g.fill();
   } else if (k === 'game') {
     const R = rng((L.seed || 0) + 71);
     const grd = g.createLinearGradient(0, 0, W, H);
-    const pal = [['#FF7A3D', '#5B2BFF'], ['#3FE6F0', '#1B2A6A'], ['#FFE45A', '#FF3B8D'], ['#9BFF5A', '#1A6A5A']][Math.floor(R() * 4)];
+    const pal = [['#FF7A3D', '#B01E28'], ['#3FE6F0', '#1B2A6A'], ['#FFE45A', '#FF3B3B'], ['#9BFF5A', '#1A6A5A']][Math.floor(R() * 4)];
     grd.addColorStop(0, pal[0]); grd.addColorStop(1, pal[1]); g.fillStyle = grd; g.fillRect(0, 0, W, H);
     g.fillStyle = 'rgba(255,255,255,.85)';
     for (let i = 0; i < 6; i++) { g.beginPath(); g.arc(R() * W, R() * H, W * (.02 + R() * .05), 0, 7); g.fill(); }
     g.fillStyle = 'rgba(0,0,0,.25)'; for (let y = 0; y < H; y += 3) g.fillRect(0, y, W, 1);
   } else if (k === 'marquee') {
     const R = rng((L.seed || 0) + 81);
-    g.fillStyle = ['#FF5FC8', '#3FE6F0', '#FFE45A', '#9B6BFF'][Math.floor(R() * 4)]; g.fillRect(0, 0, W, H);
-    g.fillStyle = '#120A26'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.font = `800 ${Math.round(H * .6)}px ${FONT_C}`;
+    g.fillStyle = ['#D8343F', '#F6C833', '#FFF2D8', '#FF9A2E'][Math.floor(R() * 4)]; g.fillRect(0, 0, W, H);
+    g.fillStyle = '#2A1A1C'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.font = `800 ${Math.round(H * .6)}px ${FONT_C}`;
     g.fillText(['STAR RUN', 'PUZZLE', 'RACER', 'NEKO DASH', 'BLASTER'][Math.floor(R() * 5)], W / 2, H * .55);
   } else return false;
   return true;
@@ -725,7 +728,7 @@ export function mountPark(canvas, D, opt = {}) {
     } else hf = (x, z) => hEval(s.t, x, z);
     const [top, skirt] = surfaceGeom(s.o, s.h, hf, s.b);
     put(s.c, groundKind(s.m), top, false);
-    if (!s.ns) put(s.c, groundKind(s.m), skirt, false);
+    if (!s.ns) { if (s.sk != null) put(s.sk, 'conc', skirt, false); else put(s.c, groundKind(s.m), skirt, false); }
   }
   for (const s of D.prisms) {
     const [top, skirt] = surfaceGeom(s.o, s.h, () => s.y1, s.y0);
