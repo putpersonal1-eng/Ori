@@ -20,9 +20,17 @@ area by area and redrawn at its true scale.
 - **Levels.** The image is flat, so the levels come from the stair lengths:
   - street +8.40, falling to +6.00 toward the station
   - plaza +3.60
+  - event lawn raked +3.60 → +4.80 (the 11-riser flight at its tip)
   - promenade +3.15 (3 steps down from the plaza)
   - sand +0.90
   - sea ±0.00
+
+- **Drafting (rev E).** Paving is merged per level with Shapely, so every
+  junction is one surface with filleted corners and a single curb line.
+  Planting beds are trimmed to that curb, retaining walls are 0.40 m and
+  planter walls 0.30 m (both in poché), and stairs carry cheek walls, nosings
+  and a DN arrow. Floors are plain fills (no paving pattern), since the engine
+  supplies the textures. Sand is cream-white so it doesn't read as soil or timber.
 
 ## Sheets
 
@@ -40,7 +48,8 @@ All are in `index.html`, with standalone copies in `svg/`.
 ## Editing
 
 ```sh
-python3 build.py   # rewrites index.html and svg/*.svg
+pip install shapely   # once
+python3 build.py      # rewrites index.html and svg/*.svg
 ```
 
 Shared drawing helpers live in `../drawkit.py`.

@@ -15,7 +15,7 @@
 .z-lawn{fill:#CDE4B3}
 .z-conc{fill:#D3D9DC}
 .z-timber{fill:#E6CFA6}
-.z-sand{fill:#F2E1BA}
+.z-sand{fill:#FBF7EA}
 .z-sea{fill:#BCE4EB}
 .z-deep{fill:#8CC7D8}
 .z-cliff{fill:#CBC5BC}
@@ -98,7 +98,7 @@
 .foam{fill:none;stroke:#FFFFFF;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 .foam-d{fill:none;stroke:#FFFFFF;stroke-width:1;stroke-dasharray:4 3;stroke-linecap:round}
 .z-mid{fill:#A5D6E2}
-.z-wet{fill:#E7D09F}
+.z-wet{fill:#F0EAD8}
 .roof{fill:#BAC7D4;stroke:#16283A;stroke-width:1.6}
 .roof-2{fill:#9DAFC1}
 .post{fill:#16283A}
@@ -111,6 +111,8 @@
 .string{fill:none;stroke:#4A5C6F;stroke-width:.6;stroke-dasharray:1 2}
 .bulb{fill:#F0BE2C}
 .door{fill:none;stroke:#4A5C6F;stroke-width:.6}
+.curb{fill:none;stroke:#16283A;stroke-width:1.1;stroke-linejoin:round}
+.wallp{fill:#4A5C6F;stroke:#16283A;stroke-width:.5;stroke-linejoin:miter}
 </style><defs>
 <pattern id="cb-brick" width="8" height="8" patternUnits="userSpaceOnUse"><path class="pat-s" d="M0 4 2 2 4 4 6 2 8 4M0 8 2 6 4 8 6 6 8 8"/></pattern>
 <pattern id="cb-sand" width="9" height="9" patternUnits="userSpaceOnUse"><circle class="pat-d" cx="1.5" cy="1.5" r=".55"/><circle class="pat-d" cx="6" cy="4.5" r=".5"/><circle class="pat-d" cx="3" cy="7.5" r=".45"/></pattern>
@@ -194,8 +196,6 @@
 <rect x="692.52" y="198" width="31.03" height="28" class="beyond"/>
 <rect x="748.05" y="198" width="31.85" height="28" class="beyond"/>
 <text x="709.67" y="190" text-anchor="middle" class="t-sm halo">FOOD TRUCKS</text>
-<polygon points="866.06,226 866.06,220 992.64,220 992.64,226" class="z-timber"/>
-<text x="929.35" y="215" text-anchor="middle" class="t-sm halo">STAGE DECK +4.20 beyond</text>
 <rect x="1000.4" y="202" width="22.87" height="24" class="beyond"/>
 <text x="1011.83" y="196" text-anchor="middle" class="t-sm halo">EAST PATH</text>
 <rect x="1033.07" y="132" width="39.2" height="70" class="z-town"/>
@@ -203,9 +203,9 @@
 <ellipse cx="587.98" cy="200" rx="16.66" ry="2.6" class="statue"/>
 <polygon points="1028.98,262 1073.9,262 1073.9,280 1028.98,272" class="water"/>
 <line x1="1028.98" y1="262" x2="1073.9" y2="262" class="ln-water"/>
-<polygon points="40,209.5 126.98,209.5 126.98,226 1028.98,226 1028.98,272 1073.9,280 1073.9,296 40,296" class="poche"/>
-<polygon points="40,209.5 126.98,209.5 126.98,226 1028.98,226 1028.98,272 1073.9,280 1073.9,296 40,296" fill="url(#cb-earth)"/>
-<polyline points="40,209.5 126.98,209.5 126.98,226 1028.98,226 1028.98,272 1073.9,280" class="ln-h"/>
+<polygon points="40,209.5 126.98,209.5 126.98,226 873,226 881.17,218 881.17,214.5 949.77,214.5 949.77,214 1028.98,214 1028.98,272 1073.9,280 1073.9,296 40,296" class="poche"/>
+<polygon points="40,209.5 126.98,209.5 126.98,226 873,226 881.17,218 881.17,214.5 949.77,214.5 949.77,214 1028.98,214 1028.98,272 1073.9,280 1073.9,296 40,296" fill="url(#cb-earth)"/>
+<polyline points="40,209.5 126.98,209.5 126.98,226 873,226 881.17,218 881.17,214.5 949.77,214.5 949.77,214 1028.98,214 1028.98,272 1073.9,280" class="ln-h"/>
 <rect x="40" y="142" width="15.52" height="67.5" class="z-town"/>
 <rect x="40" y="142" width="15.52" height="67.5" fill="url(#cb-hatch)"/>
 <line x1="80.02" y1="209.5" x2="80.02" y2="172.3" class="trunk"/>
@@ -249,14 +249,17 @@
 <text x="754.58" y="196" text-anchor="middle" class="t-sm halo">LIFESTYLE &amp; SOUVENIR</text>
 <path d="M827.27 226 Q827.85 187.6 830.21 162" class="trunk"/>
 <path class="palm" d="M830.21 162Q823.86 155.86 817.52 163.37Q823.86 160.86 830.21 162Z M830.21 162Q825.33 154.12 820.45 158.89Q825.33 159.12 830.21 162Z M830.21 162Q827.66 152.46 825.12 154.2Q827.66 157.46 830.21 162Z M830.21 162Q830.34 152.36 830.47 152.2Q830.34 157.36 830.21 162Z M830.21 162Q832.76 153.18 835.31 155.31Q832.76 158.18 830.21 162Z M830.21 162Q835.75 153.87 841.3 159.15Q835.75 158.87 830.21 162Z M830.21 162Q836.56 155.65 842.91 163.01Q836.56 160.65 830.21 162Z"/>
-<line x1="925.27" y1="226" x2="925.27" y2="188.8" class="trunk"/>
-<g class="tree-o"><ellipse cx="925.27" cy="188.8" rx="14.11" ry="15.6"/><ellipse cx="913.21" cy="190.4" rx="7.15" ry="9.32"/><ellipse cx="913.53" cy="185.56" rx="7.31" ry="8.21"/><ellipse cx="917.01" cy="179.58" rx="7.45" ry="8.25"/><ellipse cx="923.32" cy="176.4" rx="7.49" ry="9.63"/><ellipse cx="929.57" cy="177.05" rx="8.19" ry="9.37"/><ellipse cx="933.55" cy="179.61" rx="6.85" ry="9.86"/><ellipse cx="937.1" cy="185.94" rx="7.88" ry="9.7"/><ellipse cx="937.08" cy="191.75" rx="7.27" ry="9.06"/></g>
-<g class="tree-f"><ellipse cx="925.27" cy="188.8" rx="13.21" ry="14.7"/><ellipse cx="913.21" cy="190.4" rx="6.25" ry="8.42"/><ellipse cx="913.53" cy="185.56" rx="6.41" ry="7.31"/><ellipse cx="917.01" cy="179.58" rx="6.55" ry="7.35"/><ellipse cx="923.32" cy="176.4" rx="6.59" ry="8.73"/><ellipse cx="929.57" cy="177.05" rx="7.29" ry="8.47"/><ellipse cx="933.55" cy="179.61" rx="5.95" ry="8.96"/><ellipse cx="937.1" cy="185.94" rx="6.98" ry="8.8"/><ellipse cx="937.08" cy="191.75" rx="6.37" ry="8.16"/></g>
-<rect x="914.65" y="225" width="68.6" height="1.2" class="z-lawn"/>
-<line x1="1035.52" y1="226" x2="1035.52" y2="170.2" class="trunk"/>
-<g class="tree-o"><ellipse cx="1035.52" cy="170.2" rx="24.7" ry="23.39"/><ellipse cx="1015.47" cy="176.5" rx="12.78" ry="13.66"/><ellipse cx="1014.62" cy="166.69" rx="14.73" ry="13"/><ellipse cx="1019.31" cy="158" rx="11.7" ry="14.7"/><ellipse cx="1031.04" cy="151.78" rx="14.36" ry="14.19"/><ellipse cx="1042.31" cy="152.34" rx="12.41" ry="14.58"/><ellipse cx="1050.99" cy="157.28" rx="14.07" ry="13.98"/><ellipse cx="1056.39" cy="166.58" rx="13.67" ry="11.85"/><ellipse cx="1055.52" cy="176.59" rx="13.69" ry="13.46"/></g>
-<g class="tree-f"><ellipse cx="1035.52" cy="170.2" rx="23.8" ry="22.49"/><ellipse cx="1015.47" cy="176.5" rx="11.88" ry="12.76"/><ellipse cx="1014.62" cy="166.69" rx="13.83" ry="12.1"/><ellipse cx="1019.31" cy="158" rx="10.8" ry="13.8"/><ellipse cx="1031.04" cy="151.78" rx="13.46" ry="13.29"/><ellipse cx="1042.31" cy="152.34" rx="11.51" ry="13.68"/><ellipse cx="1050.99" cy="157.28" rx="13.17" ry="13.08"/><ellipse cx="1056.39" cy="166.58" rx="12.77" ry="10.95"/><ellipse cx="1055.52" cy="176.59" rx="12.79" ry="12.56"/></g>
-<line x1="1028.58" y1="226" x2="1028.58" y2="215" class="ln"/>
+<rect x="880.76" y="213.5" width="1.23" height="12.5" class="solid"/>
+<rect x="881.98" y="213.5" width="25.32" height="1.2" class="z-lawn"/>
+<rect x="866.06" y="220" width="126.58" height="6" fill="none" stroke="#4A5C6F" stroke-width=".8" stroke-dasharray="3 2"/>
+<text x="929.35" y="232" text-anchor="middle" class="t-sm halo">STAGE DECK +4.20 beyond (hidden)</text>
+<line x1="925.27" y1="214.5" x2="925.27" y2="177.3" class="trunk"/>
+<g class="tree-o"><ellipse cx="925.27" cy="177.3" rx="14.11" ry="15.6"/><ellipse cx="913.21" cy="178.9" rx="7.15" ry="9.32"/><ellipse cx="913.53" cy="174.06" rx="7.31" ry="8.21"/><ellipse cx="917.01" cy="168.08" rx="7.45" ry="8.25"/><ellipse cx="923.32" cy="164.9" rx="7.49" ry="9.63"/><ellipse cx="929.57" cy="165.55" rx="8.19" ry="9.37"/><ellipse cx="933.55" cy="168.11" rx="6.85" ry="9.86"/><ellipse cx="937.1" cy="174.44" rx="7.88" ry="9.7"/><ellipse cx="937.08" cy="180.25" rx="7.27" ry="9.06"/></g>
+<g class="tree-f"><ellipse cx="925.27" cy="177.3" rx="13.21" ry="14.7"/><ellipse cx="913.21" cy="178.9" rx="6.25" ry="8.42"/><ellipse cx="913.53" cy="174.06" rx="6.41" ry="7.31"/><ellipse cx="917.01" cy="168.08" rx="6.55" ry="7.35"/><ellipse cx="923.32" cy="164.9" rx="6.59" ry="8.73"/><ellipse cx="929.57" cy="165.55" rx="7.29" ry="8.47"/><ellipse cx="933.55" cy="168.11" rx="5.95" ry="8.96"/><ellipse cx="937.1" cy="174.44" rx="6.98" ry="8.8"/><ellipse cx="937.08" cy="180.25" rx="6.37" ry="8.16"/></g>
+<line x1="1035.52" y1="214" x2="1035.52" y2="158.2" class="trunk"/>
+<g class="tree-o"><ellipse cx="1035.52" cy="158.2" rx="24.7" ry="23.39"/><ellipse cx="1015.47" cy="164.5" rx="12.78" ry="13.66"/><ellipse cx="1014.62" cy="154.69" rx="14.73" ry="13"/><ellipse cx="1019.31" cy="146" rx="11.7" ry="14.7"/><ellipse cx="1031.04" cy="139.78" rx="14.36" ry="14.19"/><ellipse cx="1042.31" cy="140.34" rx="12.41" ry="14.58"/><ellipse cx="1050.99" cy="145.28" rx="14.07" ry="13.98"/><ellipse cx="1056.39" cy="154.58" rx="13.67" ry="11.85"/><ellipse cx="1055.52" cy="164.59" rx="13.69" ry="13.46"/></g>
+<g class="tree-f"><ellipse cx="1035.52" cy="158.2" rx="23.8" ry="22.49"/><ellipse cx="1015.47" cy="164.5" rx="11.88" ry="12.76"/><ellipse cx="1014.62" cy="154.69" rx="13.83" ry="12.1"/><ellipse cx="1019.31" cy="146" rx="10.8" ry="13.8"/><ellipse cx="1031.04" cy="139.78" rx="13.46" ry="13.29"/><ellipse cx="1042.31" cy="140.34" rx="11.51" ry="13.68"/><ellipse cx="1050.99" cy="145.28" rx="13.17" ry="13.08"/><ellipse cx="1056.39" cy="154.58" rx="12.77" ry="10.95"/><ellipse cx="1055.52" cy="164.59" rx="12.79" ry="12.56"/></g>
+<line x1="1028.58" y1="214" x2="1028.58" y2="203" class="ln"/>
 <rect class="avatar" x="212.43" y="218.72" width="4.68" height="7.28" rx="1.87"/>
 <circle class="avatar" cx="214.77" cy="216.29" r="2.86"/>
 <rect class="avatar" x="375.76" y="218.72" width="4.68" height="7.28" rx="1.87"/>
@@ -271,24 +274,27 @@
 <circle class="avatar" cx="582.27" cy="216.29" r="2.86"/>
 <rect class="avatar" x="833.09" y="218.72" width="4.68" height="7.28" rx="1.87"/>
 <circle class="avatar" cx="835.43" cy="216.29" r="2.86"/>
-<rect class="avatar" x="939.26" y="218.72" width="4.68" height="7.28" rx="1.87"/>
-<circle class="avatar" cx="941.6" cy="216.29" r="2.86"/>
-<rect class="avatar" x="963.76" y="218.72" width="4.68" height="7.28" rx="1.87"/>
-<circle class="avatar" cx="966.1" cy="216.29" r="2.86"/>
+<rect class="avatar" x="894.34" y="207.22" width="4.68" height="7.28" rx="1.87"/>
+<circle class="avatar" cx="896.68" cy="204.79" r="2.86"/>
+<rect class="avatar" x="963.76" y="207.22" width="4.68" height="7.28" rx="1.87"/>
+<circle class="avatar" cx="966.1" cy="204.79" r="2.86"/>
 <polygon class="ink-f" points="40.9,202.5 48.9,202.5 44.9,209.5"/>
 <text class="t-dim halo" x="51.9" y="206.5" text-anchor="start">+5.25 LANE</text>
 <polygon class="ink-f" points="349.6,219 357.6,219 353.6,226"/>
 <text class="t-dim halo" x="360.6" y="237" text-anchor="start">+3.60 PLAZA</text>
 <polygon class="ink-f" points="627.27,171 635.27,171 631.27,178"/>
 <text class="t-dim halo" x="638.27" y="175" text-anchor="start">+8.40 STREET beyond</text>
-<polygon class="ink-f" points="904.93,189 912.93,189 908.93,196"/>
-<text class="t-dim halo" x="915.93" y="193" text-anchor="start">+6.60 beyond</text>
+<polygon class="ink-f" points="851.85,189 859.85,189 855.85,196"/>
+<text class="t-dim halo" x="862.85" y="193" text-anchor="start">+6.60 beyond</text>
 <polygon class="ink-f" points="1060.1,255 1068.1,255 1064.1,262"/>
 <text class="t-dim halo" x="1057.1" y="259" text-anchor="end">±0.00</text>
 <line class="dim" x1="126.98" y1="158" x2="126.98" y2="119"/><line class="dim" x1="294.39" y1="158" x2="294.39" y2="119"/><line class="dim" x1="123.98" y1="122" x2="297.39" y2="122"/><line class="dim-t" x1="123.98" y1="125" x2="129.98" y2="119"/><line class="dim-t" x1="291.39" y1="125" x2="297.39" y2="119"/><text class="t-dim halo" x="210.68" y="119" text-anchor="middle">34.2 ARCADE</text>
 <line class="dim" x1="291.39" y1="122" x2="687.35" y2="122"/><line class="dim-t" x1="291.39" y1="125" x2="297.39" y2="119"/><line class="dim-t" x1="681.35" y1="125" x2="687.35" y2="119"/><text class="t-dim halo" x="489.37" y="119" text-anchor="middle">79.6 PLAZA</text>
 <line class="dim" x1="698.23" y1="166" x2="698.23" y2="119"/><line class="dim" x1="810.93" y1="166" x2="810.93" y2="119"/><line class="dim" x1="695.23" y1="122" x2="813.93" y2="122"/><line class="dim-t" x1="695.23" y1="125" x2="701.23" y2="119"/><line class="dim-t" x1="807.93" y1="125" x2="813.93" y2="119"/><text class="t-dim halo" x="754.58" y="119" text-anchor="middle">23.0 SHOP</text>
-<line class="dim" x1="911.65" y1="122" x2="986.25" y2="122"/><line class="dim-t" x1="911.65" y1="125" x2="917.65" y2="119"/><line class="dim-t" x1="980.25" y1="125" x2="986.25" y2="119"/><text class="t-dim halo" x="948.95" y="119" text-anchor="middle">14.0 LAWN</text>
+<line class="dim" x1="878.17" y1="122" x2="999.32" y2="122"/><line class="dim-t" x1="878.17" y1="125" x2="884.17" y2="119"/><line class="dim-t" x1="993.32" y1="125" x2="999.32" y2="119"/><text class="t-dim halo" x="938.74" y="119" text-anchor="middle">23.5 LAWN TIP · LANDING</text>
+<polygon class="ink-f" points="970.27,207 978.27,207 974.27,214"/>
+<text class="t-dim halo" x="981.27" y="211" text-anchor="start">+4.80 LANDING</text>
+<line class="dim" x1="876.27" y1="211.5" x2="876.27" y2="229"/><line class="dim-t" x1="873.27" y1="229" x2="879.27" y2="223"/><line class="dim-t" x1="873.27" y1="217.5" x2="879.27" y2="211.5"/><text class="t-dim halo" x="872.27" y="220.25" text-anchor="middle" transform="rotate(-90 872.27 220.25)">1.15</text>
 <line class="dim" x1="435.53" y1="242" x2="573.83" y2="242"/><line class="dim-t" x1="435.53" y1="245" x2="441.53" y2="239"/><line class="dim-t" x1="567.83" y1="245" x2="573.83" y2="239"/><text class="t-dim halo" x="504.68" y="239" text-anchor="middle">Ø27.0 BENCH RING</text>
 <line class="dim" x1="134.81" y1="166" x2="134.81" y2="229"/><line class="dim-t" x1="131.81" y1="229" x2="137.81" y2="223"/><line class="dim-t" x1="131.81" y1="172" x2="137.81" y2="166"/><text class="t-dim halo" x="144.81" y="197.5" text-anchor="middle" transform="rotate(-90 144.81 197.5)">6.00</text>
 <line class="dim" x1="815.83" y1="169" x2="815.83" y2="229"/><line class="dim-t" x1="812.83" y1="229" x2="818.83" y2="223"/><line class="dim-t" x1="812.83" y1="175" x2="818.83" y2="169"/><text class="t-dim halo" x="825.83" y="199" text-anchor="middle" transform="rotate(-90 825.83 199)">5.40</text>

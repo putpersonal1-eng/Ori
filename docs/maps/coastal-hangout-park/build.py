@@ -14,7 +14,11 @@ Geometry is in metres: X west -> east, Y north -> south, Z above sea level.
 import base64
 import math
 import os
+import random
 import sys
+
+from shapely.geometry import LineString, Point, Polygon, box
+from shapely.ops import unary_union
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from drawkit import *  # noqa: E402,F401,F403
@@ -71,20 +75,112 @@ def RP(x0, y0, x1, y1):
     return (a[0], a[1], b[0], b[1])
 
 
+def G(px_pts):
+    return Polygon(PP(px_pts))
+
+
+def GB(x0, y0, x1, y1):
+    q = RP(x0, y0, x1, y1)
+    return box(min(q[0], q[2]), min(q[1], q[3]), max(q[0], q[2]), max(q[1], q[3]))
+
+
+def GL(px_pts, half, per=10):
+    return LineString(cr_sample(PP(px_pts), per=per)).buffer(half, cap_style="flat", join_style="round", quad_segs=12)
+
+
+def close_(g, r):
+    """Fillet concave corners (where paths meet) with radius r."""
+    return g.buffer(r, quad_segs=12).buffer(-r, quad_segs=12)
+
+
+def open_(g, r):
+    """Round convex corners with radius r."""
+    return g.buffer(-r, quad_segs=8, join_style="mitre").buffer(r, quad_segs=8)
+
+
+def gpath(cv, g):
+    polys = [g] if g.geom_type == "Polygon" else [q for q in getattr(g, "geoms", []) if q.geom_type == "Polygon"]
+    d = []
+    for pg in polys:
+        if pg.is_empty:
+            continue
+        for ring in [pg.exterior] + list(pg.interiors):
+            d.append("M" + "L".join(f"{n(cv.X(x))} {n(cv.Y(y))}" for x, y in ring.coords) + "Z")
+    return " ".join(d)
+
+
+def gd(cv, g, cls, extra=""):
+    if g is None or g.is_empty:
+        return
+    cv.add(f'<path d="{gpath(cv, g)}" class="{cls}" fill-rule="evenodd"{extra}/>')
+
+
+def scatter_shrubs(cv, g, seed, density=.6, rmin=.5, rmax=1.0):
+    if g.is_empty:
+        return
+    rnd = random.Random(seed)
+    x0, y0, x1, y1 = g.bounds
+    want = int(g.area * density / 3) + 1
+    got = 0
+    for _ in range(want * 30):
+        if got >= want:
+            break
+        pt = (rnd.uniform(x0, x1), rnd.uniform(y0, y1))
+        r = rnd.uniform(rmin, rmax)
+        if g.buffer(-r * .6).contains(Point(pt)):
+            canopy(cv, pt[0], pt[1], r, seed * 100 + got, "shrub", shadow=False, detail=False)
+            got += 1
+
+
+def bed_g(cv, g, seed, density=.55, rmin=.6, rmax=1.1):
+    gd(cv, g, "bed")
+    scatter_shrubs(cv, g, seed, density, rmin, rmax)
+
+
+def planter_g(cv, g, seed, density=.8, rmin=.4, rmax=.8, wall=.3, radius=.35):
+    """Raised planter: rounded outline, 0.3 m wall in poché, shrubs inside."""
+    g = open_(g, radius) if radius else g
+    inner = g.buffer(-wall, join_style="mitre")
+    gd(cv, g.difference(inner), "wallp")
+    gd(cv, inner, "bed")
+    scatter_shrubs(cv, inner, seed, density, rmin, rmax)
+    return inner
+
+
+def wall_line(cv, px_pts, t=.4):
+    gd(cv, LineString(PP(px_pts)).buffer(t / 2, cap_style="flat", join_style="mitre"), "wallp")
+
+
+def edge_y(x):
+    """Shared plaza/promenade edge (reference px)."""
+    pts = [(142, 592), (347, 592), (520, 594), (1022, 598)]
+    for (xa, ya), (xb, yb) in zip(pts, pts[1:]):
+        if xa <= x <= xb:
+            return ya + (yb - ya) * (x - xa) / (xb - xa)
+    return pts[-1][1]
+
+
 # ---- traced outlines (reference px) ----
 SHORE_PX = [(150, 868), (260, 880), (350, 886), (450, 893), (550, 895), (614, 892), (700, 880), (780, 860),
             (844, 832), (945, 795), (1000, 775), (1045, 757), (1066, 750)]
 COAST_PX = [(1302, 404), (1248, 410), (1243, 450), (1238, 490), (1232, 525), (1215, 555), (1198, 585),
             (1178, 612), (1170, 640), (1176, 665), (1188, 682)]
-PROM_PX = [(142, 592), (520, 594), (1022, 598), (1022, 637), (875, 637), (835, 655), (770, 672), (380, 675),
-           (170, 635), (142, 630)]
+SEAWALL_PX = [(1038.8, 637), (875, 637), (840, 654), (836, 655), (770, 655), (764, 672), (452.5, 675), (382.5, 675),
+              (170, 635)]
+PROM_PX = [(142, 592), (347, 592), (520, 594), (1022, 598), (1033, 614.5)] + SEAWALL_PX + [(142, 630)]
+CURVE_LINE_PX = [(974, 197), (974, 250), (976, 300), (986, 338), (1004, 370), (1031, 405), (1060, 434), (1084, 460),
+                 (1102, 490), (1122, 522)]
+COAST_LINE_PX = [(1186, 461), (1189, 495), (1180, 520), (1158, 542), (1132, 556)]
+EAST_PATH_PX = [(1238.5, 145), (1238.5, 330), (1232, 365), (1218, 395), (1200, 414)]
+CURVED_STAIR_PX = [(1150, 428), (1195, 417), (1205, 455), (1168, 466)]
+SAKURA_PLANTER_PX = [(1112, 450), (1150, 444), (1172, 456), (1170, 480), (1162, 505), (1140, 513), (1115, 500), (1108, 475)]
+PALM_ISLAND_PX = [(1060, 478), (1085, 470), (1103, 482), (1104, 515), (1098, 545), (1080, 552), (1062, 540), (1056, 505)]
 CURVE_PX = [(980, 192), (983, 260), (987, 330), (1010, 372), (1037, 405), (1063, 447), (1090, 490), (1106, 528),
             (1098, 562)]
 COASTWALK_PX = [(1182, 462), (1176, 490), (1160, 520), (1140, 548), (1108, 572)]
-DECK_PX = [(1105, 190), (1202.5, 235), (1167.5, 320), (1107, 314), (1047.5, 292.5), (1047.5, 255)]
-LAWN_PX = [(1047.5, 292.5), (1107, 314), (1167.5, 320), (1190, 330), (1210, 340), (1212.5, 370), (1204, 398),
-           (1190, 418), (1170, 428), (1150, 430), (1120, 422.5), (1090, 410), (1065, 390), (1042.5, 360),
-           (1030, 330), (1032.5, 305)]
+DECK_PX = [(1100, 190), (1207, 237), (1163, 320), (1107, 307), (1050, 292), (1050, 252)]
+LAWN_PX = [(1050, 292), (1163, 320), (1196, 332), (1207, 360), (1205, 392), (1197, 408), (1195, 417), (1150, 428),
+           (1148, 408), (1104, 402), (1088, 440), (1062, 410), (1036, 380), (1022, 345), (1012, 318), (1030, 296)]
 WEST_ROCK_PX = [(36, 690), (60, 700), (110, 705), (160, 720), (175, 760), (160, 820), (165, 870), (200, 900),
                 (255, 930), (250, 1000), (220, 1023), (36, 1023)]
 EAST_ROCK_PX = [(1112, 700), (1150, 668), (1195, 672), (1215, 700), (1205, 740), (1170, 762), (1128, 758)]
@@ -128,8 +224,28 @@ def quad_treads(cv, q, count, fill="z-paver"):
     cv.poly(q, "ln")
 
 
-def stair_ns(cv, x0, y0, x1, y1, flights, landing=0.0, cheek=True, rails=()):
-    """N-S stair in a rectangle (metres); flights = risers per flight, treads fill the run."""
+def quad_stair(cv, q, risers, label=None, cheek=(.3, .6)):
+    """Stair in a traced quad (a-b top, d-c foot): one nosing line per riser, poché cheek walls, DN arrow."""
+    a, b, c, d = q
+    cv.poly(q, "z-paver")
+    n = risers - 1
+    for i in range(risers):
+        t = i / n
+        cv.line(a[0] + (d[0] - a[0]) * t, a[1] + (d[1] - a[1]) * t, b[0] + (c[0] - b[0]) * t, b[1] + (c[1] - b[1]) * t, "tread")
+    body = Polygon(q)
+    for (p0, p1), w in zip(((a, d), (b, c)), cheek):
+        gd(cv, body.intersection(LineString([p0, p1]).buffer(w, cap_style="flat")), "wallp")
+    cv.poly(q, "ln")
+    if label:
+        m0 = ((a[0] + b[0]) / 2, (a[1] + b[1]) / 2)
+        m1 = ((d[0] + c[0]) / 2, (d[1] + c[1]) / 2)
+        k = .12
+        cv.line(m0[0] + (m1[0] - m0[0]) * k, m0[1] + (m1[1] - m0[1]) * k, m1[0] - (m1[0] - m0[0]) * k,
+                m1[1] - (m1[1] - m0[1]) * k, "ln", ' marker-end="url(#cp-arrk)"')
+
+
+def stair_ns(cv, x0, y0, x1, y1, flights, landing=0.0, cheek=True, rails=(), label=None):
+    """N-S stair in a rectangle (metres): treads fill the run, 0.3 m cheek walls, DN arrow and riser count."""
     cv.rect(x0, y0, x1, y1, "z-paver")
     run = (y1 - y0) - landing * (len(flights) - 1)
     tr = run / sum(f - 1 for f in flights)
@@ -140,12 +256,16 @@ def stair_ns(cv, x0, y0, x1, y1, flights, landing=0.0, cheek=True, rails=()):
         y += (f - 1) * tr
         if i < len(flights) - 1:
             y += landing
-    cv.rect(x0, y0, x1, y1, "ln")
-    if cheek:
-        cv.line(x0 + .35, y0, x0 + .35, y1, "ln-m")
-        cv.line(x1 - .35, y0, x1 - .35, y1, "ln-m")
     for x in rails:
-        cv.line(x, y0, x, y1, "rail")
+        cv.line(x, y0 + .2, x, y1 - .2, "rail")
+    if cheek:
+        cv.rect(x0, y0, x0 + .3, y1, "wallp")
+        cv.rect(x1 - .3, y0, x1, y1, "wallp")
+    cv.rect(x0, y0, x1, y1, "ln")
+    if label:
+        xm = (x0 + x1) / 2 + (.9 if rails and abs(rails[0] - (x0 + x1) / 2) < .5 else 0)
+        cv.line(xm, y0 + .6, xm, y1 - .6, "ln", ' marker-end="url(#cp-arrk)"')
+        cv.text(xm + .5, y0 + 1.4, label, "t-sm halo", "start")
 
 
 def truck_r(cv, cx, cy, ang, cls_stripe, L=6.5, Wd=2.5):
@@ -198,12 +318,13 @@ def site_plan(underlay=False):
     cv.rect(X0, 50, X1, Y1, "", pat("water"))
     cv.pline(wade, "ln-f", ' stroke-dasharray="5 3"')
     cv.pline(deep, "ln-f", ' stroke-dasharray="2 4"')
-    land = [(X0, Y0), (X1, Y0)] + coast + PP([(1150, 700), (1100, 712), (1087, 700), (1087, 647), (1022, 637)]) + \
-        prom[4:9] + PP([(55, 700), (36, 700)])
+    land = [(X0, Y0), (X1, Y0)] + coast + PP([(1150, 700), (1100, 712), (1087, 700), (1087, 647), (1043, 653)]) + \
+        PP(SEAWALL_PX) + PP([(55, 700), (36, 700)])
     cv.poly(land, "z-lawn")
     cv.poly(land, "", pat("lawn"))
-    sand = PP([(165, 636), (380, 679), (770, 676), (835, 659), (875, 641), (1022, 641), (1090, 648), (1100, 712),
-               (1068, 752)]) + sh[::-1] + PP([(150, 820), (160, 760), (175, 700), (170, 640)])
+    sand = PP([(170, 635), (382.5, 675), (452.5, 675), (764, 672), (770, 655), (836, 655), (840, 654), (875, 637),
+               (1038.8, 637), (1043, 653), (1090, 648), (1100, 712), (1068, 752)]) + sh[::-1] + \
+        PP([(150, 820), (160, 760), (175, 700), (170, 640)])
     cv.poly(sand, "z-sand")
     cv.poly(sand, "", pat("sand"))
     sand_e = PP([(1087, 647), (1170, 640), (1176, 665), (1188, 682), (1150, 690), (1118, 704), (1100, 712), (1090, 700)])
@@ -232,7 +353,6 @@ def site_plan(underlay=False):
         for x in frange(x0 + 2, x1, 7):
             cv.rect(*RP(x, 98, x + 3.5, 132), "zebra")
     cv.rect(*RP(36, 135, 1302, 145), "z-paver")
-    cv.rect(*RP(36, 135, 1302, 145), "", pat("pave"))
     cv.line(*P(36, 135), *P(1302, 135), "ln")
     cv.line(*P(36, 95), *P(1302, 95), "ln-m")
     # non-playable edges
@@ -240,94 +360,95 @@ def site_plan(underlay=False):
         cv.rect(*RP(*b), "z-town")
         cv.rect(*RP(*b), "", pat("hatch"))
     cv.rect(*RP(1252, 142, 1300, 328), "roof")
-    # street-level strip: kiosk zone, forecourt, stage top plaza
-    for b in [(88, 145, 392, 195), (470, 140, 727, 185), (440, 140, 478, 200)]:
-        cv.rect(*RP(*b), "z-paver")
-        cv.rect(*RP(*b), "", pat("pave"))
-    cv.rect(*RP(93, 153, 140, 207), "z-timber")
-    cv.rect(*RP(93, 153, 140, 207), "", pat("board"))
-    cv.rect(*RP(140, 180, 392, 193), "z-lawn")
-    # west lane (stepped slope) + connector to the promenade
-    cv.rect(*RP(88, 145, 142, 600), "z-paver")
-    cv.poly(PP([(88, 590), (142, 590), (172, 600), (172, 636), (142, 632), (88, 610)]), "z-paver")
-    for y in frange(205, 600, 48):
-        for k in range(3):
-            cv.line(*P(88, y + k * 2.4), *P(142, y + k * 2.4), "tread")
-    cv.rect(*RP(110, 210, 140, 305), "z-lawn")
-    # plaza paving (+3.60): west block frontage to the curved path, food trucks included
-    curve_w = offset_pts(curve, -M(16.5))
-    plaza = PP([(347, 200), (478, 200), (478, 287), (727, 287), (727, 192), (952, 192)]) + \
-        [q for q in curve_w] + PP([(1060, 600), (1022, 598), (520, 594), (347, 592)])
-    A(f'<clipPath id="{p}-plz"><path d="{cv.d([("M",) + plaza[0]] + [("L",) + q for q in plaza[1:]] + [("Z",)])}"/></clipPath>')
-    cv.poly(plaza, "z-paver")
-    cv.poly(plaza, "", pat("pave"))
+    # ---- hardscape: one surface per level, filleted junctions, one curb line ----
+    street_g = close_(unary_union([
+        GB(36, 135, 1302, 145), GB(470, 135, 727, 186), GB(88, 135, 392, 196), open_(GB(88, 135, 142, 632), 1.6), GB(120, 600, 142, 632),
+        GB(677, 184, 703, 217), GB(940, 140, 972, 155), GB(1060, 140, 1090, 165)]), 1.2)
+    plaza_core = G([(347, 197), (478, 197), (478, 186), (727, 186), (727, 192), (974, 192), (974, 250), (976, 300), (986, 338),
+                    (1004, 370), (1031, 405), (1060, 434), (1060, 478), (1056, 505), (1062, 540), (1050, 553), (1022, 598),
+                    (520, 594), (347, 592)])
+    junction = G([(1050, 553), (1080, 546), (1100, 546), (1106, 520), (1125, 516), (1160, 512), (1172, 524), (1197, 527),
+                  (1163, 550), (1130, 557), (1088, 572), (1082, 588), (1083, 600), (1076.3, 602.9), (1033, 614.5), (1020, 600),
+                  (1030, 575)])
+    plaza_g = close_(unary_union([plaza_core, GL(CURVE_LINE_PX, 3.25), GB(730, 192, 995, 217), GB(733, 217, 942, 312),
+                                  junction, GL(COAST_LINE_PX, 3.1)]), 2.0)
+    east_g = close_(unary_union([GL(EAST_PATH_PX, 1.2), G([(1188, 410), (1206, 404), (1210, 418), (1195, 422)])]), .8)
+    island = G(PALM_ISLAND_PX)
+    plaza_g = unary_union([plaza_g, east_g, island.buffer(2.5)]).difference(island)
+    top_g = close_(G([(1050, 200), (1094, 200), (1100, 190), (1050, 252)]), .6)
+    prom_g = G(PROM_PX)
+    terr_g = G([(282, 485), (347, 485), (347, 592), (160, 592), (160, 540), (282, 540)])
+    lawn_g = G(LAWN_PX).difference(plaza_g).difference(top_g)
+    deck_g = G(DECK_PX)
+    paved = unary_union([street_g, plaza_g, top_g])
+    for g in (street_g, plaza_g.difference(prom_g), top_g):
+        gd(cv, g, "z-paver")
     cx, cy = P(605, 417)
-    A(f'<g clip-path="url(#{p}-plz)">')
-    cv.circle(cx, cy, M(160) + .4, "z-paver")
-    cv.poly(sector(cx, cy, M(160) - .4, M(160) + .4, 0, 359.9, 90), "band")
-    cv.poly(sector(cx, cy, M(110) - .3, M(110) + .3, 0, 359.9, 80), "band")
-    for k in range(8):
-        a = math.radians(k * 45)
-        cv.line(cx + M(84) * math.cos(a), cy + M(84) * math.sin(a), cx + M(160) * math.cos(a), cy + M(160) * math.sin(a), "ln-m")
-    for r in frange(M(90), M(160), 2.2):
-        cv.circle(cx, cy, r, "joint")
-    A('</g>')
     for i, (u, v, rx, ry, c) in enumerate([(403, 474, 17, 18, "chalk-c"), (498, 453, 14, 18, "chalk-y"),
                                            (715, 486, 25, 24, "chalk-p"), (722, 478, 10, 9, "chalk-c")]):
         q = P(u, v)
         cv.path(cr_cmds(blob(q[0], q[1], M(rx), M(ry), 40 + i, .3, 9)), c, ' fill-opacity=".42"')
-    # food truck zone: walkway, deck, asphalt pad, planter strip
-    cv.rect(*RP(730, 192, 945, 217), "z-paver")
-    cv.rect(*RP(770, 217, 942, 302), "z-road")
-    cv.path(cr_cmds(PP([(733, 230), (745, 219), (770, 218), (770, 302), (733, 302)]), closed=True), "z-timber")
-    cv.rect(*RP(733, 219, 770, 302), "", pat("board"))
-    cv.rect(*RP(733, 302, 940, 312), "bed")
-    # curved path band
-    band(cv, PP(CURVE_PX), M(33))
-    # stage: top plaza, deck, lawn, planting
-    cv.poly(PP([(1050, 155), (1120, 150), (1105, 190), (1047.5, 255), (1047.5, 205)]), "z-paver")
-    cv.poly(PP([(1105, 152), (1212, 150), (1212, 236), (1202.5, 235), (1105, 190)]), "bed")
-    cv.poly(PP(LAWN_PX), "z-lawn")
-    cv.poly(PP(LAWN_PX), "", pat("lawn"))
-    cv.poly(PP(LAWN_PX), "ln-m")
+    # lawn + planting beds trimmed exactly to the curb lines
+    gd(cv, lawn_g, "z-lawn")
+    gd(cv, lawn_g, "", f' fill="url(#{p}-lawn)"')
     for arc in [[(1052, 312), (1072, 352), (1105, 386), (1145, 404), (1182, 392), (1204, 360)],
                 [(1078, 322), (1098, 350), (1128, 368), (1162, 366), (1186, 344)]]:
         cv.path(cr_cmds(PP(arc), closed=False), "ln-m", ' stroke-dasharray="1.2 2.6"')
-    cv.poly(PP(DECK_PX), "z-timber")
+    beds = [
+        (G([(990, 145), (1060, 145), (1060, 200), (1047.5, 200), (1047.5, 292.5), (1032.5, 305), (1030, 330), (1042.5, 360),
+            (1065, 390), (1090, 410), (1120, 422.5), (1150, 430), (1164, 424), (1150, 445), (1110, 445), (1060, 420), (1020, 380),
+            (1000, 330), (995, 250), (990, 200)]), 13),
+        (G([(1092, 150), (1207, 150), (1207, 237), (1100, 190), (1094, 200), (1092, 200)]), 14),
+        (G([(1207, 145), (1250, 145), (1250, 335), (1302, 290), (1302, 404), (1248, 410), (1243, 430), (1212, 425), (1207, 400)]), 15),
+        (G([(1080, 572), (1130, 557), (1163, 551), (1197, 528), (1215, 555), (1198, 585), (1176, 612), (1166, 636),
+            (1086.7, 641.7), (1076.3, 602.9), (1083, 600)]), 17),
+        (G([(1104, 402), (1148, 408), (1150, 430), (1112, 450), (1095, 448)]), 18),
+        (G([(1207, 425), (1243, 430), (1238, 490), (1232, 525), (1215, 555), (1197, 528), (1209, 500), (1207, 460)]), 19),
+        (GB(55, 145, 88, 640), 20), (GB(142, 540, 160, 592), 21), (GB(423, 145, 470, 196), 22)]
+    for g, sd in beds:
+        bed_g(cv, g.difference(paved).difference(prom_g).difference(lawn_g).difference(deck_g), sd)
+    # timber decks
+    for g in (prom_g, terr_g):
+        gd(cv, g, "z-timber")
+        gd(cv, g, "", f' fill="url(#{p}-board)"')
+    gd(cv, GB(93, 153, 140, 207), "z-timber")
+    gd(cv, GB(93, 153, 140, 207), "", f' fill="url(#{p}-board)"')
+    truck_deck = open_(GB(733, 219, 770, 302), 1.2)
+    gd(cv, truck_deck, "z-timber")
+    gd(cv, truck_deck, "", f' fill="url(#{p}-board)"')
+    gd(cv, GB(770, 217, 942, 302), "z-road")
+    gd(cv, deck_g, "z-timber")
     deck = PP(DECK_PX)
     a_, b_ = deck[0], deck[1]
     ux, uy = (b_[0] - a_[0]), (b_[1] - a_[1])
     L_ = math.hypot(ux, uy)
     ux, uy = ux / L_, uy / L_
-    A(f'<clipPath id="{p}-deck"><path d="{cv.d([("M",) + deck[0]] + [("L",) + q for q in deck[1:]] + [("Z",)])}"/></clipPath>')
+    A(f'<clipPath id="{p}-deck"><path d="{gpath(cv, deck_g)}"/></clipPath>')
     A(f'<g clip-path="url(#{p}-deck)">')
     for k in range(0, 40):
         ox_, oy_ = a_[0] - uy * k * 1.0, a_[1] + ux * k * 1.0
         cv.line(ox_ - ux * 10, oy_ - uy * 10, ox_ + ux * 40, oy_ + uy * 40, "pat-s")
     A('</g>')
-    cv.poly(PP(DECK_PX), "ln")
-    strip = PP([(1000, 198), (1047.5, 255), (1047.5, 292.5), (1032.5, 305), (1030, 330), (1042.5, 360), (1065, 390),
-                (1090, 410), (1120, 422.5), (1150, 430), (1120, 445), (1080, 432), (1040, 400), (1015, 368),
-                (1004, 330), (1000, 262)])
-    shrub_bed(cv, strip, seed=13, density=.5, smooth=False)
-    # east path, junction, coastal walk, east planting
-    cv.rect(*RP(1200, 145, 1212, 410), "bed")
-    cv.rect(*RP(1240, 145, 1248, 330), "bed")
-    cv.rect(*RP(1212, 140, 1240, 410), "z-paver")
-    cv.poly(PP([(1150, 405), (1240, 405), (1240, 418), (1205, 428), (1153, 426)]), "z-paver")
-    band(cv, PP(COASTWALK_PX), M(30))
-    cv.poly(PP([(1020, 598), (1052, 560), (1088, 524), (1124, 530), (1142, 556), (1124, 590), (1086, 606), (1020, 606)]), "z-paver")
-    shrub_bed(cv, PP([(1086, 607), (1124, 591), (1150, 577), (1172, 600), (1166, 636), (1092, 643)]), seed=17, density=.5, smooth=False)
-    shrub_bed(cv, PP([(1120, 445), (1150, 432), (1176, 455), (1168, 488), (1136, 500), (1112, 478)]), seed=18, density=.5)
-    shrub_bed(cv, PP([(1196, 470), (1238, 452), (1236, 520), (1214, 552), (1190, 548), (1186, 500)]), seed=19, density=.5)
-    # lifestyle east terrace, west planter strip
-    cv.poly(PP([(980, 405), (1012, 372), (1037, 405), (1063, 447), (1090, 490), (1100, 525), (1088, 560), (1050, 570),
-                (980, 567)]), "z-paver")
-    cv.rect(*RP(825, 380, 842, 565), "bed")
-    # promenade boardwalk
-    cv.poly(prom, "z-timber")
-    cv.poly(prom, "", pat("board"))
-    cv.pline(PP([(142, 592), (520, 594), (1022, 598)]), "ln-m")
+    # deck edge steps (0.60 m in 4 risers) along the top-plaza edge and the lawn edge
+    for (pa, pb) in [(deck[0], deck[5]), (deck[4], deck[3]), (deck[3], deck[2])]:
+        dx, dy = pb[0] - pa[0], pb[1] - pa[1]
+        L = math.hypot(dx, dy)
+        nx, ny = -dy / L, dx / L
+        mid = ((pa[0] + pb[0]) / 2 + nx * .5, (pa[1] + pb[1]) / 2 + ny * .5)
+        if not deck_g.contains(Point(mid)):
+            nx, ny = -nx, -ny
+        for k in (1, 2, 3):
+            o = k * .45
+            seg = LineString([(pa[0] + nx * o, pa[1] + ny * o), (pb[0] + nx * o, pb[1] + ny * o)]).intersection(deck_g)
+            if not seg.is_empty and seg.geom_type == "LineString":
+                (x0_, y0_), (x1_, y1_) = seg.coords[0], seg.coords[-1]
+                cv.line(x0_, y0_, x1_, y1_, "tread")
+    # curb lines: drawn once per surface, after everything that touches them
+    for g in (street_g, plaza_g.difference(prom_g), top_g):
+        gd(cv, g, "curb")
+    for g in (prom_g, terr_g, deck_g, truck_deck):
+        gd(cv, g, "ln")
+    gd(cv, lawn_g, "ln-m")
     # rocks
     cv.poly(PP(WEST_ROCK_PX), "z-wet")
     cv.poly(PP(WEST_ROCK_PX), "", pat("sand"))
@@ -351,13 +472,15 @@ def site_plan(underlay=False):
 
     # ================================================================ built
     A(f'<g id="lyr-built" clip-path="url(#{p}-frm)">')
-    # walls: street edge (kiosk strip, forecourt, truck bed), with stair openings
-    for seg in [[(140, 195), (392, 195)], [(478, 185), (565, 185)], [(642, 185), (727, 185)], [(730, 192), (940, 192)],
-                [(1000, 198), (1047.5, 205)]]:
-        cv.pline(PP(seg), "wall-l")
-    railing(cv, PP([(478, 183), (565, 183)]), 2)
-    railing(cv, PP([(642, 183), (727, 183)]), 2)
-    railing(cv, PP([(140, 193), (392, 193)]), 2.2)
+    # retaining walls along the street edge (0.40 m, poché), openings exactly at the stairs
+    for seg in [[(142, 196), (392, 196)], [(423, 196), (470, 196), (470, 186), (565, 186)], [(642, 186), (677, 186)],
+                [(703, 186), (727, 186), (727, 192), (940, 192)], [(972, 192), (992, 192)], [(972, 149), (1058, 149)],
+                [(1092, 149), (1207, 149)], [(1246.5, 145), (1246.5, 335)]]:
+        wall_line(cv, seg)
+    railing(cv, PP([(470, 184), (565, 184)]), 2)
+    railing(cv, PP([(642, 184), (677, 184)]), 2)
+    railing(cv, PP([(703, 184), (727, 184)]), 2)
+    railing(cv, PP([(142, 194), (392, 194)]), 2.2)
     # kiosks
     for i, b in enumerate([(140, 145, 177, 178), (177, 152, 243, 180), (243, 155, 273, 180)]):
         q = RP(*b)
@@ -368,25 +491,28 @@ def site_plan(underlay=False):
     for (x, y) in [(105, 170), (125, 172), (105, 192), (125, 194)]:
         u, v = P(x, y)
         parasol(cv, u, v, .9, "umb-y", chairs=3, ribs=6)
-    # stairs (risers fitted to the traced footprints)
-    stair_ns(cv, *RP(565, 187, 642, 287), (16, 16), landing=3.1, rails=(P(591, 0)[0], P(616, 0)[0]))
-    stair_ns(cv, *RP(392, 143, 423, 200), (32,), rails=(P(407.5, 0)[0],))
-    stair_ns(cv, *RP(677, 217, 703, 273), (32,), rails=(P(690, 0)[0],))
-    cv.rect(*RP(677, 185, 703, 217), "z-paver")
-    stair_ns(cv, *RP(940, 155, 972, 192), (20,))
-    stair_ns(cv, *RP(1060, 165, 1090, 200), (20,))
-    # planters by the main stair
-    shrub_bed(cv, PP([(478, 187), (565, 187), (565, 287), (552, 287), (552, 236), (478, 236)]), seed=21, density=.45, smooth=False)
-    cv.rect(*RP(478, 236, 552, 287), "z-paver")
+    # stairs (risers fitted to the traced footprints), cheek walls tie into the retaining wall
+    stair_ns(cv, *RP(565, 186, 642, 287), (16, 16), landing=3.1, rails=(P(591, 0)[0], P(616, 0)[0]), label="DN 2 × 16R")
+    stair_ns(cv, *RP(392, 145, 423, 197), (32,), rails=(P(407.5, 0)[0],), label="DN 32R")
+    stair_ns(cv, *RP(677, 217, 703, 273), (32,), rails=(P(690, 0)[0],), label="DN 32R")
+    stair_ns(cv, *RP(940, 155, 972, 192), (20,), label="DN 20R")
+    stair_ns(cv, *RP(1058, 149, 1092, 198), (20,), label="DN 20R")
+    quad_stair(cv, PP(CURVED_STAIR_PX), 11, label=True)
+    wall_line(cv, [(1022, 345), (1036, 380), (1062, 410), (1088, 440)], t=.3)
+    planter_g(cv, G(SAKURA_PLANTER_PX), 140, density=.4, radius=0)
+    planter_g(cv, G(PALM_ISLAND_PX), 141, density=.5, radius=0)
+    planter_g(cv, LineString(PP([(980, 382), (1000, 402), (1028, 432), (1050, 452)])).buffer(1.1), 142, density=.6, radius=0)
+    # planters by the main stair (raised, walled), terrace bench, art block
+    planter_g(cv, G([(478, 188), (565, 188), (565, 287), (552, 287), (552, 236), (478, 236)]), 21, density=.5, radius=0)
     cv.poly(rrect(*P(496, 258), M(44), 1.1, 59), "umb-c")
     cv.poly(rrect(*P(496, 258), M(44), 1.1, 59), "ln-m")
-    for b in [(642, 187, 677, 217), (703, 187, 727, 287), (643, 240, 677, 287)]:
-        shrub_bed(cv, PP([(b[0], b[1]), (b[2], b[1]), (b[2], b[3]), (b[0], b[3])]), seed=b[0], density=.5, smooth=False)
+    for i, b_ in enumerate([(642, 188, 677, 217), (703, 188, 727, 287), (643, 240, 677, 287)]):
+        planter_g(cv, GB(*b_), 30 + i, density=.6, radius=0)
     cv.rect(*RP(643, 217, 677, 240), "chalk-y", ' fill-opacity=".6"')
     cv.rect(*RP(643, 217, 677, 240), "ln-m")
-    shrub_bed(cv, PP([(730, 142), (940, 142), (940, 192), (730, 192)]), seed=23, density=.4, smooth=False)
-    shrub_bed(cv, PP([(423, 143), (470, 143), (470, 185), (478, 200), (423, 200)]), seed=24, density=.3, smooth=False)
-    shrub_bed(cv, PP([(280, 145), (390, 145), (390, 180), (280, 180)]), seed=25, density=.4, smooth=False)
+    for i, b_ in enumerate([(730, 147, 940, 189), (280, 147, 390, 178), (142, 182, 392, 193), (112, 210, 140, 305),
+                            (733, 303, 940, 312), (825, 380, 842, 565)]):
+        planter_g(cv, GB(*b_), 40 + i, density=.55)
     # fashion & goods: roof plan + east stair
     q = RP(142.5, 195, 347.5, 300)
     cv.rect(q[0] + 1.5, q[1] - 1.5, q[2] + 1.5, q[3] - 1.5, "shadow")
@@ -479,20 +605,22 @@ def site_plan(underlay=False):
     for (x, y) in [(1112.5, 204), (1190, 242.5)]:
         u, v = P(x, y)
         cv.rect(u - .8, v - .8, u + .8, v + .8, "solid")
-    quad_treads(cv, PP([(1153, 423), (1200, 425), (1207, 462), (1163, 467)]), 12)
     cv.circle(*P(1105, 165), 1.5, "umb-y")
-    # promenade: rail, steps up to the plaza, beach stairs, pier stair
-    railing(cv, PP(PROM_PX[3:9]), 2)
-    for b in [(520, 594, 628, 602), (753, 598, 790, 614), (865, 595, 902, 607), (267, 593, 300, 601), (350, 593, 410, 601)]:
-        q = RP(*b)
-        cv.rect(*q, "z-paver")
-        for k in range(3):
-            y = q[1] + (q[3] - q[1]) * k / 3
-            cv.line(q[0], y, q[2], y, "tread")
-        cv.rect(*q, "ln-m")
-    stair_ns(cv, *RP(382.5, 677.5, 452.5, 745), (15,), rails=(P(417.5, 0)[0],))
-    stair_ns(cv, *RP(770, 655, 836, 722), (15,), rails=(P(803, 0)[0],))
-    stair_ns(cv, *RP(1022, 605, 1082, 645), (5,))
+    # promenade: rail in segments, full-width steps in every planter opening, stairs on the sea-wall line
+    for seg in [SEAWALL_PX[0:4], SEAWALL_PX[4:7], SEAWALL_PX[7:9]]:
+        railing(cv, PP(seg), 2)
+    for (xa, xb) in [(267, 410), (520, 628), (728, 792), (865, 902)]:
+        top = [P(xa, edge_y(xa)), P(xb, edge_y(xb))]
+        for k in range(4):
+            o = k * .45
+            cv.line(top[0][0], top[0][1] + o, top[1][0], top[1][1] + o, "tread" if 0 < k < 3 else "ln-m")
+    stair_ns(cv, *RP(382.5, 675, 452.5, 745), (15,), rails=(P(417.5, 0)[0],), label="DN 15R")
+    stair_ns(cv, *RP(770, 655, 836, 722), (15,), rails=(P(803, 0)[0],), label="DN 15R")
+    ps = pier_rect(-6.7, 0, -3.75, 3.75)
+    quad_treads(cv, ps, 5)
+    for nn in (-3.6, 3.6):
+        a1, b1 = pier_pt(-6.7, nn), pier_pt(0, nn)
+        cv.line(a1[0], a1[1], b1[0], b1[1], "rail")
     # pier (traced 15 deg heading), head platform, rails, piles
     body = pier_rect(0, 34, -3.75, 3.75)
     head = pier_rect(34, 45.5, -22, 5.2)
@@ -561,22 +689,22 @@ def site_plan(underlay=False):
             (792, 416, 35, 33, "sak", [(792, 416, 33)]),
             (800, 537, 32, 37, "tree", [(800, 537, 32)])]):
         u, v = P(x, y)
-        pts = blob(u, v, M(rx), M(ry), 60 + i, .12, 12)
-        cv.path(cr_cmds(pts), "wall6")
-        shrub_bed(cv, pts, seed=70 + i, density=.6)
+        pts = cr_sample(blob(u, v, M(rx), M(ry), 60 + i, .1, 10), closed=True, per=6)
+        planter_g(cv, Polygon(pts), 70 + i, density=.6, rmin=.5, rmax=.9, radius=0)
         for (a, b, r) in trees_:
             canopy(cv, *P(a, b), M(r), 80 + i + a, kind)
     maneki_big(cv, *P(707, 350), M(23))
     # frontage planters (traced)
-    for b in [(350, 205, 365, 265), (370, 205, 387, 265), (370, 395, 387, 430), (360, 430, 372, 495), (357, 515, 390, 590)]:
-        shrub_bed(cv, PP([(b[0], b[1]), (b[2], b[1]), (b[2], b[3]), (b[0], b[3])]), seed=b[1], density=.9, rmin=.4,
-                  rmax=.7, smooth=False)
-    # promenade planters (traced)
-    for b in [(170, 595, 267, 627), (300, 615, 350, 635), (410, 600, 520, 635), (628, 600, 728, 622), (792, 592, 865, 612),
-              (902, 585, 1022, 608), (737, 300, 780, 345), (830, 335, 865, 365)]:
-        shrub_bed(cv, PP([(b[0], b[1]), (b[2], b[1]), (b[2], b[3]), (b[0], b[3])]), seed=b[0] + 1, density=.8, rmin=.4,
-                  rmax=.8, smooth=False)
-        cv.poly(PP([(b[0], b[1]), (b[2], b[1]), (b[2], b[3]), (b[0], b[3])]), "wall6")
+    for i, b_ in enumerate([(350, 205, 365, 265), (370, 205, 387, 265), (370, 395, 387, 430), (360, 430, 372, 495),
+                            (357, 515, 390, 588)]):
+        planter_g(cv, GB(*b_), 90 + i, density=.9)
+    # promenade-edge planters: north face on the plaza edge, steps fill the openings between them
+    for i, (xa, xb, yb) in enumerate([(170, 267, 627), (410, 520, 635), (628, 728, 622), (792, 865, 612), (902, 1022, 611)]):
+        planter_g(cv, G([(xa, edge_y(xa)), (xb, edge_y(xb)), (xb, yb), (xa, yb)]), 110 + i, density=.8)
+    for i, b_ in enumerate([(300, 615, 350, 635), (737, 300, 780, 345), (830, 335, 865, 365)]):
+        planter_g(cv, GB(*b_), 120 + i, density=.8)
+    for (x, y) in [(1000, 437), (1025, 465), (1022, 540)]:
+        planter_g(cv, Point(*P(x, y)).buffer(1.6), 130 + x, density=.2, radius=0)
     # lamps
     for (x, y) in [(514, 580), (752, 575), (480, 330), (730, 330), (470, 520), (740, 520)]:
         u, v = P(x, y)
@@ -593,16 +721,16 @@ def site_plan(underlay=False):
     trees = [(517, 133, 28), (683, 133, 28), (303, 167, 20), (438, 157, 30), (455, 150, 18), (505, 205, 22),
              (815, 165, 25), (855, 165, 25), (895, 160, 25), (1000, 150, 22), (1035, 135, 25),
              (75, 170, 25), (77, 230, 20), (105, 390, 35), (85, 445, 28), (95, 570, 35), (1035, 222, 30),
-             (1120, 430, 25), (1255, 375, 42)]
+             (1115, 420, 18), (1135, 426, 16), (1255, 375, 42)]
     for i, (x, y, r) in enumerate(trees):
         canopy(cv, *P(x, y), M(r), 200 + i, "tree")
-    for i, (x, y, r) in enumerate([(538, 237, 25), (77, 272, 18), (152, 587, 22), (1155, 172, 15), (1145, 468, 22),
+    for i, (x, y, r) in enumerate([(538, 237, 25), (77, 272, 18), (152, 587, 22), (1155, 172, 15), (1140, 478, 28),
                                    (1235, 480, 30)]):
         canopy(cv, *P(x, y), M(r), 300 + i, "sak")
     palms = [(340, 160, 22), (370, 160, 22), (548, 193, 18), (658, 192, 20), (715, 207, 20), (713, 270, 18), (740, 155, 20),
              (758, 322, 25), (848, 350, 20), (372, 545, 25), (85, 340, 35), (85, 495, 30), (1170, 150, 25), (1195, 170, 22),
              (1005, 290, 25), (1180, 305, 22), (1190, 280, 20), (1190, 355, 20), (1000, 437, 22), (1025, 465, 20),
-             (1022, 540, 20), (1083, 512, 20), (645, 587, 25), (465, 612, 30), (295, 640, 28),
+             (1022, 540, 20), (1080, 512, 22), (645, 587, 25), (465, 612, 30), (295, 640, 28),
              (195, 685, 30), (295, 700, 28), (365, 715, 25), (470, 715, 25), (517, 680, 30), (605, 702, 18), (640, 700, 20),
              (675, 700, 20), (735, 655, 28), (860, 660, 28), (1030, 655, 26), (1157, 600, 30)]
     for i, (x, y, r) in enumerate(palms):
@@ -641,15 +769,15 @@ def site_plan(underlay=False):
              "circ1", f' marker-end="url(#{p}-arr)"')
     for pts in [[(115, 140), (115, 590), (160, 620)], [(407, 140), (407, 205), (400, 260), (350, 300)],
                 [(690, 186), (690, 280), (720, 300)], [(956, 150), (956, 195), (900, 210)],
-                [(1075, 150), (1075, 205), (1120, 230)], [(1226, 140), (1226, 415), (1180, 430), (1182, 470)],
-                [(983, 200), (987, 330), (1037, 405), (1090, 490), (1100, 560)], [(1182, 470), (1160, 520), (1110, 572)],
+                [(1075, 150), (1075, 205), (1120, 230)], [(1238, 140), (1238, 330), (1218, 395), (1196, 418), (1186, 462)],
+                [(974, 200), (976, 300), (1004, 370), (1060, 434), (1102, 490), (1120, 530)], [(1186, 465), (1185, 505), (1150, 545), (1110, 560)],
                 [(640, 420), (842, 455)], [(417, 640), (417, 745), (400, 790)], [(1080, 330), (1120, 360)]]:
         cv.pline(PP(pts), "circ2", f' marker-end="url(#{p}-arr)"')
     A('</g>')
 
     # ================================================================ sightlines
     A(f'<g id="lyr-sight" clip-path="url(#{p}-frm)">')
-    for (a, b, lab, lo) in [((615, 190), (615, 1020), "V1", (8, 18)), ((1226, 140), (1100, 880), "V2", (-26, 30)),
+    for (a, b, lab, lo) in [((615, 190), (615, 1020), "V1", (8, 18)), ((1238, 140), (1100, 880), "V2", (-26, 30)),
                             ((300, 575), (1050, 880), "V3", (6, 26))]:
         pa, pb = P(*a), P(*b)
         cv.line(pa[0], pa[1], pb[0], pb[1], "sight", f' marker-end="url(#{p}-arrt)"')
@@ -689,7 +817,7 @@ def site_plan(underlay=False):
     T(598, 168, "FORECOURT +8.40")
     T(245, 250, "FASHION & GOODS", "t-lbl halo")
     T(245, 262, "2 floors · roof plan")
-    T(245, 452, "ARCADE · interior shown", "t-lbl halo")
+    T(278, 328, "ARCADE · interior shown", "t-lbl halo")
     T(212, 516, "CAFÉ", "t-lbl halo")
     T(258, 584, "CAFÉ TERRACE")
     T(115, 400, "WEST LANE · stepped slope +8.40 → +3.15", rot=-90)
@@ -699,7 +827,7 @@ def site_plan(underlay=False):
     T(956, 150, "20R", anchor="start")
     T(1075, 160, "20R")
     T(605, 372, "CENTRAL PLAZA", "t-zone halo")
-    T(605, 384, "+3.60 · paving ring Ø53")
+    T(605, 384, "+3.60 · open paving Ø53")
     T(605, 503, "planter Ø19 · bench ring Ø27 · tree Ø22")
     T(707, 320, "CAT STATUE")
     T(856, 210, "FOOD TRUCK ZONE", "t-lbl halo")
@@ -710,16 +838,15 @@ def site_plan(underlay=False):
     T(1020, 420, "EAST TERRACE", rot=56)
     T(1110, 270, "SMALL STAGE", "t-lbl halo")
     T(1110, 282, "event deck +4.20 · 26 × 21 m")
-    T(1125, 375, "EVENT LAWN +3.60", "t-lbl halo")
-    T(1226, 300, "EAST PATH · ramp 1:19", rot=90)
-    T(1180, 444, "CURVED STEPS 3R", anchor="end")
-    T(1165, 535, "COASTAL WALK +3.15", rot=-58)
-    T(1000, 300, "CURVED PATH 5.5 m", rot=86)
-    T(1048, 590, "JUNCTION")
+    T(1125, 375, "EVENT LAWN", "t-lbl halo")
+    T(1125, 387, "raked +3.60 → +4.80 · 1:18")
+    T(1238.5, 250, "EAST PATH 2.4 m · 1:36", rot=90)
+    T(1150, 445, "CURVED STEPS 11R", anchor="end")
+    T(1196, 500, "WALK +3.15", rot=-80)
+    T(975, 300, "CURVED PATH 6.5 m", rot=88)
+    T(1135, 538, "JUNCTION")
     T(1105, 176, "TOP PLAZA")
     T(600, 625, "BEACH PROMENADE · +3.15 · 3 steps down from the plaza", "t-zone halo")
-    T(417, 760, "15R")
-    T(803, 737, "15R")
     T(1052, 600, "5R")
     T(560, 830, "BEACH AREA", "t-big halo")
     T(560, 845, "+0.90 → ±0.00")
@@ -731,13 +858,13 @@ def site_plan(underlay=False):
     T(680, 960, "WADE ZONE ±0.00 → −0.90")
     T(680, 1012, "SWIM ZONE")
     T(1285, 700, "SEA", rot=90)
-    for (x, y, letter, lx, anchor) in [(603, 128, "A", 618, "start"), (1226, 142, "B", 1210, "end")]:
+    for (x, y, letter, lx, anchor) in [(603, 128, "A", 618, "start"), (1238.5, 142, "B", 1222, "end")]:
         u, v = P(x, y)
         cv.circle(u, v, 2.2, "acc-f")
         cv.text(u, v + .9, letter, "t-lbl t-inv")
         T(lx, y + 6, f"SPAWN {letter}", "t-lbl t-acc halo", anchor)
     for (x, y, k) in [(540, 110, 1), (540, 400, 2), (160, 320, 3), (160, 500, 4), (160, 212, 5), (758, 205, 6),
-                      (1070, 230, 7), (862, 420, 8), (190, 640, 9), (480, 840, 10), (1135, 800, 11), (1226, 220, 12)]:
+                      (1070, 230, 7), (862, 420, 8), (190, 640, 9), (480, 840, 10), (1135, 800, 11), (1238.5, 205, 12)]:
         key(cv, *P(x, y), k)
     A('</g>')
     if underlay:
@@ -755,7 +882,7 @@ def legend_and_title(cv, p):
     A(f'<g transform="translate({lx} {ly})">')
     A('<rect class="frame-in" width="268" height="650"/>')
     A('<text class="t-head" x="14" y="26">LEGEND</text>')
-    rows = [("z-road", None, "Street · cars only"), ("z-paver", "pave", "Stone paving · 2 m joints"),
+    rows = [("z-road", None, "Street · cars only"), ("z-paver", None, "Paving · plain, texture set in engine"),
             ("z-timber", "board", "Wood deck · promenade, pier, stage"), ("z-lawn", "lawn", "Grass"),
             ("bed", None, "Planting bed · shrubs"), ("z-sand", "sand", "Sand · wet sand at the shoreline"),
             ("z-sea", None, "Wade · ±0.00 to −0.90"), ("z-mid", None, "Swim · −0.90 to −1.60"),
@@ -825,11 +952,11 @@ def legend_and_title(cv, p):
     A(f'<g transform="translate({tx} {ty})">')
     A('<rect class="frame" width="268" height="280"/>')
     A('<text class="t-title" x="14" y="32" style="font-size:15px">Japan Coastal Hangout Park</text>')
-    A('<text class="t-sm" x="14" y="48">Traced from the reference · true scale · rev D</text>')
+    A('<text class="t-sm" x="14" y="48">Traced from the reference · true scale · rev E</text>')
     A('<line class="ln" x1="0" y1="60" x2="268" y2="60"/>')
     fields = [("SHEET", "L-101 Site plan"), ("SCALE", "6 px = 1 m"), ("TRACE", "ref px ÷ 6 = m"),
               ("UNITS", "m · 1 m = 100 UU"), ("DATUM", "±0.00 = sea level"), ("NORTH", "up · sun from SW"),
-              ("REVISION", "D · 2026-10-05"), ("STATUS", "Concept / blockout")]
+              ("REVISION", "E · 2026-10-05"), ("STATUS", "Concept / blockout")]
     for i, (k, v) in enumerate(fields):
         col, row = i % 2, i // 2
         fx_, fy_ = 14 + col * 134, 82 + row * 50
@@ -969,8 +1096,6 @@ def section_bb():
     for (a, b) in [(770, 805), (835, 873), (903, 942)]:
         cv.rect(X(a), Z_PL, X(b), Z_PL + 2.8, "beyond")
     cv.text(X(856), 7.2, "FOOD TRUCKS", "t-sm halo")
-    cv.poly([(X(1047.5), Z_PL), (X(1047.5), 4.2), (X(1202.5), 4.2), (X(1202.5), Z_PL)], "z-timber")
-    cv.text(X(1125), 4.7, "STAGE DECK +4.20 beyond", "t-sm halo")
     cv.rect(X(1212), Z_PL, X(1240), 6.0, "beyond")
     cv.text(X(1226), 6.6, "EAST PATH", "t-sm halo")
     cv.rect(X(1252), 6.0, X(1300), 13, "z-town")
@@ -978,7 +1103,9 @@ def section_bb():
     cv.ellipse(X(707), Z_PL + 2.6, 3.4, .26, "statue")
     # ground cut
     lane_z = 5.25
-    ground = [(-4, lane_z), (X(142.5), lane_z), (X(142.5), Z_PL), (X(1247), Z_PL), (X(1247), -1.0), (207, -1.8)]
+    Z_LT = 4.75  # raked lawn at its south tip; landing +4.80
+    ground = [(-4, lane_z), (X(142.5), lane_z), (X(142.5), Z_PL), (X(1056), Z_PL), (X(1066), Z_LT - .35), (X(1066), Z_LT),
+              (X(1150), Z_LT), (X(1150), 4.8), (X(1247), 4.8), (X(1247), -1.0), (207, -1.8)]
     cv.poly([(X(1247), 0), (207, 0), (207, -1.8), (X(1247), -1.0)], "water")
     cv.line(X(1247), 0, 207, 0, "ln-water")
     poche = ground + [(207, -3.4), (-4, -3.4)]
@@ -1022,21 +1149,28 @@ def section_bb():
     cv.rect(s0 + 3, Z_PL, s1 - 3, Z_PL + 1.0, "prop")
     cv.text((s0 + s1) / 2, 6.6, "LIFESTYLE & SOUVENIR", "t-sm halo")
     palm_elev(cv, X(1000), Z_PL, 6.4, 7)
-    tree_elev(cv, X(1120), Z_PL, 6, 8, 23)
-    cv.rect(X(1107), Z_PL - .02, X(1191), Z_PL + .1, "z-lawn")
-    tree_elev(cv, X(1255), Z_PL, 9, 14, 24)
-    cv.line(X(1246.5), Z_PL, X(1246.5), Z_PL + 1.1, "ln")
-    for x in (X(250), X(450), X(520), cx - 10.4, X(700), X(1010), X(1140), X(1170)):
-        avatar(cv, x, Z_PL + (.45 if abs(x - (cx - 10.4)) < .1 else 0), seated=abs(x - (cx - 10.4)) < .1)
+    cv.rect(X(1065.5), Z_PL, X(1067), Z_LT + .1, "solid")
+    cv.rect(X(1067), Z_LT - .02, X(1098), Z_LT + .1, "z-lawn")
+    cv.rect(X(1047.5), 3.6, X(1202.5), 4.2, "", ' fill="none" stroke="var(--ink-2)" stroke-width=".8" stroke-dasharray="3 2"')
+    cv.text(X(1125), 3.0, "STAGE DECK +4.20 beyond (hidden)", "t-sm halo")
+    tree_elev(cv, X(1120), Z_LT, 6, 8, 23)
+    tree_elev(cv, X(1255), 4.8, 9, 14, 24)
+    cv.line(X(1246.5), 4.8, X(1246.5), 5.9, "ln")
+    for x in (X(250), X(450), X(520), cx - 10.4, X(700), X(1010), X(1085), X(1170)):
+        seat = abs(x - (cx - 10.4)) < .1
+        z = Z_LT if x > X(1066) else Z_PL
+        avatar(cv, x, z + (.45 if seat else 0), seated=seat)
     etag(cv, -3, lane_z, "+5.25 LANE")
     etag(cv, X(420), Z_PL, "+3.60 PLAZA", below=True)
     etag(cv, X(760), Z_ST, "+8.40 STREET beyond")
-    etag(cv, X(1100), 6.6, "+6.60 beyond")
+    etag(cv, X(1035), 6.6, "+6.60 beyond")
     etag(cv, 205, 0, "±0.00", anchor="end")
     hdim(cv, X(142.5), X(347.5), 14.0, f"{X(347.5) - X(142.5):.1f} ARCADE", ext=10.2)
     hdim(cv, X(347.5), X(825), 14.0, f"{X(825) - X(347.5):.1f} PLAZA")
     hdim(cv, X(842), X(980), 14.0, f"{X(980) - X(842):.1f} SHOP", ext=9.4)
-    hdim(cv, X(1107), X(1191), 14.0, f"{X(1191) - X(1107):.1f} LAWN")
+    hdim(cv, X(1066), X(1207), 14.0, f"{X(1207) - X(1066):.1f} LAWN TIP · LANDING")
+    etag(cv, X(1180), 4.8, "+4.80 LANDING")
+    vdim(cv, X(1060), Z_PL, Z_LT, "1.15", side=-1)
     hdim(cv, cx - 13.5, cx + 13.5, 2.0, "Ø27.0 BENCH RING")
     vdim(cv, a0 + 1.6, Z_PL, 9.3, "6.00", side=1)
     vdim(cv, s1 + 1.0, Z_PL, 9.0, "5.40", side=1)
@@ -1195,20 +1329,22 @@ CORRECTIONS = [
     ("NW and E stairs", "9.3–9.5 m long", "32R · tread 0.30", "The traced length matches 4.80 m of rise exactly."),
     ("East stairs to the truck walkway and stage", "≈ 6 m long", "20R · 3.00 m drop", "The street falls toward the station, so these stairs are shorter."),
     ("Seaside steps", "11 × 11 m", "15R · tread 0.80", "2.25 m drop from the promenade; long treads double as seating."),
+    ("Curved steps at the lawn tip", "≈ 10 treads drawn", "11R · raked lawn +3.60 → +4.80",
+     "The flight in the reference needs a 1.65 m drop, so the event lawn rises gently away from the stage (1:18). It also gives the back rows a view over the front."),
     ("Heights", "none (flat image)", "street +8.40 → +6.00 · plaza +3.60 · promenade +3.15 · sand +0.90", "Set from the stair lengths in the reference; see L-201 and L-202."),
 ]
-KEPT = ("Traced sizes at true scale: plaza ring Ø53 m, central planter bed Ø19 m with a Ø27 m bench ring and a Ø22 m tree, "
+KEPT = ("Traced sizes at true scale: open plaza Ø53 m, central planter bed Ø19 m with a Ø27 m bench ring and a Ø22 m tree, "
         "stage deck 26 × 21 m, event lawn ≈ 30 × 22 m, promenade 6–13 m wide, pier 7.5 × 34 m with a 27 × 11.5 m head, "
         "arcade 34 × 27 m, fashion shop 34 × 17.5 m, lifestyle shop 23 × 21 m, beach 30–36 m deep.")
 
 LOCATIONS = [
     (1, "City Street (Entrance)", "+8.40", "E1", "road 6.7 m · forecourt 43 × 7.5 m", "Spawn A at the crosswalk; main stair down from the forecourt."),
-    (2, "Central Plaza", "+3.60", "C–F 2–4", "paving ring Ø53 m", "Planter bed Ø19, bench ring Ø27, tree Ø22, four tree islands, cat statue, chalk art."),
+    (2, "Central Plaza", "+3.60", "C–F 2–4", "open paving Ø53 m", "Planter bed Ø19, bench ring Ø27, tree Ø22, four tree islands, cat statue, chalk art."),
     (3, "Arcade (Indoor)", "+3.60", "A–B 2–3", "34 × 27 m, 6.0 m high", "Interior as in the reference; entry from the plaza on the east."),
     (4, "Café (Indoor + Outdoor)", "+3.60", "A–B 4", "23 × 9 m + L-terrace", "Terrace faces the plaza and the promenade; 5 parasols."),
     (5, "Shop (Fashion / Goods)", "+3.60 / +8.40", "A–B 2", "34 × 17.5 m, 2 floors", "Upper floor opens onto the kiosk strip; east stair to the roof deck."),
     (6, "Food Truck Zone", "+3.60", "F–G 1–2", "36 × 14 m pad + walkway", "4 trucks, 6 parasol tables, string lights, deck on the west end."),
-    (7, "Small Stage (Events)", "deck +4.20, lawn +3.60", "H–J 1–3", "deck 26 × 21 m · lawn ≈ 30 × 22 m", "Deck shape and lawn traced; top plaza and 20R stair from the street."),
+    (7, "Small Stage (Events)", "deck +4.20, lawn +3.60 → +4.80", "H–J 1–3", "deck 26 × 21 m · lawn ≈ 30 × 22 m", "Deck shape and lawn traced; top plaza and 20R stair from the street."),
     (8, "Shop (Lifestyle / Souvenir)", "+3.60", "G–H 3–4", "23 × 21 m + stalls", "Yellow trim, awnings and stall row as traced; east terrace beside the curved path."),
     (9, "Beach Promenade", "+3.15", "A–H 4–5", "146 m long · 6–13 m wide", "3 steps down from the plaza at five openings; rail and lamps along the sea wall."),
     (10, "Beach Area", "+0.90 → ±0.00", "A–H 5–7", "30–36 m deep", "Parasols, hut, surf boards, rocks at the west end."),
@@ -1226,7 +1362,7 @@ METRICS = [
     ("Under the pier", "1.50 m clear", "Avatars (1.30 m) can walk under the deck to the east sand."),
     ("Doorway · interior clear", "3.0 × 3.2 m · ≥ 4.5 m", "Camera boom 3.5 m never clips."),
     ("Swim transition", "depth > 0.90 m", "About 15 m out from the shoreline."),
-    ("Target players", "30–50 per instance", "Plaza ring Ø53 ≈ 2,200 m² plus promenade, lawn and beach."),
+    ("Target players", "30–50 per instance", "Plaza Ø53 ≈ 2,200 m² plus promenade, lawn and beach."),
 ]
 
 NOTES = {
@@ -1262,8 +1398,8 @@ AREAS = {
     "fashion_up": "Fashion shop upper floor +8.40", "fashion": "Fashion shop +3.60", "plaza": "Central plaza +3.60",
     "arcade": "Arcade +3.60", "cafe": "Café +3.60", "terrace": "Café terrace +3.60", "trucks": "Food truck zone + walkway +3.60",
     "lifestyle": "Lifestyle shop +3.60", "east_terrace": "Lifestyle east terrace +3.60", "curved": "Curved path +3.60 → +3.15",
-    "stage_top": "Stage top plaza +3.60", "deck": "Stage deck +4.20", "lawn": "Event lawn +3.60", "east_path": "East side path +6.00 → +3.60",
-    "landing": "Lawn tip landing +3.60", "coast": "Coastal walk +3.15", "junction": "Junction +3.15", "prom": "Beach promenade +3.15",
+    "stage_top": "Stage top plaza +3.60", "deck": "Stage deck +4.20", "lawn": "Event lawn +3.60 → +4.80 (raked)", "east_path": "East side path +6.00 → +4.80",
+    "landing": "Lawn tip landing +4.80", "coast": "Coastal walk +3.15", "junction": "Junction +3.15", "prom": "Beach promenade +3.15",
     "lane": "West lane +8.40 → +3.15", "beach": "Beach +0.90 → ±0.00", "beach_e": "East sand", "rocks_w": "West rocks",
     "rocks_e": "East rocks", "pier": "Pier +2.40", "head": "Pier head +2.40", "sea": "Sea",
 }
@@ -1294,10 +1430,10 @@ LINKS = [
     ("curved", "east_terrace", "Open edge"),
     ("stage_top", "deck", "Deck edge · 4R"),
     ("deck", "lawn", "Open deck edge"),
-    ("curved", "lawn", "Gaps in the lawn's west wall"),
+    ("curved", "lawn", "North end, level with the path"),
     ("east_path", "landing", "Path foot"),
     ("lawn", "landing", "Lawn tip"),
-    ("landing", "coast", "Curved steps · 3R"),
+    ("landing", "coast", "Curved steps · 11R"),
     ("curved", "junction", "Path foot"),
     ("coast", "junction", "Walk foot"),
     ("junction", "prom", "Promenade east end"),
@@ -1383,7 +1519,7 @@ def page(svgs):
 <style>{css}</style>
 <div class="wrap">
 <header>
-  <p class="eyebrow">Level design package · reference layout redrawn to true scale · rev D</p>
+  <p class="eyebrow">Level design package · reference layout redrawn to true scale · rev E</p>
   <h1>Japan Coastal <span class="wave">Hangout Park</span></h1>
   <p class="lede">The reference top view, traced area by area and redrawn at its true scale. The image's 1:500 bar was wrong:
   measured against its road, people and doors, it reads at 6 px per metre, so the park is about 207 × 158 m. Every outline is
@@ -1456,7 +1592,7 @@ def page(svgs):
   </table></div>
 </section>
 
-<footer><span>Japan Coastal Hangout Park · rev D · 2026-10-05</span><span>Source: docs/maps/coastal-hangout-park/build.py</span><span>Standalone SVGs in svg/</span></footer>
+<footer><span>Japan Coastal Hangout Park · rev E · 2026-10-05</span><span>Source: docs/maps/coastal-hangout-park/build.py</span><span>Standalone SVGs in svg/</span></footer>
 </div>
 <script>
 document.querySelectorAll('.zb').forEach(function (b) {{

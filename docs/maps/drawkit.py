@@ -11,25 +11,25 @@ LIGHT = {
     "paper": "#E7EDF0", "sheet": "#FBFCFC", "rule": "#C4D1D8",
     "ink": "#16283A", "ink-2": "#4A5C6F", "ink-3": "#93A3B2",
     "accent": "#D93A55", "teal": "#0D7F8A",
-    "sand": "#F2E1BA", "sea": "#BCE4EB", "sea-deep": "#8CC7D8",
+    "sand": "#FBF7EA", "sea": "#BCE4EB", "sea-deep": "#8CC7D8",
     "lawn": "#CDE4B3", "brick": "#EDD0BD", "paver": "#E1E6EA",
     "conc": "#D3D9DC", "timber": "#E6CFA6", "rock": "#CBC5BC",
     "bldg": "#D5DFE9", "tree": "#9BCA84", "tree-edge": "#58894C",
     "chalk-y": "#F0BE2C", "chalk-p": "#E5539A", "chalk-c": "#24ABCC",
     "sak": "#F5C3D8", "shrub": "#86BB6D", "tree-2": "#7DB268", "foam": "#FFFFFF",
-    "sea-mid": "#A5D6E2", "sand-wet": "#E7D09F", "roof": "#BAC7D4", "roof-2": "#9DAFC1",
+    "sea-mid": "#A5D6E2", "sand-wet": "#F0EAD8", "roof": "#BAC7D4", "roof-2": "#9DAFC1",
 }
 DARK = {
     "paper": "#0A1522", "sheet": "#0F1F31", "rule": "#233A52",
     "ink": "#DCE8F2", "ink-2": "#9EB3C7", "ink-3": "#566F88",
     "accent": "#FF6E86", "teal": "#45C6CF",
-    "sand": "#4A4231", "sea": "#1C4757", "sea-deep": "#133447",
+    "sand": "#5B5A52", "sea": "#1C4757", "sea-deep": "#133447",
     "lawn": "#29452F", "brick": "#4D3732", "paver": "#22354A",
     "conc": "#2B3B4C", "timber": "#463828", "rock": "#3A3F47",
     "bldg": "#1E3550", "tree": "#3D6942", "tree-edge": "#7DAE73",
     "chalk-y": "#D9AA2A", "chalk-p": "#D45591", "chalk-c": "#2E9EBB",
     "sak": "#6A3A50", "shrub": "#33603E", "tree-2": "#2E5535", "foam": "#CFE3EE",
-    "sea-mid": "#173D4F", "sand-wet": "#3D3627", "roof": "#2A4361", "roof-2": "#36537A",
+    "sea-mid": "#173D4F", "sand-wet": "#4C4B45", "roof": "#2A4361", "roof-2": "#36537A",
 }
 FONT_URL = ("https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Condensed:wght@500;600;700"
             "&amp;family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;display=swap")
@@ -151,6 +151,8 @@ SVG_CSS = """
 .string{fill:none;stroke:var(--ink-2);stroke-width:.6;stroke-dasharray:1 2}
 .bulb{fill:var(--chalk-y)}
 .door{fill:none;stroke:var(--ink-2);stroke-width:.6}
+.curb{fill:none;stroke:var(--ink);stroke-width:1.1;stroke-linejoin:round}
+.wallp{fill:var(--ink-2);stroke:var(--ink);stroke-width:.5;stroke-linejoin:miter}
 """
 
 
