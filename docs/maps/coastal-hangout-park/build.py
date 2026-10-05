@@ -172,15 +172,17 @@ CURVE_LINE_PX = [(974, 197), (974, 250), (976, 300), (986, 338), (1004, 370), (1
                  (1102, 490), (1122, 522)]
 COAST_LINE_PX = [(1186, 461), (1189, 495), (1180, 520), (1158, 542), (1132, 556)]
 EAST_PATH_PX = [(1238.5, 145), (1238.5, 330), (1232, 365), (1218, 395), (1200, 414)]
-CURVED_STAIR_PX = [(1150, 428), (1195, 417), (1205, 455), (1168, 466)]
-SAKURA_PLANTER_PX = [(1112, 450), (1150, 444), (1172, 456), (1170, 480), (1162, 505), (1140, 513), (1115, 500), (1108, 475)]
+CURVED_STAIR_PX = [(1153, 432), (1188, 421), (1204, 451), (1167, 463)]
+SAKURA_PLANTER_PX = [(1112, 450), (1146, 443), (1158, 452), (1162, 480), (1159, 505), (1140, 513), (1115, 500), (1108, 475)]
 PALM_ISLAND_PX = [(1060, 478), (1085, 470), (1103, 482), (1104, 515), (1098, 545), (1080, 552), (1062, 540), (1056, 505)]
 CURVE_PX = [(980, 192), (983, 260), (987, 330), (1010, 372), (1037, 405), (1063, 447), (1090, 490), (1106, 528),
             (1098, 562)]
 COASTWALK_PX = [(1182, 462), (1176, 490), (1160, 520), (1140, 548), (1108, 572)]
 DECK_PX = [(1100, 190), (1207, 237), (1163, 320), (1107, 307), (1050, 292), (1050, 252)]
-LAWN_PX = [(1050, 292), (1163, 320), (1196, 332), (1207, 360), (1205, 392), (1197, 408), (1195, 417), (1150, 428),
-           (1148, 408), (1104, 402), (1088, 440), (1062, 410), (1036, 380), (1022, 345), (1012, 318), (1030, 296)]
+LAWN_DECK_PX = [(1048, 292), (1107, 307), (1168, 320)]          # straight: the deck's front edges
+LAWN_EAST_PX = [(1168, 320), (1185, 334), (1200, 350), (1207, 368), (1207, 388), (1200, 405), (1188, 421)]
+LAWN_WEST_PX = [(1153, 432), (1133, 427), (1110, 418), (1090, 407), (1067, 387), (1047, 363), (1033, 337), (1030, 317),
+                (1036, 302), (1048, 292)]                     # stone curb, 5 m planted bank to the curved path
 WEST_ROCK_PX = [(36, 690), (60, 700), (110, 705), (160, 720), (175, 760), (160, 820), (165, 870), (200, 900),
                 (255, 930), (250, 1000), (220, 1023), (36, 1023)]
 EAST_ROCK_PX = [(1112, 700), (1150, 668), (1195, 672), (1215, 700), (1205, 740), (1170, 762), (1128, 758)]
@@ -195,6 +197,15 @@ BOULDERS_E = [(1185, 680, 20), (1160, 705, 20), (1135, 730, 19), (1190, 720, 15)
 ROCKS_SEA_E = [(1252, 571, 10), (1252, 594, 15), (1220, 590, 14)]
 PIER_O = P(1065, 647.5)
 PIER_ANG = 15.0
+
+
+def lawn_poly():
+    pts = PP(LAWN_DECK_PX[:-1]) + cr_sample(PP(LAWN_EAST_PX), per=8) + cr_sample(PP(LAWN_WEST_PX), per=8)[:-1]
+    return Polygon(pts).buffer(0)
+
+
+def lawn_curb_pts():
+    return cr_sample(PP(LAWN_WEST_PX), per=8)
 
 
 def pier_pt(t, nn):
@@ -378,7 +389,7 @@ def site_plan(underlay=False):
     top_g = close_(G([(1050, 200), (1094, 200), (1100, 190), (1050, 252)]), .6)
     prom_g = G(PROM_PX)
     terr_g = G([(282, 485), (347, 485), (347, 592), (160, 592), (160, 540), (282, 540)])
-    lawn_g = G(LAWN_PX).difference(plaza_g).difference(top_g)
+    lawn_g = lawn_poly().difference(plaza_g).difference(top_g)
     deck_g = G(DECK_PX)
     paved = unary_union([street_g, plaza_g, top_g])
     for g in (street_g, plaza_g.difference(prom_g), top_g):
@@ -404,9 +415,10 @@ def site_plan(underlay=False):
             (1086.7, 641.7), (1076.3, 602.9), (1083, 600)]), 17),
         (G([(1104, 402), (1148, 408), (1150, 430), (1112, 450), (1095, 448)]), 18),
         (G([(1207, 425), (1243, 430), (1238, 490), (1232, 525), (1215, 555), (1197, 528), (1209, 500), (1207, 460)]), 19),
-        (GB(55, 145, 88, 640), 20), (GB(142, 540, 160, 592), 21), (GB(423, 145, 470, 196), 22)]
-    for g, sd in beds:
-        bed_g(cv, g.difference(paved).difference(prom_g).difference(lawn_g).difference(deck_g), sd)
+        (GB(55, 145, 88, 640), 20), (GB(1160, 230, 1212, 425), 16), (GB(142, 540, 160, 592), 21), (GB(423, 145, 470, 196), 22)]
+    # one bed surface: neighbouring beds merge, so no seams between them
+    bed_all = unary_union([g for g, sd in beds]).difference(paved).difference(prom_g).difference(lawn_g).difference(deck_g)
+    bed_g(cv, bed_all, 13)
     # timber decks
     for g in (prom_g, terr_g):
         gd(cv, g, "z-timber")
@@ -473,14 +485,14 @@ def site_plan(underlay=False):
     # ================================================================ built
     A(f'<g id="lyr-built" clip-path="url(#{p}-frm)">')
     # retaining walls along the street edge (0.40 m, poché), openings exactly at the stairs
-    for seg in [[(142, 196), (392, 196)], [(423, 196), (470, 196), (470, 186), (565, 186)], [(642, 186), (677, 186)],
+    for seg in [[(347.5, 196), (392, 196)], [(423, 196), (470, 196), (470, 186), (565, 186)], [(642, 186), (677, 186)],
                 [(703, 186), (727, 186), (727, 192), (940, 192)], [(972, 192), (992, 192)], [(972, 149), (1058, 149)],
                 [(1092, 149), (1207, 149)], [(1246.5, 145), (1246.5, 335)]]:
         wall_line(cv, seg)
     railing(cv, PP([(470, 184), (565, 184)]), 2)
     railing(cv, PP([(642, 184), (677, 184)]), 2)
     railing(cv, PP([(703, 184), (727, 184)]), 2)
-    railing(cv, PP([(142, 194), (392, 194)]), 2.2)
+    railing(cv, PP([(347.5, 194), (392, 194)]), 2.2)
     # kiosks
     for i, b in enumerate([(140, 145, 177, 178), (177, 152, 243, 180), (243, 155, 273, 180)]):
         q = RP(*b)
@@ -498,7 +510,7 @@ def site_plan(underlay=False):
     stair_ns(cv, *RP(940, 155, 972, 192), (20,), label="DN 20R")
     stair_ns(cv, *RP(1058, 149, 1092, 198), (20,), label="DN 20R")
     quad_stair(cv, PP(CURVED_STAIR_PX), 11, label=True)
-    wall_line(cv, [(1022, 345), (1036, 380), (1062, 410), (1088, 440)], t=.3)
+    gd(cv, LineString(lawn_curb_pts()).buffer(.15, cap_style="flat", join_style="mitre"), "wallp")
     planter_g(cv, G(SAKURA_PLANTER_PX), 140, density=.4, radius=0)
     planter_g(cv, G(PALM_ISLAND_PX), 141, density=.5, radius=0)
     planter_g(cv, LineString(PP([(980, 382), (1000, 402), (1028, 432), (1050, 452)])).buffer(1.1), 142, density=.6, radius=0)
@@ -510,8 +522,8 @@ def site_plan(underlay=False):
         planter_g(cv, GB(*b_), 30 + i, density=.6, radius=0)
     cv.rect(*RP(643, 217, 677, 240), "chalk-y", ' fill-opacity=".6"')
     cv.rect(*RP(643, 217, 677, 240), "ln-m")
-    for i, b_ in enumerate([(730, 147, 940, 189), (280, 147, 390, 178), (142, 182, 392, 193), (112, 210, 140, 305),
-                            (733, 303, 940, 312), (825, 380, 842, 565)]):
+    for i, b_ in enumerate([(730, 147, 940, 189), (280, 147, 390, 178), (142, 182, 222, 193), (248, 182, 392, 193), (112, 210, 140, 305),
+                            (733, 303, 940, 312), (828, 383, 841, 427)]):
         planter_g(cv, GB(*b_), 40 + i, density=.55)
     # fashion & goods: roof plan + east stair
     q = RP(142.5, 195, 347.5, 300)
@@ -537,6 +549,12 @@ def site_plan(underlay=False):
     for (x, y) in [(194, 370), (210, 395), (260, 360), (290, 410), (327, 380), (277, 450)]:
         u, v = P(x, y)
         cv.circle(u, v, .5, ("chalk-p", "chalk-c")[x % 2])
+    cv.line(*P(226, 195.5), *P(244, 195.5), "gap")
+    cv.line(*P(226, 195.5), *P(244, 195.5), "glass")
+    st = RP(347.5, 333, 354.7, 438)
+    cv.rect(*st, "z-paver")
+    for k in range(4):
+        cv.line(st[0] + k * .4, st[1], st[0] + k * .4, st[3], "tread" if 0 < k < 3 else "ln-m")
     cv.line(*P(347.5, 370), *P(347.5, 400), "gap")
     cv.line(*P(347.5, 370), *P(347.5, 400), "glass")
     door_swing(cv, *P(347.5, 370), 2.0, 0, 90)
@@ -578,21 +596,37 @@ def site_plan(underlay=False):
         cv.rect(q[0] + 1.4, q[1] - 1.4, q[2] + 1.4, q[3] - 1.4, "shadow")
     cv.rect(*RP(895, 378, 980, 405), "roof")
     cv.rect(*RP(842, 405, 980, 505), "roof")
-    cv.rect(*RP(846, 409, 976, 501), "trim-y")
-    cv.rect(*RP(870, 425, 950, 485), "roof-2")
     cv.rect(*RP(912, 367, 942, 380), "prop")
     cv.rect(*RP(842, 505, 980, 530), "roof")
-    for i, b in enumerate([(842, 505, 893, 516), (930, 505, 980, 516), (893, 516, 930, 530)]):
-        cv.rect(*RP(*b), "", pat(("stripey", "stripey", "stripe")[i]))
-        cv.rect(*RP(*b), "ln-m")
-    cv.rect(*RP(842, 530, 980, 567), "z-paver")
-    for i, b in enumerate([(846, 537, 872, 552), (890, 535, 935, 550), (945, 540, 975, 558)]):
-        cv.rect(*RP(*b), "roof")
-        cv.rect(*RP(b[0], b[1], b[2], b[1] + 5), "", pat(("stripe", "stripec", "stripey")[i]))
+    # yellow parapet on the west, south and east edges; plant deck in the NW corner; inner parapet line
+    for b in [(842, 405, 847, 505), (842, 500, 980, 505), (976, 380, 980, 528)]:
+        cv.rect(*RP(*b), "chalk-y")
+    cv.rect(*RP(847, 407, 968, 497), "ln-m")
+    cv.rect(*RP(847, 409, 895, 428), "chalk-y", ' fill-opacity=".55"')
+    for x in (856, 868, 880):
+        cv.rect(*RP(x - 4, 413, x + 4, 423), "prop")
+    # south band: solid yellow canopy, roof garden, centre awning with the pink shop sign
+    cv.rect(*RP(843, 508, 895, 528), "chalk-y")
+    cv.rect(*RP(843, 508, 895, 528), "ln-m")
+    planter_g(cv, GB(913, 507, 955, 527), 150, density=.9, radius=0)
+    cv.rect(*RP(912, 528, 957, 541), "chalk-y")
+    cv.rect(*RP(912, 528, 957, 541), "ln-m")
+    cv.rect(*RP(914, 541, 955, 551), "chalk-p")
+    cv.rect(*RP(914, 541, 955, 551), "ln-m")
+    # forecourt: white stall, mascot photo statue, vending kiosk, planter box
+    cv.rect(*RP(845, 538, 870, 551), "prop")
+    cv.rect(*RP(845, 538, 870, 541), "", pat("stripec"))
+    cv.circle(*P(901, 553), 1.4, "chalk-p")
+    cv.circle(*P(901, 553), 1.4, "ln-m")
+    cv.circle(*P(901, 549), .7, "statue")
+    cv.rect(*RP(968, 533, 982, 543), "prop")
+    planter_g(cv, GB(982, 555, 1008, 565), 151, density=.9)
     door_swing(cv, *P(842, 445), 1.6, 180, 90)
     door_swing(cv, *P(842, 465), 1.6, 180, 270)
     u, v = P(815, 480)
     parasol(cv, u, v, 1.5, "umb-y", chairs=4)
+    for (x, y) in [(823, 452), (830, 505)]:
+        parasol(cv, *P(x, y), .5, "prop", chairs=3, ribs=0)
     for i, (x, y) in enumerate([(1007.5, 507.5)]):
         u, v = P(x, y)
         parasol(cv, u, v, 1.5, "umb-c", chairs=4)
@@ -834,7 +868,7 @@ def site_plan(underlay=False):
     T(856, 296, "4 trucks 6.5 × 2.5 · real size")
     T(911, 452, "LIFESTYLE &", "t-lbl halo")
     T(911, 465, "SOUVENIR")
-    T(911, 563, "STALLS")
+    T(935, 562, "SHOP SIGN · STALL")
     T(1020, 420, "EAST TERRACE", rot=56)
     T(1110, 270, "SMALL STAGE", "t-lbl halo")
     T(1110, 282, "event deck +4.20 · 26 × 21 m")
@@ -864,7 +898,7 @@ def site_plan(underlay=False):
         cv.text(u, v + .9, letter, "t-lbl t-inv")
         T(lx, y + 6, f"SPAWN {letter}", "t-lbl t-acc halo", anchor)
     for (x, y, k) in [(540, 110, 1), (540, 400, 2), (160, 320, 3), (160, 500, 4), (160, 212, 5), (758, 205, 6),
-                      (1070, 230, 7), (862, 420, 8), (190, 640, 9), (480, 840, 10), (1135, 800, 11), (1238.5, 205, 12)]:
+                      (1070, 230, 7), (862, 488, 8), (190, 640, 9), (480, 840, 10), (1135, 800, 11), (1238.5, 205, 12)]:
         key(cv, *P(x, y), k)
     A('</g>')
     if underlay:
@@ -1125,7 +1159,11 @@ def section_bb():
     cv.rect(a0 + .4, 9.0, a1 - .4, 9.3, "arc-y")
     for b in [(187, 217), (250, 270), (280, 300), (310, 345)]:
         cv.rect(X(b[0]), Z_PL, X(b[1]), Z_PL + 1.7, "prop")
-    cv.text((a0 + a1) / 2, 7.8, "ARCADE +3.60 · 5.70 clear", "t-sm halo")
+    cv.rect(a0 + .4, Z_PL, a1 - .4, 4.05, "conc")
+    for u_ in (a0 + .2, a1 - .2):
+        cv.line(u_, 10.2, u_, 11.3, "glass")
+    cv.text((a0 + a1) / 2, 7.8, "ARCADE FFL +4.05 · 5.25 clear", "t-sm halo")
+    cv.text((a0 + a1) / 2, 11.7, "roof terrace +9.60 · glass rail", "t-sm halo")
     # planter, central planter, island, lifestyle shop
     cv.rect(X(370), Z_PL, X(387), Z_PL + .6, "z-lawn")
     cx = X(605)
@@ -1340,7 +1378,7 @@ KEPT = ("Traced sizes at true scale: open plaza Ø53 m, central planter bed Ø19
 LOCATIONS = [
     (1, "City Street (Entrance)", "+8.40", "E1", "road 6.7 m · forecourt 43 × 7.5 m", "Spawn A at the crosswalk; main stair down from the forecourt."),
     (2, "Central Plaza", "+3.60", "C–F 2–4", "open paving Ø53 m", "Planter bed Ø19, bench ring Ø27, tree Ø22, four tree islands, cat statue, chalk art."),
-    (3, "Arcade (Indoor)", "+3.60", "A–B 2–3", "34 × 27 m, 6.0 m high", "Interior as in the reference; entry from the plaza on the east."),
+    (3, "Arcade (Indoor)", "+4.05", "A–B 2–3", "34 × 27 m, parapet +10.20", "Interior as in the reference; game-controller front on the plaza (A-501) with 3 entrance steps; roof terrace +9.60."),
     (4, "Café (Indoor + Outdoor)", "+3.60", "A–B 4", "23 × 9 m + L-terrace", "Terrace faces the plaza and the promenade; 5 parasols."),
     (5, "Shop (Fashion / Goods)", "+3.60 / +8.40", "A–B 2", "34 × 17.5 m, 2 floors", "Upper floor opens onto the kiosk strip; east stair to the roof deck."),
     (6, "Food Truck Zone", "+3.60", "F–G 1–2", "36 × 14 m pad + walkway", "4 trucks, 6 parasol tables, string lights, deck on the west end."),
@@ -1396,7 +1434,7 @@ NOTES = {
 AREAS = {
     "sidewalk": "Street sidewalk +8.40 → +6.00", "forecourt": "Forecourt +8.40", "kiosks": "Kiosk strip +8.40",
     "fashion_up": "Fashion shop upper floor +8.40", "fashion": "Fashion shop +3.60", "plaza": "Central plaza +3.60",
-    "arcade": "Arcade +3.60", "cafe": "Café +3.60", "terrace": "Café terrace +3.60", "trucks": "Food truck zone + walkway +3.60",
+    "arcade": "Arcade +4.05", "arcade_roof": "Arcade roof terrace +9.60", "cafe": "Café +3.60", "terrace": "Café terrace +3.60", "trucks": "Food truck zone + walkway +3.60",
     "lifestyle": "Lifestyle shop +3.60", "east_terrace": "Lifestyle east terrace +3.60", "curved": "Curved path +3.60 → +3.15",
     "stage_top": "Stage top plaza +3.60", "deck": "Stage deck +4.20", "lawn": "Event lawn +3.60 → +4.80 (raked)", "east_path": "East side path +6.00 → +4.80",
     "landing": "Lawn tip landing +4.80", "coast": "Coastal walk +3.15", "junction": "Junction +3.15", "prom": "Beach promenade +3.15",
@@ -1406,9 +1444,10 @@ AREAS = {
 LINKS = [
     ("sidewalk", "forecourt", "Open frontage"),
     ("sidewalk", "kiosks", "Open frontage"),
-    ("kiosks", "fashion_up", "Upper-floor door from the kiosk strip"),
+    ("kiosks", "fashion_up", "Upper-floor shopfront on the kiosk strip"),
+    ("fashion_up", "arcade_roof", "Door and 8R stair onto the arcade roof"),
     ("fashion_up", "fashion", "Stair inside the shop"),
-    ("plaza", "fashion_up", "East stair to the roof deck · 16R"),
+    ("plaza", "fashion_up", "Glazed stair core, SE corner · 2 × 16R"),
     ("forecourt", "plaza", "Main stair · 12.8 m · 2 × 16R + landing"),
     ("forecourt", "plaza", "E stair · 4.3 m · 32R"),
     ("sidewalk", "plaza", "NW stair · 5.2 m · 32R"),
@@ -1418,7 +1457,7 @@ LINKS = [
     ("sidewalk", "lane", "West lane top"),
     ("lane", "prom", "Lane foot connector"),
     ("plaza", "fashion", "East doors"),
-    ("plaza", "arcade", "East doors"),
+    ("plaza", "arcade", "East doors · 3 steps"),
     ("plaza", "cafe", "Terrace edge and door"),
     ("cafe", "terrace", "Open front"),
     ("terrace", "prom", "Open edge"),

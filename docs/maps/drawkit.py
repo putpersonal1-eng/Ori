@@ -348,11 +348,11 @@ def section_bubble(cv, px, py, letter, angle):
 
 
 # ===================================================================== export
-def wrap(body, w, h, label, standalone=False):
+def wrap(body, w, h, label, standalone=False, extra_css="", extra_tokens=None):
     style = ""
     if standalone:
-        tokens = dict(LIGHT, **FONTS)
-        css = re.sub(r"var\(--([\w-]+)\)", lambda m: tokens[m.group(1)], SVG_CSS)
+        tokens = dict(LIGHT, **FONTS, **(extra_tokens or {}))
+        css = re.sub(r"var\(--([\w-]+)\)", lambda m: tokens[m.group(1)], SVG_CSS + extra_css)
         body = re.sub(r"var\(--([\w-]+)\)", lambda m: tokens[m.group(1)], body)
         style = f"<style>@import url('{FONT_URL}');{css}</style>"
     xmlns = ' xmlns="http://www.w3.org/2000/svg"'
