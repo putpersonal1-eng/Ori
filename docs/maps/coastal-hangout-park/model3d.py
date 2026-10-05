@@ -18,6 +18,8 @@ from shapely.prepared import prep
 
 import elev
 import kit3d as K
+from interior3d import build_arcade_interior
+from landmark import build_landmark
 
 COL = {
     "paver": "#E3E6E8", "street": "#CDD3D8", "road": "#6E7780", "timber": "#C9935C", "timber-2": "#A87A4C",
@@ -30,6 +32,10 @@ COL = {
     "tree": "#6DAA55", "tree-2": "#5B9A49", "sak": "#F4B8D1", "palm": "#5E9A4A", "trunk": "#8A6A4A", "mint": "#A9DCC6",
     "thatch": "#CFA866", "plaster": "#F6F3EC", "kawara": "#3B4352", "verm": "#D9432F", "gold": "#C9A24A",
     "portal": "#AEB6BF", "indigo": "#2E3FB0", "wood-d": "#7E5234", "arc": "#D8343F", "arc-2": "#B72632",
+    "in-wall": "#2A1752", "in-floor": "#160F2A", "in-ceil": "#120C22", "cab": "#1F6E7C", "cab-2": "#174E5A",
+    "drum": "#D9D3EE", "navy-d": "#1B2A4A", "neon-p": "#FF5FC8", "neon-g": "#9BFF5A", "neon-c": "#3FE6F0",
+    "neon-y": "#FFE45A", "neon-v": "#9B6BFF",
+    "ori-p": "#3A1A7A", "ori-l": "#E6D9FF", "jet": "#E8F6FF",
     "tile-b": "#2F6DB5", "brick": "#CFA088", "stone-w": "#EEEAE2", "warm": "#FFE3A8", "facade": "#DCE1E6", "rubber": "#23262B",
 }
 
@@ -41,9 +47,11 @@ class Scene:
         self.slabs, self.boxes, self.cyls, self.prisms = [], [], [], []
         self.segs, self.exts, self.tori, self.texts, self.plates = [], [], [], [], []
         self.trees, self.shrubs, self.labels, self.rocks = [], [], [], []
+        self.eggs = []
         self.hard = []          # (polygon, hspec) for level lookups
         self._prep = None
         self.terrain = None
+        self.lights = []
 
     # ------------------------------------------------------------- data
     def c(self, name):
@@ -65,13 +73,23 @@ class Scene:
             [q for q in getattr(g, "geoms", []) if isinstance(q, Polygon)]
         return [q for q in parts if q.area > .02]
 
-    def slab(self, g, top, color, mat="std", bot=-1.0, hard=True, vh=None):
+    def slab(self, g, top, color, mat="std", bot=-1.0, hard=True, vh=None, skirt=True, soft=True):
         """Ground surface: polygon with a height spec (number, axis profile) or per-vertex heights."""
-        if not hard and mat == "std":
+        if not hard and mat == "std" and soft:
             mat = "soft"
+        if isinstance(top, dict) and vh is None:
+            # sloped profile: cut into cells so the surface follows the profile between the outline's corners
+            self.grid_slab(g, lambda x, z, t=top: self.h_eval(t, x, z), color, mat, cell=3.0, bot=bot)
+            if hard:
+                for q in self.polys(g):
+                    self.hard.append((q, top))
+                self._prep = None
+            return
         for q in self.polys(g):
             rec = {"o": self.ring(q.exterior.coords), "h": [self.ring(r.coords) for r in q.interiors],
                    "c": self.c(color), "m": mat, "b": bot}
+            if not skirt:
+                rec["ns"] = 1
             if vh is not None:
                 rec["vo"] = [round(vh(x, z), 2) for x, z in rec["o"]]
                 rec["vh"] = [[round(vh(x, z), 2) for x, z in r] for r in rec["h"]]
@@ -81,6 +99,25 @@ class Scene:
             if hard:
                 self.hard.append((q, top))
                 self._prep = None
+
+    def grid_slab(self, g, vh, color, mat="std", cell=2.0, bot=-1.0):
+        """Per-vertex-height ground cut into cells, so the surface follows vh inside the outline too
+        (an outline-only triangulation stretches flat planes across level changes)."""
+        g = g.buffer(0)
+        if g.is_empty:
+            return
+        pg = prep(g)
+        x0, z0, x1, z1 = g.bounds
+        for i in range(math.floor(x0 / cell), math.ceil(x1 / cell)):
+            for j in range(math.floor(z0 / cell), math.ceil(z1 / cell)):
+                c = box(i * cell, j * cell, (i + 1) * cell, (j + 1) * cell)
+                if not pg.intersects(c):
+                    continue
+                inside = pg.contains(c)
+                q = c if inside else c.intersection(g)
+                if q.area < .01:
+                    continue
+                self.slab(q, None, color, mat, bot=bot, hard=False, vh=vh, skirt=not inside, soft=False)
 
     def prism(self, g, y0, y1, color, mat="std", shadow=True):
         for q in self.polys(g, .02):
@@ -119,12 +156,19 @@ class Scene:
         for a, b in zip(pts, pts[1:]):
             self.seg(a, b, r, color, mat, n)
 
-    def ext(self, plane, pts, off, depth, color, mat="std", bevel=0.0):
-        self.exts.append([plane, [[round(a, 3), round(b, 3)] for a, b in pts], round(off, 3), round(depth, 3),
-                          self.c(color), mat, round(bevel, 3)])
+    def ext(self, plane, pts, off, depth, color, mat="std", bevel=0.0, holes=None):
+        e = [plane, [[round(a, 3), round(b, 3)] for a, b in pts], round(off, 3), round(depth, 3), self.c(color), mat, round(bevel, 3)]
+        if holes:
+            e.append([[[round(a, 3), round(b, 3)] for a, b in h] for h in holes])
+        self.exts.append(e)
 
     def torus(self, x, y, z, R, r, arc, rz, ry, color, mat="gloss"):
         self.tori.append([round(x, 3), round(y, 3), round(z, 3), R, r, arc, rz, ry, self.c(color), mat])
+
+    def egg(self, x, y, z, r, hs, face, color, lining, mat="gloss"):
+        """Egg chair shell: sphere of radius r (centre x, y, z) stretched hs in height, open towards face (deg, atan2 z/x)."""
+        self.eggs.append([round(x, 3), round(y, 3), round(z, 3), round(r, 3), round(hs, 3), round(face, 1),
+                          self.c(color), self.c(lining), mat])
 
     def text(self, txt, x, y, z, size, depth, ry, color, mat="gloss", align="c"):
         self.texts.append([txt, round(x, 3), round(y, 3), round(z, 3), size, depth, ry, self.c(color), mat, align])
@@ -151,6 +195,14 @@ class Scene:
                 return h0 + (h1 - h0) * (t - t0) / (t1 - t0)
         return pts[-1][1]
 
+    def level_in(self, x, z):
+        """Height of the hard surface at (x, z), or None when no hard surface covers the point."""
+        if self._prep is None:
+            self._prep = [(prep(q.buffer(.01)), q, s) for q, s in self.hard]
+        p = Point(x, z)
+        hs = [self.h_eval(s, x, z) for pg, q, s in self._prep if pg.contains(p)]
+        return max(hs) if hs else None
+
     def level_at(self, x, z, default=None):
         if self._prep is None:
             self._prep = [(prep(q.buffer(.01)), q, s) for q, s in self.hard]
@@ -167,9 +219,11 @@ class Scene:
                 bd, best = d, self.h_eval(s, x, z)
         return best
 
-    def idw_builder(self, step=2.0):
+    def idw_builder(self, step=2.0, skip=()):
         pts, hs = [], []
-        for q, s in self.hard:
+        for i, (q, s) in enumerate(self.hard):
+            if i in skip:
+                continue
             for r in [q.exterior] + list(q.interiors):
                 L = r.length
                 k = max(4, int(L / step))
@@ -189,8 +243,8 @@ class Scene:
 
     def data(self):
         return {"pal": self.pal, "slabs": self.slabs, "prisms": self.prisms, "boxes": self.boxes, "cyls": self.cyls,
-                "segs": self.segs, "exts": self.exts, "tori": self.tori, "texts": self.texts, "plates": self.plates,
-                "trees": self.trees, "shrubs": self.shrubs, "labels": self.labels, "rocks": self.rocks, "terrain": self.terrain,
+                "segs": self.segs, "exts": self.exts, "tori": self.tori, "texts": self.texts, "plates": self.plates, "eggs": self.eggs,
+                "trees": self.trees, "shrubs": self.shrubs, "labels": self.labels, "rocks": self.rocks, "terrain": self.terrain, "lights": self.lights,
                 "views": VIEWS, "sun": [80, 140, 120], "center": [100, 0, 70]}
 
 
@@ -205,6 +259,9 @@ VIEWS = {
     "lifestyle": {"name": "Lifestyle & Souvenir from the promenade", "pos": [124.0, 5.4, 93.0], "tgt": [143.0, 6.0, 64.0], "fov": 58},
     "stage": {"name": "Stage and event lawn from the curved path", "pos": [163.0, 7.4, 62.0], "tgt": [180.0, 4.8, 36.0], "fov": 58},
     "beach": {"name": "Beach, promenade and pier", "pos": [70.0, 12.0, 160.0], "tgt": [110.0, 2.5, 105.0], "fov": 55},
+    "arcade_in": {"name": "Arcade interior from the doors", "pos": [46.2, 5.9, 51.7], "tgt": [30.0, 6.4, 50.0], "fov": 72},
+    "arcade_in2": {"name": "Arcade interior: LED wall and tower", "pos": [35.5, 6.4, 62.7], "tgt": [27.0, 6.4, 44.0], "fov": 70},
+    "landmark": {"name": "Ori logo landmark from the main stair", "pos": [90.6, 7.4, 37.5], "tgt": [90.8, 6.6, 57.0], "fov": 52},
 }
 
 
@@ -302,7 +359,62 @@ def street_level(b):
     return f
 
 
-def build_ground(sc, b):
+def wall_line_z(b, rec):
+    """Northernmost street retaining wall at each x (m): the street is north of it, the park south."""
+    spans = []
+    for px_pts, t in rec["wall"]:
+        pts = b.PP(px_pts)
+        for (xa, za), (xb, zb) in zip(pts, pts[1:]):
+            if abs(zb - za) < .5 and abs(xb - xa) > .5:
+                spans.append((min(xa, xb), max(xa, xb), (za + zb) / 2))
+
+    def f(x):
+        zs = [z for a, c, z in spans if a - .01 <= x <= c + .01]
+        if zs:
+            return min(zs)
+        # stair openings and building ends: carry the nearest wall line across, so the strip
+        # between the sidewalk and the wall stays at street level instead of sinking to the plaza
+        if not spans:
+            return None
+        return min(spans, key=lambda s_: max(s_[0] - x, x - s_[1]))[2]
+    return f
+
+
+def stair_footprints(rec):
+    parts = [box(x0, y0, x1, y1) for (x0, y0, x1, y1, *_r) in rec["stair"]]
+    parts += [Polygon(q).buffer(0) for q, *_r in rec["quad"]] + [Polygon(q).buffer(0) for q, *_r in rec["treads"]]
+    return unary_union(parts)
+
+
+def ring_sign(R_out, R_in, uc, yc, gap_mid=-60.0, gap=44.0, n=56):
+    """Flat ring logo with a notch, in face coordinates (u right, y up)."""
+    a0, a1 = gap_mid + gap / 2, gap_mid + 360 - gap / 2
+    outer = [(uc + R_out * math.cos(math.radians(a0 + (a1 - a0) * i / n)), yc + R_out * math.sin(math.radians(a0 + (a1 - a0) * i / n)))
+             for i in range(n + 1)]
+    inner = [(uc + R_in * math.cos(math.radians(a1 - (a1 - a0) * i / n)), yc + R_in * math.sin(math.radians(a1 - (a1 - a0) * i / n)))
+             for i in range(n + 1)]
+    return outer + inner
+
+
+BLDG_PX = ((142.5, 195, 347.5, 300), (142.5, 300, 347.5, 485), (142.5, 485, 282.5, 540), (842, 378, 980, 530), (140, 145, 273, 180))
+
+
+def bldg_footprints(b):
+    """Fashion, arcade, café, lifestyle and the kiosk row (metres)."""
+    return unary_union([box(*b.P(x0, y0), *b.P(x1, y1)) for (x0, y0, x1, y1) in BLDG_PX])
+
+
+def footprints(b, rec):
+    """Areas that carry their own structure, so no soil is laid over them."""
+    P = b.P
+    parts = [box(x0, y0, x1, y1) for (x0, y0, x1, y1, *_r) in rec["stair"]]
+    parts += [Polygon(q).buffer(0) for q, *_r in rec["quad"]] + [Polygon(q).buffer(0) for q, *_r in rec["treads"]]
+    parts += [g for g, *_r in rec["planter"]]
+    parts.append(bldg_footprints(b))
+    return unary_union(parts).buffer(.02)
+
+
+def build_ground(sc, b, rec):
     P, GB = b.P, b.GB
     hs = b.hardscape()
     X0, Y0, X1, Y1 = b.X0, b.Y0, b.X1, b.Y1
@@ -319,24 +431,36 @@ def build_ground(sc, b):
     sc.slab(GB(36, 95, 1302, 135), {"ax": street_prof["ax"], "pts": [[t, h - .15] for t, h in street_prof["pts"]]}, "road")
     lane_box = GB(88, 196, 142, 640)
     lane = hs["street"].intersection(lane_box)
-    sc.slab(hs["street"].difference(lane_box), street_prof, "street")
+    sfp = stair_footprints(rec)                     # stairs carry their own treads: no paving over them
+    n_st = len(sc.hard)
+    sc.slab(hs["street"].difference(lane_box).difference(sfp), street_prof, "street")
     sc.slab(lane, ax_y([(135, 8.4), (632, 3.15)]), "street")
+    street_idx = set(range(n_st, len(sc.hard)))
     east = hs["east"]
-    plaza = hs["plaza"].difference(east)
-    cut = P(1040, 0)[0]
-    sc.slab(plaza.intersection(box(-50, -50, cut, 300)), 3.6, "paver")
-    sc.slab(plaza.difference(box(-50, -50, cut, 300)), ax_y([(470, 3.6), (560, 3.15)]), "paver")
+    plaza = hs["plaza"].difference(east).difference(sfp)
+    # the east end of the plaza falls 0.45 m toward the promenade; the fall fades in over 14 m so there is no seam
+    cut, blend = P(1040, 0)[0], 14.0
+    za, zb = P(0, 470)[1], P(0, 560)[1]
+
+    def plaza_h(x, z):
+        s_ = min(max((z - za) / (zb - za), 0.0), 1.0)
+        w_ = min(max((x - (cut - blend)) / blend, 0.0), 1.0)
+        return 3.6 - .45 * s_ * w_
+    flat = box(-50, -50, cut - blend, 300)
+    sc.slab(plaza.intersection(flat), 3.6, "paver")
+    east_pl = plaza.difference(flat)
+    sc.grid_slab(east_pl, plaza_h, "paver", "std", cell=2.0)
+    sc.hard.append((east_pl, plaza_h))
+    sc._prep = None
     sc.slab(east, ax_y([(145, 6.0), (414, 4.8)]), "paver")
-    sc.slab(hs["top"], 3.6, "paver")
-    o = P(1107, 307)
-    t = P(1172, 426)
-    L = math.hypot(t[0] - o[0], t[1] - o[1])
-    sc.slab(hs["lawn"], {"ax": [o[0], o[1], (t[0] - o[0]) / L, (t[1] - o[1]) / L], "pts": [[0, 3.6], [L, 4.8]]}, "lawn")
+    sc.slab(hs["top"].difference(sfp), 3.6, "paver")
+    sc.slab(hs["lawn"], 3.6, "lawn")                # event lawn level with the plaza (no longer raked)
     sc.slab(hs["prom"], 3.15, "timber")
     sc.slab(hs["terr"], 3.66, "timber")
     sc.slab(GB(93, 153, 140, 207), 8.42, "timber")
-    sc.slab(b.open_(GB(733, 219, 770, 302), 1.2), 3.67, "timber")
-    sc.slab(GB(770, 217, 942, 302), 3.62, "brick", "ground")
+    dy = b.TRUCK_DY
+    sc.slab(b.open_(GB(733, 219 + dy, 770, 302 + dy), 1.2), 3.67, "timber")
+    sc.slab(GB(770, 217 + dy, 942, 302 + dy), 3.62, "brick", "ground")
     sc.hard.append((hs["deck"], 4.2))
     # beach: +0.95 at the sea wall sloping into the water, then a shallow shelf
     sh = b.cr_sample(b.PP(b.SHORE_PX), per=8)
@@ -347,23 +471,37 @@ def build_ground(sc, b):
     def sand_h(x, z):
         dw, ds = wall_l.distance(Point(x, z)), shore_l.distance(Point(x, z))
         return .95 * ds / (ds + dw + 1e-6) - .2
-    sc.slab(sand.segmentize(3.0), None, "sand", "ground", bot=-3, vh=sand_h, hard=False)
+    sc.grid_slab(sand, sand_h, "sand", "ground", cell=3.0, bot=-3)
     sc.hard.append((sand, sand_h))
     shelf = Polygon(sh + b.offset_pts(sh, -18)[::-1]).buffer(0).difference(sand)
 
     def shelf_h(x, z):
         return -.2 - 1.5 * min(1.0, shore_l.distance(Point(x, z)) / 18)
-    sc.slab(shelf.segmentize(3.0), None, "sand-wet", "ground", bot=-3, vh=shelf_h, hard=False)
+    sc.grid_slab(shelf, shelf_h, "sand-wet", "ground", cell=3.0, bot=-3)
     sc.slab(Polygon(b.PP(b.WEST_ROCK_PX)), .9, "sand", "ground", bot=-3, hard=False)
-    idw = sc.idw_builder()
+    idw_all = sc.idw_builder()
+    idw_low = sc.idw_builder(skip=street_idx)
+    wz = wall_line_z(b, rec)
+    st = street_level(b)
+
+    def idw(x, z):
+        """Ground level for soil: street level north of the retaining walls, park level south of them."""
+        w = wz(x)
+        if w is None:
+            return idw_all(x, z)
+        return st(x) if z < w else idw_low(x, z)
     coast = b.cr_sample(b.PP(b.COAST_PX), per=6)
     land = Polygon([(X0, Y0), (X1, Y0)] + coast + b.PP([(1150, 700), (1100, 712), (1087, 700), (1087, 647), (1043, 653)]) +
                    b.PP(b.SEAWALL_PX) + b.PP([(55, 700), (36, 700)])).buffer(0)
     covered = unary_union([q for q, s in sc.hard])
     rest = land.difference(covered).difference(sand).intersection(frame)
     beds = hs["beds"].intersection(frame)
-    soil = unary_union([beds, rest]).buffer(0)
-    sc.slab(soil.segmentize(2.0), None, "bed", vh=lambda x, z: idw(x, z) + .1, hard=False)
+    soil = unary_union([beds, rest]).buffer(0).difference(footprints(b, rec))
+    # split at the street retaining-wall line so no cell spans the drop between street and park
+    xs = np.arange(X0 - 1, X1 + 1.01, .25)
+    north = Polygon([(X0 - 1, Y0 - 5)] + [(x, wz(x)) for x in xs] + [(X1 + 1, Y0 - 5)]).buffer(0)
+    for part in (soil.intersection(north), soil.difference(north)):
+        sc.grid_slab(part, lambda x, z: idw(x, z) + .1, "bed", "soft", cell=2.0)
     # stone kerbs where planting meets paving
     paved = unary_union([hs["paved"], hs["prom"], hs["terr"]])
     edge = soil.boundary.intersection(paved.buffer(.05))
@@ -387,10 +525,11 @@ def build_walls(sc, b, rec):
         sc.plate_poly(cap, lambda x, z, top=top: top(x, z) + .1, "cream", "stone", t=.1)
     # sea wall: three runs between the stair openings, stone face, coping
     sw = b.SEAWALL_PX
+    sfp = stair_footprints(rec).buffer(.02)
     for run in (sw[0:4], sw[4:7], sw[7:9]):
         line = LineString(b.PP(run))
-        sc.prism(line.buffer(.35, cap_style="flat", join_style="mitre"), -1.6, 3.2, "conc-2", "stone")
-        sc.prism(line.buffer(.42, cap_style="flat", join_style="mitre"), 3.2, 3.3, "cream", "stone")
+        sc.prism(line.buffer(.35, cap_style="flat", join_style="mitre").difference(sfp), -1.6, 3.2, "conc-2", "stone")
+        sc.prism(line.buffer(.42, cap_style="flat", join_style="mitre").difference(sfp), 3.2, 3.3, "cream", "stone")
     # mural walls facing the plaza under the forecourt, LED tickers on top
     zf = (186 - 75) / 6 + .2 + .03
     for i, (a, c) in enumerate(((68.33, 84.17), (97.0, 111.17))):
@@ -405,34 +544,67 @@ def build_props(sc, b, rec, idw):
     rnd = random.Random(7)
     lv = sc.level_at
 
+    wz_, st_ = wall_line_z(b, rec), street_level(b)
+
     def base_at(x, z):
-        v = lv(x, z, None)
+        v = sc.level_in(x, z)
+        w = wz_(x)
+        if v is not None and w is not None and z < w - .05 and v < st_(x) - 1.0:
+            v = None                                  # park paving that runs under the street wall: use street level
         return idw(x, z) if v is None else v
+    bl = bldg_footprints(b)
+    walls = unary_union([LineString(b.PP(px)).buffer(t / 2, cap_style="flat", join_style="mitre") for px, t in rec["wall"]])
+    keep_out = unary_union([stair_footprints(rec), bl, walls]).buffer(.06)
     for g, seed, dens in rec["planter"]:
-        c = g.representative_point()
-        y = base_at(c.x, c.y)
-        inner = K.planter_hq(sc, g, y)
-        scatter(sc, inner, y + .5, rnd, dens * .5, .35, .7)
+        if bl.contains(g.centroid):
+            continue                                  # roof gardens: the building builds its own
+        g = g.difference(keep_out)                    # copings stop short of stair cheeks, walls and facades
+        for q in getattr(g, "geoms", [g]):
+            if q.area < .5:
+                continue
+            inner = K.planter_ground(sc, q, base_at)
+            scatter(sc, inner, None, rnd, dens * .5, .35, .7, idw=lambda x, z: base_at(x, z) + .38)
     hs = b.hardscape()
     scatter(sc, hs["beds"], None, rnd, .16, .45, 1.0, idw=idw)
     # trees sit on their planting: planter soil (+0.48), bed soil, lawn or sand
-    planters = [(prep(g), base_at(*g.representative_point().coords[0]) + .48) for g, _, _ in rec["planter"]]
+    planters = [prep(g) for g, _, _ in rec["planter"]]
 
     def tree_base(x, z):
         p = Point(x, z)
-        for pg, y in planters:
+        for pg in planters:
             if pg.contains(p):
-                return y
+                return base_at(x, z) + .48
         return base_at(x, z) + .1
+    st = street_level(b)
+    gate = unary_union([box(x - .4, b.GATE_Y - .4, x + .4, b.GATE_Y + .4) for x in b.GATE_X])
+    obst = [(bl, 99.0), (gate, 99.0), (box(-60, -60, 300, -.83), 99.0)] + \
+           [(LineString(b.PP(px)).buffer(t / 2 + .1), st(b.PP(px)[0][0]) + .2) for px, t in rec["wall"]]
+
+    def fit(u, v, r, crown_y):
+        """Shrink a crown that would push through a wall or a building above its lowest leaves."""
+        p = Point(u, v)
+        for g, top in obst:
+            if top > crown_y:
+                dd = g.distance(p)
+                if dd < r + .2:
+                    r = max(1.4, dd - .2)
+        return r
     for (u, v, r, kind, seed) in rec["canopy"]:
         if kind not in ("tree", "sak"):
             continue
-        sc.trees.append([round(u, 2), round(tree_base(u, v), 2), round(v, 2), round(r, 2), round(3.2 + r * 1.15, 2),
+        y = tree_base(u, v)
+        r = fit(u, v, r, y + (3.2 + r * 1.15) * .45)
+        sc.trees.append([round(u, 2), round(y, 2), round(v, 2), round(r, 2), round(3.2 + r * 1.15, 2),
                          "s" if kind == "sak" else "t", seed % 97])
     for (u, v, r, seed) in rec["palm"]:
-        sc.trees.append([round(u, 2), round(tree_base(u, v), 2), round(v, 2), round(r, 2), round(5.5 + r * .6, 2), "p", seed % 97])
+        y = tree_base(u, v)
+        h = 5.5 + r * .6
+        r = fit(u, v, r, y + h - r * .55)
+        sc.trees.append([round(u, 2), round(y, 2), round(v, 2), round(r, 2), round(h, 2), "p", seed % 97])
     colors = {"umb-y": "yel", "umb-c": "cyan", "umb-p": "pink", "prop": "white"}
     for i, (u, v, r, cls, chairs) in enumerate(rec["parasol"]):
+        if bl.contains(Point(u, v)):
+            continue                                  # roof-terrace sets are placed by the building
         y = lv(u, v)
         if r < .8:
             sc.cyl(u, y + .72, v, .45, .45, .04, "white", seg=18, mat="paint")
@@ -447,7 +619,7 @@ def build_props(sc, b, rec, idw):
     for (u, v, ang) in rec["lounger"]:
         K.lounger_hq(sc, u, lv(u, v), v, ang)
     for (u, v, r, seed) in rec["rock"]:
-        y = lv(u, v, None)
+        y = sc.level_in(u, v)
         if y is None:
             y = -.6 if v > 105 else .6
         sc.rocks.append([round(u, 2), round(y + r * .25, 2), round(v, 2), round(r, 2), seed % 89])
@@ -458,11 +630,32 @@ def build_props(sc, b, rec, idw):
         zb = lv((x0 + x1) / 2, y1 + .8)
         K.stair_ns_hq(sc, x0, y0, x1, y1, flights, landing, rails, zt, zb)
     for (q, risers, bow) in rec["quad"]:
-        K.quad_steps_hq(sc, q, risers - 1, 4.8, 3.15, bow)
+        K.quad_steps_hq(sc, q, risers - 1, 4.8, 3.6, bow)          # path landing down to the plaza
     for (q, count) in rec["treads"]:
-        K.quad_steps_hq(sc, q, count, 3.15, 2.4)
+        a, b_, c, d = q
+        hx, hz = (a[0] + b_[0]) / 2, (a[1] + b_[1]) / 2
+        fx, fz = (c[0] + d[0]) / 2, (c[1] + d[1]) / 2
+        L = math.hypot(fx - hx, fz - hz) or 1
+        ux, uz = (fx - hx) / L, (fz - hz) / L
+        zt = lv(hx - ux * .6, hz - uz * .6)
+        zb = lv(fx + ux * .6, fz + uz * .6)
+        if zt - zb < .05:
+            zt, zb = 3.15, 2.4
+        K.quad_steps_hq(sc, q, count, zt, zb)
+    # three steps (3R x 0.15) down from the plaza to the promenade in every opening between the edge planters
+    for (xa, xb) in b.PROM_OPENINGS:
+        t0, t1 = b.P(xa, b.edge_y(xa)), b.P(xb, b.edge_y(xb))
+        L = math.hypot(t1[0] - t0[0], t1[1] - t0[1])
+        nx, nz = -(t1[1] - t0[1]) / L, (t1[0] - t0[0]) / L
+        if nz < 0:
+            nx, nz = -nx, -nz
+        f0, f1 = (t0[0] + nx * .9, t0[1] + nz * .9), (t1[0] + nx * .9, t1[1] + nz * .9)
+        K.quad_steps_hq(sc, (t0, t1, f1, f0), 2, 3.6, 3.15, rails=False)
     sw = [tuple(p) for p in b.PP(b.SEAWALL_PX)]
+    pier0 = b.pier_pt(.3, -3.5)
     for pts in rec["railing"]:
+        if math.dist(pts[0], pier0) < .5:
+            continue                                  # the pier builds its own timber-capped rail on the deck edge
         if min(math.dist(pts[0], s) for s in sw) < 1.5:
             K.rail_line(sc, [(x, 3.3, z) for x, z in pts], h=1.05, post=1.8, cap="timber")
             continue
@@ -472,13 +665,11 @@ def build_props(sc, b, rec, idw):
         K.truck_hq(sc, cx, cy, ang, 3.66, stripe.get(st, "pink"))
     # lamp posts: plaza ones carry two banners each, in rotating designs
     designs = K.BANNER_DESIGNS
-    for i, (px, py) in enumerate([(514, 580), (752, 575), (480, 330), (730, 330), (470, 520), (740, 520)]):
-        x, z = b.P(px, py)
-        K.lamp(sc, x, 3.6, z, 5.2, 0, (designs[(2 * i) % 8], designs[(2 * i + 1) % 8]))
-    for i, (px, py) in enumerate([(200, 640), (270, 656), (340, 670), (440, 669), (520, 669), (600, 668), (690, 668), (760, 668),
-                                  (900, 632), (970, 632)]):
-        x, z = b.P(px, py)
-        K.lamp(sc, x, lv(x, z), z, 4.6, 0, (designs[(i + 4) % 8], designs[(i + 1) % 8]) if i % 2 == 0 else None)
+    for (x, z, grp, i) in b.LAMPS:               # spots placed by build.place_lamps (clear of planting, crowns, furniture)
+        if grp == "plaza":
+            K.lamp(sc, x, lv(x, z), z, 5.2, 0, (designs[(2 * i) % 8], designs[(2 * i + 1) % 8]))
+        else:
+            K.lamp(sc, x, lv(x, z), z, 4.6, 0, (designs[(i + 4) % 8], designs[(i + 1) % 8]) if i % 2 == 0 else None)
 
 
 def scatter(sc, g, y, rnd, density, rmin, rmax, idw=None):
@@ -530,7 +721,15 @@ def build_arcade(sc, b):
     """Red arcade after the reference facade: controller sign, posters, glass doors, portholes, roof terrace."""
     c = elev.CTR
     W, xe, zn, zs = 13.75, 47.92, 37.92, 65.0
-    sc.box(W, 3.0, zn, xe, 9.6, zs, "arc", "clad")
+    d0, d1 = elev.ARC_IN["door"]
+    sc.box(W, 3.0, zn, xe, 4.05, zs, "conc", "conc")                       # floor slab
+    sc.box(W, 4.05, zn, xe, 9.6, zn + .3, "arc", "clad")                   # shell walls (hollow: the interior is modelled)
+    sc.box(W, 4.05, zs - .3, xe, 9.6, zs, "arc", "clad")
+    sc.box(W, 4.05, zn + .3, W + .3, 9.6, zs - .3, "arc", "clad")
+    sc.box(xe - .3, 4.05, zn + .3, xe, 9.6, d0, "arc", "clad")
+    sc.box(xe - .3, 4.05, d1, xe, 9.6, zs - .3, "arc", "clad")
+    sc.box(xe - .3, 7.2, d0, xe, 9.6, d1, "arc", "clad")
+    sc.box(W + .3, 9.3, zn + .3, xe - .3, 9.6, zs - .3, "in-ceil", "std")
     K.flat_roof(sc, W, zn, xe, zs, 9.6, 10.2, "arc", "clad", "dark", "metal", deck="timber")
     E = K.Face(sc, "E", W, zn, xe, zs)
     S = K.Face(sc, "S", W, zn, xe, zs)
@@ -560,7 +759,6 @@ def build_arcade(sc, b):
         E.disc(bu, bz, .48, .78, .84, "dark", "metal", 28)
         E.disc(bu, bz, .45, .84, 1.02, col, "gloss", 28, r_out=.36)
     # entrance: lit interior, sliding glass doors, pillars with LED strips, lintel
-    E.label(c, 5.62, 5.0, 3.15, "door", d=.006)
     E.door_slide(c, 5.0, 4.05, 3.15)
     for (a, b_) in ((c - 3.05, c - 2.5), (c + 2.5, c + 3.05)):
         E.box(a, b_, 4.05, 7.65, 0, .3, "yel", "paint")
@@ -576,8 +774,8 @@ def build_arcade(sc, b):
     # entrance steps across the controller frame (3R)
     for k in range(3):
         d1 = 1.2 - k * .4
-        E.box(c - 10.3, c + 10.3, 3.0, 3.75 + k * .15, 0, d1, "conc-2", "conc")
-        E.box(c - 10.3, c + 10.3, 3.735 + k * .15, 3.765 + k * .15, d1 - .05, d1, "dark", "rubber")
+        E.box(c - elev.ARC_STEP, c + elev.ARC_STEP, 3.0, 3.75 + k * .15, 0, d1, "conc-2", "conc")
+        E.box(c - elev.ARC_STEP, c + elev.ARC_STEP, 3.735 + k * .15, 3.765 + k * .15, d1 - .05, d1, "dark", "rubber")
     # outer bays: portholes and framed windows
     for u in (2.1, 4.4, 22.3, 24.6):
         E.disc(u, 8.55, .5, 0, .02, "dark", "rubber", 24)
@@ -628,9 +826,12 @@ def build_fashion(sc, b):
     x0, x1, z0, z1 = 13.75, 47.92, 20.0, 37.5
     sc.box(x0, 3.0, z0, x1, 12.6, z1, "plaster", "plaster")
     sc.box(x0, 3.0, z1, x1, 9.6, 37.92, "plaster", "plaster")
-    K.kawara_eave(sc, x0, z0, x1, z1, 12.6, "NEW", "kawara")
-    K.flat_roof(sc, x0, z0, x1, z1, 12.6, 12.95, "plaster", "plaster", sides="S")
+    K.kawara_eave(sc, x0, z0, x1, z1, 12.6, "NESW", "kawara")
+    K.flat_roof(sc, x0, z0, x1, z1, 12.6, 12.95, "plaster", "plaster", sides="")
     sc.box(36.0, 12.6, 22.0, 40.0, 15.0, 26.0, "plaster", "plaster")
+    K.kawara_eave(sc, 36.0, 22.0, 40.0, 26.0, 15.0, "NESW", "kawara", proj=.45, inset=.3, rise=.35)
+    sc.box(36.3, 14.95, 22.3, 39.7, 15.3, 25.7, "conc-2", "conc")
+    K.Face(sc, "S", 36.0, 22.0, 40.0, 26.0).door_solid(2.0, 1.0, 12.63, 2.1)
     for (px, pz) in ((20.0, 26.0), (23.0, 26.0), (26.0, 26.0)):
         K.ac_unit(sc, px, 12.65, pz, 0)
     E = K.Face(sc, "E", x0, z0, x1, z1)
@@ -640,7 +841,7 @@ def build_fashion(sc, b):
     E.box(0, 17.5, 8.4, 8.5, 0, .04, "gold", "metal")
     E.box(.6, 16.9, 11.3, 11.95, 0, .12, "dark", "metal")
     E.label(8.75, 11.625, 16.1, .55, "led", d=.125, txt="いらっしゃいませ · WELCOME · NEW ARRIVALS · ようこそ · SALE")
-    E.torus(9.6, 9.75, 1.125, .32, .3, "indigo", arc=316, rz=-38, mat="gloss")
+    E.ext(ring_sign(1.45, .8, 9.6, 9.75), 0, .3, "indigo", "gloss", .05)
     E.ext(bubble_pts(12.0, 14.6, 9.25, 10.6), 0, .16, "white", "gloss", .03)
     for k in (-1, 0, 1):
         E.disc(13.3 + k * .44, 9.925, .11, .16, .2, "dark", "gloss")
@@ -683,7 +884,7 @@ def build_fashion(sc, b):
     N.box(0, 34.17, 9.0, 9.08, 0, .04, "gold", "metal")
     N.box(3.0, 31.2, 11.35, 11.95, 0, .12, "dark", "metal")
     N.label(17.1, 11.65, 28.0, .5, "led", d=.125, txt="海辺のファッション＆雑貨 · SEASIDE FASHION & GOODS · いらっしゃいませ · WELCOME")
-    N.torus(5.4, 10.2, .8, .23, .25, "indigo", arc=316, rz=-38)
+    N.ext(ring_sign(1.03, .57, 5.4, 10.2), 0, .25, "indigo", "gloss", .04)
     N.ext(bubble_pts(7.6, 9.8, 9.85, 10.85), 0, .14, "white", "gloss", .03)
     for k in (-1, 0, 1):
         N.disc(8.7 + k * .36, 10.35, .09, .14, .18, "dark", "gloss")
@@ -756,20 +957,25 @@ def build_lifestyle(sc, b):
     """Lifestyle & Souvenir in the Japanese shopping-street style: blue-glazed kawara eave, signs, noren, lanterns."""
     x0, x1, z0, z1 = 130.33, 153.33, 55.0, 71.67
     sc.box(x0, 3.0, z0, x1, 8.7, z1, "plaster", "plaster")
-    K.kawara_eave(sc, x0, z0, x1, z1, 8.7, "WSE", "tile-b")
-    K.flat_roof(sc, x0, z0, x1, z1, 8.7, 9.0, "plaster", "plaster", sides="N")
-    sc.box(x0 + .5, 8.68, z0 + .35, 138.0, 8.76, 58.0, "yel", "deck")
+    K.kawara_eave(sc, x0, z0, x1, z1, 8.7, "NESW", "tile-b")
+    K.flat_roof(sc, x0, z0, x1, z1, 8.7, 9.0, "plaster", "plaster", sides="")
+    sc.box(x0 + 1.0, 8.68, z0 + 1.0, 138.5, 8.76, 58.6, "yel", "deck")
     for k in range(3):
-        sc.box(132.0 + k * 2.0, 8.7, 55.8, 133.3 + k * 2.0, 9.25, 57.2, "timber", "timber")
+        sc.box(132.0 + k * 2.0, 8.7, 56.2, 133.3 + k * 2.0, 9.25, 57.6, "timber", "timber")
         for j in range(2):
-            sc.shrubs.append([round(132.3 + k * 2.0 + j * .6, 2), 9.25, 56.5, .35])
+            sc.shrubs.append([round(132.3 + k * 2.0 + j * .6, 2), 9.25, 56.9, .35])
     for (px, pz) in ((141.0, 60.0), (144.0, 60.0)):
         K.ac_unit(sc, px, 8.72, pz, 0)
     # annex to the north
     sc.box(139.17, 3.0, 50.5, x1, 7.2, z0, "plaster", "plaster")
-    K.kawara_eave(sc, 139.17, 50.5, x1, z0, 7.2, "NE", "tile-b", proj=.6, rise=.4)
-    sc.box(141.83, 7.2, 50.9, 146.83, 8.4, 51.1, "white", "paint")
-    sc.label([144.33, 7.8, 50.88], 4.8, 1.0, 180, "pill", txt="おみやげ SOUVENIR", fg="#D9432F", bg="#FFFFFF")
+    K.kawara_eave(sc, 139.17, 50.5, x1, z0, 7.2, "NEW", "tile-b", proj=.6, rise=.4, ends=0.0)
+    K.flat_roof(sc, 139.17, 50.5, x1, z0, 7.2, 7.4, "plaster", "plaster", sides="")
+    sc.box(139.17 + .35, 7.2, z0 - .25, x1 - .35, 7.75, z0, "conc-2", "metal")        # flashing against the main wall
+    # roof sign (kanban) standing behind the eave ridge, so the eave never hides it
+    sc.box(141.83, 7.55, 51.12, 146.83, 8.75, 51.24, "white", "paint")
+    sc.label([144.33, 8.15, 51.11], 4.8, 1.08, 180, "pill", txt="おみやげ SOUVENIR", fg="#D9432F", bg="#FFFFFF")
+    for u in (142.4, 146.26):
+        sc.box(u - .06, 7.4, 51.24, u + .06, 8.6, 51.36, "dark", "metal")
     # canopy band on the south with the roof garden
     sc.box(x0, 3.0, z1, x1, 6.35, 75.83, "plaster", "plaster")
     K.flat_roof(sc, x0, z1, x1, 75.83, 6.35, 6.62, "plaster", "plaster", "dark", "metal")
@@ -868,6 +1074,7 @@ def build_kiosks(sc, b):
     for i, (x0, y0, x1, y1) in enumerate(((140, 145, 177, 178), (177, 152, 243, 180), (243, 155, 273, 180))):
         u0, v0 = P(x0, y0)
         u1, v1 = P(x1, y1)
+        u0, u1 = u0 + (.15 if i else 0), u1 - (.15 if i < 2 else 0)      # stalls stand apart, so roofs and parapets don't overlap
         txt, col = names[i]
         sc.box(u0, 8.4, v0, u1, 11.2, v1, "plaster", "plaster")
         K.flat_roof(sc, u0, v0, u1, v1, 11.2, 11.45, "plaster", "plaster", "dark", "metal")
@@ -937,7 +1144,7 @@ def build_stage(sc, b):
     deck = hs["deck"]
     sc.prism(deck, 3.0, 4.2, "timber", "deck")
     sc.prism(deck.buffer(.06).difference(deck), 3.0, 4.22, "wood-d", "timber")
-    front = unary_union([hs["lawn"], hs["top"]]).buffer(.6)
+    front = unary_union([hs["lawn"], hs["top"]]).buffer(.6).difference(stair_footprints(REC).buffer(.05))
     for k, y in enumerate((3.9, 3.6)):
         ring = deck.buffer(.45 * (k + 1), join_style="mitre").difference(deck.buffer(.45 * k, join_style="mitre")).intersection(front)
         sc.prism(ring, 3.0, y, "timber", "deck")
@@ -1078,7 +1285,6 @@ def build_misc(sc, b):
     bed = Point(cx, cy).buffer(9.5, quad_segs=24)
     sc.prism(bed.difference(bed.buffer(-.3)), 3.0, 4.14, "conc", "conc")
     sc.prism(bed.buffer(.05).difference(bed.buffer(-.33)), 4.14, 4.2, "cream", "stone")
-    sc.prism(bed.buffer(-.3), 3.0, 4.08, "bed", "ground")
     ring = Point(cx, cy).buffer(13.5, quad_segs=24).difference(Point(cx, cy).buffer(11.2, quad_segs=24))
     seat = Point(cx, cy).buffer(11.2, quad_segs=24).difference(Point(cx, cy).buffer(9.5, quad_segs=24))
     cuts = unary_union([LineString([(cx - 20, cy - 20), (cx + 20, cy + 20)]).buffer(1.2),
@@ -1138,13 +1344,19 @@ def build_terrain(sc, b):
         sc.box(x0 - 6 if x0 < 0 else x1, yb - .3, 2.5, x0 if x0 < 0 else x1 + 6, yb + 5.8, 10.9, "rubber", "rubber")
 
 
+REC = {}
+
+
 def scene_data(b):
     sc = Scene(b)
     b.planting_region()            # cache before recording, so the check's own plan pass is not recorded
     rec = record_plan(b)
-    hs, idw = build_ground(sc, b)
+    REC.clear()
+    REC.update(rec)
+    hs, idw = build_ground(sc, b, rec)
     build_walls(sc, b, rec)
     build_arcade(sc, b)
+    build_arcade_interior(sc)
     build_cafe(sc, b)
     build_fashion(sc, b)
     build_lifestyle(sc, b)
@@ -1155,6 +1367,7 @@ def scene_data(b):
     build_pier(sc, b)
     build_stair_gate(sc, b)
     build_misc(sc, b)
+    build_landmark(sc)
     build_terrain(sc, b)
     build_props(sc, b, rec, idw)
     return sc.data()

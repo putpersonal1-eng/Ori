@@ -200,8 +200,8 @@
 <text class="t-head" x="89.0" y="31">SECTION A–A · X = 90.8 · STREET → PLAZA → BEACH · LOOKING EAST</text>
 <text class="t-sm" x="24" y="48">Horizontal 5.2 px = 1 m · vertical 10 px = 1 m (vertical exaggeration 1.9×) · light line = beyond</text>
 <rect x="50" y="106" width="57.2" height="60" class="beyond"/>
-<rect x="238.07" y="186" width="36.4" height="28" class="beyond"/>
-<text x="256.27" y="178" text-anchor="middle" class="t-sm halo">FOOD TRUCKS</text>
+<rect x="219.87" y="186" width="36.4" height="28" class="beyond"/>
+<text x="238.07" y="178" text-anchor="middle" class="t-sm halo">FOOD TRUCKS</text>
 <rect x="375" y="160" width="163.8" height="54" class="beyond"/>
 <rect x="398.4" y="156" width="86.67" height="4" class="chalk-y"/>
 <text x="454.73" y="188" text-anchor="middle" class="t-sm halo">LIFESTYLE SHOP beyond</text>
@@ -269,10 +269,22 @@
 <rect x="458.2" y="209.5" width="8.84" height="4.5" class="conc"/>
 <rect x="359.4" y="208" width="1.56" height="6" class="solid"/>
 <rect x="456.64" y="208" width="1.56" height="6" class="solid"/>
-<rect x="360.96" y="208.5" width="95.68" height="1.5" class="z-lawn"/>
-<line x1="402.73" y1="208.5" x2="402.73" y2="146.5" class="trunk"/>
-<g class="tree-o"><ellipse cx="402.73" cy="146.5" rx="41.18" ry="25.99"/><ellipse cx="367.66" cy="149.6" rx="23.37" ry="15.76"/><ellipse cx="369.73" cy="138.84" rx="20.93" ry="15.29"/><ellipse cx="380.65" cy="130.12" rx="24.44" ry="15.06"/><ellipse cx="390.44" cy="126.86" rx="21.8" ry="16.58"/><ellipse cx="408.07" cy="125.8" rx="21.27" ry="16.43"/><ellipse cx="427.45" cy="131.49" rx="20.64" ry="14.14"/><ellipse cx="437.81" cy="143.42" rx="21.37" ry="14.54"/><ellipse cx="436.64" cy="152.64" rx="24.06" ry="14.77"/></g>
-<g class="tree-f"><ellipse cx="402.73" cy="146.5" rx="40.28" ry="25.09"/><ellipse cx="367.66" cy="149.6" rx="22.47" ry="14.86"/><ellipse cx="369.73" cy="138.84" rx="20.03" ry="14.39"/><ellipse cx="380.65" cy="130.12" rx="23.54" ry="14.16"/><ellipse cx="390.44" cy="126.86" rx="20.9" ry="15.68"/><ellipse cx="408.07" cy="125.8" rx="20.37" ry="15.53"/><ellipse cx="427.45" cy="131.49" rx="19.74" ry="13.24"/><ellipse cx="437.81" cy="143.42" rx="20.47" ry="13.64"/><ellipse cx="436.64" cy="152.64" rx="23.16" ry="13.87"/></g>
+<rect x="372.92" y="205" width="2.6" height="9" class="conc"/>
+<line x1="374.22" y1="205" x2="374.22" y2="197.8" class="ln"/>
+<line x1="372.66" y1="197.8" x2="375.78" y2="197.8" class="ln-h"/>
+<rect x="360.96" y="209.2" width="11.96" height="0.8" class="z-lawn"/>
+<polyline points="384.36,207.5 385.24,199.45 386.12,194.14 386.99,191.36 387.87,190.88 388.75,192.47 389.62,195.92 390.5,201.01 391.38,207.5" class="ln-water"/>
+<rect x="442.08" y="205" width="2.6" height="9" class="conc"/>
+<line x1="443.38" y1="205" x2="443.38" y2="197.8" class="ln"/>
+<line x1="441.82" y1="197.8" x2="444.94" y2="197.8" class="ln-h"/>
+<rect x="444.68" y="209.2" width="11.96" height="0.8" class="z-lawn"/>
+<polyline points="433.24,207.5 432.36,199.45 431.49,194.14 430.61,191.36 429.73,190.88 428.85,192.47 427.98,195.92 427.1,201.01 426.22,207.5" class="ln-water"/>
+<rect x="375.52" y="207.5" width="66.56" height="4.5" class="water"/>
+<line x1="375.52" y1="207.5" x2="442.08" y2="207.5" class="ln-water"/>
+<rect x="393.2" y="201.5" width="31.2" height="10.5" class="conc"/>
+<rect x="394.76" y="194" width="28.08" height="7.5" class="solid"/>
+<rect x="394.34" y="193" width="28.91" height="1" class="statue"/>
+<rect x="406.98" y="153.1" width="3.64" height="39.9" rx="2" class="statue"/>
 <line x1="629.8" y1="218.5" x2="629.8" y2="207.5" class="ln"/>
 <rect class="avatar" x="170.73" y="158.72" width="4.68" height="7.28" rx="1.87"/>
 <circle class="avatar" cx="173.07" cy="156.29" r="2.86"/>
@@ -309,10 +321,10 @@
 <circle cx="264.07" cy="186" r="0"/>
 <circle class="ink-f" cx="264.07" cy="186" r="1.8"/>
 <text class="t-lbl halo" x="271.4" y="124" text-anchor="start">ESCALATORS 30° (CUT) · STAIRS 2 × 16R BEYOND (DASHED)</text>
-<line x1="408.8" y1="209" x2="450.4" y2="96" class="ln-m"/>
-<circle cx="408.8" cy="209" r="0"/>
-<circle class="ink-f" cx="408.8" cy="209" r="1.8"/>
-<text class="t-lbl halo" x="453.4" y="94" text-anchor="start">PLANTER Ø19 · BENCH RING Ø27 · TREE Ø22</text>
+<line x1="408.8" y1="160" x2="450.4" y2="96" class="ln-m"/>
+<circle cx="408.8" cy="160" r="0"/>
+<circle class="ink-f" cx="408.8" cy="160" r="1.8"/>
+<text class="t-lbl halo" x="453.4" y="94" text-anchor="start">ORI LOGO LANDMARK · FOUNTAIN Ø13.8 · BENCH RING Ø27</text>
 <line x1="565.67" y1="216" x2="567.4" y2="154" class="ln-m"/>
 <circle cx="565.67" cy="216" r="0"/>
 <circle class="ink-f" cx="565.67" cy="216" r="1.8"/>

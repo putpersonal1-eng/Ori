@@ -420,6 +420,9 @@ def awning(cv, u0, u1, z_top, drop, pat, valance=.3, scallop=True, text=None, te
 # ================================================================== A-501 ARCADE
 Z_PL, Z_FFL, Z_ROOF, Z_PAR, Z_RAIL = 3.60, 4.05, 9.60, 10.20, 11.30
 CTR = 13.33          # controller frame centre on the east face (door centre from the plan)
+ARC_STEP = 4.4       # half width of the entrance steps on the east face
+ARC_PLANTERS = [(1.0, 8.6), (18.1, 26.0)]   # planter boxes against the east face, u from the south corner (m)
+ARC_PLANTER_D, ARC_PLANTER_H = 1.2, .6
 
 
 def lane_z(y_m):
@@ -515,10 +518,13 @@ def arcade_front_lower(cv, c=CTR):
     wave(cv, c + 4.35, c + 5.8, 4.75, .05, 3, "e-wave")
     for k in range(3):
         cv.rect(c + 4.8, 6.75 + k * .14, c + 6.0, 6.8 + k * .14, "e-dark")
-    # steps across the frame (3R x 0.15)
-    cv.rect(c - 10.3, Z_PL, c + 10.3, Z_FFL, "e-conc")
+    # steps at the doors (3R x 0.15), planter boxes against the facade either side
+    cv.rect(c - ARC_STEP, Z_PL, c + ARC_STEP, Z_FFL, "e-conc")
     for k in (1, 2):
-        cv.line(c - 10.3 + k * .12, Z_PL + k * .15, c + 10.3 - k * .12, Z_PL + k * .15, "e-mull")
+        cv.line(c - ARC_STEP + k * .12, Z_PL + k * .15, c + ARC_STEP - k * .12, Z_PL + k * .15, "e-mull")
+    for (u0, u1) in ARC_PLANTERS:
+        cv.rect(u0, Z_PL, u1, Z_PL + ARC_PLANTER_H, "e-conc")
+        shrubs_e(cv, u0 + .1, u1 - .2, Z_PL + ARC_PLANTER_H - .05, .6, int(u0 * 7))
 
 
 def arcade_east():
@@ -1917,3 +1923,36 @@ def sheet_a505():
                                       ("e-conc", "Stairs, planters")])
     root.add(f'<rect class="frame" x="12" y="50" width="{W - 24}" height="{H - 62}"/>')
     return "\n".join([root.svg()] + [p.svg() for p in parts] + [key]), W, H
+
+
+# ================================================================ arcade interior (shared by L-101, A-506 and P-601)
+# Dark purple game hall after the interior references: neon floor tiles, a block-puzzle LED wall, a tower of
+# stacked CRT monitors with a robot face, two tiers of round drum machines, a row of cabinets, egg chairs,
+# sphere TV pods and server stacks with green code screens. Metres: x east, z south, floor +4.05, ceiling +9.30.
+ARC_IN = {
+    "box": (14.05, 38.22, 47.62, 64.70),
+    "door": (49.17, 54.17),
+    "led": (24.0, 38.0, 4.65, 8.45),                  # x range on the north wall, y range
+    "stacks": [(14.05, 38.22, 21.6, 40.1, 8.7), (39.6, 38.22, 47.62, 39.8, 7.9)],
+    "drums": (14.05, 15.05, 42.0, 61.8, 1.8),          # x front band, z range, pitch (two tiers)
+    "cabinets": [(18.2, 6), (27.2, 6), (36.2, 6)],     # first x and count per group, south wall, facing north
+    "tower": (27.6, 48.67, 33.6, 54.67, 8.9),
+    "eggs": [(38.0, 45.6), (38.0, 57.8), (23.4, 45.6), (23.4, 58.2)],
+    "pods": [(42.2, 44.6), (42.2, 58.8)],
+    "tvs": [(17.0, 48.9), (17.0, 54.4)],
+    "stools": [(19.0 + i * 1.15, 61.3) for i in range(0, 24, 3)],
+}
+TILE_SHAPES = {"L": [(0, 0), (0, 1), (0, 2), (1, 2)], "T": [(0, 0), (1, 0), (2, 0), (1, 1)], "S": [(1, 0), (2, 0), (0, 1), (1, 1)],
+               "I": [(0, 0), (1, 0), (2, 0), (3, 0)], "O": [(0, 0), (1, 0), (0, 1), (1, 1)], "J": [(1, 0), (1, 1), (1, 2), (0, 2)]}
+NEON_TILES = [(43.0, 47.0, "L", "pink"), (39.5, 50.5, "I", "green"), (35.0, 47.4, "S", "cyan"), (35.5, 55.5, "T", "yellow"),
+              (25.0, 55.6, "O", "pink"), (20.2, 44.6, "J", "cyan"), (29.0, 44.4, "I", "yellow"), (43.6, 55.4, "S", "green"),
+              (21.0, 51.0, "T", "green"), (31.0, 58.0, "L", "cyan")]
+NEON = {"pink": "#FF5FC8", "green": "#9BFF5A", "cyan": "#3FE6F0", "yellow": "#FFE45A", "purple": "#9B6BFF"}
+
+
+def neon_tile_cells():
+    out = []
+    for (x0, z0, sh, col) in NEON_TILES:
+        for (i, j) in TILE_SHAPES[sh]:
+            out.append((x0 + i * 1.02, z0 + j * 1.02, col))
+    return out

@@ -136,9 +136,10 @@ def flat_roof(sc, x0, z0, x1, z1, y, par, wall_col, wall_mat, cap_col="cream", c
         sc.box(a - .04, par, b - .04, c + .04, par + .08, d + .04, cap_col, cap_mat)
 
 
-def kawara_eave(sc, x0, z0, x1, z1, y, sides, glaze="kawara", proj=.8, inset=.45, rise=.55, ridge="kawara"):
+def kawara_eave(sc, x0, z0, x1, z1, y, sides, glaze="kawara", proj=.8, inset=.45, rise=.55, ridge="kawara", ends=1.0):
     """Kawara tile eave on the given sides of a rectangle, with mitred hip corners, a ridge,
-    round tile ends along the drip edge and onigawara blocks at the corners."""
+    round tile ends along the drip edge and onigawara blocks at the corners. ends: how far an eave
+    runs past a side with no eave (1.0 = full overhang, 0 = stops flush, e.g. against a taller wall)."""
     out = {"N": z0 - proj, "S": z1 + proj, "W": x0 - proj, "E": x1 + proj}
     inn = {"N": z0 + inset, "S": z1 - inset, "W": x0 + inset, "E": x1 - inset}
     has = set(sides)
@@ -154,20 +155,20 @@ def kawara_eave(sc, x0, z0, x1, z1, y, sides, glaze="kawara", proj=.8, inset=.45
             if "W" in has:
                 ow, iw = corner(s, "W")
             else:
-                ow, iw = (x0 - proj, out[s]), (x0 - proj, inn[s])
+                ow, iw = (x0 - proj * ends, out[s]), (x0 - proj * ends, inn[s])
             if "E" in has:
                 oe, ie = corner(s, "E")
             else:
-                oe, ie = (x1 + proj, out[s]), (x1 + proj, inn[s])
+                oe, ie = (x1 + proj * ends, out[s]), (x1 + proj * ends, inn[s])
         else:
             if "N" in has:
                 ow, iw = corner("N", s)
             else:
-                ow, iw = (out[s], z0 - proj), (inn[s], z0 - proj)
+                ow, iw = (out[s], z0 - proj * ends), (inn[s], z0 - proj * ends)
             if "S" in has:
                 oe, ie = corner("S", s)
             else:
-                oe, ie = (out[s], z1 + proj), (inn[s], z1 + proj)
+                oe, ie = (out[s], z1 + proj * ends), (inn[s], z1 + proj * ends)
         pts = [ow, oe, ie, iw]
         sc.plate(pts, [yo, yo, yi, yi], glaze, mat_for[s], t=.12)
         # soffit / wall-top fill under the plate along the wall line
@@ -267,7 +268,7 @@ def stair_ns_hq(sc, x0, y0, x1, y1, flights, landing, rails, zt, zb, cheek=True)
         rail_line(sc, [(p[0], p[1], p[2]) for p in pts], h=.95, post=1.6)
 
 
-def quad_steps_hq(sc, q, n_treads, zt, zb, bow=(0.0, 0.0)):
+def quad_steps_hq(sc, q, n_treads, zt, zb, bow=(0.0, 0.0), rails=True):
     """Steps in a traced quad (a-b top, d-c foot), treads following arcs when bow is set."""
     a, b, c, d = q
 
@@ -283,13 +284,12 @@ def quad_steps_hq(sc, q, n_treads, zt, zb, bow=(0.0, 0.0)):
         return [((1 - s) ** 2 * p0[0] + 2 * (1 - s) * s * m[0] + s * s * p1[0],
                  (1 - s) ** 2 * p0[1] + 2 * (1 - s) * s * m[1] + s * s * p1[1]) for s in [j / k for j in range(k + 1)]]
     r = (zt - zb) / (n_treads + 1)
-    foot = edge(1)
     for k in range(1, n_treads + 1):
-        top = edge((k - 1) / n_treads)
+        top, bot = edge((k - 1) / n_treads), edge(k / n_treads)      # one tread band per riser
         y = zt - k * r
-        sc.prism(Polygon(top + foot[::-1]).buffer(0), zb - .4, y, "conc-2", "conc")
+        sc.prism(Polygon(top + bot[::-1]).buffer(0), zb - .4, y, "conc-2", "conc")
         sc.polyseg([(x, y + .006, z) for x, z in top], .02, "dark", "rubber")
-    for side in (0, -1):
+    for side in ((0, -1) if rails else ()):
         pts = []
         for k in range(0, n_treads + 1):
             e = edge(k / n_treads)
@@ -401,6 +401,38 @@ def planter_hq(sc, g, base, inner_t=.3, h=.6, cap="cream"):
     ring = g.buffer(.03, join_style="mitre").difference(g.buffer(-inner_t - .03, join_style="mitre"))
     sc.prism(ring, base + h - .06, base + h, cap, "stone")
     sc.prism(inner, base - .2, base + h - .12, "bed", "ground")
+    return inner
+
+
+def _simple_parts(g):
+    """Split a polygon with holes into hole-free pieces (cuts through each hole's centre)."""
+    from shapely.geometry import MultiPolygon, box as _box
+    out = []
+    for q in (g.geoms if isinstance(g, MultiPolygon) else [g]):
+        if q.is_empty:
+            continue
+        if not q.interiors:
+            out.append(q)
+            continue
+        cx = Polygon(q.interiors[0]).centroid.x
+        x0, z0, x1, z1 = q.bounds
+        for half in (_box(x0 - 1, z0 - 1, cx, z1 + 1), _box(cx, z0 - 1, x1 + 1, z1 + 1)):
+            out += _simple_parts(q.intersection(half))
+    return [p for p in out if p.geom_type == "Polygon" and p.area > .005]
+
+
+def planter_ground(sc, g, ground, inner_t=.3, h=.6, cap="cream"):
+    """Raised planter that follows the ground under it: wall, stone coping and soil, each vertex at ground + height."""
+    inner = g.buffer(-inner_t, join_style="mitre")
+    gl = [ground(x, z) for x, z in list(g.exterior.coords)]
+    bot = min(gl) - .3
+    for part in _simple_parts(g.difference(inner)):
+        sc.plate_poly(part.segmentize(1.5), lambda x, z: ground(x, z) + h - .06, "conc", "conc", bot=bot)
+    ring = g.buffer(.03, join_style="mitre").difference(g.buffer(-inner_t - .03, join_style="mitre"))
+    for part in _simple_parts(ring):
+        sc.plate_poly(part.segmentize(1.5), lambda x, z: ground(x, z) + h, cap, "stone", t=.06)
+    for part in _simple_parts(inner):
+        sc.plate_poly(part.segmentize(2.0), lambda x, z: ground(x, z) + h - .12, "bed", "ground", bot=bot)
     return inner
 
 

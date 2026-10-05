@@ -223,12 +223,99 @@ function drawExtra(L, g, W, H) {
     g.quadraticCurveTo(W * .5, -H * .05, W * .88, H * .45); g.lineTo(W * .88, H); g.closePath(); g.fill();
     g.fillStyle = '#FFB547';
     for (let i = 0; i < 5; i++) { g.beginPath(); g.arc(W * (.25 + i * .125), H * .32, W * .012, 0, 7); g.fill(); }
+  } else if (k === 'neonwall') {
+    const R = rng((L.seed || 0) + 9);
+    const grd = g.createLinearGradient(0, 0, 0, H);
+    grd.addColorStop(0, '#2A1458'); grd.addColorStop(1, '#3B1E78');
+    g.fillStyle = grd; g.fillRect(0, 0, W, H);
+    g.lineCap = 'round';
+    for (let i = 0; i < 7; i++) {
+      g.strokeStyle = i % 3 === 0 ? 'rgba(200,150,255,.85)' : 'rgba(160,110,255,.55)';
+      g.lineWidth = H * (.008 + R() * .01);
+      if (i % 2) g.setLineDash([H * .03, H * .025]); else g.setLineDash([]);
+      g.beginPath();
+      const cx = R() * W, cy = H * (R() * 1.2 - .1), rr = H * (.3 + R() * .9);
+      g.arc(cx, cy, rr, R() * 6, R() * 6 + 1.5 + R() * 2); g.stroke();
+    }
+    g.setLineDash([]);
+    g.strokeStyle = 'rgba(210,170,255,.7)'; g.lineWidth = H * .01;
+    for (let i = 0; i < 3; i++) { const x = R() * W; g.beginPath(); g.moveTo(x, H); g.lineTo(x + H * .2, H * .2); g.lineTo(x + H * .4, H); g.stroke(); }
+  } else if (k === 'tetris' || k === 'piece') {
+    g.fillStyle = '#120A26'; g.fillRect(0, 0, W, H);
+    const cols = ['#FF4D6D', '#FFC94D', '#4D7CFF', '#FF6FD8', '#5DE0FF', '#FFFFFF'];
+    const R = rng((L.seed || 0) + 21);
+    const n = k === 'piece' ? 4 : 12, m = k === 'piece' ? 4 : Math.round(12 * H / W);
+    const cw = W / n, ch = H / m;
+    if (k === 'piece') {
+      const shapes = [[[1, 0], [0, 1], [1, 1], [2, 1]], [[0, 0], [1, 0], [0, 1], [1, 1]], [[1, 0], [1, 1], [1, 2], [0, 2]]];
+      const shp = shapes[(L.seed || 0) % 3], col = cols[(L.seed || 0) % 5];
+      shp.forEach(([i, j]) => { g.fillStyle = col; g.fillRect((i + .5) * cw + 2, (j + .5) * ch + 2, cw - 4, ch - 4); });
+    } else {
+      for (let i = 0; i < n; i++) for (let j = 0; j < m; j++) {
+        const fill = j > m * .45 + Math.sin(i * 1.7) * 1.5 || (R() > .9 && j > 2);
+        if (!fill) continue;
+        g.fillStyle = cols[Math.floor(R() * 5)];
+        g.fillRect(i * cw + 2, j * ch + 2, cw - 4, ch - 4);
+        g.fillStyle = 'rgba(255,255,255,.25)'; g.fillRect(i * cw + 4, j * ch + 4, cw - 8, ch * .2);
+      }
+      g.fillStyle = 'rgba(255,255,255,.85)'; g.font = `800 ${Math.round(ch * .9)}px ${FONT_C}`; g.textAlign = 'center';
+      g.fillText('+200', W * .55, H * .32);
+    }
+    g.strokeStyle = '#9B6BFF'; g.lineWidth = Math.max(4, W / 120); g.strokeRect(2, 2, W - 4, H - 4);
+  } else if (k === 'code') {
+    g.fillStyle = '#04140A'; g.fillRect(0, 0, W, H);
+    const R = rng((L.seed || 0) + 31);
+    g.fillStyle = '#7CFF6B';
+    const lh = H / 12;
+    for (let j = 1; j < 12; j++) { let x = W * .06; while (x < W * .94) { const w = W * (.04 + R() * .12); if (R() > .2) g.fillRect(x, j * lh, w, lh * .45); x += w + W * .03; } }
+  } else if (k === 'crt') {
+    const R = rng((L.seed || 0) + 41);
+    const c1 = ['#3FE6F0', '#9BFF5A', '#FF5FC8', '#9B6BFF'][Math.floor(R() * 4)];
+    g.fillStyle = '#0B1A2A'; g.fillRect(0, 0, W, H);
+    g.fillStyle = c1; rrectPath(g, W * .08, H * .1, W * .84, H * .8, H * .12); g.fill();
+    g.fillStyle = 'rgba(0,0,0,.35)';
+    for (let y = H * .1; y < H * .9; y += 4) g.fillRect(W * .08, y, W * .84, 1.5);
+    g.fillStyle = 'rgba(255,255,255,.5)'; g.beginPath(); g.arc(W * .5, H * .5, H * .18, 0, 7); g.fill();
+  } else if (k === 'static') {
+    g.fillStyle = '#111'; g.fillRect(0, 0, W, H);
+    const bands = ['#FF3B3B', '#FF9E2C', '#FFE84D', '#5BFF6A', '#3FD4FF', '#7A5CFF', '#FF5FC8'];
+    const R = rng((L.seed || 0) + 51);
+    for (let x = 0; x < W; x += 2) {
+      const t = (x / W + Math.sin(x / W * 9 + R()) * .05) * bands.length;
+      g.fillStyle = bands[Math.max(0, Math.min(bands.length - 1, Math.floor(t)))];
+      g.fillRect(x, H * (.08 + Math.sin(x / 13) * .03), 2, H * (.84 + Math.cos(x / 9) * .04));
+    }
+    g.fillStyle = 'rgba(255,255,255,.12)'; for (let y = 0; y < H; y += 3) g.fillRect(0, y, W, 1);
+  } else if (k === 'robot') {
+    g.fillStyle = '#0A1220'; g.fillRect(0, 0, W, H);
+    g.fillStyle = '#123018'; rrectPath(g, W * .08, H * .12, W * .84, H * .76, H * .1); g.fill();
+    g.fillStyle = '#7CFF6B';
+    for (const ex of [.33, .67]) { g.beginPath(); g.moveTo(W * (ex - .12), H * .45); g.quadraticCurveTo(W * ex, H * .25, W * (ex + .12), H * .45); g.lineTo(W * (ex + .1), H * .52); g.quadraticCurveTo(W * ex, H * .36, W * (ex - .1), H * .52); g.fill(); }
+  } else if (k === 'drum') {
+    const R = rng((L.seed || 0) + 61);
+    g.fillStyle = '#0D1630'; g.beginPath(); g.arc(W / 2, H / 2, W / 2, 0, 7); g.fill();
+    const cols = ['#9BFF5A', '#3FE6F0', '#FF5FC8', '#9B6BFF', '#FFE45A'];
+    for (let i = 0; i < 5; i++) { g.strokeStyle = cols[(i + Math.floor(R() * 5)) % 5]; g.lineWidth = W * .05; g.beginPath(); g.arc(W / 2, H / 2, W * (.42 - i * .07), R() * 6, R() * 6 + 3 + R() * 2); g.stroke(); }
+    g.fillStyle = '#FFFFFF'; g.beginPath(); g.arc(W / 2, H / 2, W * .06, 0, 7); g.fill();
+  } else if (k === 'game') {
+    const R = rng((L.seed || 0) + 71);
+    const grd = g.createLinearGradient(0, 0, W, H);
+    const pal = [['#FF7A3D', '#5B2BFF'], ['#3FE6F0', '#1B2A6A'], ['#FFE45A', '#FF3B8D'], ['#9BFF5A', '#1A6A5A']][Math.floor(R() * 4)];
+    grd.addColorStop(0, pal[0]); grd.addColorStop(1, pal[1]); g.fillStyle = grd; g.fillRect(0, 0, W, H);
+    g.fillStyle = 'rgba(255,255,255,.85)';
+    for (let i = 0; i < 6; i++) { g.beginPath(); g.arc(R() * W, R() * H, W * (.02 + R() * .05), 0, 7); g.fill(); }
+    g.fillStyle = 'rgba(0,0,0,.25)'; for (let y = 0; y < H; y += 3) g.fillRect(0, y, W, 1);
+  } else if (k === 'marquee') {
+    const R = rng((L.seed || 0) + 81);
+    g.fillStyle = ['#FF5FC8', '#3FE6F0', '#FFE45A', '#9B6BFF'][Math.floor(R() * 4)]; g.fillRect(0, 0, W, H);
+    g.fillStyle = '#120A26'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.font = `800 ${Math.round(H * .6)}px ${FONT_C}`;
+    g.fillText(['STAR RUN', 'PUZZLE', 'RACER', 'NEKO DASH', 'BLASTER'][Math.floor(R() * 5)], W / 2, H * .55);
   } else return false;
   return true;
 }
 
 function drawLabel(L) {
-  const ppm = L.k === 'text' || L.k === 'pill' ? 160 : L.k === 'mascot' ? 40 : ['vkana', 'hsign', 'heart', 'plaque', 'bubble', 'ring', 'cloud', 'redpanel', 'cafesign', 'pier'].includes(L.k) ? 120 : 64;
+  const ppm = L.k === 'neonwall' ? 24 : L.k === 'tetris' ? 48 : L.k === 'text' || L.k === 'pill' ? 160 : L.k === 'mascot' ? 40 : ['vkana', 'hsign', 'heart', 'plaque', 'bubble', 'ring', 'cloud', 'redpanel', 'cafesign', 'pier'].includes(L.k) ? 120 : 64;
   const c = canvasFor(L.w, L.h, ppm);
   const g = c.getContext('2d');
   const W = c.width, H = c.height;
@@ -581,6 +668,13 @@ export function mountPark(canvas, D, opt = {}) {
   sun.shadow.normalBias = 0.25;
   scene.add(sun, sun.target);
 
+  for (const l of D.lights || []) {
+    const [x, y, z, col, intensity, dist] = l;
+    const pl = new THREE.PointLight(col, intensity, dist, 1.6);
+    pl.position.set(x, y, z);
+    scene.add(pl);
+  }
+
   const matCache = new Map();
   const ENV = .42;
   function mat(ci, kind) {
@@ -590,6 +684,8 @@ export function mountPark(canvas, D, opt = {}) {
     let m;
     if (kind === 'glass') {
       m = new THREE.MeshStandardMaterial({ color, roughness: .04, metalness: .35, transparent: true, opacity: .38, depthWrite: false, envMapIntensity: 1.4 });
+    } else if (kind === 'jet') {
+      m = new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: .25, roughness: .15, metalness: 0, transparent: true, opacity: .62, depthWrite: false, envMapIntensity: 1.2 });
     } else if (kind === 'led') {
       m = new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: 1.6, roughness: .4 });
     } else if (kind === 'flat' || kind === 'soft') {
@@ -629,7 +725,7 @@ export function mountPark(canvas, D, opt = {}) {
     } else hf = (x, z) => hEval(s.t, x, z);
     const [top, skirt] = surfaceGeom(s.o, s.h, hf, s.b);
     put(s.c, groundKind(s.m), top, false);
-    put(s.c, groundKind(s.m), skirt, false);
+    if (!s.ns) put(s.c, groundKind(s.m), skirt, false);
   }
   for (const s of D.prisms) {
     const [top, skirt] = surfaceGeom(s.o, s.h, () => s.y1, s.y0);
@@ -644,7 +740,7 @@ export function mountPark(canvas, D, opt = {}) {
     const g = (BEVEL_KINDS.has(kind) && mn >= .1) ? new RoundedBoxGeometry(sx, sy, sz, 1, Math.min(.035, mn * .22)) : new THREE.BoxGeometry(sx, sy, sz);
     e.set(rx * D2R, ry * D2R, 0, 'YXZ'); q.setFromEuler(e);
     g.applyMatrix4(m4.compose(v.set(cx, cy, cz), q, one));
-    put(ci, kind, g, kind !== 'glass');
+    put(ci, kind, g, kind !== 'glass' && kind !== 'jet');
   }
   for (const c of D.cyls) {
     const [x, y, z, r0, r1, h, ci, axis, seg, kind] = c;
@@ -660,7 +756,7 @@ export function mountPark(canvas, D, opt = {}) {
     if (axis === 'y') g.translate(x, y + h / 2, z);
     else if (axis === 'x') { g.rotateZ(-Math.PI / 2); g.translate(x, y, z); }
     else { g.rotateX(Math.PI / 2); g.translate(x, y, z); }
-    put(ci, kind, g, kind !== 'glass');
+    put(ci, kind, g, kind !== 'glass' && kind !== 'jet');
   }
   // tubes between two points (rails, posts, wheels, handrails)
   const up = new THREE.Vector3(0, 1, 0), dir = new THREE.Vector3();
@@ -672,12 +768,13 @@ export function mountPark(canvas, D, opt = {}) {
     const g = new THREE.CylinderGeometry(r, r, L, seg, 1, false);
     q.setFromUnitVectors(up, dir.normalize());
     g.applyMatrix4(m4.compose(v.set((x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2), q, one));
-    put(ci, kind, g, kind !== 'glass');
+    put(ci, kind, g, kind !== 'glass' && kind !== 'jet');
   }
   // extrusions of a 2D profile: plane 'xy' extrudes along +z from off, 'zy' along +x from off
   for (const x of D.exts || []) {
-    const [plane, pts, off, depth, ci, kind, bev] = x;
+    const [plane, pts, off, depth, ci, kind, bev, holes] = x;
     const shape = new THREE.Shape(pts.map(([a, b]) => new THREE.Vector2(a, b)));
+    for (const h of holes || []) shape.holes.push(new THREE.Path(h.map(([a, b]) => new THREE.Vector2(a, b))));
     const g = new THREE.ExtrudeGeometry(shape, { depth: Math.max(.001, depth - 2 * bev), bevelEnabled: bev > 0, bevelSize: bev, bevelThickness: bev, bevelSegments: 2, curveSegments: 6 });
     g.translate(0, 0, bev);
     if (plane === 'xy') g.translate(0, 0, off);
@@ -694,6 +791,21 @@ export function mountPark(canvas, D, opt = {}) {
     const g = new THREE.TorusGeometry(R, r, 14, 48, arc * D2R);
     g.rotateZ(rz * D2R); g.rotateY(ry * D2R); g.translate(x, y, z);
     put(ci, kind, g);
+  }
+  // egg chairs: a shell open at the front over the seat, lined inside in a second colour
+  for (const eg of D.eggs || []) {
+    const [x, y, z, r, hs, face, co, cl, kind] = eg;
+    const ph = Math.PI - face * D2R, w = .62, t0 = .2 * Math.PI, t1 = .66 * Math.PI;
+    const parts = (rr) => [new THREE.SphereGeometry(rr, 28, 6, 0, 2 * Math.PI, 0, t0),
+      new THREE.SphereGeometry(rr, 28, 8, ph + w, 2 * Math.PI - 2 * w, t0, t1 - t0),
+      new THREE.SphereGeometry(rr, 28, 8, 0, 2 * Math.PI, t1, Math.PI - t1)];
+    for (const g of parts(r)) { g.scale(1, hs, 1); g.translate(x, y, z); put(co, kind, g); }
+    for (const g0 of parts(r * .93)) {
+      const g = g0.toNonIndexed(); g.scale(1, hs, 1); g.translate(x, y, z);
+      flipWinding(g);
+      const n = g.attributes.normal.array; for (let i = 0; i < n.length; i++) n[i] = -n[i];
+      put(cl, 'std', g);
+    }
   }
   // terrain: hills that wall the map, coloured by height and slope
   if (D.terrain) {
@@ -735,8 +847,8 @@ export function mountPark(canvas, D, opt = {}) {
     const R = rng(seed + 11);
     if (kind === 'p') {
       const lean = (R() - .5) * .8;
-      const tg = new THREE.CylinderGeometry(.16, .24, h, 7);
-      tg.translate(0, h / 2, 0); tg.rotateZ(lean * .12); tg.translate(x, y, z);
+      const tg = new THREE.CylinderGeometry(.16, .24, h + .5, 7);       // rooted 0.5 m into the ground
+      tg.translate(0, (h - .5) / 2, 0); tg.rotateZ(lean * .12); tg.translate(x, y, z);
       put(extraPal(TRUNK), 'flat', tg);
       const tx = x - Math.sin(lean * .12) * h, ty = y + h;
       for (let k = 0; k < 9; k++) {
@@ -748,8 +860,8 @@ export function mountPark(canvas, D, opt = {}) {
       continue;
     }
     const trunkH = h * .45;
-    const tg = new THREE.CylinderGeometry(.18 + r * .02, .26 + r * .03, trunkH + .5, 7);
-    tg.translate(x, y + (trunkH + .5) / 2, z);
+    const tg = new THREE.CylinderGeometry(.18 + r * .02, .26 + r * .03, trunkH + 1.0, 7);   // rooted 0.5 m into the ground
+    tg.translate(x, y - .5 + (trunkH + 1.0) / 2, z);
     put(extraPal(TRUNK), 'flat', tg);
     const cols = kind === 's' ? SAK : TREE;
     const n = 4 + Math.floor(r / 3);
@@ -779,7 +891,7 @@ export function mountPark(canvas, D, opt = {}) {
     const g = mergeGeometries(bk.list, false);
     const mesh = new THREE.Mesh(g, mat(bk.ci, bk.kind));
     mesh.castShadow = bk.cast; mesh.receiveShadow = true;
-    if (bk.kind === 'glass') mesh.renderOrder = 2;
+    if (bk.kind === 'glass' || bk.kind === 'jet') mesh.renderOrder = 2;
     scene.add(mesh);
   }
 
@@ -788,17 +900,19 @@ export function mountPark(canvas, D, opt = {}) {
     for (const L of D.labels) {
       if (L.k === 'water') {
         const wm = new THREE.MeshStandardMaterial({ color: '#3FA6C4', roughness: .08, metalness: .15, transparent: true, opacity: .82, envMapIntensity: 1.1 });
-        const w = new THREE.Mesh(new THREE.PlaneGeometry(L.w, L.h), wm);
+        const w = new THREE.Mesh(L.r ? new THREE.CircleGeometry(L.r, 64) : new THREE.PlaneGeometry(L.w, L.h), wm);
         w.rotation.x = -Math.PI / 2; w.position.set(...L.p); w.receiveShadow = true; w.renderOrder = 1;
         scene.add(w);
         continue;
       }
       const tex = drawLabel(L);
-      const lit = L.k === 'glow' || L.k === 'door' || L.k === 'led';
+      const SCREENS = ['glow', 'door', 'led', 'tetris', 'piece', 'code', 'crt', 'static', 'robot', 'drum', 'game', 'marquee', 'neonwall'];
+      const lit = SCREENS.includes(L.k);
       const transparent = ['text', 'mascot', 'ring', 'bubble', 'vkana', 'cloud', 'heart'].includes(L.k);
       const m = transparent ? new THREE.MeshBasicMaterial({ map: tex, transparent: true, side: THREE.DoubleSide })
         : new THREE.MeshStandardMaterial({ map: tex, roughness: L.k === 'glass' ? .15 : .7, metalness: L.k === 'glass' ? .2 : 0,
-          emissive: lit ? 0xffffff : 0x000000, emissiveMap: lit ? tex : null, emissiveIntensity: lit ? .55 : 0, side: THREE.DoubleSide, envMapIntensity: .5 });
+          emissive: lit ? 0xffffff : 0x000000, emissiveMap: lit ? tex : null,
+          emissiveIntensity: lit ? (L.k === 'neonwall' ? .35 : L.k === 'glow' || L.k === 'door' ? .55 : 1.1) : 0, side: THREE.DoubleSide, envMapIntensity: .5 });
       m.polygonOffset = true; m.polygonOffsetFactor = -2; m.polygonOffsetUnits = -2;
       const mesh = new THREE.Mesh(new THREE.PlaneGeometry(L.w, L.h), m);
       mesh.position.set(...L.p);
