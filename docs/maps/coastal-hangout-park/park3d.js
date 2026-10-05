@@ -429,7 +429,7 @@ function hEval(spec, x, z) {
 }
 
 // polygon with a top surface (height per vertex) and skirts down to a base level
-function surfaceGeom(o, holes, heightOf, base) {
+function surfaceGeom(o, holes, heightOf, base, se) {
   const shape = new THREE.Shape(o.map(([x, z]) => new THREE.Vector2(x, z)));
   holes.forEach(h => shape.holes.push(new THREE.Path(h.map(([x, z]) => new THREE.Vector2(x, z)))));
   const sg = new THREE.ShapeGeometry(shape);
@@ -446,13 +446,14 @@ function surfaceGeom(o, holes, heightOf, base) {
   top.setIndex(idx);
   top.computeVertexNormals();
   const sk = [];
-  for (const ring of [o, ...holes]) {
+  [o, ...holes].forEach((ring, ri) => {
     for (let i = 0; i < ring.length; i++) {
+      if (se && se[ri] && !se[ri][i]) continue;            // edge shared with a neighbouring cell: no skirt
       const [x0, z0] = ring[i], [x1, z1] = ring[(i + 1) % ring.length];
       const h0 = heightOf(x0, z0), h1 = heightOf(x1, z1);
       sk.push(x0, h0, z0, x1, h1, z1, x1, base, z1, x0, h0, z0, x1, base, z1, x0, base, z0);
     }
-  }
+  });
   const skirt = new THREE.BufferGeometry();
   skirt.setAttribute('position', new THREE.Float32BufferAttribute(sk, 3));
   skirt.computeVertexNormals();
@@ -726,7 +727,7 @@ export function mountPark(canvas, D, opt = {}) {
       s.h.forEach((r, j) => r.forEach(([x, z], i) => m.set(x.toFixed(2) + ',' + z.toFixed(2), s.vh[j][i])));
       hf = (x, z) => m.get(x.toFixed(2) + ',' + z.toFixed(2)) ?? 0;
     } else hf = (x, z) => hEval(s.t, x, z);
-    const [top, skirt] = surfaceGeom(s.o, s.h, hf, s.b);
+    const [top, skirt] = surfaceGeom(s.o, s.h, hf, s.b, s.se);
     put(s.c, groundKind(s.m), top, false);
     if (!s.ns) { if (s.sk != null) put(s.sk, 'conc', skirt, false); else put(s.c, groundKind(s.m), skirt, false); }
   }

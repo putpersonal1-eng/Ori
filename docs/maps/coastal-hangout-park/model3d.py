@@ -73,7 +73,7 @@ class Scene:
             [q for q in getattr(g, "geoms", []) if isinstance(q, Polygon)]
         return [q for q in parts if q.area > .02]
 
-    def slab(self, g, top, color, mat="std", bot=-1.0, hard=True, vh=None, skirt=True, soft=True, skirt_color=None):
+    def slab(self, g, top, color, mat="std", bot=-1.0, hard=True, vh=None, skirt=True, soft=True, skirt_color=None, skirt_on=None):
         """Ground surface: polygon with a height spec (number, axis profile) or per-vertex heights."""
         if not hard and mat == "std" and soft:
             mat = "soft"
@@ -92,6 +92,13 @@ class Scene:
                 rec["ns"] = 1
             if skirt_color:
                 rec["sk"] = self.c(skirt_color)               # exposed edge reads as a concrete retaining face
+            if skirt_on is not None:                          # skirt only the edges on the outline (not between cells)
+                def on(ring):
+                    out = []
+                    for (x0, z0), (x1, z1) in zip(ring, ring[1:] + ring[:1]):
+                        out.append(1 if skirt_on.distance(Point((x0 + x1) / 2, (z0 + z1) / 2)) < .02 else 0)
+                    return out
+                rec["se"] = [on(rec["o"])] + [on(r) for r in rec["h"]]
             if vh is not None:
                 rec["vo"] = [round(vh(x, z), 2) for x, z in rec["o"]]
                 rec["vh"] = [[round(vh(x, z), 2) for x, z in r] for r in rec["h"]]
@@ -109,6 +116,7 @@ class Scene:
         if g.is_empty:
             return
         pg = prep(g)
+        edge = g.boundary
         x0, z0, x1, z1 = g.bounds
         for i in range(math.floor(x0 / cell), math.ceil(x1 / cell)):
             for j in range(math.floor(z0 / cell), math.ceil(z1 / cell)):
@@ -117,9 +125,10 @@ class Scene:
                     continue
                 inside = pg.contains(c)
                 q = c if inside else c.intersection(g)
-                if q.area < .01:
-                    continue
-                self.slab(q, None, color, mat, bot=bot, hard=False, vh=vh, skirt=not inside, soft=False, skirt_color=skirt_color)
+                if q.area < .08 or (not inside and q.area < .25 * q.length * .12):
+                    continue                                  # fragments and slivers at the outline
+                self.slab(q, None, color, mat, bot=bot, hard=False, vh=vh, skirt=not inside, soft=False, skirt_color=skirt_color,
+                          skirt_on=None if inside else edge)
 
     def prism(self, g, y0, y1, color, mat="std", shadow=True):
         for q in self.polys(g, .02):
@@ -411,10 +420,25 @@ def bldg_footprints(b):
     return unary_union([box(*b.P(x0, y0), *b.P(x1, y1)) for (x0, y0, x1, y1) in BLDG_PX])
 
 
+def prom_step_quads(b):
+    """The 3R steps in each opening between the promenade-edge planters: (head a, head b, foot b, foot a)."""
+    out = []
+    for (xa, xb) in b.PROM_OPENINGS:
+        t0, t1 = b.P(xa, b.edge_y(xa)), b.P(xb, b.edge_y(xb))
+        L = math.hypot(t1[0] - t0[0], t1[1] - t0[1])
+        nx, nz = -(t1[1] - t0[1]) / L, (t1[0] - t0[0]) / L
+        if nz < 0:
+            nx, nz = -nx, -nz
+        out.append((t0, t1, (t1[0] + nx * .9, t1[1] + nz * .9), (t0[0] + nx * .9, t0[1] + nz * .9)))
+    return out
+
+
 def footprints(b, rec):
     """Areas that carry their own structure, so no soil is laid over them."""
     P = b.P
     parts = [box(x0, y0, x1, y1) for (x0, y0, x1, y1, *_r) in rec["stair"]]
+    parts += [Polygon(q).buffer(.05) for q in prom_step_quads(b)]                 # promenade steps
+    parts.append(Polygon(b.pier_rect(b.PIER_RAMP_T - .3, .3, -4.0, 4.0)))        # pier ramp
     parts += [Polygon(q).buffer(0) for q, *_r in rec["quad"]] + [Polygon(q).buffer(0) for q, *_r in rec["treads"]]
     parts += [g for g, *_r in rec["planter"]]
     parts.append(bldg_footprints(b))
@@ -470,7 +494,7 @@ def build_ground(sc, b, rec):
     def ramp_h(x, z):
         t = (x - b.PIER_O[0]) * math.sin(pa) + (z - b.PIER_O[1]) * math.cos(pa)
         return 3.15 + (2.4 - 3.15) * min(max((t - t0r) / -t0r, 0.0), 1.0)
-    ramp = Polygon(b.pier_rect(t0r, 0, -3.75, 3.75)).difference(hs["plaza"].buffer(.02)).buffer(0)
+    ramp = Polygon(b.pier_rect(t0r, .12, -3.75, 3.75)).difference(hs["plaza"].buffer(.02)).buffer(0)   # laps onto the deck
     sc.plate_poly(ramp, ramp_h, "timber", "deck", t=.25)
     sc.hard.append((ramp, ramp_h))
     sc._prep = None
@@ -500,7 +524,19 @@ def build_ground(sc, b, rec):
     def shelf_h(x, z):
         return -.2 - 1.5 * min(1.0, shore_l.distance(Point(x, z)) / 18)
     sc.grid_slab(shelf, shelf_h, "sand-wet", "ground", cell=3.0, bot=-3)
-    sc.slab(Polygon(b.PP(b.WEST_ROCK_PX)), .9, "sand", "ground", bot=-3, hard=False)
+    # west rock outcrop: a natural sand-and-rock spit that falls from the beach level into the sea (no flat platform)
+    wrock = Polygon(b.PP(b.WEST_ROCK_PX)).buffer(0).difference(sand)
+    land_edge = sand.boundary
+
+    def wrock_h(x, z):
+        p = Point(x, z)
+        d = land_edge.distance(p)
+        base = sand_h(*nearest_points(sand, p)[0].coords[0])
+        t = min(d / 22.0, 1.0)
+        return base + (-.9 - base) * (t * t * (3 - 2 * t)) + .25 * math.sin(x / 3.1) * math.cos(z / 2.7) * t * (1 - t) * 4
+    sc.grid_slab(wrock, wrock_h, "sand", "ground", cell=3.0, bot=-3)
+    sc.hard.append((wrock, wrock_h))                  # rocks sit on it
+    sc._prep = None
     idw_all = sc.idw_builder()
     idw_low = sc.idw_builder(skip=street_idx)
     wz = wall_line_z(b, rec)
@@ -554,6 +590,13 @@ def build_ground(sc, b, rec):
     rest = land.difference(covered).difference(sand).intersection(frame)
     beds = hs["beds"].intersection(frame)
     soil = unary_union([beds, rest]).buffer(0).difference(footprints(b, rec))
+    beach_edge = unary_union([sand.buffer(1.0), Polygon(b.PP(b.EAST_ROCK_PX)).buffer(1.0)])
+    gap = soil.buffer(.6).intersection(beach_edge).difference(sand.buffer(-.4)).intersection(land)   # strip between beach and planting
+    soil = soil.difference(beach_edge)                                          # no planting on the beach
+    if not gap.is_empty:                                                        # fill it with sand at the beach level
+        sc.grid_slab(gap, lambda x, z: max(sand_h(*nearest_points(sand, Point(x, z))[0].coords[0]), .4) - .02, "sand", "ground",
+                     cell=2.0, bot=-3)
+    soil = soil.buffer(-.3, join_style="mitre").buffer(.3, join_style="mitre").intersection(soil)   # no slivers under 0.6 m
     # split at the street retaining-wall line so no cell spans the drop between street and park
     xs = np.arange(X0 - 1, X1 + 1.01, .25)
     north = Polygon([(X0 - 1, Y0 - 5)] + [(x, wz(x)) for x in xs] + [(X1 + 1, Y0 - 5)]).buffer(0)
@@ -1284,7 +1327,8 @@ def build_pier(sc, b):
     head = Polygon(b.pier_rect(34, 45.5, -22, 5.2))
     deck = unary_union([body, head])
     sc.prism(deck, 2.15, 2.4, "timber", "deck")
-    sc.prism(deck.buffer(.08).difference(deck), 1.95, 2.42, "wood-d", "timber")
+    ramp_end = Polygon(b.pier_rect(-1.0, .3, -3.9, 3.9))
+    sc.prism(deck.buffer(.08).difference(deck).difference(ramp_end), 1.95, 2.42, "wood-d", "timber")   # no trim across the ramp foot
     sc.hard.append((deck, 2.4))
     for t in range(2, 46, 4):
         for nn in (-3.4, 3.4) if t < 34 else (-21.5, -14, -7, 0, 4.8):

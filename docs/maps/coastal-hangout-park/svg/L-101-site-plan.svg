@@ -3369,7 +3369,7 @@
 <line x1="1054.78" y1="668.84" x2="1065.18" y2="707.67" class="rail"/>
 <line x1="1095.35" y1="657.97" x2="1105.75" y2="696.8" class="rail"/>
 <line x1="1083.14" y1="693.55" x2="1076.46" y2="668.62" class="ln" marker-end="url(#cp-arrk)"/>
-<text x="1070.52" y="683.57" text-anchor="middle" class="t-sm halo">RAMP 1:9 UP</text>
+<text x="1067.05" y="684.5" text-anchor="middle" class="t-sm halo">1:9</text>
 <polygon points="1068.07,701.52 1111.53,689.88 1164.33,886.93 1120.87,898.57" class="shadow"/>
 <polygon points="1015.1,926.91 1172.74,884.67 1190.59,951.32 1032.96,993.56" class="shadow"/>
 <polygon points="1063.27,706.32 1106.73,694.68 1159.53,891.73 1116.07,903.37" class="z-timber"/>
@@ -5122,7 +5122,7 @@
 <text x="1155" y="591" text-anchor="middle" class="t-sm halo">JUNCTION</text>
 <text x="1125" y="229" text-anchor="middle" class="t-sm halo">TOP PLAZA</text>
 <text x="620" y="678" text-anchor="middle" class="t-zone halo">BEACH PROMENADE · +3.15 · 3 steps down from the plaza</text>
-<text x="1072" y="653" text-anchor="middle" class="t-sm halo">5R</text>
+<text x="1072" y="653" text-anchor="middle" class="t-sm halo">PIER RAMP</text>
 <text x="580" y="883" text-anchor="middle" class="t-big halo">BEACH AREA</text>
 <text x="580" y="898" text-anchor="middle" class="t-sm halo">+0.90 → ±0.00</text>
 <text x="740" y="769" text-anchor="middle" class="t-sm halo">HUT</text>

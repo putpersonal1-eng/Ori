@@ -440,25 +440,6 @@
 <path d="M411.04 234.2 L414.68 234.2 Q415.24 234.2 415.24 233.64 L415.24 231.12 Q415.24 230.56 414.68 230.56 L411.04 230.56 Q410.48 230.56 410.48 231.12 L410.48 233.64 Q410.48 234.2 411.04 234.2 Z" class="e-white-o"/>
 <circle cx="412.86" cy="232.38" r="0.84" class="e-pink"/>
 <path d="M400.61 233.34 C398.45 232.07 399.63 230.79 400.61 231.68 C401.59 230.79 402.76 232.07 400.61 233.34 Z" style="fill:#F59BC3;stroke:#16283A;stroke-width:.9"/>
-<ellipse class="shrub-o" cx="282.46" cy="235.65" rx="7.44" ry="6.69"/>
-<ellipse class="shrub-o" cx="289.35" cy="237.87" rx="4.66" ry="4.2"/>
-<ellipse class="shrub-o" cx="297.43" cy="236.26" rx="6.68" ry="6.01"/>
-<ellipse class="shrub-o" cx="305.38" cy="236.84" rx="5.95" ry="5.36"/>
-<ellipse class="shrub-o" cx="314.49" cy="235.74" rx="7.33" ry="6.59"/>
-<ellipse class="shrub-o" cx="322.41" cy="237.02" rx="5.72" ry="5.15"/>
-<ellipse class="shrub-o" cx="331.38" cy="235.79" rx="7.26" ry="6.53"/>
-<ellipse class="shrub-o" cx="338.54" cy="237.62" rx="4.98" ry="4.48"/>
-<ellipse class="shrub-o" cx="347.51" cy="235.61" rx="7.48" ry="6.74"/>
-<ellipse class="shrub-o" cx="355.5" cy="237.01" rx="5.74" ry="5.17"/>
-<ellipse class="shrub-o" cx="362.27" cy="237.56" rx="5.05" ry="4.54"/>
-<ellipse class="shrub-o" cx="369.32" cy="237.17" rx="5.54" ry="4.98"/>
-<ellipse class="shrub-o" cx="377.38" cy="236.49" rx="6.39" ry="5.75"/>
-<ellipse class="shrub-o" cx="383.9" cy="237.92" rx="4.6" ry="4.14"/>
-<ellipse class="shrub-o" cx="390.94" cy="237.07" rx="5.66" ry="5.1"/>
-<ellipse class="shrub-o" cx="397.17" cy="237.97" rx="4.53" ry="4.08"/>
-<ellipse class="shrub-o" cx="403.24" cy="237.83" rx="4.71" ry="4.24"/>
-<ellipse class="shrub-o" cx="409.66" cy="237.59" rx="5.01" ry="4.51"/>
-<rect x="273.62" y="241.6" width="140" height="8.4" class="e-conc"/>
 <polygon points="150,250 493,250 493,257 150,257" class="poche"/>
 <polygon points="150,250 493,250 493,257 150,257" fill="url(#ce-earth)"/>
 <polyline points="150,250 493,250" class="e-ground"/>
@@ -473,7 +454,7 @@
 <line x1="326.4" y1="143.6" x2="283" y2="100.2" class="ln-m"/>
 <circle class="ink-f" cx="326.4" cy="143.6" r="1.8"/>
 <text class="e-key halo" x="286" y="103.2" text-anchor="start">Ring logo Ø2.9 · LED ticker · kawara eave</text>
-<circle class="bubble" cx="161" cy="276.1" r="11"/><text class="t-lbl" x="161" y="279.6" text-anchor="middle">4</text><text class="t-head" x="178" y="280.1">FASHION &amp; GOODS · EAST · FRONT</text><text class="t-sm" x="178" y="292.1">looking west · portal with noren at the SE corner, disc-tile panel, planters in front</text>
+<circle class="bubble" cx="161" cy="276.1" r="11"/><text class="t-lbl" x="161" y="279.6" text-anchor="middle">4</text><text class="t-head" x="178" y="280.1">FASHION &amp; GOODS · EAST · FRONT</text><text class="t-sm" x="178" y="292.1">looking west · portal with noren at the SE corner, disc-tile panel · shop front kept clear</text>
 <rect x="700" y="96" width="322" height="134.4" class="e-sky"/>
 <rect x="973" y="157.6" width="49" height="81.2" class="e-arc"/>
 <rect x="973" y="161.52" width="49" height="2.8" class="e-yel"/>

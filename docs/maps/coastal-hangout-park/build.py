@@ -1042,8 +1042,8 @@ def site_plan(underlay=False):
         cv.line(a1[0], a1[1], b1[0], b1[1], "rail")
     a1, b1 = pier_pt(PIER_RAMP_T + 1.2, 0), pier_pt(-1.2, 0)
     cv.line(b1[0], b1[1], a1[0], a1[1], "ln", ' marker-end="url(#cp-arrk)"')
-    q = pier_pt(PIER_RAMP_T / 2, -1.6)
-    cv.text(q[0], q[1], "RAMP 1:9 UP", "t-sm halo")
+    q = pier_pt(PIER_RAMP_T / 2, -2.2)
+    cv.text(q[0], q[1], "1:9", "t-sm halo")
     # pier (traced 15 deg heading), head platform, rails, piles
     body = pier_rect(0, 34, -3.75, 3.75)
     head = pier_rect(34, 45.5, -22, 5.2)
@@ -1276,7 +1276,7 @@ def site_plan(underlay=False):
     T(1135, 538, "JUNCTION")
     T(1105, 176, "TOP PLAZA")
     T(600, 625, "BEACH PROMENADE · +3.15 · 3 steps down from the plaza", "t-zone halo")
-    T(1052, 600, "5R")
+    T(1052, 600, "PIER RAMP")
     T(560, 830, "BEACH AREA", "t-big halo")
     T(560, 845, "+0.90 → ±0.00")
     T(720, 716, "HUT")
@@ -1851,7 +1851,7 @@ NOTES = {
         "The south side has the porthole row above the prize-and-vending strip; the café in front of it is dashed. The back faces the stepped west lane.",
     ],
     "a502": [
-        "Fashion & Goods: two floors, +3.60 and +8.40. The entrance and a glazed dogleg stair are at the SE corner, because the traced planters run along the rest of the east front.",
+        "Fashion & Goods: two floors, +3.60 and +8.40. The entrance and a glazed dogleg stair are at the SE corner. The traced planters in front were merged into one planter at the street wall on review, so the east front is clear.",
         "The north face rises 4.8 m above the kiosk strip behind the planted strip, with no door on that side, as in the reference. A roof deck rail shows above the parapet.",
         "Fashion & Goods follows the shop reference, set in Japan: white plaster, a kawara tile eave, an LED ticker, the ring logo and speech bubble, vertical katakana, a disc-tile panel and a portal with noren and chochin lanterns.",
         "Café follows the café reference: white stone and timber, full-height glass under a 2.5 m timber canopy with the SEASIDE CAFE sign, a corner pier (コーヒー · スイーツ · やすらぎ), wooden tables under white parasols and a roof terrace with a black rail.",

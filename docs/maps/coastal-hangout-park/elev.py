@@ -991,15 +991,13 @@ def fashion_east():
         avatar_p(cv, u, Z_PL + .1, 1.75, 0)
     glazing(cv, 10.1, Z_PL, 16.2, 7.4, 3, inner="e-glass-t")
     stickers(cv, 10.1, Z_PL, 16.2, 7.4, 7, 3)
-    # raised planters in front (traced: 0.6 m high, 1.9 m from the face)
-    shrubs_e(cv, 5.93, 15.53, Z_PL + .6, .75, 52)
-    cv.rect(5.83, Z_PL, 15.83, Z_PL + .6, "e-conc")
+    # (the two planters in front were merged into one planter at the street wall, so the shop front is clear)
     ground(cv, -3.0, 21.5, Z_PL, .5)
     hdim(cv, 0, 17.5, 2.6, "17.50 FASHION & GOODS")
     vdim(cv, 18.0, Z_PL, Z_FROOF + .77, "9.77", side=1)
     level_tags(cv, -3.15, [(Z_PL, "+3.60"), (Z_UP, "+8.40 UPPER FLOOR"), (Z_FROOF, "+12.60 EAVE")])
     note(cv, 6.5, 14.3, 9.6, 11.2, "Ring logo Ø2.9 · LED ticker · kawara eave", "start")
-    panel_title(cv, -3.0, 1.45, "4", "FASHION & GOODS · EAST · FRONT", "looking west · portal with noren at the SE corner, disc-tile panel, planters in front")
+    panel_title(cv, -3.0, 1.45, "4", "FASHION & GOODS · EAST · FRONT", "looking west · portal with noren at the SE corner, disc-tile panel · shop front kept clear")
     return cv
 
 
@@ -1422,8 +1420,9 @@ def life_west():
     cv.rect(29.6, Z_PL, 29.75, 5.05, "e-dark")
     cv.rect(29.67, 4.35, 31.33, 5.05, "e-pink-o")
     stall_e(cv, 27.83, 30.0, Z_PL)
-    shrubs_e(cv, 3.4, 10.6, Z_PL + .6, .7, 75)
-    cv.rect(3.3, Z_PL, 10.67, Z_PL + .6, "e-conc")
+    shrubs_e(cv, 2.7, 6.8, Z_PL + .6, .7, 75)                         # palm planter in the corner by the annex
+    cv.rect(2.6, Z_PL, 6.9, Z_PL + .6, "e-conc")
+    palm_elev(cv, 4.7, Z_PL + .6, 6.6, 81)
     parasol_e(cv, 20.0, Z_PL, 1.5, 2.4, "umb-y")
     avatar_p(cv, 12.6, Z_PL, 1.7, 10)
     ground(cv, -1.0, 33.0, Z_PL, .5)

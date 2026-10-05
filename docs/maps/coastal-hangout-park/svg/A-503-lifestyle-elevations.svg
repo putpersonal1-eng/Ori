@@ -764,21 +764,17 @@
 <circle cx="734.6" cy="550" r="3.4" class="chalk-p"/>
 <circle cx="745.6" cy="550" r="3.4" class="chalk-c"/>
 <circle cx="756.6" cy="550" r="3.4" class="chalk-c"/>
-<ellipse class="shrub-o" cx="245.8" cy="556.76" rx="7.8" ry="7.02"/>
-<ellipse class="shrub-o" cx="255.89" cy="556.8" rx="7.75" ry="6.97"/>
-<ellipse class="shrub-o" cx="264.38" cy="558.07" rx="6.17" ry="5.55"/>
-<ellipse class="shrub-o" cx="275.3" cy="555.74" rx="9.07" ry="8.16"/>
-<ellipse class="shrub-o" cx="286.72" cy="556.04" rx="8.69" ry="7.82"/>
-<ellipse class="shrub-o" cx="298.01" cy="556.05" rx="8.68" ry="7.82"/>
-<ellipse class="shrub-o" cx="308.5" cy="556.69" rx="7.89" ry="7.1"/>
-<ellipse class="shrub-o" cx="319.56" cy="556.05" rx="8.69" ry="7.82"/>
-<ellipse class="shrub-o" cx="331.7" cy="555.38" rx="9.53" ry="8.58"/>
-<ellipse class="shrub-o" cx="343.33" cy="555.99" rx="8.77" ry="7.89"/>
-<ellipse class="shrub-o" cx="353.34" cy="557.09" rx="7.38" ry="6.64"/>
-<ellipse class="shrub-o" cx="365.14" cy="555.33" rx="9.59" ry="8.63"/>
-<ellipse class="shrub-o" cx="375.29" cy="557.19" rx="7.27" ry="6.54"/>
-<ellipse class="shrub-o" cx="383.8" cy="557.93" rx="6.34" ry="5.7"/>
-<rect x="236" y="563" width="147.4" height="12" class="e-conc"/>
+<ellipse class="shrub-o" cx="231.8" cy="556.76" rx="7.8" ry="7.02"/>
+<ellipse class="shrub-o" cx="241.89" cy="556.8" rx="7.75" ry="6.97"/>
+<ellipse class="shrub-o" cx="250.38" cy="558.07" rx="6.17" ry="5.55"/>
+<ellipse class="shrub-o" cx="261.3" cy="555.74" rx="9.07" ry="8.16"/>
+<ellipse class="shrub-o" cx="272.72" cy="556.04" rx="8.69" ry="7.82"/>
+<ellipse class="shrub-o" cx="284.01" cy="556.05" rx="8.68" ry="7.82"/>
+<ellipse class="shrub-o" cx="294.5" cy="556.69" rx="7.89" ry="7.1"/>
+<ellipse class="shrub-o" cx="305.56" cy="556.05" rx="8.69" ry="7.82"/>
+<rect x="222" y="563" width="86" height="12" class="e-conc"/>
+<path d="M264 563 Q266.4 483.8 276 431" class="trunk"/>
+<path class="palm" d="M276 431Q248.01 415.6 220.02 439.73Q248.01 420.6 276 431Z M276 431Q253.99 409.76 231.99 423.16Q253.99 414.76 276 431Z M276 431Q266.65 405.74 257.31 405.03Q266.65 410.74 276 431Z M276 431Q277.65 400.87 279.31 391.77Q277.65 405.87 276 431Z M276 431Q286.17 405.28 296.35 405.04Q286.17 410.28 276 431Z M276 431Q297.34 406.33 318.69 416.89Q297.34 411.33 276 431Z M276 431Q301.42 412.71 326.83 431.74Q301.42 417.71 276 431Z"/>
 <line x1="570" y1="575" x2="570" y2="527" class="e-mull"/>
 <path d="M540 534 Q558 525 570 518 Q582 525 600 534 Z" class="umb-y"/>
 <line x1="567" y1="519" x2="555" y2="533" class="e-joint"/>
