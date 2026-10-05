@@ -103,9 +103,14 @@ class Face:
             for (c, e) in ((a, a + .05), (b - .05, b)):
                 self.box(c, e, y0, y0 + h, dd - .01, dd + .04, frame, "metal")
             self.box(a, b, y0, y0 + .1, dd - .01, dd + .04, frame, "metal")
+        # automatic door: motion sensor on the head frame, 自動ドア stickers on the leaves
+        self.box(uc - .22, uc + .22, y0 + h + .22, y0 + h + .32, off + .02, off + .14, "dark", "metal")
+        self.box(uc - .05, uc + .05, y0 + h + .25, y0 + h + .29, off + .14, off + .145, "red", "led")
         if not open_:
-            self.seg((uc - .25, y0 + .9, off + .16), (uc - .25, y0 + 1.5, off + .16), .015, "steel")
-            self.seg((uc + .25, y0 + .9, off + .16), (uc + .25, y0 + 1.5, off + .16), .015, "steel")
+            for k, uu in enumerate(((u0 + uc) / 2, (uc + u1) / 2)):
+                lw = min(1.0, (u1 - u0) / 2 * .75)
+                self.label(uu, y0 + 1.1, lw, lw * .24, "pill", d=off + (.075 if k == 0 else .125), txt="自動ドア",
+                           fg="#2E333B", bg="#FFFFFF")
 
     def door_solid(self, uc, w, y0, h, col="steel", mat="metal"):
         u0, u1 = uc - w / 2, uc + w / 2

@@ -210,6 +210,22 @@ def planter_g(cv, g, seed, density=.8, rmin=.4, rmax=.8, wall=.3, radius=.35):
     return inner
 
 
+def slide_door(cv, a, b):
+    """Automatic sliding door in plan: two glass leaves (staggered) across the opening a-b (m), their parking
+    positions dashed in the wall either side, and the sensor dot at mid-opening."""
+    L = math.dist(a, b)
+    ux, uy = (b[0] - a[0]) / L, (b[1] - a[1]) / L
+    nx, ny = -uy, ux
+    pt = lambda t, o: (a[0] + ux * t + nx * o, a[1] + uy * t + ny * o)    # noqa: E731
+    leaf = lambda t0, t1, o, cls, ex="": cv.poly([pt(t0, o - .05), pt(t1, o - .05), pt(t1, o + .05), pt(t0, o + .05)], cls, ex)    # noqa: E731
+    cv.line(*pt(0, 0), *pt(L, 0), "gap")
+    leaf(0, L / 2 + .05, -.06, "glass")
+    leaf(L / 2 - .05, L, .06, "glass")
+    leaf(-L / 2, 0, -.06, "ln-m", ' stroke-dasharray="1 1.5" fill="none"')
+    leaf(L, L * 1.5, .06, "ln-m", ' stroke-dasharray="1 1.5" fill="none"')
+    cv.circle(*pt(L / 2, 0), .12, "ink-f")
+
+
 def wall_line(cv, px_pts, t=.4):
     gd(cv, LineString(PP(px_pts)).buffer(t / 2, cap_style="flat", join_style="mitre"), "wallp")
 
@@ -268,6 +284,7 @@ ROCKS_SEA_E = [(1252, 571, 10), (1252, 594, 15), (1220, 590, 14)]
 ESC_X, ESC_Y0, ESC_PLATE, ESC_RUN, GATE_X, GATE_Y = (elev.ESC_X, elev.ESC_Y0, elev.ESC_PLATE, elev.ESC_RUN,
                                                      elev.GATE_X, elev.GATE_Y)   # shared with the elevations and 3D
 PIER_O = P(1065, 647.5)
+PIER_RAMP_T = -6.7          # the wooden ramp starts this far before the pier deck (m along the pier)
 PIER_ANG = 15.0
 
 
@@ -905,8 +922,7 @@ def site_plan(underlay=False):
         cv.line(st[0] + k * .4, st[1], st[0] + k * .4, st[3], "tread" if 0 < k < 3 else "ln-m")
     cv.line(*P(347.5, 370), *P(347.5, 400), "gap")
     cv.line(*P(347.5, 370), *P(347.5, 400), "glass")
-    door_swing(cv, *P(347.5, 370), 2.0, 0, 90)
-    door_swing(cv, *P(347.5, 400), 2.0, 0, -90)
+    slide_door(cv, (47.92, 49.17), (47.92, 54.17))                # automatic sliding doors (open on approach)
     # strip shops + café roof + L terrace
     q = RP(142.5, 465, 347.5, 485)
     cv.rect(*q, "roof")
@@ -959,7 +975,7 @@ def site_plan(underlay=False):
         cv.rect(q[0] + 1.4, q[1] - 1.4, q[2] + 1.4, q[3] - 1.4, "shadow")
     cv.rect(*RP(895, 378, 980, 405), "roof")
     cv.rect(*RP(842, 405, 980, 505), "roof")
-    cv.rect(*RP(912, 367, 942, 380), "prop")
+    cv.rect(141.83, 51.12, 146.83, 51.36, "solid")                # おみやげ SOUVENIR sign on the annex roof
     cv.rect(*RP(842, 505, 980, 530), "roof")
     # blue-glazed tile eave on the west, south and east edges; plant deck in the NW corner; inner parapet line
     for b in [(842, 405, 847, 505), (842, 500, 980, 505), (976, 380, 980, 528)]:
@@ -984,8 +1000,9 @@ def site_plan(underlay=False):
     cv.circle(*P(901, 549), .7, "statue")
     cv.rect(*RP(968, 533, 982, 543), "prop")
 
-    door_swing(cv, *P(842, 445), 1.6, 180, 90)
-    door_swing(cv, *P(842, 465), 1.6, 180, 270)
+    slide_door(cv, (144.73, 50.5), (146.53, 50.5))                # north entrance (automatic sliding)
+    slide_door(cv, (130.33, 61.9), (130.33, 64.8))                # west entrance on the terrace
+    slide_door(cv, (139.68, 75.83), (141.48, 75.83))              # south entrance under the noren
     u, v = P(815, 480)
     parasol(cv, u, v, 1.5, "umb-y", chairs=4)
     parasol(cv, *P(830, 505), .5, "prop", chairs=3, ribs=0)        # the table at the doors was removed on review
@@ -1013,12 +1030,20 @@ def site_plan(underlay=False):
             cv.line(top[0][0], top[0][1] + o, top[1][0], top[1][1] + o, "tread" if k == 1 else "ln-m")
     stair_ns(cv, *RP(382.5, 675, 452.5, 745), (15,), rails=(P(417.5, 0)[0],), label="DN 15R")
     stair_ns(cv, *RP(770, 655, 836, 722), (15,), rails=(P(803, 0)[0],), label="DN 15R")
-    cv.poly(pier_rect(-6.7, -2.0, -3.75, 3.75), "z-paver")          # landing at junction level
-    ps = pier_rect(-2.0, 0, -3.75, 3.75)                              # 5R x 0.15, treads 0.40, down to the deck
-    quad_treads(cv, ps, 5)
-    for nn in (-3.6, 3.6):
-        a1, b1 = pier_pt(-2.0, nn), pier_pt(0, nn)
+    # wooden ramp from the coastal walk (+3.15) down to the pier deck (+2.40): the pier's boards and rails continue
+    ramp = pier_rect(PIER_RAMP_T, 0, -3.75, 3.75)
+    cv.poly(ramp, "z-timber")
+    for t in frange(PIER_RAMP_T + .5, 0, .9):
+        a1, b1 = pier_pt(t, -3.75), pier_pt(t, 3.75)
+        cv.line(a1[0], a1[1], b1[0], b1[1], "pat-s")
+    cv.pline(ramp + ramp[:1], "ln")
+    for nn in (-3.5, 3.5):
+        a1, b1 = pier_pt(PIER_RAMP_T + .3, nn), pier_pt(.3, nn)
         cv.line(a1[0], a1[1], b1[0], b1[1], "rail")
+    a1, b1 = pier_pt(PIER_RAMP_T + 1.2, 0), pier_pt(-1.2, 0)
+    cv.line(b1[0], b1[1], a1[0], a1[1], "ln", ' marker-end="url(#cp-arrk)"')
+    q = pier_pt(PIER_RAMP_T / 2, -1.6)
+    cv.text(q[0], q[1], "RAMP 1:9 UP", "t-sm halo")
     # pier (traced 15 deg heading), head platform, rails, piles
     body = pier_rect(0, 34, -3.75, 3.75)
     head = pier_rect(34, 45.5, -22, 5.2)
@@ -1814,6 +1839,7 @@ NOTES = {
         "Hills wall the map on the north, west and east, with a tunnel at each end of the coastal road; only the sea side stays open. Trees, plants and rocks stay simple placeholders for the engine.",
         "The arcade is modelled inside in the facade's red, yellow and white: red walls with a cream base band and yellow stripe, lit floor tiles, a block-puzzle LED wall, a CRT monitor tower with a robot face, two tiers of drum machines, cabinets, egg chairs and sphere TV pods (views Arcade interior 1 and 2).",
         "The Ori logo landmark stands where the big tree was, like the globe at Universal Studios Japan: a white logo with a glowing lilac face on a purple plinth, in a fountain with a rail and arcing jets, facing the main stair.",
+        "Shop doors are automatic sliding glass doors (motion sensor on the head, 自動ドア stickers): they are modelled closed and open on approach in the engine, so every shop, the arcade hall included, is walk-in. Plans show them as sliding leaves with dashed parking positions.",
         "Placement checks run on every build: soil and sand surfaces follow their real levels inside the outline, trees sit on that soil, lamps keep clear of planting, tree crowns, furniture and stairs, and a clash sweep keeps objects from cutting into each other.",
         "The live view loads three.js from jsDelivr. model/scene.json holds the same model data for the engine team.",
     ],
@@ -1835,7 +1861,8 @@ NOTES = {
         "Re-traced from the reference: the traced edge on the west, south and east becomes a blue-glazed kawara eave; plant deck in the NW roof corner and a 4.2 m canopy band on the south.",
         "Shopfront after the shop reference: a red おみやげ panel, a cloud badge, vertical 雑貨, a portal with red noren, chochin lanterns and stickers on the glass.",
         "Centre awning (7.5 m) over the main shopfront, with the pink SOUVENIR sign on posts in front. The roof garden on the canopy is traced.",
-        "West doors open onto the seating terrace beside the plaza; the L-shaped planter wraps the north-west corner.",
+        "West doors open onto the seating terrace beside the plaza; the palm planter sits in the corner between the annex and the shop.",
+        "North side (13), facing the truck pad and the palm row: display windows under a yellow awning, a side entrance with red noren and lanterns, a disc-tile panel and vertical 雑貨 on the annex; a window and a red おみやげ panel on the shop behind the palm planter. The おみやげ SOUVENIR sign stands on the annex roof.",
         "East side faces the terrace; the terrace planter now follows the curved path.",
     ],
     "a504": [
@@ -1915,7 +1942,7 @@ LINKS = [
     ("curved", "junction", "Path foot"),
     ("coast", "junction", "Walk foot"),
     ("junction", "prom", "Promenade east end"),
-    ("junction", "pier", "Pier stair · 5R"),
+    ("junction", "pier", "Wooden ramp 1:9"),
     ("pier", "head", "Same deck"),
     ("prom", "beach", "West seaside steps · 15R"),
     ("prom", "beach", "East seaside steps · 15R"),

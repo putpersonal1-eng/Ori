@@ -2849,8 +2849,12 @@
 <line x1="374.72" y1="411.62" x2="374.72" y2="464.42" class="ln-m"/>
 <line x1="367.5" y1="423" x2="367.5" y2="453" class="gap"/>
 <line x1="367.5" y1="423" x2="367.5" y2="453" class="glass"/>
-<path class="door" d="M367.5 423L379.5 423A12 12 0 0 1 367.5 435"/>
-<path class="door" d="M367.5 453L379.5 453A12 12 0 0 0 367.5 441"/>
+<line x1="367.52" y1="423.02" x2="367.52" y2="453.02" class="gap"/>
+<polygon points="368.18,423.02 368.18,438.32 367.58,438.32 367.58,423.02" class="glass"/>
+<polygon points="367.46,437.72 367.46,453.02 366.86,453.02 366.86,437.72" class="glass"/>
+<polygon points="368.18,408.02 368.18,423.02 367.58,423.02 367.58,408.02" class="ln-m" stroke-dasharray="1 1.5" fill="none"/>
+<polygon points="367.46,453.02 367.46,468.02 366.86,468.02 366.86,453.02" class="ln-m" stroke-dasharray="1 1.5" fill="none"/>
+<circle cx="367.52" cy="438.02" r="0.72" class="ink-f"/>
 <rect x="162.5" y="518" width="205" height="20" class="roof"/>
 <line x1="162.5" y1="518" x2="162.5" y2="538" class="ln-m"/>
 <line x1="187.7" y1="518" x2="187.7" y2="538" class="ln-m"/>
@@ -3123,7 +3127,7 @@
 <rect x="870.4" y="449.6" width="138" height="100" class="shadow"/>
 <rect x="915" y="431" width="85" height="27" class="roof"/>
 <rect x="862" y="458" width="138" height="100" class="roof"/>
-<rect x="932" y="420" width="30" height="13" class="prop"/>
+<rect x="930.98" y="434.72" width="30" height="1.44" class="solid"/>
 <rect x="862" y="558" width="138" height="25" class="roof"/>
 <rect x="862" y="458" width="5" height="100" class="tile-b"/>
 <rect x="862" y="553" width="138" height="5" class="tile-b"/>
@@ -3165,8 +3169,24 @@
 <circle cx="921" cy="606" r="8.4" class="ln-m"/>
 <circle cx="921" cy="602" r="4.2" class="statue"/>
 <rect x="988" y="586" width="14" height="10" class="prop"/>
-<path class="door" d="M862 498L852.4 498A9.6 9.6 0 0 0 862 507.6"/>
-<path class="door" d="M862 518L852.4 518A9.6 9.6 0 0 1 862 508.4"/>
+<line x1="948.38" y1="431" x2="959.18" y2="431" class="gap"/>
+<polygon points="948.38,430.34 954.08,430.34 954.08,430.94 948.38,430.94" class="glass"/>
+<polygon points="953.48,431.06 959.18,431.06 959.18,431.66 953.48,431.66" class="glass"/>
+<polygon points="942.98,430.34 948.38,430.34 948.38,430.94 942.98,430.94" class="ln-m" stroke-dasharray="1 1.5" fill="none"/>
+<polygon points="959.18,431.06 964.58,431.06 964.58,431.66 959.18,431.66" class="ln-m" stroke-dasharray="1 1.5" fill="none"/>
+<circle cx="953.78" cy="431" r="0.72" class="ink-f"/>
+<line x1="861.98" y1="499.4" x2="861.98" y2="516.8" class="gap"/>
+<polygon points="862.64,499.4 862.64,508.4 862.04,508.4 862.04,499.4" class="glass"/>
+<polygon points="861.92,507.8 861.92,516.8 861.32,516.8 861.32,507.8" class="glass"/>
+<polygon points="862.64,490.7 862.64,499.4 862.04,499.4 862.04,490.7" class="ln-m" stroke-dasharray="1 1.5" fill="none"/>
+<polygon points="861.92,516.8 861.92,525.5 861.32,525.5 861.32,516.8" class="ln-m" stroke-dasharray="1 1.5" fill="none"/>
+<circle cx="861.98" cy="508.1" r="0.72" class="ink-f"/>
+<line x1="918.08" y1="582.98" x2="928.88" y2="582.98" class="gap"/>
+<polygon points="918.08,582.32 923.78,582.32 923.78,582.92 918.08,582.92" class="glass"/>
+<polygon points="923.18,583.04 928.88,583.04 928.88,583.64 923.18,583.64" class="glass"/>
+<polygon points="912.68,582.32 918.08,582.32 918.08,582.92 912.68,582.92" class="ln-m" stroke-dasharray="1 1.5" fill="none"/>
+<polygon points="928.88,583.04 934.28,583.04 934.28,583.64 928.88,583.64" class="ln-m" stroke-dasharray="1 1.5" fill="none"/>
+<circle cx="923.48" cy="582.98" r="0.72" class="ink-f"/>
 <rect x="842.59" y="535.17" width="3.6" height="3.6" class="prop"/>
 <rect x="829.23" y="540.59" width="3.6" height="3.6" class="prop"/>
 <rect x="823.81" y="527.23" width="3.6" height="3.6" class="prop"/>
@@ -3337,17 +3357,19 @@
 <rect x="790" y="708" width="66" height="67" class="ln"/>
 <line x1="828.4" y1="711.6" x2="828.4" y2="771.4" class="ln" marker-end="url(#cp-arrk)"/>
 <text x="831.4" y="716.4" text-anchor="start" class="t-sm halo">DN 15R</text>
-<polygon points="1052.86,667.49 1096.33,655.85 1103.63,683.09 1060.16,694.73" class="z-paver"/>
-<polygon points="1060.16,694.73 1103.63,683.09 1106.73,694.68 1063.27,706.32" class="z-paver"/>
-<line x1="1060.16" y1="694.73" x2="1103.63" y2="683.09" class="tread"/>
-<line x1="1060.78" y1="697.05" x2="1104.25" y2="685.4" class="tread"/>
-<line x1="1061.4" y1="699.37" x2="1104.87" y2="687.72" class="tread"/>
-<line x1="1062.02" y1="701.69" x2="1105.49" y2="690.04" class="tread"/>
-<line x1="1062.65" y1="704.01" x2="1106.11" y2="692.36" class="tread"/>
-<line x1="1063.27" y1="706.32" x2="1106.73" y2="694.68" class="tread"/>
-<polygon points="1060.16,694.73 1103.63,683.09 1106.73,694.68 1063.27,706.32" class="ln"/>
-<line x1="1061.03" y1="694.5" x2="1064.14" y2="706.09" class="rail"/>
-<line x1="1102.76" y1="683.32" x2="1105.86" y2="694.91" class="rail"/>
+<polygon points="1052.86,667.49 1096.33,655.85 1106.73,694.68 1063.27,706.32" class="z-timber"/>
+<line x1="1053.64" y1="670.39" x2="1097.11" y2="658.74" class="pat-s"/>
+<line x1="1055.04" y1="675.61" x2="1098.5" y2="663.96" class="pat-s"/>
+<line x1="1056.43" y1="680.82" x2="1099.9" y2="669.18" class="pat-s"/>
+<line x1="1057.83" y1="686.04" x2="1101.3" y2="674.39" class="pat-s"/>
+<line x1="1059.23" y1="691.25" x2="1102.7" y2="679.61" class="pat-s"/>
+<line x1="1060.63" y1="696.47" x2="1104.09" y2="684.82" class="pat-s"/>
+<line x1="1062.02" y1="701.69" x2="1105.49" y2="690.04" class="pat-s"/>
+<polyline points="1052.86,667.49 1096.33,655.85 1106.73,694.68 1063.27,706.32 1052.86,667.49" class="ln"/>
+<line x1="1054.78" y1="668.84" x2="1065.18" y2="707.67" class="rail"/>
+<line x1="1095.35" y1="657.97" x2="1105.75" y2="696.8" class="rail"/>
+<line x1="1083.14" y1="693.55" x2="1076.46" y2="668.62" class="ln" marker-end="url(#cp-arrk)"/>
+<text x="1070.52" y="683.57" text-anchor="middle" class="t-sm halo">RAMP 1:9 UP</text>
 <polygon points="1068.07,701.52 1111.53,689.88 1164.33,886.93 1120.87,898.57" class="shadow"/>
 <polygon points="1015.1,926.91 1172.74,884.67 1190.59,951.32 1032.96,993.56" class="shadow"/>
 <polygon points="1063.27,706.32 1106.73,694.68 1159.53,891.73 1116.07,903.37" class="z-timber"/>

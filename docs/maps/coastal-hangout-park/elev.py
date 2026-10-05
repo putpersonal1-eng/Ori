@@ -1468,14 +1468,61 @@ def life_east():
     return cv
 
 
+def life_north():
+    sx = 20.0
+    cv = Cv(sx, -sx, 150 + 4.0 * sx, 1145, 0, Z_PL)
+    # u = 153.33 - x (left = east), seen from the truck pad and the palm row
+    cv.rect(-4.0, Z_PL, 30.0, 10.8, "e-sky")
+    life_main_upper(cv, 0, 23.0)
+    gold_line(cv, 14.16, 23.0, 7.75)
+    glazing(cv, 15.0, 4.9, 18.6, 7.3, 3, inner="e-glow")
+    red_panel(cv, 19.2, 6.0, 22.5, 7.4, "おみやげ")
+    # annex in front of the main block, roof sign standing behind its eave
+    for uu in (7.07, 10.93):
+        cv.rect(uu - .06, Z_ANNEX + .2, uu + .06, 8.6, "e-dark")
+    rrect(cv, 6.5, 7.55, 11.5, 8.75, .3, "e-white-o")
+    stext(cv, 9.0, 7.98, "おみやげ SOUVENIR", .32, fill="var(--f-verm)", weight=800, family="var(--f-body)")
+    cv.rect(0, Z_PL, 14.16, Z_ANNEX, "e-plaster")
+    kawara(cv, -.6, 14.76, Z_ANNEX, h=.45, glaze="e-kawara-y")
+    gold_line(cv, 0, 14.16, 6.55)
+    cv.rect(.3, 6.65, 6.0, 7.05, "e-white")
+    cv.rect(.3, 6.65, 6.0, 7.05, "e-out")
+    stext(cv, 3.15, 6.73, "SOUVENIR & GIFTS", .22, fill="var(--f-dark)", weight=700, family="var(--f-cond)")
+    cv.rect(.5, Z_PL, 5.8, 5.6, "e-glow")
+    glazing(cv, .5, Z_PL, 5.8, 5.6, 4, inner="e-glass-t")
+    stickers(cv, 3.0, Z_PL, 5.8, 5.6, 4, 7)
+    cv.rect(.3, 5.62, 6.0, 6.25, "e-yel")
+    cv.rect(.3, 5.62, 6.0, 6.25, "e-out")
+    cv.rect(.3, 5.4, 6.0, 5.62, "e-shadow")
+    portal(cv, 6.4, 9.0, Z_PL, 5.25, 6.2)
+    noren(cv, 6.7, 8.7, 5.25, .7, "e-verm", "ring", panels=2)
+    for uu in (6.15, 9.25):
+        chochin(cv, uu, 5.95, .26, .62)
+    disc_panel(cv, 9.6, 4.0, 13.6, 6.2, 5, 2, "e-verm", 3)
+    cv.rect(13.7, 4.2, 14.1, 6.3, "e-white")
+    vkana(cv, 13.9, 6.2, "雑貨", .3, fill="var(--f-verm)")
+    # corner palm planter against the main block
+    cv.rect(14.26, Z_PL, 21.83, Z_PL + .6, "e-conc")
+    shrubs_e(cv, 14.4, 21.6, Z_PL + .6, .7, 79)
+    palm_elev(cv, 18.0, Z_PL + .6, 6.8, 80)
+    avatar_p(cv, 10.6, Z_PL, 1.65, 12)
+    ground(cv, -4.0, 30.0, Z_PL, .5)
+    hdim(cv, 0, 14.16, 2.85, "14.16 ANNEX")
+    hdim(cv, 14.16, 23.0, 2.85, "8.84 SHOP")
+    level_tags(cv, -4.15, [(Z_PL, "+3.60"), (Z_ANNEX, "+7.20 ANNEX"), (Z_LROOF, "+8.70")])
+    panel_title(cv, -4.0, 1.35, "13", "LIFESTYLE & SOUVENIR · NORTH · SIDE TO THE TRUCK PAD",
+                "looking south · display windows under an awning, side entrance with noren and lanterns, disc-tile panel · palm row in front not shown")
+    return cv
+
+
 def sheet_a503():
-    W, H = 1100, 950
+    W, H = 1100, 1235
     root = Cv(1, 1, 0, 0)
     root.add(defs_e("ce"))
     root.add(f'<rect class="sheet-bg" width="{W}" height="{H}"/>')
     title_strip(root, 24, 30, "A-503", "LIFESTYLE & SOUVENIR · ELEVATIONS",
                 "Japanese shopping-street front after the shop reference · footprint, canopy band, awning and sign as traced on L-101 · 20 px = 1 m")
-    parts = [life_south(), life_west(), life_east()]
+    parts = [life_south(), life_west(), life_east(), life_north()]
     key = colour_key(root, 862, 455, [("e-plaster", "White plaster"), ("e-kawara-y", "Blue-glazed kawara eave"),
                                       ("e-verm", "Vermilion: noren, lanterns, disc panel"), ("e-red", "Red おみやげ panel"),
                                       ("e-pink-o", "Pink shop sign"), ("e-gold", "Gold line"), ("e-glass", "Clear glazing")])

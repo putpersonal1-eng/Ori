@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="950" viewBox="0 0 1100 950" role="img" aria-label="A-503 Lifestyle elevations"><style>@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Condensed:wght@500;600;700&amp;family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;display=swap');
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="1235" viewBox="0 0 1100 1235" role="img" aria-label="A-503 Lifestyle elevations"><style>@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Condensed:wght@500;600;700&amp;family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;display=swap');
 .sheet-bg{fill:#FBFCFC}
 .frame{fill:none;stroke:#16283A;stroke-width:1.4}
 .frame-in{fill:none;stroke:#16283A;stroke-width:.7}
@@ -176,12 +176,12 @@
 .e-fb{font-family:"Barlow", ui-sans-serif, system-ui, sans-serif}
 .e-fc{font-family:"Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif}
 </style><defs><pattern id="ce-earth" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="pat-s" d="M0 0V6"/><circle class="pat-d" cx="3" cy="3" r=".5"/></pattern><pattern id="ce-clad" width="10" height="10" patternUnits="userSpaceOnUse"><path class="e-joint" d="M0 10H10"/></pattern><pattern id="ce-slat" width="4" height="10" patternUnits="userSpaceOnUse"><path class="e-joint" d="M2 0V10"/></pattern><pattern id="ce-awn-y" width="12" height="10" patternUnits="userSpaceOnUse"><rect width="6" height="10" class="e-yel3"/><rect x="6" width="6" height="10" class="e-white"/></pattern><pattern id="ce-awn-p" width="12" height="10" patternUnits="userSpaceOnUse"><rect width="6" height="10" class="e-pink"/><rect x="6" width="6" height="10" class="e-white"/></pattern><pattern id="ce-awn-c" width="12" height="10" patternUnits="userSpaceOnUse"><rect width="6" height="10" class="chalk-c"/><rect x="6" width="6" height="10" class="e-white"/></pattern><pattern id="ce-thatch" width="5" height="6" patternUnits="userSpaceOnUse"><path class="e-joint" d="M0 6L2.5 0M2.5 6L5 0"/></pattern><marker id="ce-arrk" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto-start-reverse"><path class="ink-f" d="M0 0 10 5 0 10z"/></marker></defs>
-<rect class="sheet-bg" width="1100" height="950"/>
+<rect class="sheet-bg" width="1100" height="1235"/>
 <rect class="ink-f" x="24" y="17" width="55.0" height="18"/>
 <text class="t-head t-inv" x="30" y="31">A-503</text>
 <text class="t-head" x="89.0" y="31">LIFESTYLE &amp; SOUVENIR · ELEVATIONS</text>
 <text class="t-sm" x="24" y="48">Japanese shopping-street front after the shop reference · footprint, canopy band, awning and sign as traced on L-101 · 20 px = 1 m</text>
-<rect class="frame" x="12" y="50" width="1076" height="888"/>
+<rect class="frame" x="12" y="50" width="1076" height="1173"/>
 <rect x="150" y="142" width="780" height="148" class="e-sky"/>
 <rect x="486.6" y="218" width="283.4" height="72" class="beyond"/>
 <rect x="310" y="188" width="460" height="102" class="e-plaster"/>
@@ -1045,6 +1045,393 @@
 <polygon class="ink-f" points="143,751 151,751 147,758"/>
 <text class="t-dim halo" x="140" y="755" text-anchor="end">+8.70</text>
 <circle class="bubble" cx="161" cy="901" r="11"/><text class="t-lbl" x="161" y="904.5" text-anchor="middle">12</text><text class="t-head" x="178" y="905">LIFESTYLE &amp; SOUVENIR · EAST · BACK</text><text class="t-sm" x="178" y="917">looking west · service door, annex; the terrace planter along the curved path in front</text>
+<rect x="150" y="1001" width="680" height="144" class="e-sky"/>
+<rect x="230" y="1043" width="460" height="102" class="e-plaster"/>
+<rect x="230" y="1043" width="460" height="9" class="e-shadow"/>
+<polygon points="223,1043 697,1043 693,1031 227,1031" class="e-kawara-y"/>
+<line x1="229" y1="1040.2" x2="229.8" y2="1031.4" class="e-tile"/>
+<line x1="235.4" y1="1040.2" x2="236.2" y2="1031.4" class="e-tile"/>
+<line x1="241.8" y1="1040.2" x2="242.6" y2="1031.4" class="e-tile"/>
+<line x1="248.2" y1="1040.2" x2="249" y2="1031.4" class="e-tile"/>
+<line x1="254.6" y1="1040.2" x2="255.4" y2="1031.4" class="e-tile"/>
+<line x1="261" y1="1040.2" x2="261.8" y2="1031.4" class="e-tile"/>
+<line x1="267.4" y1="1040.2" x2="268.2" y2="1031.4" class="e-tile"/>
+<line x1="273.8" y1="1040.2" x2="274.6" y2="1031.4" class="e-tile"/>
+<line x1="280.2" y1="1040.2" x2="281" y2="1031.4" class="e-tile"/>
+<line x1="286.6" y1="1040.2" x2="287.4" y2="1031.4" class="e-tile"/>
+<line x1="293" y1="1040.2" x2="293.8" y2="1031.4" class="e-tile"/>
+<line x1="299.4" y1="1040.2" x2="300.2" y2="1031.4" class="e-tile"/>
+<line x1="305.8" y1="1040.2" x2="306.6" y2="1031.4" class="e-tile"/>
+<line x1="312.2" y1="1040.2" x2="313" y2="1031.4" class="e-tile"/>
+<line x1="318.6" y1="1040.2" x2="319.4" y2="1031.4" class="e-tile"/>
+<line x1="325" y1="1040.2" x2="325.8" y2="1031.4" class="e-tile"/>
+<line x1="331.4" y1="1040.2" x2="332.2" y2="1031.4" class="e-tile"/>
+<line x1="337.8" y1="1040.2" x2="338.6" y2="1031.4" class="e-tile"/>
+<line x1="344.2" y1="1040.2" x2="345" y2="1031.4" class="e-tile"/>
+<line x1="350.6" y1="1040.2" x2="351.4" y2="1031.4" class="e-tile"/>
+<line x1="357" y1="1040.2" x2="357.8" y2="1031.4" class="e-tile"/>
+<line x1="363.4" y1="1040.2" x2="364.2" y2="1031.4" class="e-tile"/>
+<line x1="369.8" y1="1040.2" x2="370.6" y2="1031.4" class="e-tile"/>
+<line x1="376.2" y1="1040.2" x2="377" y2="1031.4" class="e-tile"/>
+<line x1="382.6" y1="1040.2" x2="383.4" y2="1031.4" class="e-tile"/>
+<line x1="389" y1="1040.2" x2="389.8" y2="1031.4" class="e-tile"/>
+<line x1="395.4" y1="1040.2" x2="396.2" y2="1031.4" class="e-tile"/>
+<line x1="401.8" y1="1040.2" x2="402.6" y2="1031.4" class="e-tile"/>
+<line x1="408.2" y1="1040.2" x2="409" y2="1031.4" class="e-tile"/>
+<line x1="414.6" y1="1040.2" x2="415.4" y2="1031.4" class="e-tile"/>
+<line x1="421" y1="1040.2" x2="421.8" y2="1031.4" class="e-tile"/>
+<line x1="427.4" y1="1040.2" x2="428.2" y2="1031.4" class="e-tile"/>
+<line x1="433.8" y1="1040.2" x2="434.6" y2="1031.4" class="e-tile"/>
+<line x1="440.2" y1="1040.2" x2="441" y2="1031.4" class="e-tile"/>
+<line x1="446.6" y1="1040.2" x2="447.4" y2="1031.4" class="e-tile"/>
+<line x1="453" y1="1040.2" x2="453.8" y2="1031.4" class="e-tile"/>
+<line x1="459.4" y1="1040.2" x2="460.2" y2="1031.4" class="e-tile"/>
+<line x1="465.8" y1="1040.2" x2="466.6" y2="1031.4" class="e-tile"/>
+<line x1="472.2" y1="1040.2" x2="473" y2="1031.4" class="e-tile"/>
+<line x1="478.6" y1="1040.2" x2="479.4" y2="1031.4" class="e-tile"/>
+<line x1="485" y1="1040.2" x2="485.8" y2="1031.4" class="e-tile"/>
+<line x1="491.4" y1="1040.2" x2="492.2" y2="1031.4" class="e-tile"/>
+<line x1="497.8" y1="1040.2" x2="498.6" y2="1031.4" class="e-tile"/>
+<line x1="504.2" y1="1040.2" x2="505" y2="1031.4" class="e-tile"/>
+<line x1="510.6" y1="1040.2" x2="511.4" y2="1031.4" class="e-tile"/>
+<line x1="517" y1="1040.2" x2="517.8" y2="1031.4" class="e-tile"/>
+<line x1="523.4" y1="1040.2" x2="524.2" y2="1031.4" class="e-tile"/>
+<line x1="529.8" y1="1040.2" x2="530.6" y2="1031.4" class="e-tile"/>
+<line x1="536.2" y1="1040.2" x2="537" y2="1031.4" class="e-tile"/>
+<line x1="542.6" y1="1040.2" x2="543.4" y2="1031.4" class="e-tile"/>
+<line x1="549" y1="1040.2" x2="549.8" y2="1031.4" class="e-tile"/>
+<line x1="555.4" y1="1040.2" x2="556.2" y2="1031.4" class="e-tile"/>
+<line x1="561.8" y1="1040.2" x2="562.6" y2="1031.4" class="e-tile"/>
+<line x1="568.2" y1="1040.2" x2="569" y2="1031.4" class="e-tile"/>
+<line x1="574.6" y1="1040.2" x2="575.4" y2="1031.4" class="e-tile"/>
+<line x1="581" y1="1040.2" x2="581.8" y2="1031.4" class="e-tile"/>
+<line x1="587.4" y1="1040.2" x2="588.2" y2="1031.4" class="e-tile"/>
+<line x1="593.8" y1="1040.2" x2="594.6" y2="1031.4" class="e-tile"/>
+<line x1="600.2" y1="1040.2" x2="601" y2="1031.4" class="e-tile"/>
+<line x1="606.6" y1="1040.2" x2="607.4" y2="1031.4" class="e-tile"/>
+<line x1="613" y1="1040.2" x2="613.8" y2="1031.4" class="e-tile"/>
+<line x1="619.4" y1="1040.2" x2="620.2" y2="1031.4" class="e-tile"/>
+<line x1="625.8" y1="1040.2" x2="626.6" y2="1031.4" class="e-tile"/>
+<line x1="632.2" y1="1040.2" x2="633" y2="1031.4" class="e-tile"/>
+<line x1="638.6" y1="1040.2" x2="639.4" y2="1031.4" class="e-tile"/>
+<line x1="645" y1="1040.2" x2="645.8" y2="1031.4" class="e-tile"/>
+<line x1="651.4" y1="1040.2" x2="652.2" y2="1031.4" class="e-tile"/>
+<line x1="657.8" y1="1040.2" x2="658.6" y2="1031.4" class="e-tile"/>
+<line x1="664.2" y1="1040.2" x2="665" y2="1031.4" class="e-tile"/>
+<line x1="670.6" y1="1040.2" x2="671.4" y2="1031.4" class="e-tile"/>
+<line x1="677" y1="1040.2" x2="677.8" y2="1031.4" class="e-tile"/>
+<line x1="683.4" y1="1040.2" x2="684.2" y2="1031.4" class="e-tile"/>
+<line x1="689.8" y1="1040.2" x2="690.6" y2="1031.4" class="e-tile"/>
+<circle cx="225" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="231.4" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="237.8" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="244.2" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="250.6" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="257" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="263.4" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="269.8" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="276.2" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="282.6" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="289" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="295.4" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="301.8" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="308.2" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="314.6" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="321" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="327.4" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="333.8" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="340.2" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="346.6" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="353" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="359.4" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="365.8" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="372.2" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="378.6" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="385" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="391.4" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="397.8" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="404.2" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="410.6" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="417" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="423.4" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="429.8" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="436.2" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="442.6" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="449" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="455.4" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="461.8" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="468.2" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="474.6" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="481" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="487.4" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="493.8" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="500.2" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="506.6" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="513" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="519.4" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="525.8" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="532.2" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="538.6" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="545" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="551.4" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="557.8" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="564.2" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="570.6" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="577" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="583.4" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="589.8" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="596.2" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="602.6" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="609" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="615.4" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="621.8" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="628.2" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="634.6" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="641" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="647.4" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="653.8" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="660.2" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="666.6" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="673" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="679.4" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="685.8" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<circle cx="692.2" cy="1041.6" r="2.2" class="e-kawara-y"/>
+<rect x="227" y="1028" width="466" height="3" class="e-kawara"/>
+<polygon points="217.2,1043 226.8,1043 226,1024.6 222,1021 218,1024.6" class="e-kawara"/>
+<polygon points="693.2,1043 702.8,1043 702,1024.6 698,1021 694,1024.6" class="e-kawara"/>
+<rect x="513.2" y="1061" width="176.8" height="2" class="e-gold"/>
+<rect x="530" y="1071" width="72" height="48" class="e-glow"/>
+<line x1="554" y1="1119" x2="554" y2="1071" class="e-mull-t"/>
+<line x1="578" y1="1119" x2="578" y2="1071" class="e-mull-t"/>
+<rect x="530" y="1071" width="72" height="48" style="fill:none;stroke:#2E333B;stroke-width:1.8"/>
+<line x1="534.8" y1="1107" x2="543.2" y2="1083" class="e-hl"/>
+<line x1="558.8" y1="1107" x2="567.2" y2="1083" class="e-hl"/>
+<line x1="582.8" y1="1107" x2="591.2" y2="1083" class="e-hl"/>
+<rect x="614" y="1069" width="66" height="28" class="e-red"/>
+<circle cx="635.12" cy="1080.6" r="9.52" class="e-white"/>
+<path d="M635.12 1084.39 C628.34 1080.38 632.04 1076.38 635.12 1079.15 C638.2 1076.38 641.9 1080.38 635.12 1084.39 Z" style="fill:#E8414E;stroke:#16283A;stroke-width:.9"/>
+<text class="e-fb" x="660.2" y="1085.8" text-anchor="middle" style="font-weight:800;font-size:9.33px;fill:#FFFFFF;letter-spacing:0px">おみやげ</text>
+<rect x="370.2" y="1045" width="2.4" height="24" class="e-dark"/>
+<rect x="447.4" y="1045" width="2.4" height="24" class="e-dark"/>
+<path d="M366 1066 L454 1066 Q460 1066 460 1060 L460 1048 Q460 1042 454 1042 L366 1042 Q360 1042 360 1048 L360 1060 Q360 1066 366 1066 Z" class="e-white-o"/>
+<text class="e-fb" x="410" y="1057.4" text-anchor="middle" style="font-weight:800;font-size:8.89px;fill:#D9432F;letter-spacing:0px">おみやげ SOUVENIR</text>
+<rect x="230" y="1073" width="283.2" height="72" class="e-plaster"/>
+<rect x="218" y="1073" width="307.2" height="9" class="e-shadow"/>
+<polygon points="211,1073 532.2,1073 528.2,1064 215,1064" class="e-kawara-y"/>
+<line x1="217" y1="1070.2" x2="217.8" y2="1064.4" class="e-tile"/>
+<line x1="223.4" y1="1070.2" x2="224.2" y2="1064.4" class="e-tile"/>
+<line x1="229.8" y1="1070.2" x2="230.6" y2="1064.4" class="e-tile"/>
+<line x1="236.2" y1="1070.2" x2="237" y2="1064.4" class="e-tile"/>
+<line x1="242.6" y1="1070.2" x2="243.4" y2="1064.4" class="e-tile"/>
+<line x1="249" y1="1070.2" x2="249.8" y2="1064.4" class="e-tile"/>
+<line x1="255.4" y1="1070.2" x2="256.2" y2="1064.4" class="e-tile"/>
+<line x1="261.8" y1="1070.2" x2="262.6" y2="1064.4" class="e-tile"/>
+<line x1="268.2" y1="1070.2" x2="269" y2="1064.4" class="e-tile"/>
+<line x1="274.6" y1="1070.2" x2="275.4" y2="1064.4" class="e-tile"/>
+<line x1="281" y1="1070.2" x2="281.8" y2="1064.4" class="e-tile"/>
+<line x1="287.4" y1="1070.2" x2="288.2" y2="1064.4" class="e-tile"/>
+<line x1="293.8" y1="1070.2" x2="294.6" y2="1064.4" class="e-tile"/>
+<line x1="300.2" y1="1070.2" x2="301" y2="1064.4" class="e-tile"/>
+<line x1="306.6" y1="1070.2" x2="307.4" y2="1064.4" class="e-tile"/>
+<line x1="313" y1="1070.2" x2="313.8" y2="1064.4" class="e-tile"/>
+<line x1="319.4" y1="1070.2" x2="320.2" y2="1064.4" class="e-tile"/>
+<line x1="325.8" y1="1070.2" x2="326.6" y2="1064.4" class="e-tile"/>
+<line x1="332.2" y1="1070.2" x2="333" y2="1064.4" class="e-tile"/>
+<line x1="338.6" y1="1070.2" x2="339.4" y2="1064.4" class="e-tile"/>
+<line x1="345" y1="1070.2" x2="345.8" y2="1064.4" class="e-tile"/>
+<line x1="351.4" y1="1070.2" x2="352.2" y2="1064.4" class="e-tile"/>
+<line x1="357.8" y1="1070.2" x2="358.6" y2="1064.4" class="e-tile"/>
+<line x1="364.2" y1="1070.2" x2="365" y2="1064.4" class="e-tile"/>
+<line x1="370.6" y1="1070.2" x2="371.4" y2="1064.4" class="e-tile"/>
+<line x1="377" y1="1070.2" x2="377.8" y2="1064.4" class="e-tile"/>
+<line x1="383.4" y1="1070.2" x2="384.2" y2="1064.4" class="e-tile"/>
+<line x1="389.8" y1="1070.2" x2="390.6" y2="1064.4" class="e-tile"/>
+<line x1="396.2" y1="1070.2" x2="397" y2="1064.4" class="e-tile"/>
+<line x1="402.6" y1="1070.2" x2="403.4" y2="1064.4" class="e-tile"/>
+<line x1="409" y1="1070.2" x2="409.8" y2="1064.4" class="e-tile"/>
+<line x1="415.4" y1="1070.2" x2="416.2" y2="1064.4" class="e-tile"/>
+<line x1="421.8" y1="1070.2" x2="422.6" y2="1064.4" class="e-tile"/>
+<line x1="428.2" y1="1070.2" x2="429" y2="1064.4" class="e-tile"/>
+<line x1="434.6" y1="1070.2" x2="435.4" y2="1064.4" class="e-tile"/>
+<line x1="441" y1="1070.2" x2="441.8" y2="1064.4" class="e-tile"/>
+<line x1="447.4" y1="1070.2" x2="448.2" y2="1064.4" class="e-tile"/>
+<line x1="453.8" y1="1070.2" x2="454.6" y2="1064.4" class="e-tile"/>
+<line x1="460.2" y1="1070.2" x2="461" y2="1064.4" class="e-tile"/>
+<line x1="466.6" y1="1070.2" x2="467.4" y2="1064.4" class="e-tile"/>
+<line x1="473" y1="1070.2" x2="473.8" y2="1064.4" class="e-tile"/>
+<line x1="479.4" y1="1070.2" x2="480.2" y2="1064.4" class="e-tile"/>
+<line x1="485.8" y1="1070.2" x2="486.6" y2="1064.4" class="e-tile"/>
+<line x1="492.2" y1="1070.2" x2="493" y2="1064.4" class="e-tile"/>
+<line x1="498.6" y1="1070.2" x2="499.4" y2="1064.4" class="e-tile"/>
+<line x1="505" y1="1070.2" x2="505.8" y2="1064.4" class="e-tile"/>
+<line x1="511.4" y1="1070.2" x2="512.2" y2="1064.4" class="e-tile"/>
+<line x1="517.8" y1="1070.2" x2="518.6" y2="1064.4" class="e-tile"/>
+<line x1="524.2" y1="1070.2" x2="525" y2="1064.4" class="e-tile"/>
+<circle cx="213" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="219.4" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="225.8" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="232.2" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="238.6" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="245" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="251.4" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="257.8" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="264.2" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="270.6" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="277" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="283.4" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="289.8" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="296.2" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="302.6" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="309" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="315.4" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="321.8" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="328.2" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="334.6" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="341" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="347.4" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="353.8" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="360.2" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="366.6" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="373" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="379.4" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="385.8" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="392.2" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="398.6" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="405" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="411.4" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="417.8" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="424.2" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="430.6" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="437" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="443.4" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="449.8" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="456.2" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="462.6" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="469" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="475.4" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="481.8" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="488.2" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="494.6" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="501" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="507.4" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="513.8" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="520.2" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<circle cx="526.6" cy="1071.6" r="2.2" class="e-kawara-y"/>
+<rect x="215" y="1061" width="313.2" height="3" class="e-kawara"/>
+<polygon points="205.2,1073 214.8,1073 214,1057.6 210,1054 206,1057.6" class="e-kawara"/>
+<polygon points="528.4,1073 538,1073 537.2,1057.6 533.2,1054 529.2,1057.6" class="e-kawara"/>
+<rect x="230" y="1085" width="283.2" height="2" class="e-gold"/>
+<rect x="236" y="1076" width="114" height="8" class="e-white"/>
+<rect x="236" y="1076" width="114" height="8" class="e-out"/>
+<text class="e-fc" x="293" y="1082.4" text-anchor="middle" style="font-weight:700;font-size:6.11px;fill:#2E333B;letter-spacing:0px">SOUVENIR &amp; GIFTS</text>
+<rect x="240" y="1105" width="106" height="40" class="e-glow"/>
+<rect x="240" y="1105" width="106" height="40" class="e-glass-t"/>
+<line x1="266.5" y1="1145" x2="266.5" y2="1105" class="e-mull-t"/>
+<line x1="293" y1="1145" x2="293" y2="1105" class="e-mull-t"/>
+<line x1="319.5" y1="1145" x2="319.5" y2="1105" class="e-mull-t"/>
+<rect x="240" y="1105" width="106" height="40" style="fill:none;stroke:#2E333B;stroke-width:1.8"/>
+<line x1="245.3" y1="1135" x2="254.57" y2="1115" class="e-hl"/>
+<line x1="271.8" y1="1135" x2="281.07" y2="1115" class="e-hl"/>
+<line x1="298.3" y1="1135" x2="307.57" y2="1115" class="e-hl"/>
+<line x1="324.8" y1="1135" x2="334.07" y2="1115" class="e-hl"/>
+<circle cx="308.25" cy="1129.68" r="3.2" class="e-red"/>
+<rect x="307.65" y="1127.68" width="1.2" height="4" class="e-white"/>
+<path d="M320.04 1134.01 L325.24 1134.01 Q326.04 1134.01 326.04 1133.21 L326.04 1129.61 Q326.04 1128.81 325.24 1128.81 L320.04 1128.81 Q319.24 1128.81 319.24 1129.61 L319.24 1133.21 Q319.24 1134.01 320.04 1134.01 Z" class="e-white-o"/>
+<circle cx="322.64" cy="1131.41" r="1.2" class="e-pink"/>
+<path d="M317.58 1126.49 C314.5 1124.67 316.18 1122.85 317.58 1124.11 C318.98 1122.85 320.66 1124.67 317.58 1126.49 Z" style="fill:#F59BC3;stroke:#16283A;stroke-width:.9"/>
+<rect x="293.75" y="1118.24" width="5.6" height="7.2" class="e-yel"/>
+<circle cx="296.55" cy="1121.44" r="1.4" class="e-dark"/>
+<rect x="236" y="1092" width="114" height="12.6" class="e-yel"/>
+<rect x="236" y="1092" width="114" height="12.6" class="e-out"/>
+<rect x="236" y="1104.6" width="114" height="4.4" class="e-shadow"/>
+<rect x="358" y="1093" width="52" height="52" class="e-portal"/>
+<rect x="364" y="1097" width="40" height="10" class="e-white"/>
+<line x1="364" y1="1107" x2="364" y2="1097" class="e-joint"/>
+<line x1="374" y1="1107" x2="374" y2="1097" class="e-joint"/>
+<line x1="384" y1="1107" x2="384" y2="1097" class="e-joint"/>
+<line x1="394" y1="1107" x2="394" y2="1097" class="e-joint"/>
+<line x1="404" y1="1107" x2="404" y2="1097" class="e-joint"/>
+<line x1="364" y1="1107" x2="404" y2="1107" class="e-joint"/>
+<line x1="364" y1="1097" x2="404" y2="1097" class="e-joint"/>
+<rect x="365" y="1093" width="12" height="13" class="e-dark"/>
+<circle cx="371" cy="1099.6" r="4" class="e-steel"/>
+<rect x="391" y="1093" width="12" height="13" class="e-dark"/>
+<circle cx="397" cy="1099.6" r="4" class="e-steel"/>
+<rect x="364" y="1112" width="40" height="33" class="e-glow"/>
+<rect x="364" y="1112" width="40" height="33" class="e-glass-t"/>
+<line x1="384" y1="1145" x2="384" y2="1112" class="e-mull-t"/>
+<rect x="364" y="1112" width="40" height="33" style="fill:none;stroke:#2E333B;stroke-width:1.8"/>
+<line x1="368" y1="1136.75" x2="375" y2="1120.25" class="e-hl"/>
+<line x1="388" y1="1136.75" x2="395" y2="1120.25" class="e-hl"/>
+<rect x="360" y="1110.8" width="48" height="2" class="e-wood"/>
+<rect x="364" y="1112.8" width="19.4" height="13.2" class="e-verm"/>
+<rect x="384.6" y="1112.8" width="19.4" height="13.2" class="e-verm"/>
+<circle cx="384" cy="1118.72" r="3.64" style="fill:none;stroke:#FFFFFF;stroke-width:2.2"/>
+<circle cx="384" cy="1118.72" r="1.4" class="e-white"/>
+<line x1="353" y1="1091.8" x2="353" y2="1086.2" class="e-mull"/>
+<ellipse cx="353" cy="1098" rx="5.2" ry="6.2" class="e-verm"/>
+<line x1="348.59" y1="1101.1" x2="357.41" y2="1101.1" class="e-joint"/>
+<line x1="347.9" y1="1098" x2="358.1" y2="1098" class="e-joint"/>
+<line x1="348.59" y1="1094.9" x2="357.41" y2="1094.9" class="e-joint"/>
+<rect x="350.14" y="1091.2" width="5.72" height="2" class="e-dark"/>
+<rect x="350.14" y="1102.8" width="5.72" height="2" class="e-dark"/>
+<line x1="415" y1="1091.8" x2="415" y2="1086.2" class="e-mull"/>
+<ellipse cx="415" cy="1098" rx="5.2" ry="6.2" class="e-verm"/>
+<line x1="410.59" y1="1101.1" x2="419.41" y2="1101.1" class="e-joint"/>
+<line x1="409.9" y1="1098" x2="420.1" y2="1098" class="e-joint"/>
+<line x1="410.59" y1="1094.9" x2="419.41" y2="1094.9" class="e-joint"/>
+<rect x="412.14" y="1091.2" width="5.72" height="2" class="e-dark"/>
+<rect x="412.14" y="1102.8" width="5.72" height="2" class="e-dark"/>
+<rect x="422" y="1093" width="80" height="44" class="e-verm"/>
+<circle cx="430" cy="1126" r="6.08" style="fill:#2E333B;opacity:.35"/>
+<circle cx="430" cy="1104" r="6.08" class="e-cream"/>
+<circle cx="430" cy="1104" r="3.34" class="e-verm"/>
+<circle cx="446" cy="1126" r="6.08" class="e-steel"/>
+<circle cx="446" cy="1126" r="2.13" style="fill:#DED6C3"/>
+<circle cx="446" cy="1104" r="6.08" style="fill:#C9A24A;stroke:#16283A;stroke-width:.6"/>
+<circle cx="462" cy="1126" r="6.08" class="e-cream"/>
+<circle cx="462" cy="1126" r="3.34" class="e-verm"/>
+<circle cx="462" cy="1104" r="6.08" style="fill:#2E333B;opacity:.35"/>
+<circle cx="478" cy="1126" r="6.08" style="fill:#C9A24A;stroke:#16283A;stroke-width:.6"/>
+<circle cx="478" cy="1104" r="6.08" class="e-steel"/>
+<circle cx="478" cy="1104" r="2.13" style="fill:#DED6C3"/>
+<circle cx="494" cy="1126" r="6.08" style="fill:#2E333B;opacity:.35"/>
+<circle cx="494" cy="1104" r="6.08" class="e-cream"/>
+<circle cx="494" cy="1104" r="3.34" class="e-verm"/>
+<rect x="504" y="1091" width="8" height="42" class="e-white"/>
+<text class="e-fb" x="508" y="1099.84" text-anchor="middle" style="font-weight:800;font-size:8.33px;fill:#D9432F;letter-spacing:0px">雑</text>
+<text class="e-fb" x="508" y="1106.68" text-anchor="middle" style="font-weight:800;font-size:8.33px;fill:#D9432F;letter-spacing:0px">貨</text>
+<rect x="515.2" y="1133" width="151.4" height="12" class="e-conc"/>
+<ellipse class="shrub-o" cx="524.58" cy="1127.73" rx="6.58" ry="5.92"/>
+<ellipse class="shrub-o" cx="533.95" cy="1127.08" rx="7.4" ry="6.66"/>
+<ellipse class="shrub-o" cx="542.82" cy="1127.68" rx="6.65" ry="5.99"/>
+<ellipse class="shrub-o" cx="551.8" cy="1127.41" rx="6.98" ry="6.29"/>
+<ellipse class="shrub-o" cx="562.67" cy="1125.98" rx="8.77" ry="7.89"/>
+<ellipse class="shrub-o" cx="571.92" cy="1127.7" rx="6.62" ry="5.96"/>
+<ellipse class="shrub-o" cx="581.31" cy="1127.08" rx="7.4" ry="6.66"/>
+<ellipse class="shrub-o" cx="590.33" cy="1127.56" rx="6.8" ry="6.12"/>
+<ellipse class="shrub-o" cx="602.27" cy="1125.08" rx="9.9" ry="8.91"/>
+<ellipse class="shrub-o" cx="613.2" cy="1126.63" rx="7.96" ry="7.17"/>
+<ellipse class="shrub-o" cx="622.83" cy="1127.21" rx="7.24" ry="6.51"/>
+<ellipse class="shrub-o" cx="632.64" cy="1126.89" rx="7.64" ry="6.88"/>
+<ellipse class="shrub-o" cx="644.24" cy="1125.55" rx="9.31" ry="8.38"/>
+<ellipse class="shrub-o" cx="654.51" cy="1127.02" rx="7.47" ry="6.72"/>
+<ellipse class="shrub-o" cx="666.02" cy="1125.58" rx="9.27" ry="8.34"/>
+<path d="M590 1133 Q592.4 1051.4 602 997" class="trunk"/>
+<path class="palm" d="M602 997Q576.79 981.4 551.57 1002.28Q576.79 986.4 602 997Z M602 997Q579.17 975.04 556.33 988.8Q579.17 980.04 602 997Z M602 997Q590.7 972.94 579.39 974.54Q590.7 977.94 602 997Z M602 997Q600.79 966.28 599.59 956.57Q600.79 971.28 602 997Z M602 997Q613.85 970.41 625.71 971.14Q613.85 975.41 602 997Z M602 997Q624.2 974.24 646.4 986.84Q624.2 979.24 602 997Z M602 997Q625.41 981.12 648.82 999.8Q625.41 986.12 602 997Z"/>
+<g class="avatar"><circle cx="442" cy="1115.3" r="2.48"/><rect x="438.7" y="1117.94" width="6.6" height="13.2" rx="1.98"/><rect x="439.19" y="1130.15" width="2.48" height="14.85" rx="0.99"/><rect x="442.33" y="1130.15" width="2.48" height="14.85" rx="0.99"/></g>
+<polygon points="150,1145 830,1145 830,1155 150,1155" class="poche"/>
+<polygon points="150,1145 830,1145 830,1155 150,1155" fill="url(#ce-earth)"/>
+<polyline points="150,1145 830,1145" class="e-ground"/>
+<line class="dim" x1="227" y1="1160" x2="516.2" y2="1160"/><line class="dim-t" x1="227" y1="1163" x2="233" y2="1157"/><line class="dim-t" x1="510.2" y1="1163" x2="516.2" y2="1157"/><text class="t-dim halo" x="371.6" y="1157" text-anchor="middle">14.16 ANNEX</text>
+<line class="dim" x1="510.2" y1="1160" x2="693" y2="1160"/><line class="dim-t" x1="510.2" y1="1163" x2="516.2" y2="1157"/><line class="dim-t" x1="687" y1="1163" x2="693" y2="1157"/><text class="t-dim halo" x="601.6" y="1157" text-anchor="middle">8.84 SHOP</text>
+<polygon class="ink-f" points="143,1138 151,1138 147,1145"/>
+<text class="t-dim halo" x="140" y="1142" text-anchor="end">+3.60</text>
+<polygon class="ink-f" points="143,1066 151,1066 147,1073"/>
+<text class="t-dim halo" x="140" y="1070" text-anchor="end">+7.20 ANNEX</text>
+<polygon class="ink-f" points="143,1036 151,1036 147,1043"/>
+<text class="t-dim halo" x="140" y="1040" text-anchor="end">+8.70</text>
+<circle class="bubble" cx="161" cy="1186" r="11"/><text class="t-lbl" x="161" y="1189.5" text-anchor="middle">13</text><text class="t-head" x="178" y="1190">LIFESTYLE &amp; SOUVENIR · NORTH · SIDE TO THE TRUCK PAD</text><text class="t-sm" x="178" y="1202">looking south · display windows under an awning, side entrance with noren and lanterns, disc-tile panel · palm row in front not shown</text>
 <text class="t-head" x="862" y="455">MATERIALS</text>
 <rect class="e-plaster" x="862" y="469" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="892" y="479">White plaster</text>
 <rect class="e-kawara-y" x="862" y="488" width="22" height="13" style="stroke:#16283A;stroke-width:.7"/><text class="e-key" x="892" y="498">Blue-glazed kawara eave</text>

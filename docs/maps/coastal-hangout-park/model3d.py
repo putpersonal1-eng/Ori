@@ -463,9 +463,21 @@ def build_ground(sc, b, rec):
     sc.slab(hs["top"].difference(sfp), 3.6, "paver")
     sc.slab(hs["lawn"], 3.6, "lawn", skirt_color="conc")                # event lawn level with the plaza (no longer raked)
     sc.slab(hs["prom"], 3.15, "timber")
-    # pier landing at junction level (+3.15) between the coastal walk and the 5R steps down to the deck
-    pier_land = Polygon(b.pier_rect(-6.7, -2.0, -3.75, 3.75)).difference(hs["plaza"]).buffer(0)
-    sc.slab(pier_land, 3.15, "paver", bot=0.0)
+    # wooden ramp from the coastal walk (+3.15) down to the pier deck (+2.40), boards and rails continuing the pier
+    t0r = b.PIER_RAMP_T
+    pa = math.radians(b.PIER_ANG)
+
+    def ramp_h(x, z):
+        t = (x - b.PIER_O[0]) * math.sin(pa) + (z - b.PIER_O[1]) * math.cos(pa)
+        return 3.15 + (2.4 - 3.15) * min(max((t - t0r) / -t0r, 0.0), 1.0)
+    ramp = Polygon(b.pier_rect(t0r, 0, -3.75, 3.75)).difference(hs["plaza"].buffer(.02)).buffer(0)
+    sc.plate_poly(ramp, ramp_h, "timber", "deck", t=.25)
+    sc.hard.append((ramp, ramp_h))
+    sc._prep = None
+    # sand under the ramp where the old landing stood (no water showing through)
+    under = Polygon(b.pier_rect(t0r - .5, .5, -5.0, 5.0)).difference(hs["plaza"]).difference(b.sand_poly()).buffer(0)
+    sc.slab(under, .7, "sand", "ground", bot=-3, hard=False)
+    b.RAMP_H = ramp_h
     sc.slab(hs["terr"], 3.66, "timber")
     sc.slab(GB(93, 153, 140, 207), 8.42, "timber")
     dy = b.TRUCK_DY
@@ -811,7 +823,7 @@ def build_arcade(sc, b):
         E.disc(bu, bz, .48, .78, .84, "dark", "metal", 28)
         E.disc(bu, bz, .45, .84, 1.02, col, "gloss", 28, r_out=.36)
     # entrance: lit interior, sliding glass doors, pillars with LED strips, lintel
-    E.door_slide(c, 5.0, 4.05, 3.15, open_=.8)                 # automatic doors open: the hall is walk-in
+    E.door_slide(c, 5.0, 4.05, 3.15)                          # automatic sliding doors: open on approach in the engine
     for (a, b_) in ((c - 3.05, c - 2.5), (c + 2.5, c + 3.05)):
         E.box(a, b_, 4.05, 7.65, 0, .3, "yel", "paint")
         E.box((a + b_) / 2 - .04, (a + b_) / 2 + .04, 4.35, 7.2, .3, .33, "white", "led")
@@ -1086,6 +1098,35 @@ def build_lifestyle(sc, b):
         K.lantern(sc, x, 6.75, z, .26)
     Wf.window(11.0, 16.0, 4.4, 7.3, cols=3, frame="dark", inner="glow")
     Wf.ext(bubble_pts(11.6, 13.5, 8.0, 8.55, .2), 0, .1, "white", "gloss", .02)
+    # north side to the truck pad and palm row (u = 153.33 - x for both faces, left = east as seen from the north)
+    N = K.Face(sc, "N", 139.17, 50.5, x1, z0)                 # annex front
+    N.box(0, 14.16, 6.5, 6.6, 0, .04, "gold", "metal")
+    N.box(.3, 6.0, 6.65, 7.05, 0, .06, "white", "paint")
+    N.text("SOUVENIR & GIFTS", 3.15, 6.73, .26, .03, "dark", d=.06)
+    N.shopfront(.5, 5.8, 3.6, 5.6, 4, inner="glow")
+    pts = [N.p(.3, 0), N.p(6.0, 0), N.p(6.0, 1.1), N.p(.3, 1.1)]
+    sc.plate(pts, [6.25, 6.25, 5.8, 5.8], "yel", "paint", t=.06)       # awning over the display windows
+    N.box(.3, 6.0, 5.62, 5.8, 1.05, 1.1, "yel", "paint")
+    N.box(6.4, 9.0, 3.6, 6.2, 0, .2, "portal", "metal")
+    N.label(7.7, 4.42, 2.0, 1.6, "glow", d=.205)
+    N.door_slide(7.7, 1.8, 3.6, 1.65, off=.2)
+    N.box(6.7, 8.7, 4.55, 5.25, .42, .44, "verm", "std")
+    N.label(7.7, 4.9, 2.0, .7, "noren", d=.445, bg="#D9432F")
+    for u in (6.15, 9.25):
+        x, z = N.p(u, .4)
+        K.lantern(sc, x, 5.95, z, .26)
+    N.box(9.6, 13.6, 4.0, 6.2, 0, .1, "verm", "gloss")
+    for i in range(5):
+        for j in range(2):
+            u, y = 9.6 + (i + .5) * .8, 4.0 + (j + .5) * 1.1
+            N.disc(u, y, .3, .1, .17, ("gold", "cream", "steel", "navy")[(i + j * 2) % 4], "metal" if (i + j) % 2 else "gloss")
+    N.box(13.7, 14.1, 4.2, 6.3, 0, .06, "white", "paint")
+    N.label(13.9, 5.25, .36, 1.9, "vkana", d=.065, txt="雑貨", fg="#D9432F")
+    M = K.Face(sc, "N", x0, z0, x1, z1)                      # main block, west of the annex (behind the palm planter)
+    M.box(14.16, 23.0, 7.7, 7.8, 0, .04, "gold", "metal")
+    M.window(15.0, 18.6, 4.9, 7.3, cols=3, frame="dark", inner="glow")
+    M.box(19.2, 22.5, 6.0, 7.4, 0, .08, "red", "gloss")
+    M.label(20.85, 6.7, 3.1, 1.2, "redpanel", d=.085, txt="おみやげ")
     # east face: windows, service door, condensers
     E = K.Face(sc, "E", x0, z0, x1, z1)
     for (a, b_) in ((.8, 3.4), (6.6, 9.0), (11.4, 15.8)):
@@ -1259,9 +1300,12 @@ def build_pier(sc, b):
     def edge(t0, n0, t1, n1):
         a, c = b.pier_pt(t0, n0), b.pier_pt(t1, n1)
         return [(a[0], 2.4, a[1]), (c[0], 2.4, c[1])]
-    for nn in (-3.6, 3.6):                            # rails along the landing's open sides
-        a, c = b.pier_pt(-6.4, nn), b.pier_pt(-2.0, nn)
-        K.rail_line(sc, [(a[0], 3.15, a[1]), (c[0], 3.15, c[1])], h=1.05, post=1.5, cap="timber")
+    for nn in (-3.6, 3.6):                            # ramp rails, continuing the pier's timber-capped rails
+        a, c = b.pier_pt(b.PIER_RAMP_T + .3, nn), b.pier_pt(.5, nn)
+        K.rail_line(sc, [(a[0], 3.15, a[1]), (c[0], 2.4, c[1])], h=1.05, post=1.6, cap="timber")
+        for t in (b.PIER_RAMP_T + 1.5, b.PIER_RAMP_T / 2):   # piles under the ramp, up to its underside
+            x, z = b.pier_pt(t, nn * .94)
+            sc.cyl(x, -1.5, z, .2, .2, b.RAMP_H(x, z) - .27 + 1.5, "timber-2", seg=10, mat="timber")
     for pts in (edge(.5, -3.6, 34, -3.6), edge(.5, 3.6, 34, 3.6), edge(34, -3.6, 34, -21.85), edge(34, -21.85, 45.35, -21.85),
                 edge(45.35, -21.85, 45.35, -1.3), edge(45.35, 1.3, 45.35, 5.05), edge(45.35, 5.05, 34, 5.05), edge(34, 5.05, 34, 3.6)):
         K.rail_line(sc, pts, h=1.05, post=1.8, cap="timber")
