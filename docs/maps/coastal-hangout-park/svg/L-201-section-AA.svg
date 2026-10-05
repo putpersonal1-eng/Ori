@@ -83,6 +83,34 @@
 .arc-y{fill:#F0BE2C;fill-opacity:.32}
 .key{fill:#16283A}
 .statue{fill:#FBFCFC;stroke:#16283A;stroke-width:1.2}
+.tree-o{fill:#9BCA84;stroke:#58894C;stroke-width:1.5}
+.tree-f{fill:#9BCA84}
+.sak-o{fill:#F5C3D8;stroke:#E5539A;stroke-width:1.3}
+.sak-f{fill:#F5C3D8}
+.shrub-o{fill:#86BB6D;stroke:#58894C;stroke-width:1}
+.shrub-f{fill:#86BB6D}
+.bed{fill:#86BB6D;stroke:#58894C;stroke-width:.9}
+.leaf{fill:none;stroke:#58894C;stroke-width:.7;opacity:.8;stroke-linecap:round}
+.blossom{fill:#E5539A}
+.palm{fill:#7DB268;stroke:#58894C;stroke-width:.6;stroke-linejoin:round}
+.shadow{fill:#16283A;opacity:.12}
+.rock{fill:#CBC5BC;stroke:#4A5C6F;stroke-width:.8;stroke-linejoin:round}
+.foam{fill:none;stroke:#FFFFFF;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.foam-d{fill:none;stroke:#FFFFFF;stroke-width:1;stroke-dasharray:4 3;stroke-linecap:round}
+.z-mid{fill:#A5D6E2}
+.z-wet{fill:#E7D09F}
+.roof{fill:#BAC7D4;stroke:#16283A;stroke-width:1.6}
+.roof-2{fill:#9DAFC1}
+.post{fill:#16283A}
+.rail{fill:none;stroke:#16283A;stroke-width:.9}
+.tread{fill:none;stroke:#4A5C6F;stroke-width:.5}
+.joint{fill:none;stroke:#93A3B2;stroke-width:.45}
+.band{fill:#C4D1D8}
+.wall-l{fill:none;stroke:#16283A;stroke-width:3.2;stroke-linecap:square}
+.wall6{fill:none;stroke:#16283A;stroke-width:2.4}
+.string{fill:none;stroke:#4A5C6F;stroke-width:.6;stroke-dasharray:1 2}
+.bulb{fill:#F0BE2C}
+.door{fill:none;stroke:#4A5C6F;stroke-width:.6}
 </style><defs>
 <pattern id="ca-brick" width="8" height="8" patternUnits="userSpaceOnUse"><path class="pat-s" d="M0 4 2 2 4 4 6 2 8 4M0 8 2 6 4 8 6 6 8 8"/></pattern>
 <pattern id="ca-sand" width="9" height="9" patternUnits="userSpaceOnUse"><circle class="pat-d" cx="1.5" cy="1.5" r=".55"/><circle class="pat-d" cx="6" cy="4.5" r=".5"/><circle class="pat-d" cx="3" cy="7.5" r=".45"/></pattern>
@@ -92,6 +120,12 @@
 <pattern id="ca-lawn" width="14" height="12" patternUnits="userSpaceOnUse"><path class="pat-g" d="M3 3l1.2 2 1.2-2M9 8l1.2 2 1.2-2"/></pattern>
 <pattern id="ca-hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><path class="pat-s" d="M0 0V5"/></pattern>
 <pattern id="ca-earth" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="pat-s" d="M0 0V6"/><circle class="pat-d" cx="3" cy="3" r=".5"/></pattern>
+<pattern id="ca-boardh" width="10" height="3" patternUnits="userSpaceOnUse"><path class="pat-s" d="M0 0H10"/></pattern>
+<pattern id="ca-pave" width="12" height="12" patternUnits="userSpaceOnUse"><path class="joint" d="M0 0H12M0 0V12"/></pattern>
+<pattern id="ca-stripe" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="2.5" height="5" class="chalk-p"/></pattern>
+<pattern id="ca-stripey" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="2.5" height="5" class="chalk-y"/></pattern>
+<pattern id="ca-stripec" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="2.5" height="5" class="chalk-c"/></pattern>
+<pattern id="ca-thatch" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(30)"><path class="pat-s" d="M0 0V4M2 0V2"/></pattern>
 <marker id="ca-arr" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="acc-f" d="M0 0 10 5 0 10z"/></marker>
 <marker id="ca-arrt" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="teal-f" d="M0 0 10 5 0 10z"/></marker>
 <marker id="ca-arrk" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto-start-reverse"><path class="ink-f" d="M0 0 10 5 0 10z"/></marker>
@@ -127,12 +161,8 @@
 <circle cx="584" cy="163" r="3.5" class="prop"/>
 <line x1="520" y1="214" x2="520" y2="164" class="ln-m"/>
 <circle cx="520" cy="163" r="3.5" class="prop"/>
-<line x1="612.5" y1="239" x2="612.5" y2="180" class="trunk"/>
-<line x1="612.5" y1="180" x2="600.28" y2="174.58" class="trunk"/>
-<line x1="612.5" y1="180" x2="605.04" y2="169.81" class="trunk"/>
-<line x1="612.5" y1="180" x2="612.5" y2="168" class="trunk"/>
-<line x1="612.5" y1="180" x2="619.96" y2="169.81" class="trunk"/>
-<line x1="612.5" y1="180" x2="624.72" y2="174.58" class="trunk"/>
+<path d="M612.5 239 Q613.1 201.8 615.5 177" class="trunk"/>
+<path class="palm" d="M615.5 177Q608.95 170.48 602.4 177.92Q608.95 175.48 615.5 177Z M615.5 177Q611.33 169.19 607.16 173.32Q611.33 174.19 615.5 177Z M615.5 177Q611.97 167.84 608.44 170.63Q611.97 172.84 615.5 177Z M615.5 177Q615.16 167.84 614.81 168.07Q615.16 172.84 615.5 177Z M615.5 177Q618.23 168.54 620.96 171Q618.23 173.54 615.5 177Z M615.5 177Q620.65 169.35 625.81 174.54Q620.65 174.35 615.5 177Z M615.5 177Q622.06 169.87 628.63 176.88Q622.06 174.87 615.5 177Z"/>
 <polygon points="783,250 920,250 920,275 858,259" class="water"/>
 <line x1="783" y1="250" x2="920" y2="250" class="ln-water"/>
 <polygon points="50,166 215,166 215,214 590,214 590,238 783,250 858,259 920,275 920,290 50,290" class="poche"/>
@@ -148,8 +178,9 @@
 <rect x="395" y="208" width="1.5" height="6" class="solid"/>
 <rect x="433.5" y="208" width="1.5" height="6" class="solid"/>
 <rect x="396.5" y="208.5" width="37" height="1.5" class="z-lawn"/>
-<line x1="415" y1="208.5" x2="415" y2="180" class="trunk"/>
-<ellipse cx="415" cy="160" rx="23" ry="24" class="tree"/>
+<line x1="415" y1="208.5" x2="415" y2="162.62" class="trunk"/>
+<g class="tree-o"><ellipse cx="415" cy="162.62" rx="17.28" ry="19.23"/><ellipse cx="400.28" cy="164.91" rx="9.81" ry="11.66"/><ellipse cx="401.15" cy="156.95" rx="8.78" ry="11.32"/><ellipse cx="405.73" cy="150.5" rx="10.25" ry="11.15"/><ellipse cx="409.84" cy="148.09" rx="9.15" ry="12.27"/><ellipse cx="417.24" cy="147.3" rx="8.93" ry="12.15"/><ellipse cx="425.37" cy="151.51" rx="8.66" ry="10.46"/><ellipse cx="429.72" cy="160.34" rx="8.97" ry="10.76"/><ellipse cx="429.23" cy="167.16" rx="10.09" ry="10.93"/></g>
+<g class="tree-f"><ellipse cx="415" cy="162.62" rx="16.38" ry="18.33"/><ellipse cx="400.28" cy="164.91" rx="8.91" ry="10.76"/><ellipse cx="401.15" cy="156.95" rx="7.88" ry="10.42"/><ellipse cx="405.73" cy="150.5" rx="9.35" ry="10.25"/><ellipse cx="409.84" cy="148.09" rx="8.25" ry="11.37"/><ellipse cx="417.24" cy="147.3" rx="8.03" ry="11.25"/><ellipse cx="425.37" cy="151.51" rx="7.76" ry="9.56"/><ellipse cx="429.72" cy="160.34" rx="8.07" ry="9.86"/><ellipse cx="429.23" cy="167.16" rx="9.19" ry="10.03"/></g>
 <line x1="589.5" y1="214" x2="589.5" y2="203" class="ln"/>
 <rect x="550" y="213.2" width="40" height="0.8" class="z-timber"/>
 <rect class="avatar" x="175.16" y="157.22" width="4.68" height="7.28" rx="1.87"/>

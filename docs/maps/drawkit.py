@@ -16,6 +16,8 @@ LIGHT = {
     "conc": "#D3D9DC", "timber": "#E6CFA6", "rock": "#CBC5BC",
     "bldg": "#D5DFE9", "tree": "#9BCA84", "tree-edge": "#58894C",
     "chalk-y": "#F0BE2C", "chalk-p": "#E5539A", "chalk-c": "#24ABCC",
+    "sak": "#F5C3D8", "shrub": "#86BB6D", "tree-2": "#7DB268", "foam": "#FFFFFF",
+    "sea-mid": "#A5D6E2", "sand-wet": "#E7D09F", "roof": "#BAC7D4", "roof-2": "#9DAFC1",
 }
 DARK = {
     "paper": "#0A1522", "sheet": "#0F1F31", "rule": "#233A52",
@@ -26,6 +28,8 @@ DARK = {
     "conc": "#2B3B4C", "timber": "#463828", "rock": "#3A3F47",
     "bldg": "#1E3550", "tree": "#3D6942", "tree-edge": "#7DAE73",
     "chalk-y": "#D9AA2A", "chalk-p": "#D45591", "chalk-c": "#2E9EBB",
+    "sak": "#6A3A50", "shrub": "#33603E", "tree-2": "#2E5535", "foam": "#CFE3EE",
+    "sea-mid": "#173D4F", "sand-wet": "#3D3627", "roof": "#2A4361", "roof-2": "#36537A",
 }
 FONT_URL = ("https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Condensed:wght@500;600;700"
             "&amp;family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;display=swap")
@@ -119,6 +123,34 @@ SVG_CSS = """
 .arc-y{fill:var(--chalk-y);fill-opacity:.32}
 .key{fill:var(--ink)}
 .statue{fill:var(--sheet);stroke:var(--ink);stroke-width:1.2}
+.tree-o{fill:var(--tree);stroke:var(--tree-edge);stroke-width:1.5}
+.tree-f{fill:var(--tree)}
+.sak-o{fill:var(--sak);stroke:var(--chalk-p);stroke-width:1.3}
+.sak-f{fill:var(--sak)}
+.shrub-o{fill:var(--shrub);stroke:var(--tree-edge);stroke-width:1}
+.shrub-f{fill:var(--shrub)}
+.bed{fill:var(--shrub);stroke:var(--tree-edge);stroke-width:.9}
+.leaf{fill:none;stroke:var(--tree-edge);stroke-width:.7;opacity:.8;stroke-linecap:round}
+.blossom{fill:var(--chalk-p)}
+.palm{fill:var(--tree-2);stroke:var(--tree-edge);stroke-width:.6;stroke-linejoin:round}
+.shadow{fill:var(--ink);opacity:.12}
+.rock{fill:var(--rock);stroke:var(--ink-2);stroke-width:.8;stroke-linejoin:round}
+.foam{fill:none;stroke:var(--foam);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.foam-d{fill:none;stroke:var(--foam);stroke-width:1;stroke-dasharray:4 3;stroke-linecap:round}
+.z-mid{fill:var(--sea-mid)}
+.z-wet{fill:var(--sand-wet)}
+.roof{fill:var(--roof);stroke:var(--ink);stroke-width:1.6}
+.roof-2{fill:var(--roof-2)}
+.post{fill:var(--ink)}
+.rail{fill:none;stroke:var(--ink);stroke-width:.9}
+.tread{fill:none;stroke:var(--ink-2);stroke-width:.5}
+.joint{fill:none;stroke:var(--ink-3);stroke-width:.45}
+.band{fill:var(--rule)}
+.wall-l{fill:none;stroke:var(--ink);stroke-width:3.2;stroke-linecap:square}
+.wall6{fill:none;stroke:var(--ink);stroke-width:2.4}
+.string{fill:none;stroke:var(--ink-2);stroke-width:.6;stroke-dasharray:1 2}
+.bulb{fill:var(--chalk-y)}
+.door{fill:none;stroke:var(--ink-2);stroke-width:.6}
 """
 
 
@@ -283,6 +315,12 @@ def defs(p):
 <pattern id="{p}-lawn" width="14" height="12" patternUnits="userSpaceOnUse"><path class="pat-g" d="M3 3l1.2 2 1.2-2M9 8l1.2 2 1.2-2"/></pattern>
 <pattern id="{p}-hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><path class="pat-s" d="M0 0V5"/></pattern>
 <pattern id="{p}-earth" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="pat-s" d="M0 0V6"/><circle class="pat-d" cx="3" cy="3" r=".5"/></pattern>
+<pattern id="{p}-boardh" width="10" height="3" patternUnits="userSpaceOnUse"><path class="pat-s" d="M0 0H10"/></pattern>
+<pattern id="{p}-pave" width="12" height="12" patternUnits="userSpaceOnUse"><path class="joint" d="M0 0H12M0 0V12"/></pattern>
+<pattern id="{p}-stripe" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="2.5" height="5" class="chalk-p"/></pattern>
+<pattern id="{p}-stripey" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="2.5" height="5" class="chalk-y"/></pattern>
+<pattern id="{p}-stripec" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="2.5" height="5" class="chalk-c"/></pattern>
+<pattern id="{p}-thatch" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(30)"><path class="pat-s" d="M0 0V4M2 0V2"/></pattern>
 <marker id="{p}-arr" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="acc-f" d="M0 0 10 5 0 10z"/></marker>
 <marker id="{p}-arrt" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="teal-f" d="M0 0 10 5 0 10z"/></marker>
 <marker id="{p}-arrk" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto-start-reverse"><path class="ink-f" d="M0 0 10 5 0 10z"/></marker>
@@ -313,6 +351,7 @@ def wrap(body, w, h, label, standalone=False):
     if standalone:
         tokens = dict(LIGHT, **FONTS)
         css = re.sub(r"var\(--([\w-]+)\)", lambda m: tokens[m.group(1)], SVG_CSS)
+        body = re.sub(r"var\(--([\w-]+)\)", lambda m: tokens[m.group(1)], body)
         style = f"<style>@import url('{FONT_URL}');{css}</style>"
     xmlns = ' xmlns="http://www.w3.org/2000/svg"'
     size = f' width="{w}" height="{h}"' if standalone else ""
@@ -400,3 +439,299 @@ footer { margin-top: 64px; padding-top: 14px; border-top: 1px solid var(--rule);
 @media (prefers-reduced-motion: no-preference) { .index a { transition: border-color .15s; } }
 """
 
+
+
+# ================================================================ organic kit
+import random  # noqa: E402
+
+
+def cr_cmds(pts, closed=True):
+    """Catmull-Rom spline through pts as Cv.path commands."""
+    k = len(pts)
+    cmds = [("M", pts[0][0], pts[0][1])]
+    for i in range(k if closed else k - 1):
+        p0 = pts[(i - 1) % k] if (closed or i > 0) else pts[0]
+        p1, p2 = pts[i], pts[(i + 1) % k]
+        p3 = pts[(i + 2) % k] if (closed or i + 2 < k) else pts[-1]
+        cmds.append(("C", p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6,
+                     p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6, p2[0], p2[1]))
+    if closed:
+        cmds.append(("Z",))
+    return cmds
+
+
+def cr_sample(pts, closed=False, per=10):
+    """Dense points along the Catmull-Rom spline (for offsets and polygons)."""
+    k = len(pts)
+    out = []
+    for i in range(k if closed else k - 1):
+        p0 = pts[(i - 1) % k] if (closed or i > 0) else pts[0]
+        p1, p2 = pts[i], pts[(i + 1) % k]
+        p3 = pts[(i + 2) % k] if (closed or i + 2 < k) else pts[-1]
+        for s in range(per):
+            t = s / per
+            t2, t3 = t * t, t * t * t
+            out.append(tuple(.5 * ((2 * p1[j]) + (-p0[j] + p2[j]) * t + (2 * p0[j] - 5 * p1[j] + 4 * p2[j] - p3[j]) * t2
+                                   + (-p0[j] + 3 * p1[j] - 3 * p2[j] + p3[j]) * t3) for j in (0, 1)))
+    if not closed:
+        out.append(pts[-1])
+    return out
+
+
+def offset_pts(pts, d):
+    """Offset an open polyline by d along its left normal (dy, -dx)."""
+    out = []
+    for i, (x, y) in enumerate(pts):
+        a = pts[max(i - 1, 0)]
+        b = pts[min(i + 1, len(pts) - 1)]
+        dx, dy = b[0] - a[0], b[1] - a[1]
+        L = math.hypot(dx, dy) or 1
+        out.append((x + d * dy / L, y - d * dx / L))
+    return out
+
+
+def wobble(pts, amp, freq, seed=0):
+    rnd = random.Random(seed)
+    ph = rnd.uniform(0, 6.28)
+    out = []
+    acc = 0
+    for i, (x, y) in enumerate(pts):
+        if i:
+            acc += math.hypot(x - pts[i - 1][0], y - pts[i - 1][1])
+        a = pts[max(i - 1, 0)]
+        b = pts[min(i + 1, len(pts) - 1)]
+        dx, dy = b[0] - a[0], b[1] - a[1]
+        L = math.hypot(dx, dy) or 1
+        w = amp * math.sin(acc * freq + ph)
+        out.append((x + w * dy / L, y - w * dx / L))
+    return out
+
+
+def blob(cx, cy, rx, ry=None, seed=0, amp=.18, k=10, rot=0.0):
+    rnd = random.Random(seed)
+    ry = ry or rx
+    ph = [rnd.uniform(0, 6.283) for _ in range(3)]
+    cr, sr = math.cos(rot), math.sin(rot)
+    pts = []
+    for i in range(k):
+        a = 2 * math.pi * i / k
+        f = 1 + amp * (.6 * math.sin(2 * a + ph[0]) + .3 * math.sin(3 * a + ph[1]) + .25 * math.sin(5 * a + ph[2])) \
+            + rnd.uniform(-amp, amp) * .35
+        x, y = rx * f * math.cos(a), ry * f * math.sin(a)
+        pts.append((cx + x * cr - y * sr, cy + x * sr + y * cr))
+    return pts
+
+
+def inside(pt, poly):
+    x, y = pt
+    c = False
+    for i in range(len(poly)):
+        (x1, y1), (x2, y2) = poly[i], poly[i - 1]
+        if (y1 > y) != (y2 > y) and x < (x2 - x1) * (y - y1) / (y2 - y1) + x1:
+            c = not c
+    return c
+
+
+def canopy(cv, u, v, r, seed=0, kind="tree", shadow=True, detail=True):
+    """Top-view tree canopy: scalloped outline from lobes, shadow cast north-east."""
+    rnd = random.Random(seed * 7919 + 13)
+    k = 7 + seed % 3
+    lobes = []
+    for i in range(k):
+        a = 2 * math.pi * i / k + rnd.uniform(-.25, .25)
+        rr = r * rnd.uniform(.56, .68)
+        lobes.append((u + rr * math.cos(a), v + rr * math.sin(a), r * rnd.uniform(.34, .44)))
+    lobes.append((u, v, r * .72))
+    s = abs(cv.sx)
+    if shadow:
+        cv.add('<g class="shadow">' + "".join(
+            f'<circle cx="{n(cv.X(x + r * .22))}" cy="{n(cv.Y(y - r * .22))}" r="{n(rr * s)}"/>' for x, y, rr in lobes) + "</g>")
+    cv.add(f'<g class="{kind}-o">' + "".join(
+        f'<circle cx="{n(cv.X(x))}" cy="{n(cv.Y(y))}" r="{n(rr * s)}"/>' for x, y, rr in lobes) + "</g>")
+    cv.add(f'<g class="{kind}-f">' + "".join(
+        f'<circle cx="{n(cv.X(x))}" cy="{n(cv.Y(y))}" r="{n(rr * s - .9)}"/>' for x, y, rr in lobes) + "</g>")
+    if detail:
+        d = []
+        for i in range(5 + seed % 3):
+            a = rnd.uniform(0, 6.283)
+            rr = r * rnd.uniform(.2, .62)
+            x, y = u + rr * math.cos(a), v + rr * math.sin(a)
+            b = a + 1.9
+            L = r * .16
+            d.append(f"M{n(cv.X(x))} {n(cv.Y(y))}q{n(L * s * math.cos(b) * .5 + L * s * .3)} {n(L * s * math.sin(b) * .5 - L * s * .3)} "
+                     f"{n(L * s * math.cos(b))} {n(L * s * math.sin(b))}")
+        cv.add(f'<path class="leaf" d="{" ".join(d)}"/>')
+        if kind == "sak":
+            cv.add("".join(f'<circle class="blossom" cx="{n(cv.X(u + r * rnd.uniform(-.6, .6)))}" '
+                           f'cy="{n(cv.Y(v + r * rnd.uniform(-.6, .6)))}" r="{n(.18 * s)}"/>' for _ in range(7)))
+    cv.add(f'<circle class="ink-f" cx="{n(cv.X(u))}" cy="{n(cv.Y(v))}" r="{n(max(.22 * s, 1))}"/>')
+
+
+def palm_top(cv, u, v, r, seed=0, shadow=True):
+    """Top-view palm: nine curved fronds with midribs."""
+    rnd = random.Random(seed * 31 + 5)
+    fr, ribs, sh = [], [], []
+    for i in range(9):
+        a = 2 * math.pi * i / 9 + rnd.uniform(-.18, .18)
+        L = r * rnd.uniform(.85, 1.05)
+        tip = (u + L * math.cos(a + .18), v + L * math.sin(a + .18))
+        c1 = (u + .6 * L * math.cos(a - .26), v + .6 * L * math.sin(a - .26))
+        c2 = (u + .6 * L * math.cos(a + .34), v + .6 * L * math.sin(a + .34))
+        cm = (u + .55 * L * math.cos(a + .05), v + .55 * L * math.sin(a + .05))
+        fr.append(cv.d([("M", u, v), ("Q", c1[0], c1[1], tip[0], tip[1]), ("Q", c2[0], c2[1], u, v), ("Z",)]))
+        ribs.append(cv.d([("M", u, v), ("Q", cm[0], cm[1], tip[0], tip[1])]))
+        if shadow:
+            o = r * .3
+            sh.append(cv.d([("M", u + o, v - o), ("Q", c1[0] + o, c1[1] - o, tip[0] + o, tip[1] - o),
+                            ("Q", c2[0] + o, c2[1] - o, u + o, v - o), ("Z",)]))
+    if shadow:
+        cv.add(f'<path class="shadow" d="{" ".join(sh)}"/>')
+    cv.add(f'<path class="palm" d="{" ".join(fr)}"/>')
+    cv.add(f'<path class="leaf" d="{" ".join(ribs)}"/>')
+    cv.add(f'<circle class="ink-f" cx="{n(cv.X(u))}" cy="{n(cv.Y(v))}" r="{n(.3 * abs(cv.sx))}"/>')
+
+
+def rock(cv, u, v, r, seed=0, shadow=True, foam=False):
+    rnd = random.Random(seed * 101 + 7)
+    pts = blob(u, v, r, r * rnd.uniform(.66, .95), seed, amp=.24, k=7 + seed % 3, rot=rnd.uniform(0, 3.14))
+    if foam:
+        cv.path(cr_cmds(blob(u, v, r * 1.35, r * 1.2, seed + 3, amp=.12, k=9)), "foam-d")
+    if shadow:
+        cv.poly([(x + r * .25, y - r * .25) for x, y in pts], "shadow")
+    cv.poly(pts, "rock")
+    cx, cy = u + rnd.uniform(-.25, .25) * r, v + rnd.uniform(-.25, .25) * r
+    for j in rnd.sample(range(len(pts)), 3):
+        cv.line(cx, cy, pts[j][0], pts[j][1], "ln-f")
+
+
+def rock_cluster(cv, poly, count, rmin, rmax, seed=0, foam=False):
+    rnd = random.Random(seed)
+    xs = [p[0] for p in poly]
+    ys = [p[1] for p in poly]
+    placed = []
+    tries = 0
+    while len(placed) < count and tries < count * 60:
+        tries += 1
+        pt = (rnd.uniform(min(xs), max(xs)), rnd.uniform(min(ys), max(ys)))
+        if not inside(pt, poly):
+            continue
+        r = rmin + (rmax - rmin) * rnd.random() ** 2.2
+        if any(math.hypot(pt[0] - q[0], pt[1] - q[1]) < (r + q[2]) * .62 for q in placed):
+            continue
+        placed.append((pt[0], pt[1], r))
+    for i, (x, y, r) in enumerate(sorted(placed, key=lambda q: -q[2])):
+        rock(cv, x, y, r, seed * 1000 + i, foam=foam)
+
+
+def shrub_bed(cv, pts, seed=0, density=.5, rmin=.7, rmax=1.3, smooth=True):
+    """Planting bed: organic outline filled with small shrub canopies."""
+    cv.path(cr_cmds(pts) if smooth else [("M",) + pts[0]] + [("L",) + p for p in pts[1:]] + [("Z",)], "bed")
+    rnd = random.Random(seed)
+    xs = [p[0] for p in pts]
+    ys = [p[1] for p in pts]
+    area = (max(xs) - min(xs)) * (max(ys) - min(ys))
+    want = int(area * density / 3) + 2
+    got = 0
+    for _ in range(want * 30):
+        if got >= want:
+            break
+        pt = (rnd.uniform(min(xs), max(xs)), rnd.uniform(min(ys), max(ys)))
+        r = rnd.uniform(rmin, rmax)
+        if inside(pt, pts):
+            canopy(cv, pt[0], pt[1], r, seed * 100 + got, "shrub", shadow=False, detail=False)
+            got += 1
+
+
+def railing(cv, pts, spacing=2.0):
+    cv.pline(pts, "rail")
+    acc, nxt = 0.0, 0.0
+    s = abs(cv.sx)
+    for i in range(1, len(pts)):
+        (x1, y1), (x2, y2) = pts[i - 1], pts[i]
+        L = math.hypot(x2 - x1, y2 - y1)
+        while nxt <= acc + L + 1e-6:
+            t = (nxt - acc) / L if L else 0
+            x, y = x1 + (x2 - x1) * t, y1 + (y2 - y1) * t
+            cv.add(f'<rect class="post" x="{n(cv.X(x) - .9)}" y="{n(cv.Y(y) - .9)}" width="1.8" height="1.8"/>')
+            nxt += spacing
+        acc += L
+    return s
+
+
+def bench(cv, u, v, length=3.0, ang=0.0, depth=.7):
+    a = math.radians(ang)
+    ca, sa = math.cos(a), math.sin(a)
+    hl, hd = length / 2, depth / 2
+    corners = [(-hl, -hd), (hl, -hd), (hl, hd), (-hl, hd)]
+    cv.poly([(u + x * ca - y * sa, v + x * sa + y * ca) for x, y in corners], "prop")
+    for k in range(1, 3):
+        y = -hd + depth * k / 3
+        cv.line(u - hl * ca - y * sa, v - hl * sa + y * ca, u + hl * ca - y * sa, v + hl * sa + y * ca, "joint")
+
+
+def parasol(cv, u, v, r=1.3, cls="umb-y", chairs=0, ribs=8):
+    for k in range(chairs):
+        a = 2 * math.pi * k / chairs + .4
+        x, y = u + (r + .2) * math.cos(a), v + (r + .2) * math.sin(a)
+        cv.rect(x - .3, y - .3, x + .3, y + .3, "prop")
+    cv.circle(u, v, r, cls)
+    for k in range(ribs):
+        a = 2 * math.pi * k / ribs
+        cv.line(u, v, u + r * math.cos(a), v + r * math.sin(a), "joint")
+    cv.circle(u, v, .18, "ink-f")
+
+
+def lounger(cv, u, v, ang=90.0, cls="prop"):
+    a = math.radians(ang)
+    ca, sa = math.cos(a), math.sin(a)
+
+    def T(x, y):
+        return (u + x * ca - y * sa, v + x * sa + y * ca)
+    cv.poly([T(-.95, -.35), T(.95, -.35), T(.95, .35), T(-.95, .35)], cls)
+    p, q = T(.5, -.35), T(.5, .35)
+    cv.line(p[0], p[1], q[0], q[1], "joint")
+
+
+def door_swing(cv, u, v, w, ang0, ang1):
+    s = abs(cv.sx)
+    x0, y0 = cv.X(u), cv.Y(v)
+    a0, a1 = math.radians(ang0), math.radians(ang1)
+    xa, ya = x0 + w * s * math.cos(a0), y0 + w * s * math.sin(a0)
+    xb, yb = x0 + w * s * math.cos(a1), y0 + w * s * math.sin(a1)
+    sweep = 1 if (ang1 - ang0) % 360 < 180 else 0
+    cv.add(f'<path class="door" d="M{n(x0)} {n(y0)}L{n(xa)} {n(ya)}A{n(w * s)} {n(w * s)} 0 0 {sweep} {n(xb)} {n(yb)}"/>')
+
+
+def tree_elev(cv, u, z, h=7.0, w=6.0, seed=0, kind="tree"):
+    """Elevation tree: trunk plus lobed canopy, sized in px from the horizontal scale."""
+    rnd = random.Random(seed * 17 + 3)
+    sx, sy = abs(cv.sx), abs(cv.sy)
+    top = z + h
+    cz = z + h * .62
+    cv.line(u, z, u, cz, "trunk")
+    R = w / 2 * sx
+    cxp, cyp = cv.X(u), cv.Y(cz)
+    ry = (top - cz) * sy * .95
+    lobes = [(cxp, cyp, R * .72, ry * .72)]
+    for i in range(8):
+        a = math.radians(165 + i * 30 + rnd.uniform(-8, 8))
+        lobes.append((cxp + R * .62 * math.cos(a), cyp + ry * .58 * math.sin(a), R * rnd.uniform(.34, .44),
+                      ry * rnd.uniform(.36, .46)))
+    cv.add(f'<g class="{kind}-o">' + "".join(f'<ellipse cx="{n(x)}" cy="{n(y)}" rx="{n(a)}" ry="{n(b)}"/>' for x, y, a, b in lobes) + "</g>")
+    cv.add(f'<g class="{kind}-f">' + "".join(f'<ellipse cx="{n(x)}" cy="{n(y)}" rx="{n(a - .9)}" ry="{n(b - .9)}"/>' for x, y, a, b in lobes) + "</g>")
+
+
+def palm_elev(cv, u, z, h=7.0, seed=0, lean=.6):
+    rnd = random.Random(seed * 13 + 1)
+    tx, tz = u + lean, z + h
+    cv.path([("M", u, z), ("Q", u + lean * .2, z + h * .6, tx, tz)], "trunk")
+    fr = []
+    s = abs(cv.sx)
+    for i in range(7):
+        a = math.radians(-160 + i * 23 + rnd.uniform(-6, 6))
+        L = rnd.uniform(2.4, 3.0) * s
+        x0, y0 = cv.X(tx), cv.Y(tz)
+        x1, y1 = x0 + L * math.cos(a), y0 + L * math.sin(a) * .7 + abs(math.cos(a)) * L * .35
+        mx, my = x0 + L * .5 * math.cos(a), y0 + L * .5 * math.sin(a) * .7 - L * .12
+        fr.append(f"M{n(x0)} {n(y0)}Q{n(mx)} {n(my - 3)} {n(x1)} {n(y1)}Q{n(mx)} {n(my + 2)} {n(x0)} {n(y0)}Z")
+    cv.add(f'<path class="palm" d="{" ".join(fr)}"/>')

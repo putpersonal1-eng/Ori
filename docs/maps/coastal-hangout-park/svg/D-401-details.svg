@@ -83,6 +83,34 @@
 .arc-y{fill:#F0BE2C;fill-opacity:.32}
 .key{fill:#16283A}
 .statue{fill:#FBFCFC;stroke:#16283A;stroke-width:1.2}
+.tree-o{fill:#9BCA84;stroke:#58894C;stroke-width:1.5}
+.tree-f{fill:#9BCA84}
+.sak-o{fill:#F5C3D8;stroke:#E5539A;stroke-width:1.3}
+.sak-f{fill:#F5C3D8}
+.shrub-o{fill:#86BB6D;stroke:#58894C;stroke-width:1}
+.shrub-f{fill:#86BB6D}
+.bed{fill:#86BB6D;stroke:#58894C;stroke-width:.9}
+.leaf{fill:none;stroke:#58894C;stroke-width:.7;opacity:.8;stroke-linecap:round}
+.blossom{fill:#E5539A}
+.palm{fill:#7DB268;stroke:#58894C;stroke-width:.6;stroke-linejoin:round}
+.shadow{fill:#16283A;opacity:.12}
+.rock{fill:#CBC5BC;stroke:#4A5C6F;stroke-width:.8;stroke-linejoin:round}
+.foam{fill:none;stroke:#FFFFFF;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.foam-d{fill:none;stroke:#FFFFFF;stroke-width:1;stroke-dasharray:4 3;stroke-linecap:round}
+.z-mid{fill:#A5D6E2}
+.z-wet{fill:#E7D09F}
+.roof{fill:#BAC7D4;stroke:#16283A;stroke-width:1.6}
+.roof-2{fill:#9DAFC1}
+.post{fill:#16283A}
+.rail{fill:none;stroke:#16283A;stroke-width:.9}
+.tread{fill:none;stroke:#4A5C6F;stroke-width:.5}
+.joint{fill:none;stroke:#93A3B2;stroke-width:.45}
+.band{fill:#C4D1D8}
+.wall-l{fill:none;stroke:#16283A;stroke-width:3.2;stroke-linecap:square}
+.wall6{fill:none;stroke:#16283A;stroke-width:2.4}
+.string{fill:none;stroke:#4A5C6F;stroke-width:.6;stroke-dasharray:1 2}
+.bulb{fill:#F0BE2C}
+.door{fill:none;stroke:#4A5C6F;stroke-width:.6}
 </style><defs>
 <pattern id="cd-brick" width="8" height="8" patternUnits="userSpaceOnUse"><path class="pat-s" d="M0 4 2 2 4 4 6 2 8 4M0 8 2 6 4 8 6 6 8 8"/></pattern>
 <pattern id="cd-sand" width="9" height="9" patternUnits="userSpaceOnUse"><circle class="pat-d" cx="1.5" cy="1.5" r=".55"/><circle class="pat-d" cx="6" cy="4.5" r=".5"/><circle class="pat-d" cx="3" cy="7.5" r=".45"/></pattern>
@@ -92,6 +120,12 @@
 <pattern id="cd-lawn" width="14" height="12" patternUnits="userSpaceOnUse"><path class="pat-g" d="M3 3l1.2 2 1.2-2M9 8l1.2 2 1.2-2"/></pattern>
 <pattern id="cd-hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><path class="pat-s" d="M0 0V5"/></pattern>
 <pattern id="cd-earth" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="pat-s" d="M0 0V6"/><circle class="pat-d" cx="3" cy="3" r=".5"/></pattern>
+<pattern id="cd-boardh" width="10" height="3" patternUnits="userSpaceOnUse"><path class="pat-s" d="M0 0H10"/></pattern>
+<pattern id="cd-pave" width="12" height="12" patternUnits="userSpaceOnUse"><path class="joint" d="M0 0H12M0 0V12"/></pattern>
+<pattern id="cd-stripe" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="2.5" height="5" class="chalk-p"/></pattern>
+<pattern id="cd-stripey" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="2.5" height="5" class="chalk-y"/></pattern>
+<pattern id="cd-stripec" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="2.5" height="5" class="chalk-c"/></pattern>
+<pattern id="cd-thatch" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(30)"><path class="pat-s" d="M0 0V4M2 0V2"/></pattern>
 <marker id="cd-arr" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="acc-f" d="M0 0 10 5 0 10z"/></marker>
 <marker id="cd-arrt" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="teal-f" d="M0 0 10 5 0 10z"/></marker>
 <marker id="cd-arrk" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto-start-reverse"><path class="ink-f" d="M0 0 10 5 0 10z"/></marker>
@@ -217,8 +251,9 @@
 <rect x="996" y="634.6" width="18" height="5.4" class="conc"/>
 <rect x="974.4" y="632.8" width="3.6" height="7.2" class="solid"/>
 <rect x="885.6" y="633.4" width="88.8" height="1.8" class="z-lawn"/>
-<line x1="930" y1="633.4" x2="930" y2="587.2" class="trunk"/>
-<ellipse cx="930" cy="563.2" rx="55.2" ry="28.8" class="tree"/>
+<line x1="930" y1="633.4" x2="930" y2="570.9" class="trunk"/>
+<g class="tree-o"><ellipse cx="930" cy="570.9" rx="39.74" ry="26.2"/><ellipse cx="897.42" cy="577.36" rx="22.19" ry="13.13"/><ellipse cx="898.43" cy="562.75" rx="23.31" ry="16.74"/><ellipse cx="904.25" cy="557" rx="19.87" ry="13.3"/><ellipse cx="918.35" cy="551.06" rx="18.9" ry="15.62"/><ellipse cx="937.61" cy="550.33" rx="23.27" ry="15.87"/><ellipse cx="953.16" cy="555.37" rx="19.69" ry="14.37"/><ellipse cx="961.62" cy="562.82" rx="22.35" ry="13.79"/><ellipse cx="963.77" cy="574.34" rx="23.67" ry="14.69"/></g>
+<g class="tree-f"><ellipse cx="930" cy="570.9" rx="38.84" ry="25.3"/><ellipse cx="897.42" cy="577.36" rx="21.29" ry="12.23"/><ellipse cx="898.43" cy="562.75" rx="22.41" ry="15.84"/><ellipse cx="904.25" cy="557" rx="18.97" ry="12.4"/><ellipse cx="918.35" cy="551.06" rx="18" ry="14.72"/><ellipse cx="937.61" cy="550.33" rx="22.37" ry="14.97"/><ellipse cx="953.16" cy="555.37" rx="18.79" ry="13.47"/><ellipse cx="961.62" cy="562.82" rx="21.45" ry="12.89"/><ellipse cx="963.77" cy="574.34" rx="22.77" ry="13.79"/></g>
 <rect class="avatar" x="1006.39" y="629.3" width="5.62" height="5.3" rx="2.25"/>
 <rect class="avatar" x="1009.2" y="632.73" width="5.3" height="1.87" rx="0.78"/>
 <rect class="avatar" x="1013.26" y="632.73" width="1.56" height="6.24" rx="0.62"/>

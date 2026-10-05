@@ -28,6 +28,14 @@
   --chalk-y: #F0BE2C;
   --chalk-p: #E5539A;
   --chalk-c: #24ABCC;
+  --sak: #F5C3D8;
+  --shrub: #86BB6D;
+  --tree-2: #7DB268;
+  --foam: #FFFFFF;
+  --sea-mid: #A5D6E2;
+  --sand-wet: #E7D09F;
+  --roof: #BAC7D4;
+  --roof-2: #9DAFC1;
   --f-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
   --f-body: "Barlow", ui-sans-serif, system-ui, sans-serif;
   --f-cond: "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;
@@ -57,6 +65,14 @@
     --chalk-y: #D9AA2A;
     --chalk-p: #D45591;
     --chalk-c: #2E9EBB;
+    --sak: #6A3A50;
+    --shrub: #33603E;
+    --tree-2: #2E5535;
+    --foam: #CFE3EE;
+    --sea-mid: #173D4F;
+    --sand-wet: #3D3627;
+    --roof: #2A4361;
+    --roof-2: #36537A;
     color-scheme: dark;
   }
 }
@@ -84,6 +100,14 @@
     --chalk-y: #D9AA2A;
     --chalk-p: #D45591;
     --chalk-c: #2E9EBB;
+    --sak: #6A3A50;
+    --shrub: #33603E;
+    --tree-2: #2E5535;
+    --foam: #CFE3EE;
+    --sea-mid: #173D4F;
+    --sand-wet: #3D3627;
+    --roof: #2A4361;
+    --roof-2: #36537A;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
@@ -227,6 +251,34 @@ footer { margin-top: 64px; padding-top: 14px; border-top: 1px solid var(--rule);
 .arc-y{fill:var(--chalk-y);fill-opacity:.32}
 .key{fill:var(--ink)}
 .statue{fill:var(--sheet);stroke:var(--ink);stroke-width:1.2}
+.tree-o{fill:var(--tree);stroke:var(--tree-edge);stroke-width:1.5}
+.tree-f{fill:var(--tree)}
+.sak-o{fill:var(--sak);stroke:var(--chalk-p);stroke-width:1.3}
+.sak-f{fill:var(--sak)}
+.shrub-o{fill:var(--shrub);stroke:var(--tree-edge);stroke-width:1}
+.shrub-f{fill:var(--shrub)}
+.bed{fill:var(--shrub);stroke:var(--tree-edge);stroke-width:.9}
+.leaf{fill:none;stroke:var(--tree-edge);stroke-width:.7;opacity:.8;stroke-linecap:round}
+.blossom{fill:var(--chalk-p)}
+.palm{fill:var(--tree-2);stroke:var(--tree-edge);stroke-width:.6;stroke-linejoin:round}
+.shadow{fill:var(--ink);opacity:.12}
+.rock{fill:var(--rock);stroke:var(--ink-2);stroke-width:.8;stroke-linejoin:round}
+.foam{fill:none;stroke:var(--foam);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.foam-d{fill:none;stroke:var(--foam);stroke-width:1;stroke-dasharray:4 3;stroke-linecap:round}
+.z-mid{fill:var(--sea-mid)}
+.z-wet{fill:var(--sand-wet)}
+.roof{fill:var(--roof);stroke:var(--ink);stroke-width:1.6}
+.roof-2{fill:var(--roof-2)}
+.post{fill:var(--ink)}
+.rail{fill:none;stroke:var(--ink);stroke-width:.9}
+.tread{fill:none;stroke:var(--ink-2);stroke-width:.5}
+.joint{fill:none;stroke:var(--ink-3);stroke-width:.45}
+.band{fill:var(--rule)}
+.wall-l{fill:none;stroke:var(--ink);stroke-width:3.2;stroke-linecap:square}
+.wall6{fill:none;stroke:var(--ink);stroke-width:2.4}
+.string{fill:none;stroke:var(--ink-2);stroke-width:.6;stroke-dasharray:1 2}
+.bulb{fill:var(--chalk-y)}
+.door{fill:none;stroke:var(--ink-2);stroke-width:.6}
 </style>
 <div class="wrap">
 <header>
@@ -297,6 +349,12 @@ footer { margin-top: 64px; padding-top: 14px; border-top: 1px solid var(--rule);
 <pattern id="sp-lawn" width="14" height="12" patternUnits="userSpaceOnUse"><path class="pat-g" d="M3 3l1.2 2 1.2-2M9 8l1.2 2 1.2-2"/></pattern>
 <pattern id="sp-hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><path class="pat-s" d="M0 0V5"/></pattern>
 <pattern id="sp-earth" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="pat-s" d="M0 0V6"/><circle class="pat-d" cx="3" cy="3" r=".5"/></pattern>
+<pattern id="sp-boardh" width="10" height="3" patternUnits="userSpaceOnUse"><path class="pat-s" d="M0 0H10"/></pattern>
+<pattern id="sp-pave" width="12" height="12" patternUnits="userSpaceOnUse"><path class="joint" d="M0 0H12M0 0V12"/></pattern>
+<pattern id="sp-stripe" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="2.5" height="5" class="chalk-p"/></pattern>
+<pattern id="sp-stripey" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="2.5" height="5" class="chalk-y"/></pattern>
+<pattern id="sp-stripec" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="2.5" height="5" class="chalk-c"/></pattern>
+<pattern id="sp-thatch" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(30)"><path class="pat-s" d="M0 0V4M2 0V2"/></pattern>
 <marker id="sp-arr" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="acc-f" d="M0 0 10 5 0 10z"/></marker>
 <marker id="sp-arrt" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="teal-f" d="M0 0 10 5 0 10z"/></marker>
 <marker id="sp-arrk" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto-start-reverse"><path class="ink-f" d="M0 0 10 5 0 10z"/></marker>
@@ -995,6 +1053,12 @@ footer { margin-top: 64px; padding-top: 14px; border-top: 1px solid var(--rule);
 <pattern id="aa-lawn" width="14" height="12" patternUnits="userSpaceOnUse"><path class="pat-g" d="M3 3l1.2 2 1.2-2M9 8l1.2 2 1.2-2"/></pattern>
 <pattern id="aa-hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><path class="pat-s" d="M0 0V5"/></pattern>
 <pattern id="aa-earth" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="pat-s" d="M0 0V6"/><circle class="pat-d" cx="3" cy="3" r=".5"/></pattern>
+<pattern id="aa-boardh" width="10" height="3" patternUnits="userSpaceOnUse"><path class="pat-s" d="M0 0H10"/></pattern>
+<pattern id="aa-pave" width="12" height="12" patternUnits="userSpaceOnUse"><path class="joint" d="M0 0H12M0 0V12"/></pattern>
+<pattern id="aa-stripe" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="2.5" height="5" class="chalk-p"/></pattern>
+<pattern id="aa-stripey" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="2.5" height="5" class="chalk-y"/></pattern>
+<pattern id="aa-stripec" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="2.5" height="5" class="chalk-c"/></pattern>
+<pattern id="aa-thatch" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(30)"><path class="pat-s" d="M0 0V4M2 0V2"/></pattern>
 <marker id="aa-arr" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="acc-f" d="M0 0 10 5 0 10z"/></marker>
 <marker id="aa-arrt" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="teal-f" d="M0 0 10 5 0 10z"/></marker>
 <marker id="aa-arrk" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto-start-reverse"><path class="ink-f" d="M0 0 10 5 0 10z"/></marker>
@@ -1167,6 +1231,12 @@ footer { margin-top: 64px; padding-top: 14px; border-top: 1px solid var(--rule);
 <pattern id="bb-lawn" width="14" height="12" patternUnits="userSpaceOnUse"><path class="pat-g" d="M3 3l1.2 2 1.2-2M9 8l1.2 2 1.2-2"/></pattern>
 <pattern id="bb-hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><path class="pat-s" d="M0 0V5"/></pattern>
 <pattern id="bb-earth" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="pat-s" d="M0 0V6"/><circle class="pat-d" cx="3" cy="3" r=".5"/></pattern>
+<pattern id="bb-boardh" width="10" height="3" patternUnits="userSpaceOnUse"><path class="pat-s" d="M0 0H10"/></pattern>
+<pattern id="bb-pave" width="12" height="12" patternUnits="userSpaceOnUse"><path class="joint" d="M0 0H12M0 0V12"/></pattern>
+<pattern id="bb-stripe" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="2.5" height="5" class="chalk-p"/></pattern>
+<pattern id="bb-stripey" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="2.5" height="5" class="chalk-y"/></pattern>
+<pattern id="bb-stripec" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="2.5" height="5" class="chalk-c"/></pattern>
+<pattern id="bb-thatch" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(30)"><path class="pat-s" d="M0 0V4M2 0V2"/></pattern>
 <marker id="bb-arr" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="acc-f" d="M0 0 10 5 0 10z"/></marker>
 <marker id="bb-arrt" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="teal-f" d="M0 0 10 5 0 10z"/></marker>
 <marker id="bb-arrk" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto-start-reverse"><path class="ink-f" d="M0 0 10 5 0 10z"/></marker>
@@ -1330,6 +1400,12 @@ footer { margin-top: 64px; padding-top: 14px; border-top: 1px solid var(--rule);
 <pattern id="ar-lawn" width="14" height="12" patternUnits="userSpaceOnUse"><path class="pat-g" d="M3 3l1.2 2 1.2-2M9 8l1.2 2 1.2-2"/></pattern>
 <pattern id="ar-hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><path class="pat-s" d="M0 0V5"/></pattern>
 <pattern id="ar-earth" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="pat-s" d="M0 0V6"/><circle class="pat-d" cx="3" cy="3" r=".5"/></pattern>
+<pattern id="ar-boardh" width="10" height="3" patternUnits="userSpaceOnUse"><path class="pat-s" d="M0 0H10"/></pattern>
+<pattern id="ar-pave" width="12" height="12" patternUnits="userSpaceOnUse"><path class="joint" d="M0 0H12M0 0V12"/></pattern>
+<pattern id="ar-stripe" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="2.5" height="5" class="chalk-p"/></pattern>
+<pattern id="ar-stripey" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="2.5" height="5" class="chalk-y"/></pattern>
+<pattern id="ar-stripec" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="2.5" height="5" class="chalk-c"/></pattern>
+<pattern id="ar-thatch" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(30)"><path class="pat-s" d="M0 0V4M2 0V2"/></pattern>
 <marker id="ar-arr" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="acc-f" d="M0 0 10 5 0 10z"/></marker>
 <marker id="ar-arrt" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="teal-f" d="M0 0 10 5 0 10z"/></marker>
 <marker id="ar-arrk" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto-start-reverse"><path class="ink-f" d="M0 0 10 5 0 10z"/></marker>
@@ -1501,6 +1577,12 @@ footer { margin-top: 64px; padding-top: 14px; border-top: 1px solid var(--rule);
 <pattern id="cf-lawn" width="14" height="12" patternUnits="userSpaceOnUse"><path class="pat-g" d="M3 3l1.2 2 1.2-2M9 8l1.2 2 1.2-2"/></pattern>
 <pattern id="cf-hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><path class="pat-s" d="M0 0V5"/></pattern>
 <pattern id="cf-earth" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="pat-s" d="M0 0V6"/><circle class="pat-d" cx="3" cy="3" r=".5"/></pattern>
+<pattern id="cf-boardh" width="10" height="3" patternUnits="userSpaceOnUse"><path class="pat-s" d="M0 0H10"/></pattern>
+<pattern id="cf-pave" width="12" height="12" patternUnits="userSpaceOnUse"><path class="joint" d="M0 0H12M0 0V12"/></pattern>
+<pattern id="cf-stripe" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="2.5" height="5" class="chalk-p"/></pattern>
+<pattern id="cf-stripey" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="2.5" height="5" class="chalk-y"/></pattern>
+<pattern id="cf-stripec" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="2.5" height="5" class="chalk-c"/></pattern>
+<pattern id="cf-thatch" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(30)"><path class="pat-s" d="M0 0V4M2 0V2"/></pattern>
 <marker id="cf-arr" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="acc-f" d="M0 0 10 5 0 10z"/></marker>
 <marker id="cf-arrt" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="teal-f" d="M0 0 10 5 0 10z"/></marker>
 <marker id="cf-arrk" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto-start-reverse"><path class="ink-f" d="M0 0 10 5 0 10z"/></marker>
@@ -1630,6 +1712,12 @@ footer { margin-top: 64px; padding-top: 14px; border-top: 1px solid var(--rule);
 <pattern id="dt-lawn" width="14" height="12" patternUnits="userSpaceOnUse"><path class="pat-g" d="M3 3l1.2 2 1.2-2M9 8l1.2 2 1.2-2"/></pattern>
 <pattern id="dt-hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><path class="pat-s" d="M0 0V5"/></pattern>
 <pattern id="dt-earth" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="pat-s" d="M0 0V6"/><circle class="pat-d" cx="3" cy="3" r=".5"/></pattern>
+<pattern id="dt-boardh" width="10" height="3" patternUnits="userSpaceOnUse"><path class="pat-s" d="M0 0H10"/></pattern>
+<pattern id="dt-pave" width="12" height="12" patternUnits="userSpaceOnUse"><path class="joint" d="M0 0H12M0 0V12"/></pattern>
+<pattern id="dt-stripe" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="2.5" height="5" class="chalk-p"/></pattern>
+<pattern id="dt-stripey" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="2.5" height="5" class="chalk-y"/></pattern>
+<pattern id="dt-stripec" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="2.5" height="5" class="chalk-c"/></pattern>
+<pattern id="dt-thatch" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(30)"><path class="pat-s" d="M0 0V4M2 0V2"/></pattern>
 <marker id="dt-arr" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="acc-f" d="M0 0 10 5 0 10z"/></marker>
 <marker id="dt-arrt" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="teal-f" d="M0 0 10 5 0 10z"/></marker>
 <marker id="dt-arrk" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto-start-reverse"><path class="ink-f" d="M0 0 10 5 0 10z"/></marker>
