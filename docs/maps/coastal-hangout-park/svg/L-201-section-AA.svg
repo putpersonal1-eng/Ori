@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="380" viewBox="0 0 1000 380" role="img" aria-label="L-201 Section A-A"><style>@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Condensed:wght@500;600;700&amp;family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;display=swap');
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="390" viewBox="0 0 1040 390" role="img" aria-label="L-201 Section A-A"><style>@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Condensed:wght@500;600;700&amp;family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;display=swap');
 .sheet-bg{fill:#FBFCFC}
 .frame{fill:none;stroke:#16283A;stroke-width:1.4}
 .frame-in{fill:none;stroke:#16283A;stroke-width:.7}
@@ -130,117 +130,121 @@
 <marker id="ca-arrt" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="teal-f" d="M0 0 10 5 0 10z"/></marker>
 <marker id="ca-arrk" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto-start-reverse"><path class="ink-f" d="M0 0 10 5 0 10z"/></marker>
 </defs>
-<rect class="sheet-bg" width="1000" height="380"/>
+<rect class="sheet-bg" width="1040" height="390"/>
 <rect class="ink-f" x="24" y="17" width="55.0" height="18"/>
 <text class="t-head t-inv" x="30" y="31">L-201</text>
-<text class="t-head" x="89.0" y="31">SECTION A–A · X = 91 · STREET → PLAZA → BEACH · LOOKING EAST</text>
-<text class="t-sm" x="24" y="48">Horizontal 5 px = 1 m · vertical 10 px = 1 m (vertical exaggeration 2×) · light line = beyond</text>
-<rect x="50" y="116" width="60" height="50" class="beyond"/>
-<rect x="240" y="186" width="12.5" height="28" class="beyond"/>
-<text x="246" y="148" text-anchor="middle" class="t-sm halo">FOOD TRUCKS beyond</text>
-<rect x="375" y="160" width="80" height="54" class="beyond"/>
-<rect x="375" y="156" width="80" height="4" class="chalk-y"/>
-<text x="415" y="203" text-anchor="middle" class="t-sm halo">LIFESTYLE SHOP beyond</text>
-<rect x="342" y="184" width="6" height="30" class="beyond"/>
-<circle cx="345" cy="178" r="3.5" class="statue"/>
-<rect x="600.5" y="226" width="229.5" height="3" class="beyond"/>
-<line x1="630" y1="229" x2="630" y2="270" class="ln-m"/>
-<line x1="660" y1="229" x2="660" y2="270" class="ln-m"/>
-<line x1="690" y1="229" x2="690" y2="270" class="ln-m"/>
-<line x1="720" y1="229" x2="720" y2="270" class="ln-m"/>
-<line x1="750" y1="229" x2="750" y2="270" class="ln-m"/>
-<line x1="780" y1="229" x2="780" y2="270" class="ln-m"/>
-<line x1="810" y1="229" x2="810" y2="270" class="ln-m"/>
-<text x="720" y="221" text-anchor="middle" class="t-sm halo">PIER DECK +2.40 beyond</text>
-<rect x="670" y="206" width="20" height="35" class="beyond"/>
-<polygon points="667,206 693,206 680,198" class="beyond"/>
-<text x="680" y="192" text-anchor="middle" class="t-sm">HUT</text>
-<line x1="675" y1="240.5" x2="675" y2="218" class="ln-m"/>
-<ellipse cx="675" cy="217" rx="6.5" ry="2.5" class="umb-y"/>
-<line x1="584" y1="214" x2="584" y2="164" class="ln-m"/>
-<circle cx="584" cy="163" r="3.5" class="prop"/>
-<line x1="520" y1="214" x2="520" y2="164" class="ln-m"/>
-<circle cx="520" cy="163" r="3.5" class="prop"/>
-<path d="M612.5 239 Q613.1 201.8 615.5 177" class="trunk"/>
-<path class="palm" d="M615.5 177Q608.95 170.48 602.4 177.92Q608.95 175.48 615.5 177Z M615.5 177Q611.33 169.19 607.16 173.32Q611.33 174.19 615.5 177Z M615.5 177Q611.97 167.84 608.44 170.63Q611.97 172.84 615.5 177Z M615.5 177Q615.16 167.84 614.81 168.07Q615.16 172.84 615.5 177Z M615.5 177Q618.23 168.54 620.96 171Q618.23 173.54 615.5 177Z M615.5 177Q620.65 169.35 625.81 174.54Q620.65 174.35 615.5 177Z M615.5 177Q622.06 169.87 628.63 176.88Q622.06 174.87 615.5 177Z"/>
-<polygon points="783,250 920,250 920,275 858,259" class="water"/>
-<line x1="783" y1="250" x2="920" y2="250" class="ln-water"/>
-<polygon points="50,166 215,166 215,214 590,214 590,238 783,250 858,259 920,275 920,290 50,290" class="poche"/>
-<polygon points="50,166 215,166 215,214 590,214 590,238 783,250 858,259 920,275 920,290 50,290" fill="url(#ca-earth)"/>
-<polyline points="50,166 215,166 215,214 590,214 590,238 783,250 858,259 920,275" class="ln-h"/>
-<rect x="130" y="165.5" width="40" height="0.5" class="solid"/>
-<text x="150" y="159" text-anchor="middle" class="t-sm halo">ROAD</text>
-<polygon points="205,166 205,166 205,167.5 206.5,167.5 206.5,167.5 206.5,169 208,169 208,169 208,170.5 209.5,170.5 209.5,170.5 209.5,172 211,172 211,172 211,173.5 212.5,173.5 212.5,173.5 212.5,175 214,175 214,175 214,176.5 215.5,176.5 215.5,176.5 215.5,178 217,178 217,178 217,179.5 218.5,179.5 218.5,179.5 218.5,181 220,181 220,181 220,182.5 221.5,182.5 221.5,182.5 221.5,184 223,184 223,184 223,185.5 224.5,185.5 224.5,185.5 224.5,187 226,187 226,187 226,188.5 227.5,188.5 227.5,188.5 227.5,190 242.5,190 242.5,190 242.5,191.5 244,191.5 244,191.5 244,193 245.5,193 245.5,193 245.5,194.5 247,194.5 247,194.5 247,196 248.5,196 248.5,196 248.5,197.5 250,197.5 250,197.5 250,199 251.5,199 251.5,199 251.5,200.5 253,200.5 253,200.5 253,202 254.5,202 254.5,202 254.5,203.5 256,203.5 256,203.5 256,205 257.5,205 257.5,205 257.5,206.5 259,206.5 259,206.5 259,208 260.5,208 260.5,208 260.5,209.5 262,209.5 262,209.5 262,211 263.5,211 263.5,211 263.5,212.5 265,212.5 265,212.5 265,214 265,217 242.5,193 227.5,193 205,169" class="conc"/>
-<line x1="205" y1="157" x2="227.5" y2="181" class="ln"/>
-<line x1="242.5" y1="181" x2="265" y2="205" class="ln"/>
-<rect x="380" y="209.5" width="7.5" height="4.5" class="conc"/>
-<rect x="442.5" y="209.5" width="7.5" height="4.5" class="conc"/>
-<rect x="395" y="208" width="1.5" height="6" class="solid"/>
-<rect x="433.5" y="208" width="1.5" height="6" class="solid"/>
-<rect x="396.5" y="208.5" width="37" height="1.5" class="z-lawn"/>
-<line x1="415" y1="208.5" x2="415" y2="162.62" class="trunk"/>
-<g class="tree-o"><ellipse cx="415" cy="162.62" rx="17.28" ry="19.23"/><ellipse cx="400.28" cy="164.91" rx="9.81" ry="11.66"/><ellipse cx="401.15" cy="156.95" rx="8.78" ry="11.32"/><ellipse cx="405.73" cy="150.5" rx="10.25" ry="11.15"/><ellipse cx="409.84" cy="148.09" rx="9.15" ry="12.27"/><ellipse cx="417.24" cy="147.3" rx="8.93" ry="12.15"/><ellipse cx="425.37" cy="151.51" rx="8.66" ry="10.46"/><ellipse cx="429.72" cy="160.34" rx="8.97" ry="10.76"/><ellipse cx="429.23" cy="167.16" rx="10.09" ry="10.93"/></g>
-<g class="tree-f"><ellipse cx="415" cy="162.62" rx="16.38" ry="18.33"/><ellipse cx="400.28" cy="164.91" rx="8.91" ry="10.76"/><ellipse cx="401.15" cy="156.95" rx="7.88" ry="10.42"/><ellipse cx="405.73" cy="150.5" rx="9.35" ry="10.25"/><ellipse cx="409.84" cy="148.09" rx="8.25" ry="11.37"/><ellipse cx="417.24" cy="147.3" rx="8.03" ry="11.25"/><ellipse cx="425.37" cy="151.51" rx="7.76" ry="9.56"/><ellipse cx="429.72" cy="160.34" rx="8.07" ry="9.86"/><ellipse cx="429.23" cy="167.16" rx="9.19" ry="10.03"/></g>
-<line x1="589.5" y1="214" x2="589.5" y2="203" class="ln"/>
-<rect x="550" y="213.2" width="40" height="0.8" class="z-timber"/>
-<rect class="avatar" x="175.16" y="157.22" width="4.68" height="7.28" rx="1.87"/>
-<circle class="avatar" cx="177.5" cy="154.79" r="2.86"/>
-<rect class="avatar" x="317.66" y="206.72" width="4.68" height="7.28" rx="1.87"/>
-<circle class="avatar" cx="320" cy="204.29" r="2.86"/>
-<rect class="avatar" x="337.66" y="206.72" width="4.68" height="7.28" rx="1.87"/>
-<circle class="avatar" cx="340" cy="204.29" r="2.86"/>
-<rect class="avatar" x="477.66" y="206.72" width="4.68" height="7.28" rx="1.87"/>
-<circle class="avatar" cx="480" cy="204.29" r="2.86"/>
-<rect class="avatar" x="567.66" y="206.72" width="4.68" height="7.28" rx="1.87"/>
-<circle class="avatar" cx="570" cy="204.29" r="2.86"/>
-<rect class="avatar" x="647.66" y="233.02" width="4.68" height="7.28" rx="1.87"/>
-<circle class="avatar" cx="650" cy="230.59" r="2.86"/>
-<rect class="avatar" x="727.66" y="238.72" width="4.68" height="7.28" rx="1.87"/>
-<circle class="avatar" cx="730" cy="236.29" r="2.86"/>
-<rect class="avatar" x="382.66" y="205.08" width="4.68" height="4.42" rx="1.87"/>
-<rect class="avatar" x="385" y="207.94" width="4.42" height="1.56" rx="0.65"/>
-<rect class="avatar" x="388.38" y="207.94" width="1.3" height="5.2" rx="0.52"/>
-<circle class="avatar" cx="385" cy="202.65" r="2.86"/>
-<circle class="avatar" cx="820" cy="247" r="3.4"/>
-<polygon class="ink-f" points="56,159 64,159 60,166"/>
-<text class="t-dim halo" x="67" y="163" text-anchor="start">+8.40 STREET</text>
-<polygon class="ink-f" points="271,207 279,207 275,214"/>
-<text class="t-dim halo" x="282" y="225" text-anchor="start">+3.60 PLAZA</text>
-<polygon class="ink-f" points="496,207 504,207 500,214"/>
-<text class="t-dim halo" x="507" y="225" text-anchor="start">+3.60 PROMENADE</text>
-<polygon class="ink-f" points="593.5,231 601.5,231 597.5,238"/>
-<text class="t-dim halo" x="604.5" y="249" text-anchor="start">+1.20 BEACH</text>
-<polygon class="ink-f" points="901,243 909,243 905,250"/>
-<text class="t-dim halo" x="898" y="247" text-anchor="end">±0.00 SWL</text>
-<polygon class="ink-f" points="854,252 862,252 858,259"/>
-<text class="t-dim halo" x="865" y="270" text-anchor="start">−0.90 WADE LIMIT</text>
-<line x1="235" y1="188" x2="260" y2="124" class="ln-m"/>
-<circle cx="235" cy="188" r="0"/>
-<circle class="ink-f" cx="235" cy="188" r="1.8"/>
-<text class="t-lbl halo" x="263" y="122" text-anchor="start">MAIN STAIR · 2 × 16R · LANDING 3.00</text>
-<line x1="415" y1="209" x2="450" y2="134" class="ln-m"/>
-<circle cx="415" cy="209" r="0"/>
-<circle class="ink-f" cx="415" cy="209" r="1.8"/>
-<text class="t-lbl halo" x="453" y="132" text-anchor="start">PLANTER Ø8 · BENCH RING Ø14</text>
-<line x1="589.5" y1="207" x2="610" y2="152" class="ln-m"/>
-<circle cx="589.5" cy="207" r="0"/>
-<circle class="ink-f" cx="589.5" cy="207" r="1.8"/>
-<text class="t-lbl halo" x="613" y="150" text-anchor="start">RAIL 1.10 · SEA WALL 2.40</text>
-<line class="dim" x1="213" y1="214" x2="197" y2="214"/><line class="dim" x1="213" y1="166" x2="197" y2="166"/><line class="dim" x1="200" y1="163" x2="200" y2="217"/><line class="dim-t" x1="197" y1="217" x2="203" y2="211"/><line class="dim-t" x1="197" y1="169" x2="203" y2="163"/><text class="t-dim halo" x="196" y="190" text-anchor="middle" transform="rotate(-90 196 190)">4.80</text>
-<line class="dim" x1="603" y1="211" x2="603" y2="241"/><line class="dim-t" x1="600" y1="241" x2="606" y2="235"/><line class="dim-t" x1="600" y1="217" x2="606" y2="211"/><text class="t-dim halo" x="613" y="226" text-anchor="middle" transform="rotate(-90 613 226)">2.40</text>
-<line class="dim" x1="130" y1="292" x2="130" y2="305"/><line class="dim" x1="185" y1="292" x2="185" y2="305"/><line class="dim" x1="127" y1="302" x2="188" y2="302"/><line class="dim-t" x1="127" y1="305" x2="133" y2="299"/><line class="dim-t" x1="182" y1="305" x2="188" y2="299"/><text class="t-dim halo" x="157.5" y="299" text-anchor="middle">11.0</text>
-<text x="157.5" y="320" text-anchor="middle" class="t-sm">STREET</text>
-<line class="dim" x1="185" y1="292" x2="185" y2="305"/><line class="dim" x1="265" y1="292" x2="265" y2="305"/><line class="dim" x1="182" y1="302" x2="268" y2="302"/><line class="dim-t" x1="182" y1="305" x2="188" y2="299"/><line class="dim-t" x1="262" y1="305" x2="268" y2="299"/><text class="t-dim halo" x="225" y="299" text-anchor="middle">16.0</text>
-<text x="225" y="320" text-anchor="middle" class="t-sm">ENTRY</text>
-<line class="dim" x1="265" y1="292" x2="265" y2="305"/><line class="dim" x1="550" y1="292" x2="550" y2="305"/><line class="dim" x1="262" y1="302" x2="553" y2="302"/><line class="dim-t" x1="262" y1="305" x2="268" y2="299"/><line class="dim-t" x1="547" y1="305" x2="553" y2="299"/><text class="t-dim halo" x="407.5" y="299" text-anchor="middle">57.0</text>
-<text x="407.5" y="320" text-anchor="middle" class="t-sm">CENTRAL PLAZA</text>
-<line class="dim" x1="550" y1="292" x2="550" y2="305"/><line class="dim" x1="590" y1="292" x2="590" y2="305"/><line class="dim" x1="547" y1="302" x2="593" y2="302"/><line class="dim-t" x1="547" y1="305" x2="553" y2="299"/><line class="dim-t" x1="587" y1="305" x2="593" y2="299"/><text class="t-dim halo" x="570" y="299" text-anchor="middle">8.0</text>
-<text x="570" y="320" text-anchor="middle" class="t-sm">PROM.</text>
-<line class="dim" x1="590" y1="292" x2="590" y2="305"/><line class="dim" x1="783" y1="292" x2="783" y2="305"/><line class="dim" x1="587" y1="302" x2="786" y2="302"/><line class="dim-t" x1="587" y1="305" x2="593" y2="299"/><line class="dim-t" x1="780" y1="305" x2="786" y2="299"/><text class="t-dim halo" x="686.5" y="299" text-anchor="middle">38.6</text>
-<text x="686.5" y="320" text-anchor="middle" class="t-sm">BEACH</text>
-<line class="dim" x1="783" y1="292" x2="783" y2="305"/><line class="dim" x1="858" y1="292" x2="858" y2="305"/><line class="dim" x1="780" y1="302" x2="861" y2="302"/><line class="dim-t" x1="780" y1="305" x2="786" y2="299"/><line class="dim-t" x1="855" y1="305" x2="861" y2="299"/><text class="t-dim halo" x="820.5" y="299" text-anchor="middle">15.0</text>
-<text x="820.5" y="320" text-anchor="middle" class="t-sm">WADE</text>
-<line class="dim" x1="858" y1="292" x2="858" y2="305"/><line class="dim" x1="920" y1="292" x2="920" y2="305"/><line class="dim" x1="855" y1="302" x2="923" y2="302"/><line class="dim-t" x1="855" y1="305" x2="861" y2="299"/><line class="dim-t" x1="917" y1="305" x2="923" y2="299"/><text class="t-dim halo" x="889" y="299" text-anchor="middle">12.4</text>
-<text x="889" y="320" text-anchor="middle" class="t-sm">SWIM</text>
-<line class="dim" x1="130" y1="328" x2="130" y2="339"/><line class="dim" x1="920" y1="328" x2="920" y2="339"/><line class="dim" x1="127" y1="336" x2="923" y2="336"/><line class="dim-t" x1="127" y1="339" x2="133" y2="333"/><line class="dim-t" x1="917" y1="339" x2="923" y2="333"/><text class="t-dim halo" x="525" y="333" text-anchor="middle">158.0 · STREET TO SOFT BOUNDARY</text>
-<rect x="50" y="90" width="870" height="260" class="frame"/></svg>
+<text class="t-head" x="89.0" y="31">SECTION A–A · X = 90.8 · STREET → PLAZA → BEACH · LOOKING EAST</text>
+<text class="t-sm" x="24" y="48">Horizontal 5.2 px = 1 m · vertical 10 px = 1 m (vertical exaggeration 1.9×) · light line = beyond</text>
+<rect x="50" y="106" width="57.2" height="60" class="beyond"/>
+<rect x="238.07" y="186" width="36.4" height="28" class="beyond"/>
+<text x="256.27" y="178" text-anchor="middle" class="t-sm halo">FOOD TRUCKS</text>
+<rect x="375" y="160" width="163.8" height="54" class="beyond"/>
+<rect x="398.4" y="156" width="86.67" height="4" class="chalk-y"/>
+<text x="454.73" y="188" text-anchor="middle" class="t-sm halo">LIFESTYLE SHOP beyond</text>
+<ellipse cx="350.73" cy="188" rx="17.68" ry="2.6" class="statue"/>
+<text x="350.73" y="180" text-anchor="middle" class="t-sm halo">CAT</text>
+<line x1="407.93" y1="214" x2="407.93" y2="170.6" class="trunk"/>
+<g class="tree-o"><ellipse cx="407.93" cy="170.6" rx="20.59" ry="18.19"/><ellipse cx="390.42" cy="172.88" rx="10.03" ry="11.14"/><ellipse cx="391.31" cy="165.5" rx="11.99" ry="10.33"/><ellipse cx="395.58" cy="160.09" rx="10.84" ry="9.18"/><ellipse cx="403.99" cy="156.31" rx="12.34" ry="10.38"/><ellipse cx="411.49" cy="156.24" rx="11.85" ry="9.84"/><ellipse cx="421.4" cy="161.07" rx="12.51" ry="11.38"/><ellipse cx="424.3" cy="164.97" rx="9.84" ry="9.43"/><ellipse cx="425.41" cy="173.07" rx="10.93" ry="9.41"/></g>
+<g class="tree-f"><ellipse cx="407.93" cy="170.6" rx="19.69" ry="17.29"/><ellipse cx="390.42" cy="172.88" rx="9.13" ry="10.24"/><ellipse cx="391.31" cy="165.5" rx="11.09" ry="9.43"/><ellipse cx="395.58" cy="160.09" rx="9.94" ry="8.28"/><ellipse cx="403.99" cy="156.31" rx="11.44" ry="9.48"/><ellipse cx="411.49" cy="156.24" rx="10.95" ry="8.94"/><ellipse cx="421.4" cy="161.07" rx="11.61" ry="10.48"/><ellipse cx="424.3" cy="164.97" rx="8.94" ry="8.53"/><ellipse cx="425.41" cy="173.07" rx="10.03" ry="8.51"/></g>
+<rect x="606.4" y="226" width="260" height="3" class="beyond"/>
+<line x1="637.6" y1="229" x2="637.6" y2="266" class="ln-m"/>
+<line x1="668.8" y1="229" x2="668.8" y2="266" class="ln-m"/>
+<line x1="700" y1="229" x2="700" y2="266" class="ln-m"/>
+<line x1="731.2" y1="229" x2="731.2" y2="266" class="ln-m"/>
+<line x1="762.4" y1="229" x2="762.4" y2="266" class="ln-m"/>
+<line x1="793.6" y1="229" x2="793.6" y2="266" class="ln-m"/>
+<line x1="824.8" y1="229" x2="824.8" y2="266" class="ln-m"/>
+<line x1="856" y1="229" x2="856" y2="266" class="ln-m"/>
+<text x="778" y="221" text-anchor="middle" class="t-sm halo">PIER +2.40 beyond</text>
+<rect x="671.4" y="205" width="34.67" height="36" class="beyond"/>
+<polygon points="667.93,205 709.53,205 688.73,195" class="beyond"/>
+<text x="688.73" y="189" text-anchor="middle" class="t-sm">HUT</text>
+<path d="M654.07 245 Q654.69 206.6 657.19 181" class="trunk"/>
+<path class="palm" d="M657.19 181Q650.38 174.33 643.57 181.96Q650.38 179.33 657.19 181Z M657.19 181Q652.85 173 648.51 177.17Q652.85 178 657.19 181Z M657.19 181Q653.51 171.6 649.84 174.38Q653.51 176.6 657.19 181Z M657.19 181Q656.83 171.59 656.47 171.71Q656.83 176.59 657.19 181Z M657.19 181Q660.02 172.32 662.86 174.76Q660.02 177.32 657.19 181Z M657.19 181Q662.55 173.16 667.91 178.44Q662.55 178.16 657.19 181Z M657.19 181Q664.01 173.71 670.84 180.88Q664.01 178.71 657.19 181Z"/>
+<path d="M577.8 214 Q578.42 173.2 580.92 146" class="trunk"/>
+<path class="palm" d="M580.92 146Q574.23 140.1 567.55 148.2Q574.23 145.1 580.92 146Z M580.92 146Q575.6 138.22 570.29 143.49Q575.6 143.22 580.92 146Z M580.92 146Q577.49 136.45 574.05 138.94Q577.49 141.45 580.92 146Z M580.92 146Q580.88 136.04 580.85 135.66Q580.88 141.04 580.92 146Z M580.92 146Q584.12 136.95 587.31 139.5Q584.12 141.95 580.92 146Z M580.92 146Q585.44 138.25 589.97 142.75Q585.44 143.25 580.92 146Z M580.92 146Q586.94 140.06 592.95 147.38Q586.94 145.06 580.92 146Z"/>
+<polygon points="820.81,250 934,250 934,265 898.81,259" class="water"/>
+<line x1="820.81" y1="250" x2="934" y2="250" class="ln-water"/>
+<polygon points="50,166 209.47,166 209.47,166 209.47,167.5 211.81,167.5 211.81,169 214.15,169 214.15,170.5 216.49,170.5 216.49,172 218.83,172 218.83,173.5 221.17,173.5 221.17,175 223.51,175 223.51,176.5 225.85,176.5 225.85,178 228.19,178 228.19,179.5 230.53,179.5 230.53,181 232.87,181 232.87,182.5 235.21,182.5 235.21,184 237.55,184 237.55,185.5 239.89,185.5 239.89,187 242.23,187 242.23,188.5 244.57,188.5 244.57,190 260.69,190 260.69,191.5 263.03,191.5 263.03,193 265.37,193 265.37,194.5 267.71,194.5 267.71,196 270.05,196 270.05,197.5 272.39,197.5 272.39,199 274.73,199 274.73,200.5 277.07,200.5 277.07,202 279.41,202 279.41,203.5 281.75,203.5 281.75,205 284.09,205 284.09,206.5 286.43,206.5 286.43,208 288.77,208 288.77,209.5 291.11,209.5 291.11,211 293.45,211 293.45,212.5 295.79,212.5 295.79,214 296.13,214 562.2,214 562.2,214 562.2,215.5 564.54,215.5 564.54,217 566.88,217 566.88,218.5 630.67,218.5 630.67,241 820.81,250 898.81,259 934,265 934,290 50,290" class="poche"/>
+<polygon points="50,166 209.47,166 209.47,166 209.47,167.5 211.81,167.5 211.81,169 214.15,169 214.15,170.5 216.49,170.5 216.49,172 218.83,172 218.83,173.5 221.17,173.5 221.17,175 223.51,175 223.51,176.5 225.85,176.5 225.85,178 228.19,178 228.19,179.5 230.53,179.5 230.53,181 232.87,181 232.87,182.5 235.21,182.5 235.21,184 237.55,184 237.55,185.5 239.89,185.5 239.89,187 242.23,187 242.23,188.5 244.57,188.5 244.57,190 260.69,190 260.69,191.5 263.03,191.5 263.03,193 265.37,193 265.37,194.5 267.71,194.5 267.71,196 270.05,196 270.05,197.5 272.39,197.5 272.39,199 274.73,199 274.73,200.5 277.07,200.5 277.07,202 279.41,202 279.41,203.5 281.75,203.5 281.75,205 284.09,205 284.09,206.5 286.43,206.5 286.43,208 288.77,208 288.77,209.5 291.11,209.5 291.11,211 293.45,211 293.45,212.5 295.79,212.5 295.79,214 296.13,214 562.2,214 562.2,214 562.2,215.5 564.54,215.5 564.54,217 566.88,217 566.88,218.5 630.67,218.5 630.67,241 820.81,250 898.81,259 934,265 934,290 50,290" fill="url(#ca-earth)"/>
+<polyline points="50,166 209.47,166 209.47,166 209.47,167.5 211.81,167.5 211.81,169 214.15,169 214.15,170.5 216.49,170.5 216.49,172 218.83,172 218.83,173.5 221.17,173.5 221.17,175 223.51,175 223.51,176.5 225.85,176.5 225.85,178 228.19,178 228.19,179.5 230.53,179.5 230.53,181 232.87,181 232.87,182.5 235.21,182.5 235.21,184 237.55,184 237.55,185.5 239.89,185.5 239.89,187 242.23,187 242.23,188.5 244.57,188.5 244.57,190 260.69,190 260.69,191.5 263.03,191.5 263.03,193 265.37,193 265.37,194.5 267.71,194.5 267.71,196 270.05,196 270.05,197.5 272.39,197.5 272.39,199 274.73,199 274.73,200.5 277.07,200.5 277.07,202 279.41,202 279.41,203.5 281.75,203.5 281.75,205 284.09,205 284.09,206.5 286.43,206.5 286.43,208 288.77,208 288.77,209.5 291.11,209.5 291.11,211 293.45,211 293.45,212.5 295.79,212.5 295.79,214 296.13,214 562.2,214 562.2,214 562.2,215.5 564.54,215.5 564.54,217 566.88,217 566.88,218.5 630.67,218.5 630.67,241 820.81,250 898.81,259 934,265" class="ln-h"/>
+<rect x="129.73" y="165.5" width="34.67" height="0.5" class="solid"/>
+<text x="147.07" y="160" text-anchor="middle" class="t-sm halo">ROAD</text>
+<line x1="207.73" y1="166" x2="207.73" y2="155" class="ln"/>
+<rect x="338.6" y="208" width="11.96" height="6" class="z-lawn"/>
+<rect x="338.6" y="208" width="11.96" height="6" class="ln-m"/>
+<rect x="467.04" y="208" width="11.96" height="6" class="z-lawn"/>
+<rect x="467.04" y="208" width="11.96" height="6" class="ln-m"/>
+<rect x="350.56" y="209.5" width="8.84" height="4.5" class="conc"/>
+<rect x="458.2" y="209.5" width="8.84" height="4.5" class="conc"/>
+<rect x="359.4" y="208" width="1.56" height="6" class="solid"/>
+<rect x="456.64" y="208" width="1.56" height="6" class="solid"/>
+<rect x="360.96" y="208.5" width="95.68" height="1.5" class="z-lawn"/>
+<line x1="402.73" y1="208.5" x2="402.73" y2="146.5" class="trunk"/>
+<g class="tree-o"><ellipse cx="402.73" cy="146.5" rx="41.18" ry="25.99"/><ellipse cx="367.66" cy="149.6" rx="23.37" ry="15.76"/><ellipse cx="369.73" cy="138.84" rx="20.93" ry="15.29"/><ellipse cx="380.65" cy="130.12" rx="24.44" ry="15.06"/><ellipse cx="390.44" cy="126.86" rx="21.8" ry="16.58"/><ellipse cx="408.07" cy="125.8" rx="21.27" ry="16.43"/><ellipse cx="427.45" cy="131.49" rx="20.64" ry="14.14"/><ellipse cx="437.81" cy="143.42" rx="21.37" ry="14.54"/><ellipse cx="436.64" cy="152.64" rx="24.06" ry="14.77"/></g>
+<g class="tree-f"><ellipse cx="402.73" cy="146.5" rx="40.28" ry="25.09"/><ellipse cx="367.66" cy="149.6" rx="22.47" ry="14.86"/><ellipse cx="369.73" cy="138.84" rx="20.03" ry="14.39"/><ellipse cx="380.65" cy="130.12" rx="23.54" ry="14.16"/><ellipse cx="390.44" cy="126.86" rx="20.9" ry="15.68"/><ellipse cx="408.07" cy="125.8" rx="20.37" ry="15.53"/><ellipse cx="427.45" cy="131.49" rx="19.74" ry="13.24"/><ellipse cx="437.81" cy="143.42" rx="20.47" ry="13.64"/><ellipse cx="436.64" cy="152.64" rx="23.16" ry="13.87"/></g>
+<line x1="629.8" y1="218.5" x2="629.8" y2="207.5" class="ln"/>
+<rect class="avatar" x="170.73" y="158.72" width="4.68" height="7.28" rx="1.87"/>
+<circle class="avatar" cx="173.07" cy="156.29" r="2.86"/>
+<rect class="avatar" x="322.39" y="206.72" width="4.68" height="7.28" rx="1.87"/>
+<circle class="avatar" cx="324.73" cy="204.29" r="2.86"/>
+<rect class="avatar" x="339.73" y="206.72" width="4.68" height="7.28" rx="1.87"/>
+<circle class="avatar" cx="342.07" cy="204.29" r="2.86"/>
+<rect class="avatar" x="504.39" y="206.72" width="4.68" height="7.28" rx="1.87"/>
+<circle class="avatar" cx="506.73" cy="204.29" r="2.86"/>
+<rect class="avatar" x="352.38" y="205.08" width="4.68" height="4.42" rx="1.87"/>
+<rect class="avatar" x="354.72" y="207.94" width="4.42" height="1.56" rx="0.65"/>
+<rect class="avatar" x="358.1" y="207.94" width="1.3" height="5.2" rx="0.52"/>
+<circle class="avatar" cx="354.72" cy="202.65" r="2.86"/>
+<rect class="avatar" x="599.73" y="211.22" width="4.68" height="7.28" rx="1.87"/>
+<circle class="avatar" cx="602.07" cy="208.79" r="2.86"/>
+<rect class="avatar" x="738.39" y="235.72" width="4.68" height="7.28" rx="1.87"/>
+<circle class="avatar" cx="740.73" cy="233.29" r="2.86"/>
+<rect class="avatar" x="764.39" y="238.72" width="4.68" height="7.28" rx="1.87"/>
+<circle class="avatar" cx="766.73" cy="236.29" r="2.86"/>
+<circle class="avatar" cx="845.6" cy="247" r="3.4"/>
+<polygon class="ink-f" points="56.4,159 64.4,159 60.4,166"/>
+<text class="t-dim halo" x="67.4" y="163" text-anchor="start">+8.40 STREET · FORECOURT</text>
+<polygon class="ink-f" points="303.4,207 311.4,207 307.4,214"/>
+<text class="t-dim halo" x="314.4" y="225" text-anchor="start">+3.60 PLAZA</text>
+<polygon class="ink-f" points="585.07,211.5 593.07,211.5 589.07,218.5"/>
+<text class="t-dim halo" x="596.07" y="229.5" text-anchor="start">+3.15 PROMENADE</text>
+<polygon class="ink-f" points="629.27,234 637.27,234 633.27,241"/>
+<text class="t-dim halo" x="640.27" y="252" text-anchor="start">+0.90 BEACH</text>
+<polygon class="ink-f" points="919.6,243 927.6,243 923.6,250"/>
+<text class="t-dim halo" x="916.6" y="247" text-anchor="end">±0.00 SWL</text>
+<polygon class="ink-f" points="894.81,252 902.81,252 898.81,259"/>
+<text class="t-dim halo" x="905.81" y="270" text-anchor="start">−0.90 WADE LIMIT</text>
+<line x1="264.07" y1="186" x2="268.4" y2="126" class="ln-m"/>
+<circle cx="264.07" cy="186" r="0"/>
+<circle class="ink-f" cx="264.07" cy="186" r="1.8"/>
+<text class="t-lbl halo" x="271.4" y="124" text-anchor="start">MAIN STAIR · 2 × 16R · TREAD 0.45 · LANDING 3.10</text>
+<line x1="408.8" y1="209" x2="450.4" y2="96" class="ln-m"/>
+<circle cx="408.8" cy="209" r="0"/>
+<circle class="ink-f" cx="408.8" cy="209" r="1.8"/>
+<text class="t-lbl halo" x="453.4" y="94" text-anchor="start">PLANTER Ø19 · BENCH RING Ø27 · TREE Ø22</text>
+<line x1="565.67" y1="216" x2="567.4" y2="154" class="ln-m"/>
+<circle cx="565.67" cy="216" r="0"/>
+<circle class="ink-f" cx="565.67" cy="216" r="1.8"/>
+<text class="t-lbl halo" x="570.4" y="152" text-anchor="start">3 STEPS DOWN TO THE PROMENADE</text>
+<line x1="629.8" y1="228" x2="654.07" y2="184" class="ln-m"/>
+<circle cx="629.8" cy="228" r="0"/>
+<circle class="ink-f" cx="629.8" cy="228" r="1.8"/>
+<text class="t-lbl halo" x="657.07" y="182" text-anchor="start">SEA WALL 2.25 · RAIL 1.10</text>
+<line class="dim" x1="207.47" y1="214" x2="202.13" y2="214"/><line class="dim" x1="207.47" y1="166" x2="202.13" y2="166"/><line class="dim" x1="205.13" y1="163" x2="205.13" y2="217"/><line class="dim-t" x1="202.13" y1="217" x2="208.13" y2="211"/><line class="dim-t" x1="202.13" y1="169" x2="208.13" y2="163"/><text class="t-dim halo" x="201.13" y="190" text-anchor="middle" transform="rotate(-90 201.13 190)">4.80</text>
+<line class="dim" x1="129.73" y1="292" x2="129.73" y2="305"/><line class="dim" x1="164.4" y1="292" x2="164.4" y2="305"/><line class="dim" x1="126.73" y1="302" x2="167.4" y2="302"/><line class="dim-t" x1="126.73" y1="305" x2="132.73" y2="299"/><line class="dim-t" x1="161.4" y1="305" x2="167.4" y2="299"/><text class="t-dim halo" x="147.07" y="299" text-anchor="middle">6.7</text>
+<text x="147.07" y="320" text-anchor="middle" class="t-sm">ROAD</text>
+<line class="dim" x1="164.4" y1="292" x2="164.4" y2="305"/><line class="dim" x1="209.47" y1="292" x2="209.47" y2="305"/><line class="dim" x1="161.4" y1="302" x2="212.47" y2="302"/><line class="dim-t" x1="161.4" y1="305" x2="167.4" y2="299"/><line class="dim-t" x1="206.47" y1="305" x2="212.47" y2="299"/><text class="t-dim halo" x="186.93" y="299" text-anchor="middle">8.7</text>
+<text x="186.93" y="320" text-anchor="middle" class="t-sm">FORECOURT</text>
+<line class="dim" x1="209.47" y1="292" x2="209.47" y2="305"/><line class="dim" x1="296.13" y1="292" x2="296.13" y2="305"/><line class="dim" x1="206.47" y1="302" x2="299.13" y2="302"/><line class="dim-t" x1="206.47" y1="305" x2="212.47" y2="299"/><line class="dim-t" x1="293.13" y1="305" x2="299.13" y2="299"/><text class="t-dim halo" x="252.8" y="299" text-anchor="middle">16.7</text>
+<text x="252.8" y="320" text-anchor="middle" class="t-sm">MAIN STAIR</text>
+<line class="dim" x1="296.13" y1="292" x2="296.13" y2="305"/><line class="dim" x1="562.2" y1="292" x2="562.2" y2="305"/><line class="dim" x1="293.13" y1="302" x2="565.2" y2="302"/><line class="dim-t" x1="293.13" y1="305" x2="299.13" y2="299"/><line class="dim-t" x1="559.2" y1="305" x2="565.2" y2="299"/><text class="t-dim halo" x="429.17" y="299" text-anchor="middle">51.2</text>
+<text x="429.17" y="320" text-anchor="middle" class="t-sm">CENTRAL PLAZA</text>
+<line class="dim" x1="562.2" y1="292" x2="562.2" y2="305"/><line class="dim" x1="630.67" y1="292" x2="630.67" y2="305"/><line class="dim" x1="559.2" y1="302" x2="633.67" y2="302"/><line class="dim-t" x1="559.2" y1="305" x2="565.2" y2="299"/><line class="dim-t" x1="627.67" y1="305" x2="633.67" y2="299"/><text class="t-dim halo" x="596.43" y="299" text-anchor="middle">13.2</text>
+<text x="596.43" y="320" text-anchor="middle" class="t-sm">PROMENADE</text>
+<line class="dim" x1="630.67" y1="292" x2="630.67" y2="305"/><line class="dim" x1="820.81" y1="292" x2="820.81" y2="305"/><line class="dim" x1="627.67" y1="302" x2="823.81" y2="302"/><line class="dim-t" x1="627.67" y1="305" x2="633.67" y2="299"/><line class="dim-t" x1="817.81" y1="305" x2="823.81" y2="299"/><text class="t-dim halo" x="725.74" y="299" text-anchor="middle">36.6</text>
+<text x="725.74" y="320" text-anchor="middle" class="t-sm">BEACH</text>
+<line class="dim" x1="820.81" y1="292" x2="820.81" y2="305"/><line class="dim" x1="898.81" y1="292" x2="898.81" y2="305"/><line class="dim" x1="817.81" y1="302" x2="901.81" y2="302"/><line class="dim-t" x1="817.81" y1="305" x2="823.81" y2="299"/><line class="dim-t" x1="895.81" y1="305" x2="901.81" y2="299"/><text class="t-dim halo" x="859.81" y="299" text-anchor="middle">15.0</text>
+<text x="859.81" y="320" text-anchor="middle" class="t-sm">WADE</text>
+<line class="dim" x1="129.73" y1="328" x2="129.73" y2="339"/><line class="dim" x1="820.81" y1="328" x2="820.81" y2="339"/><line class="dim" x1="126.73" y1="336" x2="823.81" y2="336"/><line class="dim-t" x1="126.73" y1="339" x2="132.73" y2="333"/><line class="dim-t" x1="817.81" y1="339" x2="823.81" y2="333"/><text class="t-dim halo" x="475.27" y="333" text-anchor="middle">132.9 · ROAD TO SHORELINE</text>
+<rect x="50" y="66" width="884" height="284" class="frame"/></svg>

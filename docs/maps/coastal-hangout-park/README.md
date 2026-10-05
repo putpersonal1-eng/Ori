@@ -1,37 +1,41 @@
-# Japan Coastal Hangout Park: scale-corrected layout
+# Japan Coastal Hangout Park: traced layout at true scale
 
-The reference top view (`reference.webp`, made with an image model) redrawn at
-true scale. The layout is kept as drawn; sizes and levels are corrected.
+The reference top view (`reference.webp`, made with an image model) traced
+area by area and redrawn at its true scale.
 
-## What was wrong with the reference
+## Method
 
-The 1:500 scale bar (50 m = 195 px) disagrees with everything drawn on the map.
-Measured against people, food trucks and doors, the image reads at about
-**6 px per metre**, so the park is about **205 × 158 m**, not 330 × 260 m.
-At that scale most buildings are right. These were drawn too big and are corrected:
-
-| Element | As drawn | Corrected |
-| --- | --- | --- |
-| Central planter + seats | Ø 27 m | Ø 8 m planter, Ø 14 m bench ring |
-| Plaza paving | Ø 77 m | Ø 56 m |
-| Main entrance stair | 13 × 16 m, one flight | 12 × 12 m, 2 × 16R + landing |
-| Beach stairs | 11 × 11 m | 6 × 6.2 m, 2 × 8R |
-| Pier | 7.5 m wide | 5 m wide, head 24 × 10 m |
-| Food trucks / parasols / palms | 7.5 m / Ø 5 m / Ø 10 m | 6.5 m / Ø 2.6 m / Ø 6 m |
-| Small stage deck | 25 × 22 m | fan R 13 m |
-
-The full list is in `index.html` (sheet S-1).
+- **True scale.** The reference's 1:500 bar (50 m = 195 px) disagrees with
+  everything drawn. Measured on the road (two lanes ≈ 7 m), people and doors,
+  the image reads at **6 px = 1 m**, so the park is about **207 × 158 m**.
+- **Traced outlines.** Every outline on the site plan is traced from the image in
+  pixels and converted with `X = (px − 60) / 6`, `Y = (py − 75) / 6`
+  (see `P()` and the `*_PX` lists in `build.py`). Shapes, positions and
+  proportions match the reference.
+- **Check it.** On sheet L-101 in `index.html`, turn on **Reference underlay** to see
+  the original under the plan at 1:1.
+- **What was resized.** Only real-world objects: food trucks (6.5 × 2.5 m), parasols
+  (Ø 3.0 m) and stage speakers. Stairs keep their traced footprints, with risers
+  fitted to the level change.
+- **Levels.** The image is flat, so the levels come from the stair lengths:
+  - street +8.40, falling to +6.00 toward the station
+  - plaza +3.60
+  - promenade +3.15 (3 steps down from the plaza)
+  - sand +0.90
+  - sea ±0.00
 
 ## Sheets
 
-`index.html` holds all of these. Standalone copies are in `svg/`.
+All are in `index.html`, with standalone copies in `svg/`.
 
-- REF: the reference and the corrected plan side by side
-- S-1: scale corrections
-- L-101: site plan with key numbers 1–12 as in the reference
-- L-201 / L-202: sections (street +8.40, plaza +3.60, sand +1.20, sea ±0.00)
-- D-401: entrance stair, sea wall + beach stair, pier, central planter
-- S-2 / S-3: key locations and gameplay metrics
+- REF: the reference and the plan side by side
+- S-1: scale corrections and traced sizes
+- L-101: site plan with key numbers 1–12 as in the reference, and the reference underlay
+- L-201 / L-202: sections
+- D-401: main stair, seaside steps, pier, central planter
+- S-2 / S-3 / S-4: key locations, gameplay metrics, connections
+
+`build.py` stops with an error if any walkable area can't be reached from Spawn A.
 
 ## Editing
 
