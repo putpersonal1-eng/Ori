@@ -13,7 +13,7 @@ import random
 
 import numpy as np
 from shapely.geometry import LineString, MultiPolygon, Point, Polygon, box
-from shapely.ops import unary_union
+from shapely.ops import nearest_points, unary_union
 from shapely.prepared import prep
 
 import elev
@@ -248,7 +248,10 @@ class Scene:
         return {"pal": self.pal, "slabs": self.slabs, "prisms": self.prisms, "boxes": self.boxes, "cyls": self.cyls,
                 "segs": self.segs, "exts": self.exts, "tori": self.tori, "texts": self.texts, "plates": self.plates, "eggs": self.eggs,
                 "trees": self.trees, "shrubs": self.shrubs, "labels": self.labels, "rocks": self.rocks, "terrain": self.terrain, "lights": self.lights,
-                "views": VIEWS, "sun": [80, 140, 120], "center": [100, 0, 70]}
+                "views": VIEWS, "sun": [80, 140, 120], "center": [100, 0, 70],
+                "notes": {"terrain": "IMPORTANT: terrain (hills, sea floor, soil and sand surfaces) is a stand-in; the Ori engine's "
+                                     "terrain system recreates it on import. Import structures, paving, stairs and props only.",
+                          "planting": "Trees, plants and rocks are placeholders for the engine's own."}}
 
 
 # camera presets: position, target, field of view
@@ -438,10 +441,10 @@ def build_ground(sc, b, rec):
     sfp = stair_footprints(rec)                     # stairs carry their own treads: no paving over them
     n_st = len(sc.hard)
     sc.slab(hs["street"].difference(lane_box).difference(sfp), street_prof, "street")
-    sc.slab(lane, ax_y([(135, 8.4), (632, 3.15)]), "street")
     street_idx = set(range(n_st, len(sc.hard)))
-    east = hs["east"]
-    plaza = hs["plaza"].difference(east).difference(sfp)
+    sc.slab(lane, ax_y([(135, 8.4), (632, 3.15)]), "street")    # the lane counts as park ground, so the bank beside it follows it
+    east = hs["east"].difference(hs["tipzone"])     # the path end is part of the smoothed plaza at the lawn tip
+    plaza = hs["plaza"].difference(east.buffer(.05)).difference(sfp)
     # the east end of the plaza falls 0.45 m toward the promenade; the fall fades in over 14 m so there is no seam
     cut, blend = P(1040, 0)[0], 14.0
     za, zb = P(0, 470)[1], P(0, 560)[1]
@@ -456,7 +459,7 @@ def build_ground(sc, b, rec):
     sc.grid_slab(east_pl, plaza_h, "paver", "std", cell=2.0)
     sc.hard.append((east_pl, plaza_h))
     sc._prep = None
-    sc.slab(east, ax_y([(145, 6.0), (414, 3.6)]), "paver")         # ramps down to meet the lawn and plaza at +3.60
+    sc.slab(east, ax_y([(145, 6.0), (380, 3.6)]), "paver")         # ramps down to +3.60 where it meets the lawn tip
     sc.slab(hs["top"].difference(sfp), 3.6, "paver")
     sc.slab(hs["lawn"], 3.6, "lawn", skirt_color="conc")                # event lawn level with the plaza (no longer raked)
     sc.slab(hs["prom"], 3.15, "timber")
@@ -491,12 +494,47 @@ def build_ground(sc, b, rec):
     wz = wall_line_z(b, rec)
     st = street_level(b)
 
-    def idw(x, z):
+    def idw_raw(x, z):
         """Ground level for soil: street level north of the retaining walls, park level south of them."""
         w = wz(x)
         if w is None:
             return idw_all(x, z)
         return st(x) if z < w else idw_low(x, z)
+    # soil meets every path flush: within 2.5 m of paving on its own side of the street walls it blends to that
+    # paving's level (a level jump of 2.5 m or more is a wall, and is left to the wall)
+    from shapely.strtree import STRtree
+    hard_n = [(q, sp) for i, (q, sp) in enumerate(sc.hard) if i in street_idx]
+    hard_s = [(q, sp) for i, (q, sp) in enumerate(sc.hard) if i not in street_idx]
+    trees_ = [STRtree([q for q, _ in hl]) if hl else None for hl in (hard_n, hard_s)]
+    near_cache = {}
+
+    def idw(x, z):
+        base = idw_raw(x, z)
+        key = (round(x, 2), round(z, 2))
+        if key in near_cache:
+            return near_cache[key]
+        w = wz(x)
+        side = 0 if (w is not None and z < w) else 1
+        tr, hl = trees_[side], (hard_n, hard_s)[side]
+        out = base
+        if tr is not None:
+            p = Point(x, z)
+            cand = []
+            for j in tr.query(p.buffer(2.5)):
+                q, sp = hl[int(j)]
+                d = q.distance(p)
+                if d <= 2.5:
+                    qp = p if d == 0 else nearest_points(q, p)[0]
+                    cand.append((d, sc.h_eval(sp, qp.x, qp.y)))
+            if cand:
+                dmin = min(c[0] for c in cand)
+                d, lv = max((c for c in cand if c[0] <= dmin + .3), key=lambda c: c[1])   # touching surfaces: the higher one
+                if abs(lv - base) < 2.5:
+                    t = min(d / 2.5, 1.0)
+                    t = t * t * (3 - 2 * t)
+                    out = lv + (base - lv) * t
+        near_cache[key] = out
+        return out
     coast = b.cr_sample(b.PP(b.COAST_PX), per=6)
     land = Polygon([(X0, Y0), (X1, Y0)] + coast + b.PP([(1150, 700), (1100, 712), (1087, 700), (1087, 647), (1043, 653)]) +
                    b.PP(b.SEAWALL_PX) + b.PP([(55, 700), (36, 700)])).buffer(0)
@@ -574,6 +612,7 @@ def build_props(sc, b, rec, idw):
                 continue
             inner, gq = K.planter_ground(sc, q, base_at)
             planter_gnd.append((prep(q.buffer(.05)), gq))
+            inner = inner.difference(Point(*b.P(*b.STATUE_PX)).buffer(b.STATUE_R + .4))
             scatter(sc, inner, None, rnd, dens * .5, .35, .7, idw=lambda x, z, gq=gq: gq(x, z) + .38)
     hs = b.hardscape()
     scatter(sc, hs["beds"], None, rnd, .16, .45, 1.0, idw=idw)
@@ -772,7 +811,7 @@ def build_arcade(sc, b):
         E.disc(bu, bz, .48, .78, .84, "dark", "metal", 28)
         E.disc(bu, bz, .45, .84, 1.02, col, "gloss", 28, r_out=.36)
     # entrance: lit interior, sliding glass doors, pillars with LED strips, lintel
-    E.door_slide(c, 5.0, 4.05, 3.15)
+    E.door_slide(c, 5.0, 4.05, 3.15, open_=.8)                 # automatic doors open: the hall is walk-in
     for (a, b_) in ((c - 3.05, c - 2.5), (c + 2.5, c + 3.05)):
         E.box(a, b_, 4.05, 7.65, 0, .3, "yel", "paint")
         E.box((a + b_) / 2 - .04, (a + b_) / 2 + .04, 4.35, 7.2, .3, .33, "white", "led")
@@ -1292,14 +1331,15 @@ def build_stair_gate(sc, b):
 
 def build_misc(sc, b):
     P = b.P
-    u, v = P(707, 350)
-    sc.cyl(u, 3.6, v, 3.2, 3.2, .45, "white", seg=40, mat="stone")
-    sc.cyl(u, 4.05, v, 3.3, 3.3, .08, "cream", seg=40, mat="stone")
-    sc.cyl(u, 5.3, v, 1.45, 1.45, 0, "white", axis="s", mat="gloss")
-    sc.cyl(u, 6.85, v, 1.1, 1.1, 0, "white", axis="s", mat="gloss")
-    sc.cyl(u + 1.3, 5.6, v + .4, .32, .32, 0, "pink", axis="s", mat="gloss")
+    u, v = P(*b.STATUE_PX)                          # on its plinth in the planter by the main stair
+    sc.cyl(u, 3.9, v, b.STATUE_R - .1, b.STATUE_R - .1, .6, "white", seg=40, mat="stone")
+    sc.cyl(u, 4.5, v, b.STATUE_R, b.STATUE_R, .08, "cream", seg=40, mat="stone")
+    dy = 4.58 - 4.12                                # the figure stands on the plinth top (+4.58)
+    sc.cyl(u, 5.3 + dy, v, 1.45, 1.45, 0, "white", axis="s", mat="gloss")
+    sc.cyl(u, 6.85 + dy, v, 1.1, 1.1, 0, "white", axis="s", mat="gloss")
+    sc.cyl(u + 1.3, 5.6 + dy, v - .4, .32, .32, 0, "pink", axis="s", mat="gloss")
     for s_ in (-1, 1):
-        sc.cyl(u + s_ * .6, 7.55, v, .38, .02, .7, "white", seg=6, mat="gloss")
+        sc.cyl(u + s_ * .6, 7.55 + dy, v, .38, .02, .7, "white", seg=6, mat="gloss")
     cx, cy = P(605, 417)
     bed = Point(cx, cy).buffer(9.5, quad_segs=24)
     sc.prism(bed.difference(bed.buffer(-.3)), 3.0, 4.14, "conc", "conc")

@@ -90,19 +90,22 @@ class Face:
         if transom:
             self.box(u0, u1, transom - .04, transom + .04, 0, .1, frame, "metal")
 
-    def door_slide(self, uc, w, y0, h, frame="dark", off=0.0):
+    def door_slide(self, uc, w, y0, h, frame="dark", off=0.0, open_=0.0):
+        """Sliding glass doors; open_ (0..1) parks the leaves that far into the wall pockets either side."""
         u0, u1 = uc - w / 2, uc + w / 2
         self.box(u0 - .1, u1 + .1, y0 + h, y0 + h + .22, off, off + .16, frame, "metal")
         for (a, b) in ((u0 - .1, u0), (u1, u1 + .1)):
             self.box(a, b, y0, y0 + h, off, off + .16, frame, "metal")
-        for k, (a, b) in enumerate(((u0, uc + .02), (uc - .02, u1))):
-            dd = off + (.05 if k == 0 else .1)
+        sh = open_ * w / 2
+        for k, (a, b) in enumerate(((u0 - sh, uc + .02 - sh), (uc - .02 + sh, u1 + sh))):
+            dd = (off + (.05 if k == 0 else .1)) if not open_ else -.16 - .04 * k
             self.box(a, b, y0, y0 + h, dd, dd + .02, "glass", "glass")
             for (c, e) in ((a, a + .05), (b - .05, b)):
                 self.box(c, e, y0, y0 + h, dd - .01, dd + .04, frame, "metal")
             self.box(a, b, y0, y0 + .1, dd - .01, dd + .04, frame, "metal")
-        self.seg((uc - .25, y0 + .9, off + .16), (uc - .25, y0 + 1.5, off + .16), .015, "steel")
-        self.seg((uc + .25, y0 + .9, off + .16), (uc + .25, y0 + 1.5, off + .16), .015, "steel")
+        if not open_:
+            self.seg((uc - .25, y0 + .9, off + .16), (uc - .25, y0 + 1.5, off + .16), .015, "steel")
+            self.seg((uc + .25, y0 + .9, off + .16), (uc + .25, y0 + 1.5, off + .16), .015, "steel")
 
     def door_solid(self, uc, w, y0, h, col="steel", mat="metal"):
         u0, u1 = uc - w / 2, uc + w / 2

@@ -206,7 +206,7 @@ def planter_g(cv, g, seed, density=.8, rmin=.4, rmax=.8, wall=.3, radius=.35):
     inner = g.buffer(-wall, join_style="mitre")
     gd(cv, g.difference(inner), "wallp")
     gd(cv, inner, "bed")
-    scatter_shrubs(cv, inner, seed, density, rmin, rmax)
+    scatter_shrubs(cv, inner.difference(Point(*P(*STATUE_PX)).buffer(STATUE_R + .4)), seed, density, rmin, rmax)
     return inner
 
 
@@ -237,6 +237,7 @@ CURVE_LINE_PX = [(974, 197), (974, 250), (976, 300), (986, 338), (1004, 370), (1
                  (1102, 490), (1122, 522)]
 COAST_LINE_PX = [(1186, 461), (1189, 495), (1180, 520), (1158, 542), (1132, 556)]
 EAST_PATH_PX = [(1238.5, 145), (1238.5, 330), (1232, 365), (1218, 395), (1200, 414)]
+TIP_ZONE = Point((1180 - 60) / 6, (440 - 75) / 6).buffer(10.0, quad_segs=24)   # lawn tip: path end smoothed into the plaza (m)
 CURVED_STAIR_PX = [(1152, 427), (1188, 419), (1205, 464), (1169, 461)]   # former curved steps at the lawn tip, now paved path
 SAKURA_PLANTER_PX = [(1169, 461), (1169, 483), (1164, 500), (1147, 510), (1127, 506), (1113, 493), (1107, 474), (1109, 456),
                      (1122, 447), (1142, 441), (1159, 441)]          # rounded U against the steps and the walk
@@ -472,6 +473,9 @@ def maneki_big(cv, u, v, r):
 STREET_WALLS_PX = [[(347.5, 196), (392, 196)], [(423, 196), (470, 196), (470, 186), (565, 186)],
                    [(642, 186), (727, 186), (727, 192), (940, 192)], [(972, 149), (1058, 149)],
                    [(1092, 149), (1207, 149)], [(1246.5, 145), (1246.5, 335)]]
+STATUE_PX = (684, 245)       # maneki-neko photo statue, on its plinth in the planter east of the main stair
+STATUE_R = 3.3              # plinth radius (m)
+PALM_ROW_PX = [(756, 318), (804, 318), (852, 318), (900, 318)]   # palms in round planters south of the truck pad
 PROM_OPENINGS = [(267, 410), (520, 628), (728, 792), (865, 902)]   # gaps between the edge planters, with steps (px)
 PROM_PLANTERS = [(160, 267, 627), (410, 520, 635), (628, 728, 622), (792, 865, 612), (902, 1022, 611)]   # (xa, xb, south face) px
 TRUCK_DY = -21              # food truck zone moved 3.5 m north, up against the street wall (px)
@@ -626,9 +630,8 @@ def hardscape():
                                    GB(1100, 486, 1180, 522).difference(tip.buffer(.05))]), 1.8)
     plaza_g = unary_union([plaza_g, east_g, island.buffer(.5).difference(tip), tip_pave])
     # one smooth path edge where the steps used to be: smooth the paving outline locally (no spike, no kerb jog)
-    ctr = Point(*P(1180, 440))
-    smooth = open_(close_(plaza_g.intersection(ctr.buffer(16.0)), 3.0), 1.2)       # smoothed over a wider area ...
-    zone = ctr.buffer(10.0, quad_segs=24)                                           # ... and used only well inside it
+    zone = TIP_ZONE
+    smooth = open_(close_(plaza_g.intersection(zone.buffer(6.0)), 3.0), 1.2)       # smoothed over a wider area, used inside
     plaza_g = unary_union([plaza_g.difference(zone), smooth.intersection(zone)]).buffer(.01).buffer(-.01).simplify(.03)
     top_g = close_(G([(1050, 196), (1094, 196), (1100, 190), (1050, 252)]), .6)
     prom_g = G(PROM_PX)
@@ -650,7 +653,7 @@ def hardscape():
         (GB(55, 145, 88, 640), 20), (GB(1160, 230, 1212, 425), 16), (GB(142, 540, 160, 592), 21), (GB(423, 145, 470, 196), 22)]
     # one bed surface: neighbouring beds merge, so no seams between them
     bed_all = unary_union([g for g, sd in beds]).difference(paved).difference(prom_g).difference(lawn_g).difference(deck_g)
-    return {"street": street_g, "plaza": plaza_g, "top": top_g, "prom": prom_g, "terr": terr_g, "lawn": lawn_g,
+    return {"tipzone": zone, "street": street_g, "plaza": plaza_g, "top": top_g, "prom": prom_g, "terr": terr_g, "lawn": lawn_g,
             "deck": deck_g, "east": east_g, "island": island, "paved": paved, "beds": bed_all}
 
 
@@ -1087,7 +1090,7 @@ def site_plan(underlay=False):
         planter_g(cv, Polygon(pts), 70 + i, density=.6, rmin=.5, rmax=.9, radius=0)
         for (a, b, r) in trees_:
             canopy(cv, *P(a, b), M(r), 80 + i + a, kind)
-    maneki_big(cv, *P(707, 350), M(23))
+    maneki_big(cv, *P(*STATUE_PX), M(23))                                   # moved into the planter by the main stair
     # frontage planters (traced)
     # (the fashion shop's two front strips became one planter turned along the street wall, clear of the shop front)
     for i, b_ in enumerate([(425, 198, 468.5, 213), (357, 515, 390, 588)]):        # first: at the wall foot east of the NW stair
@@ -1100,7 +1103,7 @@ def site_plan(underlay=False):
         planter_g(cv, G([(xa, edge_y(xa)), (xb, edge_y(xb)), (xb, yb), (xa, yb)]), 110 + i, density=.8)
     for i, b_ in enumerate([(300, 615, 350, 635)]):
         planter_g(cv, GB(*b_), 120 + i, density=.8)
-    for (x, y) in [q for q in [(1000, 437), (1025, 465), (1022, 540)] if not terrace_strip().intersects(Point(*P(*q)).buffer(1.7))]:
+    for (x, y) in [q for q in [(1000, 437), (1025, 465), (1022, 540)] if not terrace_strip().intersects(Point(*P(*q)).buffer(1.7))] + PALM_ROW_PX:
         planter_g(cv, Point(*P(x, y)).buffer(1.6), 130 + x, density=.2, radius=0)
     # promenade benches: backed against the edge planters, facing the sea
     for (xa, xb, yb), nb in zip(PROM_PLANTERS, (2, 2, 2, 1, 2)):
@@ -1126,7 +1129,7 @@ def site_plan(underlay=False):
              (1005, 290, 25), (1180, 305, 22), (1190, 280, 20), (1190, 355, 20), (1000, 437, 22), (1025, 465, 20),
              (1022, 540, 20), (645, 587, 25), (465, 612, 30), (295, 640, 28),
              (195, 685, 30), (295, 700, 28), (365, 715, 25), (470, 715, 25), (517, 680, 30), (605, 702, 18), (640, 700, 20),
-             (675, 700, 20), (735, 655, 28), (860, 660, 28), (1030, 655, 26), (1157, 600, 30)]
+             (675, 700, 20), (735, 655, 28), (860, 660, 28), (1030, 655, 26), (1157, 600, 30)] + [(x, y, 20) for x, y in PALM_ROW_PX]
     palms_ = snap_plants(palms, palms=True)
     for i, (x, y, r) in enumerate(palms_):
         palm_top(cv, *P(x, y), M(r), 400 + i)
@@ -1231,7 +1234,7 @@ def site_plan(underlay=False):
     T(605, 372, "CENTRAL PLAZA", "t-zone halo")
     T(605, 384, "+3.60 · open paving Ø53")
     T(605, 503, "ORI LOGO LANDMARK · fountain Ø13.8 · bench ring Ø27")
-    T(707, 320, "CAT STATUE")
+    T(STATUE_PX[0], STATUE_PX[1] - 26, "CAT STATUE")
     T(856, 292, "FOOD TRUCK ZONE", "t-lbl halo")
     T(856, 302, "4 trucks 6.5 × 2.5 · brick pavers, against the street wall")
     T(911, 452, "LIFESTYLE &", "t-lbl halo")
@@ -1513,7 +1516,7 @@ def section_bb():
     cv.text(X(1226), 6.6, "EAST PATH", "t-sm halo")
     cv.rect(X(1252), 6.0, X(1300), 13, "z-town")
     cv.rect(X(1252), 6.0, X(1300), 13, "", f' fill="url(#{p}-hatch)"')
-    cv.ellipse(X(707), Z_PL + 2.6, 3.4, .26, "statue")
+    cv.ellipse(X(STATUE_PX[0]), Z_PL + 3.1, 3.4, .26, "statue")         # cat statue on its plinth in the planter (beyond)
     # ground cut
     lane_z = 5.25
     Z_LT = Z_PL  # event lawn and the east path's end, level with the plaza (no longer raked, no steps)
@@ -1768,7 +1771,7 @@ KEPT = ("Traced sizes at true scale: open plaza Ø53 m, central planter Ø19 m w
 
 LOCATIONS = [
     (1, "City Street (Entrance)", "+8.40", "E1", "road 6.7 m · forecourt 43 × 7.5 m", "Spawn A at the crosswalk; main stair down from the forecourt."),
-    (2, "Central Plaza", "+3.60", "C–F 2–4", "open paving Ø53 m", "Ori logo landmark in a Ø13.8 fountain, bench ring Ø27, three tree islands, cat statue, chalk art."),
+    (2, "Central Plaza", "+3.60", "C–F 2–4", "open paving Ø53 m", "Ori logo landmark in a Ø13.8 fountain, bench ring Ø27, three tree islands, palm row by the trucks, chalk art."),
     (3, "Arcade (Indoor)", "+4.05", "A–B 2–3", "34 × 27 m, parapet +10.20", "Interior as in the reference; game-controller front on the plaza (A-501) with 3 entrance steps; roof terrace +9.60."),
     (4, "Café (Indoor + Outdoor)", "+3.60 / roof +7.80", "A–B 4", "23 × 9 m + L-terrace", "White and wood seaside café: timber canopy with the SEASIDE CAFE sign, full-height glass, white parasols, roof terrace (A-502)."),
     (5, "Shop (Fashion / Goods)", "+3.60 / +8.40", "A–B 2", "34 × 17.5 m, 2 floors", "Entrance and glazed stair core at the SE corner; upper floor looks over the kiosk strip and opens onto the arcade roof terrace (A-502)."),
@@ -1802,6 +1805,7 @@ NOTES = {
         "The retaining walls either side face the plaza with murals (a winged TV-head mascot and a sleeping cat) under an LED ticker, as on the reference's mural wall beside its escalators.",
     ],
     "p601": [
+        "IMPORTANT · terrain: the hills, sea floor and ground surfaces in this model are a stand-in. Once the map is imported into the Ori engine, the terrain is recreated by the Ori terrain system, so build only structures, paving and props from model/scene.json and sculpt the terrain in the engine to match these levels.",
         "Game-quality structures, generated from the same data as the drawings: framed windows and doors with sills, stone copings, mitred kawara eaves with tile ends, 3D lettering, stairs with nosings and handrails, escalators with glass balustrades, the gate's curved kasagi, trucks, pier beams and posts, lamps with banners.",
         "Materials are procedural PBR (plaster, stone panel, concrete, timber, deck, glazed tile, brushed metal), lit with ambient occlusion and an environment map. Floors stay plain for the engine's own textures.",
         "Every tree and palm stands in planting: a check moves any that land on paving, decks or road into the nearest bed or planter, and street trees get tree pits.",
@@ -1846,7 +1850,7 @@ NOTES = {
         "The coastal street falls about 2.4 m toward the station, which is why the eastern stairs are shorter than the main stair.",
         "Key numbers 1–12 match the reference's key list. Grid cells are 20 × 20 m (A–J, 1–8). Use Zoom to read furniture, stair treads and railings.",
         "Table S-4 lists every link between walkable areas; the build fails if any area is unreachable from Spawn A.",
-        "Changed on review: the food truck pad sits against the street wall; the fashion shop's front strips became one planter along the wall; the arcade front has planter boxes either side of narrower steps; promenade benches back onto the edge planters facing the sea; the strip behind the street sidewalk is a level planter at street level; the event lawn is level with the plaza and the east path ramps down to it (the curved steps were removed); the island tree whose trunk stood on the kerb was removed; the planter by the main stair is one solid bed; the fashion planter sits at the wall foot east of the NW stair; the Lifestyle palm planter sits in the corner by the annex; the stub wall by the east stair was removed.",
+        "Changed on review: the food truck pad sits against the street wall; the fashion shop's front strips became one planter along the wall; the arcade front has planter boxes either side of narrower steps; promenade benches back onto the edge planters facing the sea; the strip behind the street sidewalk is a level planter at street level; the event lawn is level with the plaza and the east path ramps down to it (the curved steps were removed); the island tree whose trunk stood on the kerb was removed; the planter by the main stair is one solid bed; the fashion planter sits at the wall foot east of the NW stair; the Lifestyle palm planter sits in the corner by the annex; the stub wall by the east stair was removed; four palms in round planters line the plaza side of the truck pad; the cat statue stands on its plinth in the planter east of the main stair; the arcade doors stand open so the hall is walk-in.",
     ],
     "l201": [
         "Cut on the main axis through the crosswalk, main stair and the Ori logo fountain, looking east (the logo is seen edge-on).",
@@ -1994,7 +1998,9 @@ document.querySelectorAll('[data-view]').forEach(function (b) {{
 
 
 def notes_html(k):
-    return "\n".join(f'<li data-n="{i + 1:02d}">{esc(t)}</li>' for i, t in enumerate(NOTES[k]))
+    imp = ' class="imp"'
+    return "\n".join(f'<li data-n="{i + 1:02d}"{imp if t.startswith("IMPORTANT") else ""}>{esc(t)}</li>'
+                     for i, t in enumerate(NOTES[k]))
 
 
 def page(svgs, scene="{}"):
@@ -2152,6 +2158,8 @@ document.querySelectorAll('[data-layer]').forEach(function (cb) {{
 
 
 EXTRA_CSS = """
+.notes li.imp { font-weight: 600; background: color-mix(in srgb, var(--accent) 10%, transparent); border-left: 3px solid var(--accent); padding: 8px 10px 8px 34px; border-radius: 4px; grid-column: 1 / -1; }
+.notes li.imp::before { left: 10px; top: 10px; }
 .compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-top: 14px; }
 .compare figure { margin: 0; min-width: 0; }
 .compare img { display: block; width: 100%; height: auto; border: 1px solid var(--rule); }

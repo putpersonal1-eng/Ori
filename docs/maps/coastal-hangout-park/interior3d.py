@@ -49,8 +49,13 @@ def build_arcade_interior(sc):
     sc.box(x0, yf - .01, z0, x1, yf + .012, z1, "in-floor", "gloss")
     # wall lining with neon line art, LED skirting, ceiling strips
     for (lx, lz, w, ry) in (((x0 + x1) / 2, z0 + .02, x1 - x0, 0), ((x0 + x1) / 2, z1 - .02, x1 - x0, 180),
-                            (x0 + .02, (z0 + z1) / 2, z1 - z0, 90), (x1 - .02, (z0 + z1) / 2, z1 - z0, -90)):
+                            (x0 + .02, (z0 + z1) / 2, z1 - z0, 90)):
         sc.label([lx, (yf + yc) / 2, lz], w, yc - yf, ry, "neonwall", seed=int(lx + lz))
+    # east wall: wall art either side of the open doorway and above it, so the doors look into the hall
+    d0, d1 = A["door"]
+    for (za, zb) in ((z0, d0 - .1), (d1 + .1, z1)):
+        sc.label([x1 - .02, (yf + yc) / 2, (za + zb) / 2], zb - za, yc - yf, -90, "neonwall", seed=int(za))
+    sc.label([x1 - .02, (7.3 + yc) / 2, (d0 + d1) / 2], d1 - d0 + .2, yc - 7.3, -90, "neonwall", seed=3)
     for (a, b, c, d) in ((x0, z0 + .03, x1, z0 + .1), (x0, z1 - .1, x1, z1 - .03), (x0 + .03, z0, x0 + .1, z1), (x1 - .1, z0, x1 - .03, z1)):
         sc.box(a, yf + .02, b, c, yf + .08, d, "neon-r", "led")
     for k in range(5):

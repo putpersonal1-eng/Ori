@@ -254,7 +254,7 @@
 <text x="1011.83" y="196" text-anchor="middle" class="t-sm halo">EAST PATH</text>
 <rect x="1033.07" y="132" width="39.2" height="70" class="z-town"/>
 <rect x="1033.07" y="132" width="39.2" height="70" fill="url(#cb-hatch)"/>
-<ellipse cx="587.98" cy="200" rx="16.66" ry="2.6" class="statue"/>
+<ellipse cx="569.2" cy="195" rx="16.66" ry="2.6" class="statue"/>
 <polygon points="1028.98,262 1073.9,262 1073.9,280 1028.98,272" class="water"/>
 <line x1="1028.98" y1="262" x2="1073.9" y2="262" class="ln-water"/>
 <polygon points="40,209.5 126.98,209.5 126.98,226 873,226 881.17,229.5 881.17,226 1028.98,226 1028.98,272 1073.9,280 1073.9,296 40,296" class="poche"/>

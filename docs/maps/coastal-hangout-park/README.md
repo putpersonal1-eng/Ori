@@ -32,6 +32,15 @@ area by area and redrawn at its true scale.
   and a DN arrow. Floors are plain fills (no paving pattern), since the engine
   supplies the textures. Sand is cream-white so it doesn't read as soil or timber.
 
+## Important: terrain in the Ori engine
+
+The terrain in the 3D model (the hills that wall the map, the sea floor, soil and sand
+surfaces) is a stand-in for review. **When the map is imported into the Ori engine, the
+terrain is recreated by the Ori terrain system.** Import the structures, paving, stairs and
+props from `model/scene.json`, then sculpt the terrain in the engine to the levels on the
+sheets (street +8.40 → +6.00, plaza and lawn +3.60, promenade +3.15, sand +0.90 → ±0.00).
+Trees, plants and rocks are placeholders as well; floors get the engine's own textures.
+
 ## Sheets
 
 All are in `index.html`, with standalone copies in `svg/`.
