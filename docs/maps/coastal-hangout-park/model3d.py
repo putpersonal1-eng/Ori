@@ -596,7 +596,15 @@ def build_ground(sc, b, rec):
     if not gap.is_empty:                                                        # fill it with sand at the beach level
         sc.grid_slab(gap, lambda x, z: max(sand_h(*nearest_points(sand, Point(x, z))[0].coords[0]), .4) - .02, "sand", "ground",
                      cell=2.0, bot=-3)
-    soil = soil.buffer(-.3, join_style="mitre").buffer(.3, join_style="mitre").intersection(soil)   # no slivers under 0.6 m
+    thick = soil.buffer(-.3, join_style="mitre").buffer(.3, join_style="mitre").intersection(soil)
+    slivers = soil.difference(thick.buffer(.01))      # strips under 0.6 m wide (beside planters, steps, walls)
+    soil = thick
+    if not slivers.is_empty:                          # paved flush with the ground around them: no hole, no kerb
+        def low_s(x, z):                              # lowest surface around, so a strip never rides up onto a step or deck
+            vs = [idw(x, z)] + [v for v in (sc.level_in(x + dx, z + dz) for dx, dz in ((.35, 0), (-.35, 0), (0, .35), (0, -.35)))
+                                if v is not None]
+            return min(vs) - .01
+        sc.grid_slab(slivers.buffer(.02).intersection(land), low_s, "paver", "std", cell=2.0, bot=-1.0)
     # split at the street retaining-wall line so no cell spans the drop between street and park
     xs = np.arange(X0 - 1, X1 + 1.01, .25)
     north = Polygon([(X0 - 1, Y0 - 5)] + [(x, wz(x)) for x in xs] + [(X1 + 1, Y0 - 5)]).buffer(0)
@@ -1282,10 +1290,38 @@ def build_stage(sc, b):
     deck = hs["deck"]
     sc.prism(deck, 3.0, 4.2, "timber", "deck")
     sc.prism(deck.buffer(.06).difference(deck), 3.0, 4.22, "wood-d", "timber")
+    # 4R x 0.15 down to the lawn and top plaza (+3.60): steps only along the deck edges that face them, ending square
     front = unary_union([hs["lawn"], hs["top"]]).buffer(.6).difference(stair_footprints(REC).buffer(.05))
-    for k, y in enumerate((4.05, 3.9, 3.75)):        # 4R x 0.15 down to the lawn and top plaza (+3.60); no step at ground level
-        ring = deck.buffer(.45 * (k + 1), join_style="mitre").difference(deck.buffer(.45 * k, join_style="mitre")).intersection(front)
-        sc.prism(ring, 3.0, y, "timber", "deck")
+    dq = deck.simplify(.05)
+    cs = list(dq.exterior.coords)[:-1]
+    if not dq.exterior.is_ccw:
+        cs = cs[::-1]                                 # counter-clockwise: (dz, -dx) points outward
+    n_ = len(cs)
+    sel = []
+    for i in range(n_):
+        (x0, z0), (x1, z1) = cs[i], cs[(i + 1) % n_]
+        L = math.hypot(x1 - x0, z1 - z0)
+        if L < .3:
+            sel.append(False)
+            continue
+        nx, nz = (z1 - z0) / L, -(x1 - x0) / L         # outward normal
+        mp = Point((x0 + x1) / 2 + nx * 1.0, (z0 + z1) / 2 + nz * 1.0)
+        sel.append(front.contains(mp) and not dq.contains(mp))
+    for k, y in enumerate((4.05, 3.9, 3.75)):
+        ring = deck.buffer(.45 * (k + 1), join_style="mitre").difference(deck.buffer(.45 * k, join_style="mitre"))
+        keep = []
+        for i in range(n_):
+            if not sel[i]:
+                continue
+            (x0, z0), (x1, z1) = cs[i], cs[(i + 1) % n_]
+            L = math.hypot(x1 - x0, z1 - z0)
+            nx, nz = (z1 - z0) / L, -(x1 - x0) / L
+            d_ = 1.4
+            keep.append(Polygon([(x0, z0), (x1, z1), (x1 + nx * d_, z1 + nz * d_), (x0 + nx * d_, z0 + nz * d_)]))
+            if sel[(i + 1) % n_]:                     # outside corner between two stepped edges: keep the mitre
+                keep.append(Point(x1, z1).buffer(2.0))
+        if keep:
+            sc.prism(ring.intersection(unary_union(keep)).difference(stair_footprints(REC).buffer(.05)), 3.0, y, "timber", "deck")
     P = b.P
     (ax, az), (bx, bz) = P(1100, 190), P(1207, 237)
     dx, dz = bx - ax, bz - az
@@ -1497,6 +1533,33 @@ def build_terrain(sc, b):
 REC = {}
 
 
+def fill_holes(sc, b, rec, idw):
+    """Last pass: any land not covered by a surface, a structure or a stair gets ground at the right level,
+    so no hairline gap ever shows the sea through the park."""
+    cov = []
+    for s_ in sc.slabs:
+        q = Polygon(s_["o"], s_["h"]).buffer(0)
+        if q.area < 1e5:
+            cov.append(q)
+    cov += [Polygon(s_["o"], s_["h"]).buffer(0) for s_ in sc.prisms]
+    cov += [Polygon(pl[0]).buffer(0) for pl in sc.plates]
+    cov.append(stair_footprints(rec))
+    cov.append(bldg_footprints(b))
+    cu = unary_union(cov)
+    coast = b.cr_sample(b.PP(b.COAST_PX), per=6)
+    land = Polygon([(b.X0, b.Y0), (b.X1, b.Y0)] + coast + b.PP([(1150, 700), (1100, 712), (1087, 700), (1087, 647), (1043, 653)]) +
+                   b.PP(b.SEAWALL_PX) + b.PP([(55, 700), (36, 700)])).buffer(0)
+    holes = land.difference(cu)
+    parts = [g for g in getattr(holes, "geoms", [holes]) if g.geom_type == "Polygon" and g.area > .002]
+    if parts:
+        fill = unary_union([g.buffer(.06) for g in parts]).intersection(land.buffer(.06))
+        def low(x, z):                                # the lowest surface around: hidden under anything beside it
+            vs = [sc.level_in(x + dx, z + dz) for dx, dz in ((0, 0), (.35, 0), (-.35, 0), (0, .35), (0, -.35))]
+            vs = [v for v in vs if v is not None]
+            return (min(vs) if vs else idw(x, z)) - .02
+        sc.grid_slab(fill, low, "paver", "std", cell=2.0, bot=-1.0)
+
+
 def scene_data(b):
     sc = Scene(b)
     b.planting_region()            # cache before recording, so the check's own plan pass is not recorded
@@ -1520,6 +1583,7 @@ def scene_data(b):
     build_landmark(sc)
     build_terrain(sc, b)
     build_props(sc, b, rec, idw)
+    fill_holes(sc, b, rec, idw)
     return sc.data()
 
 

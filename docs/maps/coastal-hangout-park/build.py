@@ -865,9 +865,8 @@ def site_plan(underlay=False):
     gd(cv, LineString(lawn_curb_pts()).buffer(.15, cap_style="flat", join_style="mitre"), "wallp")
     planter_g(cv, terrace_strip(), 142, density=.6, radius=0)
     # planters by the main stair (raised, walled), terrace bench, art block
-    planter_g(cv, G([(478, 188), (564.4, 188), (564.4, 287), (552, 287), (552, 236), (478, 236)]), 21, density=.5, radius=0)
-    cv.poly(rrect(*P(496, 258), M(44), 1.1, 59), "umb-c")
-    cv.poly(rrect(*P(496, 258), M(44), 1.1, 59), "ln-m")
+    isl0 = Polygon(cr_sample(blob(*P(452, 310), M(42), M(52), 60, .1, 10), closed=True, per=6))
+    planter_g(cv, GB(478, 188, 564.4, 287).difference(isl0.buffer(1.2)), 21, density=.5, radius=0)   # one bed, clear of the island
     planter_g(cv, GB(642.6, 188, 727, 287), 30, density=.6, radius=0)            # one planter, all green (art block removed)
     for i, b_ in enumerate([(730, 147, 939.4, 189), (280, 147, 390, 178), (142, 182, 392, 193), (112, 216, 136, 305),
                             ]):

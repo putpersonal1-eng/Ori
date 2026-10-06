@@ -229,9 +229,17 @@ def rail_line(sc, pts3, h=1.05, post=1.5, style="bar", cap=None):
             for f in (.35, .7):
                 sc.seg((a[0], a[1] + h * f, a[2]), (b[0], b[1] + h * f, b[2]), .012, "dark", "metal", 6)
         if cap == "timber":
+            # timber cap as a plate that follows the rail's slope (a flat box broke away on ramps)
             dx, dz = b[0] - a[0], b[2] - a[2]
-            ang = math.degrees(math.atan2(dz, dx))
-            sc.boxc((a[0] + b[0]) / 2, (a[1] + b[1]) / 2 + h + .03, (a[2] + b[2]) / 2, L + .05, .06, .16, "timber", "timber", ry=-ang)
+            Lh = math.hypot(dx, dz) or 1.0
+            ux, uz = dx / Lh, dz / Lh
+            nx, nz = -uz * .08, ux * .08
+            ex, ez = ux * .025, uz * .025
+            pa = (a[0] - ex, a[2] - ez)
+            pb = (b[0] + ex, b[2] + ez)
+            ya, yb = a[1] + h + .06, b[1] + h + .06
+            sc.plate([(pa[0] - nx, pa[1] - nz), (pb[0] - nx, pb[1] - nz), (pb[0] + nx, pb[1] + nz), (pa[0] + nx, pa[1] + nz)],
+                     [ya, yb, yb, ya], "timber", "timber", t=.06)
         else:
             sc.seg((a[0], a[1] + h, a[2]), (b[0], b[1] + h, b[2]), .03, "dark", "metal", 8)
 
