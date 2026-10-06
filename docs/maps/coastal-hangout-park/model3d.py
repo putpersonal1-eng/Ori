@@ -537,8 +537,16 @@ def build_ground(sc, b, rec):
     sc.grid_slab(wrock, wrock_h, "sand", "ground", cell=3.0, bot=-3)
     sc.hard.append((wrock, wrock_h))                  # rocks sit on it
     sc._prep = None
+    deck_g_ = hs["deck"].buffer(.05)
+    plat = {i for i, (q, sp) in enumerate(sc.hard) if deck_g_.contains(q.representative_point()) or
+            Polygon(b.pier_rect(b.PIER_RAMP_T - .3, .5, -4, 4)).contains(q.representative_point())}
     idw_all = sc.idw_builder()
     idw_low = sc.idw_builder(skip=street_idx)
+    # the green in front of the stage's west side stays at the plaza level beside the deck (it does not climb the deck);
+    # behind the stage the soil still meets the deck level
+    idw_front = sc.idw_builder(skip=street_idx | plat)
+    from shapely.prepared import prep as _prep
+    front_g = _prep(hs["stagegreen"].buffer(1.0))
     wz = wall_line_z(b, rec)
     st = street_level(b)
 
@@ -547,13 +555,12 @@ def build_ground(sc, b, rec):
         w = wz(x)
         if w is None:
             return idw_all(x, z)
+        if z >= w and front_g.contains(Point(x, z)):
+            return idw_front(x, z)
         return st(x) if z < w else idw_low(x, z)
     # soil meets every path flush: within 2.5 m of paving on its own side of the street walls it blends to that
     # paving's level (a level jump of 2.5 m or more is a wall, and is left to the wall)
     from shapely.strtree import STRtree
-    deck_g_ = hs["deck"].buffer(.05)
-    plat = {i for i, (q, sp) in enumerate(sc.hard) if deck_g_.contains(q.representative_point()) or
-            Polygon(b.pier_rect(b.PIER_RAMP_T - .3, .5, -4, 4)).contains(q.representative_point())}
     hard_n = [(q, sp) for i, (q, sp) in enumerate(sc.hard) if i in street_idx]
     hard_s = [(q, sp) for i, (q, sp) in enumerate(sc.hard) if i not in street_idx and i not in plat]   # not platforms
     trees_ = [STRtree([q for q, _ in hl]) if hl else None for hl in (hard_n, hard_s)]
@@ -693,7 +700,12 @@ def build_props(sc, b, rec, idw):
             inner = inner.difference(Point(*b.P(*b.STATUE_PX)).buffer(b.STATUE_R + .4))
             scatter(sc, inner, None, rnd, dens * .5, .35, .7, idw=lambda x, z, gq=gq: gq(x, z) + .38)
     hs = b.hardscape()
+    n0 = len(sc.shrubs)
     scatter(sc, hs["beds"], None, rnd, .16, .45, 1.0, idw=idw)
+    # shrubs keep clear of the stage: its timber edge, and the 3 steps (0.45 m treads) on the sides facing the lawn and top plaza
+    steps_g = unary_union([hs["deck"].buffer(.1), hs["deck"].buffer(1.4, join_style="mitre").intersection(
+        unary_union([hs["lawn"], hs["top"]]).buffer(.7))])
+    sc.shrubs[n0:] = [s for s in sc.shrubs[n0:] if steps_g.distance(Point(s[0], s[2])) > s[3]]
     # trees sit on their planting: planter soil (+0.48), bed soil, lawn or sand
     def tree_base(x, z):
         p = Point(x, z)

@@ -673,12 +673,20 @@ def hardscape():
 
     prom_g = G(PROM_PX)
     terr_g = G([(282, 485), (347, 485), (347, 592), (160, 592), (160, 540), (282, 540)])
-    # green filled back at the stage's front-left corner (the walkway cut too much): a curve from the deck corner
-    # bowing west and down to the bed beside the lawn
-    wx, wy = -ex * .8, -ey * .8                            # reach into the path, then cut it away: green follows its edge
-    stage_green = Polygon(curve + [(edge_pt(.42)[0] + wx, edge_pt(.42)[1] + wy), (edge_pt(1.0)[0] + wx, edge_pt(1.0)[1] + wy)] +
-                          PP([(1012, 372), (1040, 390), (1062, 360), (1062, 315), (1058, 292)])).buffer(0)
-    stage_green = stage_green.difference(GL(CURVE_LINE_PX, 3.25))
+    # green in front of the stage's west side, as drawn on review: from the deck's west corner the edge bows out west and
+    # comes back down to the green beside the lawn, running into the curved path's edge; the walkway passes north of it
+    # the tail crosses into the path edge at a shallow angle, so after the path is cut away the green edge runs into it
+    # without a notch; everything west of the curve is paving (no bed strip left between the curve and the path)
+    eu = (ex / 3.25, ey / 3.25)
+    eoff = lambda t, m: (edge_pt(t)[0] + eu[0] * m, edge_pt(t)[1] + eu[1] * m)        # noqa: E731  (m > 0: east of the edge)
+    bow = cr_sample(PP([(1050, 252), (1044, 247.5), (1033, 250.5), (1022, 258.5), (1013.5, 267), (1007, 277), (1002.5, 288),
+                        (1000.3, 300)]) + [eoff(.6, .15), eoff(.8, -.15), eoff(1.0, -.6)], per=10)
+    stage_green = Polygon(bow + [eoff(1.0, -4.0)] +
+                          PP([(1012, 372), (1040, 390), (1062, 360), (1062, 315), (1056, 292), (1052, 252)])).buffer(0)
+    stage_green = stage_green.difference(GL(CURVE_LINE_PX, 3.25)).difference(G(DECK_PX))
+    pave_fill = Polygon(bow + [eoff(1.0, -4.0), eoff(-1.4, -4.0)]).buffer(0).difference(stage_green).difference(G(DECK_PX))
+    corner = Point(PP([(1050, 252)])[0]).buffer(1.0)
+    plaza_g = unary_union([plaza_g, pave_fill]).difference(stage_green).difference(G(DECK_PX).intersection(corner))
     top_g = top_g_
     lawn_g = lawn_poly().difference(plaza_g).difference(top_g)
     deck_g = G(DECK_PX)
@@ -697,7 +705,7 @@ def hardscape():
         (GB(55, 145, 88, 640), 20), (GB(1160, 230, 1212, 425), 16), (GB(142, 540, 160, 592), 21), (GB(423, 145, 470, 196), 22)]
     # one bed surface: neighbouring beds merge, so no seams between them
     bed_all = unary_union([g for g, sd in beds]).difference(paved).difference(prom_g).difference(lawn_g).difference(deck_g)
-    return {"tipzone": zone, "street": street_g, "plaza": plaza_g, "top": top_g, "prom": prom_g, "terr": terr_g, "lawn": lawn_g,
+    return {"stagegreen": stage_green, "tipzone": zone, "street": street_g, "plaza": plaza_g, "top": top_g, "prom": prom_g, "terr": terr_g, "lawn": lawn_g,
             "deck": deck_g, "east": east_g, "island": island, "paved": paved, "beds": bed_all}
 
 
@@ -1901,7 +1909,7 @@ NOTES = {
         "The coastal street falls about 2.4 m toward the station, which is why the eastern stairs are shorter than the main stair.",
         "Key numbers 1–12 match the reference's key list. Grid cells are 20 × 20 m (A–J, 1–8). Use Zoom to read furniture, stair treads and railings.",
         "Table S-4 lists every link between walkable areas; the build fails if any area is unreachable from Spawn A.",
-        "Changed on review: the food truck pad sits against the street wall; the fashion shop's front strips became one planter along the wall; the arcade front has planter boxes either side of narrower steps; promenade benches back onto the edge planters facing the sea; the strip behind the street sidewalk is a level planter at street level; the event lawn is level with the plaza and the east path ramps down to it (the curved steps were removed); the island tree whose trunk stood on the kerb was removed; the planter by the main stair is one solid bed; the fashion planter sits at the wall foot east of the NW stair; the Lifestyle palm planter sits in the corner by the annex; the stub wall by the east stair was removed; four palms in round planters line the plaza side of the truck pad; the truck area is one brick-paved floor (no timber deck) with a real brick texture in the model; the street planter above the trucks runs out to the wall face, the wall rises to its coping, and the stair beside it gets a full-height wall; the grass strip west of the stage became a walkway from the top plaza to the main plaza (big tree removed); the cat statue stands on its plinth in the planter east of the main stair; the arcade doors stand open so the hall is walk-in.",
+        "Changed on review: the food truck pad sits against the street wall; the fashion shop's front strips became one planter along the wall; the arcade front has planter boxes either side of narrower steps; promenade benches back onto the edge planters facing the sea; the strip behind the street sidewalk is a level planter at street level; the event lawn is level with the plaza and the east path ramps down to it (the curved steps were removed); the island tree whose trunk stood on the kerb was removed; the planter by the main stair is one solid bed; the fashion planter sits at the wall foot east of the NW stair; the Lifestyle palm planter sits in the corner by the annex; the stub wall by the east stair was removed; four palms in round planters line the plaza side of the truck pad; the truck area is one brick-paved floor (no timber deck) with a real brick texture in the model; the street planter above the trucks runs out to the wall face, the wall rises to its coping, and the stair beside it gets a full-height wall; the grass strip west of the stage became a walkway from the top plaza to the main plaza (big tree removed), and the green in front of the deck's west side was filled back: its edge curves out from the deck's west corner and runs back into the curved path, level with the plaza; the cat statue stands on its plinth in the planter east of the main stair; the arcade doors stand open so the hall is walk-in.",
     ],
     "l201": [
         "Cut on the main axis through the crosswalk, main stair and the Ori logo fountain, looking east (the logo is seen edge-on).",
