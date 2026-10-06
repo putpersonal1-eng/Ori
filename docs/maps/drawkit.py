@@ -553,7 +553,7 @@ def canopy(cv, u, v, r, seed=0, kind="tree", shadow=True, detail=True):
     cv.add(f'<g class="{kind}-o">' + "".join(
         f'<circle cx="{n(cv.X(x))}" cy="{n(cv.Y(y))}" r="{n(rr * s)}"/>' for x, y, rr in lobes) + "</g>")
     cv.add(f'<g class="{kind}-f">' + "".join(
-        f'<circle cx="{n(cv.X(x))}" cy="{n(cv.Y(y))}" r="{n(rr * s - .9)}"/>' for x, y, rr in lobes) + "</g>")
+        f'<circle cx="{n(cv.X(x))}" cy="{n(cv.Y(y))}" r="{n(rr * s - .9)}"/>' for x, y, rr in lobes if rr * s > 1.0) + "</g>")
     if detail:
         d = []
         for i in range(5 + seed % 3):

@@ -244,7 +244,7 @@ def rail_line(sc, pts3, h=1.05, post=1.5, style="bar", cap=None):
             sc.seg((a[0], a[1] + h, a[2]), (b[0], b[1] + h, b[2]), .03, "dark", "metal", 8)
 
 
-def stair_ns_hq(sc, x0, y0, x1, y1, flights, landing, rails, zt, zb, cheek=True):
+def stair_ns_hq(sc, x0, y0, x1, y1, flights, landing, rails, zt, zb, cheek=True, side_top=(None, None)):
     """Straight stair running south (down) between x0..x1: solid treads with rubber nosings,
     cheek walls with a stone coping, and handrails on the cheeks and the centre rails."""
     run = (y1 - y0) - landing * (len(flights) - 1)
@@ -270,10 +270,23 @@ def stair_ns_hq(sc, x0, y0, x1, y1, flights, landing, rails, zt, zb, cheek=True)
     if cheek:
         prof_top = [(yy, zz + .55) for yy, zz in line]
         prof = [(y0 - .02, zb - .4)] + [(y0 - .02, zt + .55)] + prof_top[1:] + [(y1, zb + .55), (y1, zb - .4)]
-        for xx in (x0, x1 - .3):
+        for xx, st_ in zip((x0, x1 - .3), side_top):
+            if st_ is not None:
+                # this side retains higher ground (a raised planter): a full-height wall with a coping, vertical at the foot
+                sc.box(xx, zb - .4, y0 - .02, xx + .3, st_, y1, "conc", "conc")
+                sc.box(xx - .03, st_, y0 - .02, xx + .33, st_ + .06, y1 + .03, "cream", "stone")
+                continue
             sc.ext("zy", [(a, b) for a, b in prof], xx, .3, "conc", "conc", .02)
         hand = [(yy, zz + .55 + .85) for yy, zz in line]
-        for xx in (x0 + .15, x1 - .15):
+        for xx, st_, sgn in zip((x0 + .15, x1 - .15), side_top, (1, -1)):
+            if st_ is not None:                       # full-height wall: handrail on brackets off its face, 0.9 m above the treads
+                xw = xx + sgn * .27
+                pts = [(xw, zz + .9, yy) for yy, zz in line]
+                for (p, q) in zip(pts, pts[1:]):
+                    sc.seg(p, q, .025, "steel", "metal", 8)
+                for (xa, ya, za) in pts[1:-1]:
+                    sc.seg((xa - sgn * .1, ya, za), (xa, ya, za), .012, "steel", "metal", 6)
+                continue
             pts = [(xx, b, a) for a, b in hand]
             for (p, q) in zip(pts, pts[1:]):
                 sc.seg(p, q, .03, "steel", "metal", 8)

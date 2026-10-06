@@ -505,11 +505,14 @@ const TEX_KINDS = {
   facade: { size: 3.2, rough: [.6, .1], tone: .05, facade: true },
   gloss: { size: 2.0, rough: [.25, .05], tone: .02 },
   rubber: { size: 1.0, rough: [.75, .05], tone: .04 },
+  // brick paving after the plaza reference: running bond, 0.24 x 0.12 m pavers in mixed warm tones, sanded joints
+  pave: { size: 2.4, rough: [.86, .1], tone: .12, pave: [.24, .12], w: .007 },
 };
+const PAVE_TONES = [[.96, .80, .70], [.90, .73, .58], [.84, .64, .54], [.78, .68, .62], [.98, .88, .78], [.88, .60, .50]];
 
 function makeTex(kind) {
   const K = TEX_KINDS[kind] || TEX_KINDS.std, n = TEX_N;
-  const h = new Float32Array(n * n), alb = new Float32Array(n * n);
+  const h = new Float32Array(n * n), alb = new Float32Array(n * n), tint = new Float32Array(n * n * 3).fill(1);
   const nz = noiseField(n, kind.length * 31 + 7, 5), nz2 = noiseField(n, kind.length * 17 + 3, 3);
   const px = K.size / n;  // metres per texel
   for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) {
@@ -542,6 +545,19 @@ function makeTex(kind) {
       av *= 1 - K.tone * blk * .6;
       if (dx < K.w || dy < K.w) { hv -= .5; av *= .78; } else hv += .1 * Math.min(1, Math.min(dx, dy) / .05);
     }
+    if (K.pave) {
+      const [bw, bh] = K.pave, row = Math.floor(my / bh), off = (row % 2) * bw / 2;
+      const col_ = Math.floor((mx + off) / bw);
+      const dx = Math.abs(((mx + off + bw / 2) % bw) - bw / 2), dy = Math.abs(((my + bh / 2) % bh) - bh / 2);
+      const id = ((col_ * 73856093) ^ (row * 19349663)) >>> 0;
+      const tone = PAVE_TONES[id % PAVE_TONES.length], sh = .9 + .1 * ((id >> 5) % 7) / 6;
+      const joint = dx < K.w || dy < K.w;
+      const edge = Math.min(1, Math.min(dx, dy) / .02);
+      hv = joint ? .15 : .55 + .2 * edge + (nz2[i] - .5) * .12;
+      const k = joint ? .62 : sh * (1 - .08 * (1 - nz[i]));
+      tint[i * 3] = joint ? .82 : tone[0]; tint[i * 3 + 1] = joint ? .78 : tone[1]; tint[i * 3 + 2] = joint ? .72 : tone[2];
+      av = k;
+    }
     if (K.brushed) { av *= 1 - .05 * Math.sin(my * 900 + nz2[i] * 20); }
     if (K.tiles) {
       // pantiles: channels with rounded caps; courses every 0.28 m
@@ -572,7 +588,7 @@ function makeTex(kind) {
     t.repeat.set(1 / K.size, 1 / K.size);
     return t;
   };
-  const map = mk(i => { const v = Math.min(255, alb[i] * 255); return [v, v, v]; });
+  const map = mk(i => { const v = alb[i] * 255; return [Math.min(255, v * tint[i * 3]), Math.min(255, v * tint[i * 3 + 1]), Math.min(255, v * tint[i * 3 + 2])]; });
   map.colorSpace = THREE.SRGBColorSpace;
   const str = kind === 'kawara' || kind === 'kawarar' ? 5 : kind === 'stone' || kind === 'deck' || kind === 'thatch' ? 3 : 1.8;
   const normal = mk(i => {
@@ -939,6 +955,35 @@ export function mountPark(canvas, D, opt = {}) {
       scene.add(mesh);
     }
   }
+  // escalators: moving steps along each escalator's path (up or down), instanced and placed every frame
+  const escs = [];
+  for (const E of D.escalators || []) {
+    const P = E.path, cum = [0];
+    for (let i = 1; i < P.length; i++) cum.push(cum[i - 1] + Math.hypot(P[i][0] - P[i - 1][0], P[i][1] - P[i - 1][1]));
+    const L = cum[cum.length - 1], n = Math.max(1, Math.floor(L / E.step)), w = E.x1 - E.x0;
+    const gs = new THREE.BoxGeometry(w, .23, E.step - .015).toNonIndexed(); worldUV(gs);
+    const ge = new THREE.BoxGeometry(w, .012, .045).toNonIndexed(); worldUV(ge);
+    const ms = new THREE.InstancedMesh(gs, mat(E.c, 'groove'), n), me = new THREE.InstancedMesh(ge, mat(E.ce, 'paint'), n);
+    ms.castShadow = ms.receiveShadow = true; me.receiveShadow = true;
+    scene.add(ms); scene.add(me);
+    escs.push({ E, P, cum, L: L - L % E.step || L, n, ms, me, xc: (E.x0 + E.x1) / 2, sgn: E.dir === 'UP' ? -1 : 1,
+      c: new THREE.Vector3((E.x0 + E.x1) / 2, (P[0][1] + P[P.length - 1][1]) / 2, (P[0][0] + P[P.length - 1][0]) / 2) });
+  }
+  const escM = new THREE.Matrix4();
+  function placeEscalators(t) {
+    for (const s of escs) {
+      for (let i = 0; i < s.n; i++) {
+        let u = (i * s.E.step + s.sgn * s.E.speed * t) % s.L; if (u < 0) u += s.L;
+        let k = 1; while (k < s.cum.length - 1 && s.cum[k] < u) k++;
+        const f = (u - s.cum[k - 1]) / (s.cum[k] - s.cum[k - 1] || 1);
+        const z = s.P[k - 1][0] + (s.P[k][0] - s.P[k - 1][0]) * f, h = s.P[k - 1][1] + (s.P[k][1] - s.P[k - 1][1]) * f;
+        escM.makeTranslation(s.xc, h - .11, z); s.ms.setMatrixAt(i, escM);
+        escM.makeTranslation(s.xc, h + .009, z - s.E.step / 2 + .03); s.me.setMatrixAt(i, escM);
+      }
+      s.ms.instanceMatrix.needsUpdate = true; s.me.instanceMatrix.needsUpdate = true;
+    }
+  }
+  placeEscalators(0);
   const fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
   const fontP = (D.texts && D.texts.length) ? new Promise(res => new FontLoader().load(opt.fontUrl ||
     'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/fonts/helvetiker_bold.typeface.json', f => { addText(f); res(); }, undefined, () => res())) : Promise.resolve();
@@ -1004,6 +1049,20 @@ export function mountPark(canvas, D, opt = {}) {
     composer.setSize(w, h);
     cam.aspect = w / h; cam.updateProjectionMatrix();
     render();
+  }
+  // escalators run while the camera is near them (within 110 m); the rest of the time the view stays idle
+  if (!opt.still && escs.length) {
+    const t0 = performance.now(); let last = 0;
+    const loop = (now) => {
+      requestAnimationFrame(loop);
+      if (now - last < 40 || document.hidden) return;
+      const near = escs.some(s => s.c.distanceTo(cam.position) < 110);
+      if (!near) return;
+      last = now;
+      placeEscalators((now - t0) / 1000);
+      if (!pending) render(!!anim);
+    };
+    requestAnimationFrame(loop);
   }
   if (!opt.still && 'ResizeObserver' in window) new ResizeObserver(resize).observe(canvas);
   resize();

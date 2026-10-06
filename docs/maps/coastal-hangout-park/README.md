@@ -39,7 +39,9 @@ surfaces) is a stand-in for review. **When the map is imported into the Ori engi
 terrain is recreated by the Ori terrain system.** Import the structures, paving, stairs and
 props from `model/scene.json`, then sculpt the terrain in the engine to the levels on the
 sheets (street +8.40 → +6.00, plaza and lawn +3.60, promenade +3.15, sand +0.90 → ±0.00).
-Trees, plants and rocks are placeholders as well; floors get the engine's own textures.
+Trees, plants and rocks are placeholders as well; floors get the engine's own textures, except the truck
+area's brick paving, which follows the plaza reference. The escalators are animated in the live view and
+listed in `model/scene.json` (`escalators`: path, direction, speed) so the engine can drive them.
 
 ## Sheets
 

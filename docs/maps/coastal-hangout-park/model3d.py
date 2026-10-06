@@ -35,7 +35,7 @@ COL = {
     "in-wall": "#B4232C", "in-floor": "#1E1718", "in-ceil": "#241A1B", "cab": "#D8343F", "cab-2": "#F6C833",
     "drum": "#F3EBDD", "in-dark": "#2B2224", "neon-r": "#FF4A4A", "neon-w": "#FFF2D8", "neon-o": "#FF9A2E", "navy-d": "#1B2A4A", "neon-p": "#FF5FC8", "neon-g": "#9BFF5A", "neon-c": "#3FE6F0",
     "neon-y": "#FFE45A", "neon-v": "#9B6BFF",
-    "ori-p": "#3A1A7A", "ori-l": "#E6D9FF", "jet": "#E8F6FF",
+    "pave-w": "#F4ECE4", "ori-p": "#3A1A7A", "ori-l": "#E6D9FF", "jet": "#E8F6FF",
     "tile-b": "#2F6DB5", "brick": "#CFA088", "stone-w": "#EEEAE2", "warm": "#FFE3A8", "facade": "#DCE1E6", "rubber": "#23262B",
 }
 
@@ -48,6 +48,7 @@ class Scene:
         self.segs, self.exts, self.tori, self.texts, self.plates = [], [], [], [], []
         self.trees, self.shrubs, self.labels, self.rocks = [], [], [], []
         self.eggs = []
+        self.escalators = []                          # moving steps: path, direction, speed (animated in the viewer)
         self.hard = []          # (polygon, hspec) for level lookups
         self._prep = None
         self.terrain = None
@@ -255,7 +256,7 @@ class Scene:
 
     def data(self):
         return {"pal": self.pal, "slabs": self.slabs, "prisms": self.prisms, "boxes": self.boxes, "cyls": self.cyls,
-                "segs": self.segs, "exts": self.exts, "tori": self.tori, "texts": self.texts, "plates": self.plates, "eggs": self.eggs,
+                "segs": self.segs, "exts": self.exts, "tori": self.tori, "texts": self.texts, "plates": self.plates, "eggs": self.eggs, "escalators": self.escalators,
                 "trees": self.trees, "shrubs": self.shrubs, "labels": self.labels, "rocks": self.rocks, "terrain": self.terrain, "lights": self.lights,
                 "views": VIEWS, "sun": [80, 140, 120], "center": [100, 0, 70],
                 "notes": {"terrain": "IMPORTANT: terrain (hills, sea floor, soil and sand surfaces) is a stand-in; the Ori engine's "
@@ -505,8 +506,7 @@ def build_ground(sc, b, rec):
     sc.slab(hs["terr"], 3.66, "timber")
     sc.slab(GB(93, 153, 140, 207), 8.42, "timber")
     dy = b.TRUCK_DY
-    sc.slab(b.open_(GB(733, 219 + dy, 770, 302 + dy), 1.2), 3.67, "timber")
-    sc.slab(GB(770, 217 + dy, 942, 302 + dy), 3.62, "brick", "ground")
+    sc.slab(b.truck_pad(), 3.62, "pave-w", "pave")                             # one brick-paved floor (plaza reference)
     sc.hard.append((hs["deck"], 4.2))
     # beach: +0.95 at the sea wall sloping into the water, then a shallow shelf
     sh = b.cr_sample(b.PP(b.SHORE_PX), per=8)
@@ -551,8 +551,11 @@ def build_ground(sc, b, rec):
     # soil meets every path flush: within 2.5 m of paving on its own side of the street walls it blends to that
     # paving's level (a level jump of 2.5 m or more is a wall, and is left to the wall)
     from shapely.strtree import STRtree
+    deck_g_ = hs["deck"].buffer(.05)
+    plat = {i for i, (q, sp) in enumerate(sc.hard) if deck_g_.contains(q.representative_point()) or
+            Polygon(b.pier_rect(b.PIER_RAMP_T - .3, .5, -4, 4)).contains(q.representative_point())}
     hard_n = [(q, sp) for i, (q, sp) in enumerate(sc.hard) if i in street_idx]
-    hard_s = [(q, sp) for i, (q, sp) in enumerate(sc.hard) if i not in street_idx]
+    hard_s = [(q, sp) for i, (q, sp) in enumerate(sc.hard) if i not in street_idx and i not in plat]   # not platforms
     trees_ = [STRtree([q for q, _ in hl]) if hl else None for hl in (hard_n, hard_s)]
     near_cache = {}
 
@@ -625,14 +628,26 @@ def build_ground(sc, b, rec):
 def build_walls(sc, b, rec):
     """Retaining walls at the street edge (with coping), the sea wall, and mural walls with LED tickers."""
     st = street_level(b)
+    wz = wall_line_z(b, rec)
+    # planters at street level built against a wall: the wall rises to their coping, so planter and wall read as one
+    street_pl = [g for g, *_r in rec["planter"] if wz(g.centroid.x) is not None and g.centroid.y < wz(g.centroid.x) - .3]
+    raise_zone = unary_union([g.buffer(.9) for g in street_pl]) if street_pl else Polygon()
     for px_pts, t in rec["wall"]:
         pts = b.PP(px_pts)
         g = LineString(pts).buffer(t / 2, cap_style="flat", join_style="mitre")
         vertical = all(abs(p[0] - pts[0][0]) < .01 for p in pts)
         top = (lambda x, z: 7.0) if vertical else (lambda x, z: st(x))
-        sc.plate_poly(g, top, "conc", "conc", bot=2.9)
         cap = LineString(pts).buffer(t / 2 + .06, cap_style="flat", join_style="mitre")
-        sc.plate_poly(cap, lambda x, z, top=top: top(x, z) + .1, "cream", "stone", t=.1)
+        hi = g.intersection(raise_zone) if not vertical else Polygon()
+        for part, dh in ((g.difference(hi), 0.0), (hi, .5)):
+            if part.is_empty:
+                continue
+            sc.plate_poly(part, lambda x, z, top=top, dh=dh: top(x, z) + dh, "conc", "conc", bot=2.9)
+        hic = cap.intersection(raise_zone) if not vertical else Polygon()
+        for part, dh in ((cap.difference(hic), 0.0), (hic, .5)):
+            if part.is_empty:
+                continue
+            sc.plate_poly(part, lambda x, z, top=top, dh=dh: top(x, z) + dh + .1, "cream", "stone", t=.1)
     # sea wall: three runs between the stair openings, stone face, coping
     sw = b.SEAWALL_PX
     sfp = stair_footprints(rec).buffer(.02)
@@ -739,7 +754,14 @@ def build_props(sc, b, rec, idw):
             continue                                  # fashion stair core is inside the building
         zt = lv((x0 + x1) / 2, y0 - .8)
         zb = lv((x0 + x1) / 2, y1 + .8)
-        K.stair_ns_hq(sc, x0, y0, x1, y1, flights, landing, rails, zt, zb)
+        side = []
+        for xs in (x0 - .35, x1 + .35):               # planter right beside the cheek: retain it with a full wall
+            hit = None
+            for pg, gq in planter_gnd:
+                if pg.contains(Point(xs, (y0 + y1) / 2)):
+                    hit = gq(xs, (y0 + y1) / 2) + .6
+            side.append(hit if hit is not None and hit > zb + 1.0 else None)
+        K.stair_ns_hq(sc, x0, y0, x1, y1, flights, landing, rails, zt, zb, side_top=tuple(side))
     for (q, risers, bow) in rec["quad"]:
         K.quad_steps_hq(sc, q, risers - 1, 4.8, 3.6, bow)
     for (q, count) in rec["treads"]:
@@ -1430,18 +1452,21 @@ def build_stair_gate(sc, b):
             for (zc, hc, sgn) in ((y0 + .45, zt + .58, -1), (y3 - .45, zb + .58, 1)):
                 # newel return: the handrail rounds outward past the landing (top end north, bottom end south)
                 sc.torus(xx + .06, hc, zc, .42, .04, 180, 90 * sgn, 90, "rubber", "rubber")
-        n_ = int(elev.ESC_RUN / .4)
-        for k in range(n_):
-            zz = y1 + (k + .5) * .4
-            h = surf(zz)
-            sc.box(e0 + .14, h - .23, zz - .2, e1 - .14, h + .005, zz + .2, "steel", "groove")
-            sc.box(e0 + .14, h - .005, zz - .2, e1 - .14, h + .01, zz - .16, "yel", "paint")
-        for (za, zc, h) in ((y0, y1, zt), (y2, y3, zb)):
+        # moving steps between the comb plates: the viewer animates them (UP on the west, DN on the east);
+        # the engine gets the same path, direction and speed to drive them as a moving stair
+        za_, zb_ = y1 - 1.2, y2 + 1.2
+        path = [(za_, zt), (y1, zt)] + [(y1 + (y2 - y1) * k / 8, surf(y1 + (y2 - y1) * k / 8)) for k in range(1, 8)] + \
+               [(y2, zb), (zb_, zb)]
+        sc.escalators.append({"x0": round(e0 + .14, 3), "x1": round(e1 - .14, 3), "dir": d, "speed": .5, "step": .4,
+                              "path": [[round(z_, 3), round(h_, 3)] for z_, h_ in path],
+                              "c": sc.c("steel"), "ce": sc.c("yel")})
+        for (za, zc, h) in ((y0, za_, zt), (zb_, y3, zb)):             # fixed floor plates with yellow combs
             sc.box(e0 + .14, h - .3, za, e1 - .14, h + .02, zc, "steel", "groove")
             zm = zc if h == zt else za
             sc.box(e0 + .14, h, zm - .12, e1 - .14, h + .03, zm + .12, "yel", "paint")
-        x, z = (e0 + e1) / 2, y3 - .3
-        sc.box(x - .35, zb + .9, z - .02, x + .35, zb + 1.25, z + .02, "green" if d == "UP" else "red", "gloss")
+        for (za, zc, ha, hc) in ((za_, y1, zt, zt), (y1, y2, zt, zb), (y2, zb_, zb, zb)):   # truss under the moving steps
+            sc.plate([(e0 + .14, za), (e1 - .14, za), (e1 - .14, zc), (e0 + .14, zc)], [ha - .24, ha - .24, hc - .24, hc - .24],
+                     "dark", "metal", bot=zb - 1.2)
     for (xa, xb) in ((88.5, 88.75), (90.45, 90.75), (92.45, 92.67)):
         deck = [(z, h + .14) for z, h in top_line] + [(z, h - .4) for z, h in top_line[::-1]]
         sc.ext("zy", deck, xa, xb - xa, "steel", "metal", .005)

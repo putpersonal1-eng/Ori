@@ -590,6 +590,11 @@ def place_lamps(trees, stairs):
     return out
 
 
+def truck_pad():
+    """The food truck area: one brick-paved floor (the timber deck at its west end was merged in on review)."""
+    return open_(GB(733, 217 + TRUCK_DY, 942, 302 + TRUCK_DY), 1.2)
+
+
 def thin_crowns(items):
     """Drop a tree whose trunk stands inside the inner three-quarters of a bigger neighbour's crown:
     the two would just cut through each other (px items: x, y, r)."""
@@ -630,6 +635,7 @@ def hardscape():
     street_g = close_(unary_union([
         GB(36, 135, 1302, 145), GB(470, 135, 727, 186), GB(88, 135, 392, 196), open_(GB(88, 135, 142, 632), 1.6), GB(120, 600, 142, 632),
         GB(940, 140, 972, 155), GB(1060, 140, 1090, 165)]), 1.2)
+    top_g_ = close_(G([(1050, 196), (1094, 196), (1100, 190), (1050, 252)]), .6)
     plaza_core = G([(347, 197), (478, 197), (478, 186), (727, 186), (727, 192), (974, 192), (974, 250), (976, 300), (986, 338),
                     (1004, 370), (1031, 405), (1060, 434), (1060, 478), (1056, 505), (1062, 540), (1050, 553), (1022, 598),
                     (520, 594), (347, 592)])
@@ -645,14 +651,16 @@ def hardscape():
     # smoothed so the bed beside it gets one clean curved edge (no spikes where the steps used to be)
     tip_pave = close_(unary_union([G(CURVED_STAIR_PX), east_g.intersection(GB(1150, 395, 1225, 440)),
                                    GB(1100, 486, 1180, 522).difference(tip.buffer(.05))]), 1.8)
-    plaza_g = unary_union([plaza_g, east_g, island.buffer(.5).difference(tip), tip_pave])
+    stage_link = G([(976, 199), (1050, 197), (1050, 292), (1036, 302), (1012, 314), (990, 322), (978, 300), (975, 250)])
+    plaza_g = unary_union([plaza_g, east_g, island.buffer(.5).difference(tip), tip_pave, close_(unary_union([stage_link, top_g_]), 1.5)])
     # one smooth path edge where the steps used to be: smooth the paving outline locally (no spike, no kerb jog)
     zone = TIP_ZONE
     smooth = open_(close_(plaza_g.intersection(zone.buffer(6.0)), 3.0), 1.2)       # smoothed over a wider area, used inside
     plaza_g = unary_union([plaza_g.difference(zone), smooth.intersection(zone)]).buffer(.01).buffer(-.01).simplify(.03)
-    top_g = close_(G([(1050, 196), (1094, 196), (1100, 190), (1050, 252)]), .6)
+
     prom_g = G(PROM_PX)
     terr_g = G([(282, 485), (347, 485), (347, 592), (160, 592), (160, 540), (282, 540)])
+    top_g = top_g_
     lawn_g = lawn_poly().difference(plaza_g).difference(top_g)
     deck_g = G(DECK_PX)
     paved = unary_union([street_g, plaza_g, top_g])
@@ -763,10 +771,7 @@ def site_plan(underlay=False):
         gd(cv, g, "", f' fill="url(#{p}-board)"')
     gd(cv, GB(93, 153, 140, 207), "z-timber")
     gd(cv, GB(93, 153, 140, 207), "", f' fill="url(#{p}-board)"')
-    truck_deck = open_(GB(733, 219 + TRUCK_DY, 770, 302 + TRUCK_DY), 1.2)
-    gd(cv, truck_deck, "z-timber")
-    gd(cv, truck_deck, "", f' fill="url(#{p}-board)"')
-    gd(cv, GB(770, 217 + TRUCK_DY, 942, 302 + TRUCK_DY), "z-brick")
+    gd(cv, truck_pad(), "z-brick")                                    # one brick-paved floor for the whole truck area
     gd(cv, deck_g, "z-timber")
     deck = PP(DECK_PX)
     a_, b_ = deck[0], deck[1]
@@ -796,7 +801,7 @@ def site_plan(underlay=False):
     # curb lines: drawn once per surface, after everything that touches them
     for g in (street_g, plaza_g.difference(prom_g), top_g):
         gd(cv, g, "curb")
-    for g in (prom_g, terr_g, deck_g, truck_deck):
+    for g in (prom_g, terr_g, deck_g, truck_pad()):
         gd(cv, g, "ln")
     gd(cv, lawn_g, "ln-m")
     # rocks
@@ -868,7 +873,7 @@ def site_plan(underlay=False):
     isl0 = Polygon(cr_sample(blob(*P(452, 310), M(42), M(52), 60, .1, 10), closed=True, per=6))
     planter_g(cv, GB(478, 188, 564.4, 287).difference(isl0.buffer(1.2)), 21, density=.5, radius=0)   # one bed, clear of the island
     planter_g(cv, GB(642.6, 188, 727, 287), 30, density=.6, radius=0)            # one planter, all green (art block removed)
-    for i, b_ in enumerate([(730, 147, 939.4, 189), (280, 147, 390, 178), (142, 182, 392, 193), (112, 216, 136, 305),
+    for i, b_ in enumerate([(730, 147, 939.4, 193.2), (280, 147, 390, 178), (142, 182, 392, 193), (112, 216, 136, 305),
                             ]):
         planter_g(cv, GB(*b_), 40 + i, density=.55)
     planter_g(cv, GB(849, 378.6, 894.4, 404.4), 46, density=.55)          # palm planter in the corner of the annex and the shop
@@ -1136,7 +1141,7 @@ def site_plan(underlay=False):
     # trees and palms (traced positions and canopy sizes)
     trees = [(517, 133, 28), (683, 133, 28), (303, 167, 20), (438, 157, 30), (455, 150, 18), (505, 205, 22),
              (815, 165, 25), (855, 165, 25), (895, 160, 25), (1000, 150, 22), (1035, 135, 25),
-             (75, 170, 25), (77, 230, 20), (105, 390, 35), (85, 445, 28), (95, 570, 35), (1035, 222, 30),
+             (75, 170, 25), (77, 230, 20), (105, 390, 35), (85, 445, 28), (95, 570, 35),
              (1115, 420, 18), (1135, 426, 16), (1255, 375, 42)]
     for (x, y, r) in trees:
         if 95 <= y < 145:
@@ -1150,7 +1155,7 @@ def site_plan(underlay=False):
         canopy(cv, *P(x, y), M(r), 300 + i, "sak")
     palms = [(340, 160, 22), (370, 160, 22), (548, 193, 18), (658, 192, 20), (715, 207, 20), (713, 270, 18), (740, 155, 20),
              (872, 391, 20), (372, 545, 25), (85, 340, 35), (85, 495, 30), (1170, 150, 25), (1195, 170, 22),
-             (1005, 290, 25), (1180, 305, 22), (1190, 280, 20), (1190, 355, 20), (1000, 437, 22), (1025, 465, 20),
+             (1180, 305, 22), (1190, 280, 20), (1190, 355, 20), (1000, 437, 22), (1025, 465, 20),
              (1022, 540, 20), (645, 587, 25), (465, 612, 30), (295, 640, 28),
              (195, 685, 30), (295, 700, 28), (365, 715, 25), (470, 715, 25), (517, 680, 30), (605, 702, 18), (640, 700, 20),
              (675, 700, 20), (735, 655, 28), (860, 660, 28), (1030, 655, 26), (1157, 600, 30)] + [(x, y, 20) for x, y in PALM_ROW_PX]
@@ -1799,7 +1804,7 @@ LOCATIONS = [
     (3, "Arcade (Indoor)", "+4.05", "A–B 2–3", "34 × 27 m, parapet +10.20", "Interior as in the reference; game-controller front on the plaza (A-501) with 3 entrance steps; roof terrace +9.60."),
     (4, "Café (Indoor + Outdoor)", "+3.60 / roof +7.80", "A–B 4", "23 × 9 m + L-terrace", "White and wood seaside café: timber canopy with the SEASIDE CAFE sign, full-height glass, white parasols, roof terrace (A-502)."),
     (5, "Shop (Fashion / Goods)", "+3.60 / +8.40", "A–B 2", "34 × 17.5 m, 2 floors", "Entrance and glazed stair core at the SE corner; upper floor looks over the kiosk strip and opens onto the arcade roof terrace (A-502)."),
-    (6, "Food Truck Zone", "+3.60", "F–G 1–2", "36 × 14 m pad + walkway", "4 trucks on warm brick pavers (as the plaza reference), 6 parasol tables, string lights, deck on the west end."),
+    (6, "Food Truck Zone", "+3.60", "F–G 1–2", "36 × 14 m pad + walkway", "4 trucks on one warm brick-paved floor (as the plaza reference), 6 parasol tables, string lights."),
     (7, "Small Stage (Events)", "deck +4.20, lawn +3.60", "H–J 1–3", "deck 26 × 21 m · lawn ≈ 30 × 22 m", "Deck shape and lawn traced; top plaza and 20R stair from the street."),
     (8, "Shop (Lifestyle / Souvenir)", "+3.60", "G–H 3–4", "23 × 21 m + stalls", "Blue-glazed tile eave on the traced trim line, awning and stall; east terrace beside the curved path."),
     (9, "Beach Promenade", "+3.15", "A–H 4–5", "146 m long · 6–13 m wide", "3 steps down from the plaza at five openings; rail and lamps along the sea wall."),
@@ -1838,6 +1843,7 @@ NOTES = {
         "Hills wall the map on the north, west and east, with a tunnel at each end of the coastal road; only the sea side stays open. Trees, plants and rocks stay simple placeholders for the engine.",
         "The arcade is modelled inside in the facade's red, yellow and white: red walls with a cream base band and yellow stripe, lit floor tiles, a block-puzzle LED wall, a CRT monitor tower with a robot face, two tiers of drum machines, cabinets, egg chairs and sphere TV pods (views Arcade interior 1 and 2).",
         "The Ori logo landmark stands where the big tree was, like the globe at Universal Studios Japan: a white logo with a glowing lilac face on a purple plinth, in a fountain with a rail and arcing jets, facing the main stair.",
+        "The escalators work: in the live view the steps run up on the west side and down on the east at 0.5 m/s whenever the camera is near them. model/scene.json lists each escalator's path, direction and speed so the engine can drive them as moving stairs. The green and red markers at the foot were removed.",
         "Shop doors are automatic sliding glass doors (motion sensor on the head, 自動ドア stickers): they are modelled closed and open on approach in the engine, so every shop, the arcade hall included, is walk-in. Plans show them as sliding leaves with dashed parking positions.",
         "Placement checks run on every build: soil and sand surfaces follow their real levels inside the outline, trees sit on that soil, lamps keep clear of planting, tree crowns, furniture and stairs, and a clash sweep keeps objects from cutting into each other.",
         "The live view loads three.js from jsDelivr. model/scene.json holds the same model data for the engine team.",
@@ -1876,7 +1882,7 @@ NOTES = {
         "The coastal street falls about 2.4 m toward the station, which is why the eastern stairs are shorter than the main stair.",
         "Key numbers 1–12 match the reference's key list. Grid cells are 20 × 20 m (A–J, 1–8). Use Zoom to read furniture, stair treads and railings.",
         "Table S-4 lists every link between walkable areas; the build fails if any area is unreachable from Spawn A.",
-        "Changed on review: the food truck pad sits against the street wall; the fashion shop's front strips became one planter along the wall; the arcade front has planter boxes either side of narrower steps; promenade benches back onto the edge planters facing the sea; the strip behind the street sidewalk is a level planter at street level; the event lawn is level with the plaza and the east path ramps down to it (the curved steps were removed); the island tree whose trunk stood on the kerb was removed; the planter by the main stair is one solid bed; the fashion planter sits at the wall foot east of the NW stair; the Lifestyle palm planter sits in the corner by the annex; the stub wall by the east stair was removed; four palms in round planters line the plaza side of the truck pad; the cat statue stands on its plinth in the planter east of the main stair; the arcade doors stand open so the hall is walk-in.",
+        "Changed on review: the food truck pad sits against the street wall; the fashion shop's front strips became one planter along the wall; the arcade front has planter boxes either side of narrower steps; promenade benches back onto the edge planters facing the sea; the strip behind the street sidewalk is a level planter at street level; the event lawn is level with the plaza and the east path ramps down to it (the curved steps were removed); the island tree whose trunk stood on the kerb was removed; the planter by the main stair is one solid bed; the fashion planter sits at the wall foot east of the NW stair; the Lifestyle palm planter sits in the corner by the annex; the stub wall by the east stair was removed; four palms in round planters line the plaza side of the truck pad; the truck area is one brick-paved floor (no timber deck) with a real brick texture in the model; the street planter above the trucks runs out to the wall face, the wall rises to its coping, and the stair beside it gets a full-height wall; the grass strip west of the stage became a walkway from the top plaza to the main plaza (big tree removed); the cat statue stands on its plinth in the planter east of the main stair; the arcade doors stand open so the hall is walk-in.",
     ],
     "l201": [
         "Cut on the main axis through the crosswalk, main stair and the Ori logo fountain, looking east (the logo is seen edge-on).",
