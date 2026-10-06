@@ -1578,10 +1578,14 @@ def fill_holes(sc, b, rec, idw):
     parts = [g for g in getattr(holes, "geoms", [holes]) if g.geom_type == "Polygon" and g.area > .002]
     if parts:
         fill = unary_union([g.buffer(.06) for g in parts]).intersection(land.buffer(.06))
-        def low(x, z):                                # the lowest surface around: hidden under anything beside it
+        def low(x, z):
+            """Flush with the surfaces around when they are level (a hairline gap between pieces of paving), otherwise
+            just under the lowest one, so a filler never rides up onto a step or a deck."""
             vs = [sc.level_in(x + dx, z + dz) for dx, dz in ((0, 0), (.35, 0), (-.35, 0), (0, .35), (0, -.35))]
             vs = [v for v in vs if v is not None]
-            return (min(vs) if vs else idw(x, z)) - .02
+            if not vs:
+                return idw(x, z) - .02
+            return max(vs) - .002 if max(vs) - min(vs) < .08 else min(vs) - .02
         sc.grid_slab(fill, low, "paver", "std", cell=2.0, bot=-1.0)
 
 

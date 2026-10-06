@@ -651,8 +651,21 @@ def hardscape():
     # smoothed so the bed beside it gets one clean curved edge (no spikes where the steps used to be)
     tip_pave = close_(unary_union([G(CURVED_STAIR_PX), east_g.intersection(GB(1150, 395, 1225, 440)),
                                    GB(1100, 486, 1180, 522).difference(tip.buffer(.05))]), 1.8)
-    stage_link = G([(976, 199), (1050, 197), (1050, 292), (1036, 302), (1012, 314), (990, 322), (978, 300), (975, 250)])
-    plaza_g = unary_union([plaza_g, east_g, island.buffer(.5).difference(tip), tip_pave, close_(unary_union([stage_link, top_g_]), 1.5)])
+    # walkway west of the stage, from the stair foot / top plaza to the main plaza; its south edge is one curve from the
+    # deck's front corner, running tangent into the curved path's east edge, so the green beside it keeps a clean edge
+    cl = PP(CURVE_LINE_PX)
+    (ax_, ay_), (bx_, by_) = cl[2], cl[3]
+    L_ = math.hypot(bx_ - ax_, by_ - ay_)
+    ex, ey = (by_ - ay_) / L_ * 3.25, -(bx_ - ax_) / L_ * 3.25
+    if ex < 0:
+        ex, ey = -ex, -ey
+    edge_pt = lambda t: (ax_ + (bx_ - ax_) * t + ex, ay_ + (by_ - ay_) * t + ey)    # noqa: E731
+    full = cr_sample(PP([(1050, 291), (1031, 293.5), (1015, 300)]) + [edge_pt(.42), edge_pt(.62)], per=12)
+    k_ = min(range(len(full)), key=lambda k: math.dist(full[k], edge_pt(.42)))
+    curve = full[:k_ + 1]                                  # deck corner to the tangent point on the path edge
+    stage_link = Polygon(PP([(976, 199), (1050, 197)]) + curve +
+                         [(edge_pt(.42)[0] - ex * .6, edge_pt(.42)[1] - ey * .6)] + PP([(975, 250)])).buffer(0)   # closes inside the path
+    plaza_g = close_(unary_union([plaza_g, east_g, island.buffer(.5).difference(tip), tip_pave, unary_union([stage_link, top_g_])]), .4)
     # one smooth path edge where the steps used to be: smooth the paving outline locally (no spike, no kerb jog)
     zone = TIP_ZONE
     smooth = open_(close_(plaza_g.intersection(zone.buffer(6.0)), 3.0), 1.2)       # smoothed over a wider area, used inside
@@ -660,11 +673,17 @@ def hardscape():
 
     prom_g = G(PROM_PX)
     terr_g = G([(282, 485), (347, 485), (347, 592), (160, 592), (160, 540), (282, 540)])
+    # green filled back at the stage's front-left corner (the walkway cut too much): a curve from the deck corner
+    # bowing west and down to the bed beside the lawn
+    wx, wy = -ex * .8, -ey * .8                            # reach into the path, then cut it away: green follows its edge
+    stage_green = Polygon(curve + [(edge_pt(.42)[0] + wx, edge_pt(.42)[1] + wy), (edge_pt(1.0)[0] + wx, edge_pt(1.0)[1] + wy)] +
+                          PP([(1012, 372), (1040, 390), (1062, 360), (1062, 315), (1058, 292)])).buffer(0)
+    stage_green = stage_green.difference(GL(CURVE_LINE_PX, 3.25))
     top_g = top_g_
     lawn_g = lawn_poly().difference(plaza_g).difference(top_g)
     deck_g = G(DECK_PX)
     paved = unary_union([street_g, plaza_g, top_g])
-    beds = [
+    beds = [(stage_green, 13), 
         (G([(972, 145), (1060, 145), (1060, 200), (1047.5, 200), (1047.5, 292.5), (1032.5, 305), (1030, 330), (1042.5, 360),
             (1065, 390), (1090, 410), (1120, 422.5), (1150, 430), (1164, 424), (1150, 445), (1110, 445), (1060, 420), (1020, 380),
             (1000, 330), (995, 250), (990, 200), (972, 192)]), 13),
